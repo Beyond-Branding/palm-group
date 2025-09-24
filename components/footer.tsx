@@ -1,111 +1,98 @@
-import Link from "next/link"
-import { Facebook, Linkedin, Instagram } from "lucide-react"
+import Link from "next/link";
+import { Facebook, Linkedin, Youtube } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-primary text-primary-foreground">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Company Info */}
-          <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center mb-4">
-              <div className="w-10 h-10 bg-primary-foreground rounded-lg flex items-center justify-center">
-                <span className="text-primary font-bold text-lg">PG</span>
+    <footer className="w-full relative">
+      {/* Top footer section */}
+      <div className="bg-[#f5f5f5] border-t-4 border-[#119152]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
+            {/* Products Column */}
+            <div>
+              <h4 className="text-sm font-semibold text-gray-500 tracking-wider mb-4">
+                OUR PRODUCTS
+              </h4>
+              <ul className="space-y-2 text-gray-700">
+                <li><Link href="#" className="hover:underline">Fungicides</Link></li>
+                <li><Link href="#" className="hover:underline">Insecticides</Link></li>
+                <li><Link href="#" className="hover:underline">Herbicides</Link></li>
+                <li><Link href="#" className="hover:underline">Crop Enhancement</Link></li>
+              </ul>
+            </div>
+
+            {/* Company Column */}
+            <div>
+              <h4 className="text-sm font-semibold text-gray-500 tracking-wider mb-4">
+                COMPANY
+              </h4>
+              <ul className="space-y-2 text-gray-700">
+                <li><Link href="#" className="hover:underline">About Palm</Link></li>
+                <li><Link href="#" className="hover:underline">Palm India</Link></li>
+                <li><Link href="#" className="hover:underline">Our Team</Link></li>
+                <li><Link href="#" className="hover:underline">Career</Link></li>
+                <li><Link href="#" className="hover:underline">Contact Us</Link></li>
+              </ul>
+            </div>
+
+            {/* Legal Column */}
+            <div>
+              <h4 className="text-sm font-semibold text-gray-500 tracking-wider mb-4">
+                LEGAL
+              </h4>
+              <ul className="space-y-2 text-gray-700">
+                <li><Link href="#" className="hover:underline">Privacy Policy</Link></li>
+                <li><Link href="#" className="hover:underline">Terms and Conditions of Use</Link></li>
+                <li><Link href="#" className="hover:underline">Code of Conduct</Link></li>
+                <li><Link href="#" className="hover:underline">Anti-Bribery and Anti-Corruption</Link></li>
+                <li><Link href="#" className="hover:underline">Modern Slavery</Link></li>
+                <li><Link href="#" className="hover:underline">Cookie Policy</Link></li>
+              </ul>
+            </div>
+
+            {/* Social Column */}
+            <div>
+              <h4 className="text-sm font-semibold text-gray-500 tracking-wider mb-4">
+                SOCIAL
+              </h4>
+              <div className="flex space-x-4 mt-2">
+                <Link href="#" className="bg-[#119152] p-2 rounded-full">
+                  <Youtube className="h-5 w-5 text-white" />
+                </Link>
+                <Link href="#" className="bg-[#119152] p-2 rounded-full">
+                  <Linkedin className="h-5 w-5 text-white" />
+                </Link>
+                <Link href="#" className="bg-[#119152] p-2 rounded-full">
+                  <Facebook className="h-5 w-5 text-white" />
+                </Link>
               </div>
-              <span className="ml-3 text-xl font-bold">Palm Group</span>
             </div>
-            <p className="text-primary-foreground/80 mb-4 max-w-md">
-              Passionate agri-innovators committed to transforming farming into a sustainable, productive, and
-              farmer-first experience.
-            </p>
-            <div className="flex space-x-4">
-              <Link href="#" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                <Facebook className="h-5 w-5" />
-              </Link>
-              <Link href="#" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                <Linkedin className="h-5 w-5" />
-              </Link>
-              <Link href="#" className="text-primary-foreground/80 hover:text-primary-foreground transition-colors">
-                <Instagram className="h-5 w-5" />
-              </Link>
-            </div>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  href="/about"
-                  className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/products"
-                  className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
-                >
-                  Our Products
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/awards"
-                  className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
-                >
-                  Awards
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
-                >
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Business Verticals */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Business Areas</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  href="/crop-nutrition"
-                  className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
-                >
-                  Crop Nutrition
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/pharmaceuticals"
-                  className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
-                >
-                  Pharmaceuticals
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/fine-chemicals"
-                  className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
-                >
-                  Fine Chemicals
-                </Link>
-              </li>
-            </ul>
           </div>
         </div>
+      </div>
 
-        <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center">
-          <p className="text-primary-foreground/80">© 2025 Palm Group. All rights reserved.</p>
+      {/* Bottom section with green background + chat bubbles */}
+      <div className="bg-[#119152] py-6">
+        <div className="max-w-7xl mx-auto px-4 flex flex-col space-y-4">
+          
+          {/* Links bubble (left, white bubble) */}
+          <div className="self-start bg-white text-[#119152] px-6 py-3 rounded-2xl rounded-bl-sm shadow-md text-sm max-w-2xl">
+            <div className="flex flex-wrap gap-4">
+              <Link href="#" className="hover:underline">Privacy Policy</Link>
+              <Link href="#" className="hover:underline">Terms and Conditions</Link>
+              <Link href="#" className="hover:underline">Code of Conduct</Link>
+              <Link href="#" className="hover:underline">Anti-Bribery</Link>
+              <Link href="#" className="hover:underline">Modern Slavery</Link>
+              <Link href="#" className="hover:underline">Cookie Policy</Link>
+            </div>
+          </div>
+
+          {/* Company bubble (right, green bubble) */}
+          <div className="self-end bg-green-700 text-white px-6 py-3 rounded-2xl rounded-br-sm shadow-md text-sm font-medium max-w-xs">
+            Copyright © Palm
+          </div>
         </div>
       </div>
     </footer>
-  )
+  );
 }

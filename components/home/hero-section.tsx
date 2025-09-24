@@ -1,11 +1,13 @@
+"use client"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Image from "next/image"
 
 export function HeroSection() {
   return (
-  <section className="relative h-screen flex overflow-hidden">
+  <section className="relative pb-2 flex overflow-hidden">
   {/* Smaller left green block */}
-  <div className="relative z-10 w-[50vw] h-half bg-[#08A84B] rounded-br-[30vw] flex flex-col justify-center pl-10 lg:pl-10 pr-2">
+  <div className="relative z-10 w-[100vw] h-[47vw] bg-[#08A84B] rounded-br-[50vw] flex-col justify-center pl-10 lg:pl-20 pr-5 ">
     <div className="max-w-md pt-10">
       <p className="text-base font-semibold tracking-wide text-white mb-3">HELLO,</p>
       <h1 className="text-white text-4xl lg:text-5xl font-bold leading-tight mb-3">
@@ -25,18 +27,67 @@ export function HeroSection() {
           <span className="inline-block w-5 h-1 bg-white rounded-full" />
           <span className="inline-block w-5 h-1 bg-white opacity-60 rounded-full" />
           <span className="inline-block w-5 h-1 bg-white opacity-60 rounded-full" />
+          <svg
+          className="absolute bottom-0 left-0 w-full h-1/2"
+          viewBox="0 0 1440 320"
+          preserveAspectRatio="none"
+          >
+          <path
+            fill="#FFFFFF"
+            d="M0,224L80,208C160,192,320,160,480,149.3C640,139,800,149,960,160C1120,171,1280,181,1360,186.7L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
+          />
+        </svg>
+        </div>
         </div>
       </div>
     </div>
-  </div>
   
-  {/* Right-side background image */}
-  <div className="absolute right-0 top-0 w-[68vw] h-full z-0">
-    <img
-      src="/your-building-image.jpg" // Replace with your image path
-      alt="Palm Group office"
-      className="w-full h-full object-cover"
-    />
+  {/* Background image with wave curve, overlaying the left green panel */}
+  <div className="absolute top-0 right-0 w-1/2 h-[38vw] z-10 rounded-bl-[80vw] overflow-hidden">
+  <div className="relative w-full h-full bg-[#08A84B] rounded-bl-[50vw]" >
+      <Image
+        src="/agricultural-farm-field-with-green-crops-growing--.jpg"
+        alt="Palm Group office"
+        fill
+        className="object-cover"
+        priority
+      />
+      {/* Wave mask using SVG as a mask over the image */}
+      {/* <svg
+        className="absolute top-0 left-0 w-full h-full"
+        viewBox="0 0 1440 900"
+        preserveAspectRatio="none"
+        style={{ pointerEvents: "none" }}
+      >
+        <defs>
+          <clipPath id="wave-clip" clipPathUnits="objectBoundingBox">
+            <path
+              d="
+                M0,0 
+                L1,0 
+                L1,0.85 
+                C0.85,0.95,0.7,1,0.5,0.95 
+                C0.3,0.9,0.15,0.8,0,0.85 
+                Z
+              "
+            />
+          </clipPath>
+        </defs>
+        <rect
+          x="0"
+          y="0"
+          width="100%"
+          height="100%"
+          fill="white"
+          clipPath="url(#wave-clip)"
+        />
+      </svg> */}
+      <style jsx>{`
+        .relative > :global(img) {
+          clip-path: url(#wave-clip);
+        }
+      `}</style>
+    </div>
   </div>
   
   {/* Bottom SVG curve for seamless join */}

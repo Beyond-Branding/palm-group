@@ -1,71 +1,67 @@
-import { Card, CardContent } from "@/components/ui/card"
-import Link from "next/link"
-import { Leaf, Pill, FlaskConical } from "lucide-react"
+"use client"
+import { useRef } from 'react';
 
-const businessAreas = [
-  {
-    title: "Crop Nutrition & Protection",
-    description: "Innovative, farmer-first crop nutrition & protection products for sustainable agriculture.",
-    icon: Leaf,
-    href: "/crop-nutrition",
-    image: "/healthy-green-crops-in-field-with-organic-fertiliz.jpg",
-  },
-  {
-    title: "Pharmaceuticals",
-    description: "High-quality APIs and formulations through Palm Pharmachem for healthcare excellence.",
-    icon: Pill,
-    href: "/pharmaceuticals",
-    image: "/modern-pharmaceutical-laboratory-with-medicine-pro.jpg",
-  },
-  {
-    title: "Fine Chemicals",
-    description: "Leading supplier of fine chemicals for diverse industries through Shah Scientific.",
-    icon: FlaskConical,
-    href: "/fine-chemicals",
-    image: "/chemical-laboratory-with-precision-instruments-and.jpg",
-  },
-]
+export default function ProductsSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
 
-export function BusinessAreas() {
+  const products = [
+    { name: 'Fungicides', color: 'bg-blue-400', icon: '🌱', cap: 'blue-500', image: 'https://via.placeholder.com/150?text=Fungicides' },
+    { name: 'Insecticides', color: 'bg-purple-500', icon: '🐞', cap: 'purple-500', image: 'https://via.placeholder.com/150?text=Insecticides' },
+    { name: 'Herbicides', color: 'bg-green-400', icon: '🌿', cap: 'green-500', image: 'https://via.placeholder.com/150?text=Herbicides' },
+    { name: 'Crop Enhancement', color: 'bg-yellow-400', icon: '🌾', cap: 'yellow-500', image: 'https://via.placeholder.com/150?text=Crop+Enhancement' },
+    { name: 'Fertilizers', color: 'bg-red-400', icon: '🌺', cap: 'red-500', image: 'https://via.placeholder.com/150?text=Fertilizers' },
+    { name: 'Seed Treatments', color: 'bg-pink-400', icon: '🌱', cap: 'pink-500', image: 'https://via.placeholder.com/150?text=Seed+Treatments' },
+    { name: 'Pest Control', color: 'bg-indigo-400', icon: '🕷️', cap: 'indigo-500', image: 'https://via.placeholder.com/150?text=Pest+Control' },
+    { name: 'Soil Health', color: 'bg-teal-400', icon: '🌍', cap: 'teal-500', image: 'https://via.placeholder.com/150?text=Soil+Health' },
+  ];
+
   return (
-    <section className="py-20 section-gradient">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6 text-balance">Our Business Areas</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-            Three specialized verticals working together to create sustainable solutions for agriculture, healthcare,
-            and industry.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {businessAreas.map((area, index) => (
-            <Link key={area.title} href={area.href} className="group">
-              <Card className="h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-                <div className="relative h-48 overflow-hidden">
+    <section className="py-2 bg-white-100">
+      <div className="container mx-auto text-center">
+        <h2 className="text-4xl font-bold text-gray-800 py-0 mb-4">Our Products</h2>
+        <p className="text-gray-600 mb-8">Discover our solutions to simplify your farming</p>
+        {/* Wrapper with overflow-hidden to contain the scrolling */}
+        <div className="overflow-hidden relative">
+          {/* Animated container for seamless infinite scroll */}
+          <div
+            className="flex whitespace-nowrap animate-scroll"
+            style={{ animationDuration: '40s' }} // Adjust duration for speed
+          >
+            {/* Duplicate products for seamless loop */}
+            {[...products, ...products].map((product, index) => (
+              <div
+                key={index}
+                className="inline-block mx-4 p-6 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:bg-opacity-90"
+                style={{ minWidth: '200px' }}
+              >
+                <div className="text-2xl mb-2">{product.icon}</div>
+                <h3 className="text-xl font-semibold">{product.name}</h3>
+                <div className="mt-4">
                   <img
-                    src={area.image || "/placeholder.svg"}
-                    alt={area.title}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-32 object-cover rounded"
                   />
-                  <div className="absolute inset-0 bg-primary/20 group-hover:bg-primary/30 transition-colors duration-300" />
-                  <div className="absolute top-4 left-4">
-                    <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
-                      <area.icon className="h-6 w-6 text-primary" />
-                    </div>
+                  <div className={`mt-2 bg-${product.cap}-600 h-8 w-8 rounded-full mx-auto flex items-center justify-center`}>
+                    <span className="text-white font-bold">A</span>
                   </div>
                 </div>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-bold text-primary mb-3 group-hover:text-primary/80 transition-colors">
-                    {area.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">{area.description}</p>
-                </CardContent>
-              </Card>
-            </Link>
-          ))}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
+      {/* CSS animation for scrolling */}
+      <style jsx>{`
+        @keyframes scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-scroll {
+          display: inline-flex;
+          animation: scroll linear infinite;
+        }
+      `}</style>
     </section>
-  )
+  );
 }
