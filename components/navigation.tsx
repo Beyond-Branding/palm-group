@@ -20,7 +20,12 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <nav className="bg-white/95 backdrop-blur-sm border-b border-border sticky top-0 z-50">
+    <nav
+      className="relative bg-white/95 backdrop-blur-sm border-b border-border sticky top-0 z-50"
+      style={{
+        clipPath: "polygon(0 0, calc(100% - 80px) 0, 100% 100%, 0% 100%)",
+      }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -32,7 +37,6 @@ export function Navigation() {
               <span className="ml-3 text-xl font-bold text-primary">Palm Group</span>
             </Link>
           </div>
-
           {/* Desktop Navigation */}
           <div className="hidden lg:block">
             <div className="ml-10 flex items-baseline space-x-4">
@@ -47,7 +51,6 @@ export function Navigation() {
               ))}
             </div>
           </div>
-
           {/* Mobile menu button */}
           <div className="lg:hidden">
             <Button variant="ghost" size="sm" onClick={() => setIsOpen(!isOpen)} className="text-foreground">
@@ -56,7 +59,6 @@ export function Navigation() {
           </div>
         </div>
       </div>
-
       {/* Mobile Navigation */}
       {isOpen && (
         <div className="lg:hidden">

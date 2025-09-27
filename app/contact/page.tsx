@@ -1,8 +1,8 @@
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { ContactHero } from "@/components/contact/contact-hero"
-import { ContactForm } from "@/components/contact/contact-form"
 import { ContactInfo } from "@/components/contact/contact-info"
+import ContactCards from "@/components/contact/contact-cards"
 
 export default function ContactPage() {
   return (
@@ -10,10 +10,10 @@ export default function ContactPage() {
       <Navigation />
       <main>
         <ContactHero />
-        <div className="grid grid-cols-1 lg:grid-cols-2">
-          <ContactForm />
+        <ContactCards />
+        {/* <div className="grid grid-cols-1 lg:grid-cols-2"> */}
           <ContactInfo />
-        </div>
+        {/* </div> */}
       </main>
       <Footer />
     </div>

@@ -1,78 +1,236 @@
-import { Card, CardContent } from "@/components/ui/card"
-import Link from "next/link"
+"use client";
+import { useState } from "react";
 
 const productCategories = [
   {
     title: "Crop Nutrition & Protection",
-    description: "Innovative biostimulants, activators, and organic plant extracts for sustainable farming.",
-    products: ["Golden Drop", "AG-F", "AG-F Super Plus", "Crop Giant"],
-    href: "/crop-nutrition",
-    image: "/healthy-green-crops-in-field-with-organic-fertiliz.jpg",
+    products: [
+      {
+        name: "Golden Drop",
+        image: "/images/golden-drop.jpg",
+        description: "Golden Drop is a next-generation, protein hydrolysate-based biostimulant designed to improve flowering, enhance fruit quality, and boost overall plant health.",
+        keyBenefits: [
+          "Speeds Up Plant Growth – Activates natural plant processes, promoting faster flowering and uniform fruit development.",
+          "Improves Flowering & Fruiting – Reduces flower drop and encourages better fruit setting for a higher yield.",
+          "Boosts Chlorophyll & Photosynthesis – Ensures greener, healthier plants with improved energy production.",
+          "Protein-Rich Nutrition – Enriches plants with essential amino acids and peptides for better growth and stress tolerance.",
+          "Better Fruit Quality – Enhances size, weight, and appearance of fruits for improved market value."
+        ],
+        dosage: [
+          "Dosage: 0.5–0.75 ml per litre of water",
+          "Timing: Spray during flowering and early fruiting stages every 12–15 days."
+        ],
+        whereToUse: [
+          "Grapes", "Tomato", "Mango", "Paddy", "Onion", "Chilli", "Citrus Fruits", "Vegetables", "Strawberries", "Capsicum", "Pomegranate", "Sugarcane", "Tea", "Coffee", "Cashew", "Banana"
+        ],
+      },
+      {
+        name: "AG-F – Premium Activator, Spreader & Sticker",
+        image: "/images/ag-f.jpg",
+        description: "AG-F is a specialized non-ionic activator designed to maximize the effectiveness of pesticides, plant growth regulators, micronutrients, and water-soluble fertilizers. It ensures superior coverage, faster absorption, and longer rain persistence, helping farmers get the best results with lower agrochemical usage",
+        keyBenefits: [
+"✅ Enhances Agrochemical Performance – Improves penetration, spreading, and absorption of pesticides, PGRs, and fertilizers.",
+"✅ Excellent Rainfastness – Keeps chemicals active even after rainfall for maximum protection.",
+"✅ Boosts Efficacy Up to 12X – Ensures uniform coverage and faster action for better results.",
+"✅ Reduces Herbicide Costs – Cuts Glyphosate and Paraquat usage by up to 50%, reducing input cost per acre.",
+"✅ Faster Pest & Disease Control – Promotes quick knockdown of insects and faster fungal control when tank-mixed with pesticides"
+        ],
+        dosage: ["🔹 Dosage: 1 ml per litre of water to reduce herbicide dosage by 50%",
+"🔹 Use With: Herbicides, insecticides, fungicides, micronutrients & foliar fertilizers"],
+        whereToUse: ["Ideal for all crops"]
+      },
+      {
+        name: "AG-F Super Plus",
+        image: "/images/ag-f-super-plus.jpg",
+        description: "AG-F Super Plus is a high-performance stimulator for crop resilience.",
+        keyBenefits: ["Enables drought resistance", "Promotes flowering"],
+        dosage: ["Dosage: 2 ml per litre", "Foliar spray during growth phase"],
+        whereToUse: ["Grains", "Fruit Trees","Fruits"],
+      },
+      {
+        name: "Crop Giant",
+        image: "/images/crop-giant.jpg",
+        description: "Crop Giant supports rapid growth cycles in key cash crops.",
+        keyBenefits: ["Accelerates development", "Improves harvest quality"],
+        dosage: ["Dosage: 1.5 ml per litre", "Use at key vegetative stages"],
+        whereToUse: ["Sugarcane", "Cotton", "Maize"],
+      },
+    ],
   },
   {
     title: "Pharmaceuticals",
-    description: "High-quality APIs and formulations through Palm Pharmachem.",
-    products: ["Aceclofenac", "Albendazole", "Ambroxol Hydrochloride", "Atorvastatin"],
-    href: "/pharmaceuticals",
-    image: "/modern-pharmaceutical-laboratory-with-medicine-pro.jpg",
+    products: [
+      {
+        name: "Aceclofenac",
+        image: "/images/aceclofenac.jpg",
+        description: "Aceclofenac is a non-steroidal anti-inflammatory drug used for pain relief.",
+        keyBenefits: ["Reduces inflammation", "Pain relief"],
+        dosage: ["Dosage: 100mg twice daily"],
+        whereToUse: ["Human use"]
+      },
+      {
+        name: "Albendazole",
+        image: "/images/albendazole.jpg",
+        description: "Albendazole is an antiparasitic medication targeting intestinal worms.",
+        keyBenefits: ["Treats parasitic infections", "Safe and effective"],
+        dosage: ["Dosage: 400mg single dose"],
+        whereToUse: ["Human use"]
+      },
+      {
+        name: "Ambroxol Hydrochloride",
+        image: "/images/ambroxol.jpg",
+        description: "Ambroxol Hydrochloride provides mucolytic action for easier breathing.",
+        keyBenefits: ["Thins mucus", "Relieves chest congestion"],
+        dosage: ["Dosage: 30mg thrice daily"],
+        whereToUse: ["Human use"]
+      },
+      {
+        name: "Atorvastatin",
+        image: "/images/atorvastatin.jpg",
+        description: "Atorvastatin is a statin medication for cholesterol management.",
+        keyBenefits: ["Lowers LDL cholesterol", "Prevents heart disease"],
+        dosage: ["Dosage: 10-40mg per day"],
+        whereToUse: ["Human use"]
+      },
+    ],
   },
   {
     title: "Fine Chemicals",
-    description: "Leading supplier of fine chemicals for diverse industries through Shah Scientific.",
-    products: ["1,6 Hexandiol", "2-Ethylaniline", "6-B.A.", "Aluminium Molybdate"],
-    href: "/fine-chemicals",
-    image: "/chemical-laboratory-with-precision-instruments-and.jpg",
+    products: [
+      {
+        name: "1,6 Hexandiol",
+        image: "/images/hexandiol.jpg",
+        description: "1,6 Hexandiol is an industrial chemical for diverse applications.",
+        keyBenefits: ["High purity", "Wide usage"],
+        dosage: ["Follow standard industrial levels"],
+        whereToUse: ["Paints", "Plastics", "Pharma"],
+      },
+      {
+        name: "2-Ethylaniline",
+        image: "/images/2-ethylaniline.jpg",
+        description: "2-Ethylaniline is used in dye and chemical synthesis.",
+        keyBenefits: ["Stable compound", "Process versatility"],
+        dosage: ["Industrial application"],
+        whereToUse: ["Synthetic dyes", "Research"],
+      },
+      {
+        name: "6-B.A.",
+        image: "/images/6ba.jpg",
+        description: "6-B.A. is a plant growth regulator.",
+        keyBenefits: ["Stimulates cell division", "Improves yield"],
+        dosage: ["Dosage: Varies per crop, see datasheet"],
+        whereToUse: ["Fruit crops", "Orchards", "Greenhouse plants"],
+      },
+      {
+        name: "Aluminium Molybdate",
+        image: "/images/aluminium-molybdate.jpg",
+        description: "Aluminium Molybdate is used in pigment and ceramic production.",
+        keyBenefits: ["Heat-resistant", "Stable pigment"],
+        dosage: ["Use according to material specs"],
+        whereToUse: ["Ceramics", "Pigments", "Industrial"],
+      },
+    ],
   },
-]
+];
+
+type Product = (typeof productCategories)[number]["products"][number];
 
 export function ProductsGrid() {
-  return (
-    <section className="py-20 section-gradient">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6 text-balance">Product Categories</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-            Explore our three specialized product lines, each designed to meet specific industry needs with the highest
-            quality standards.
-          </p>
-        </div>
+  const [selectedCategory, setSelectedCategory] = useState((productCategories)[0]);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {productCategories.map((category, index) => (
-            <Link key={category.title} href={category.href} className="group">
-              <Card className="h-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
-                <div className="relative h-64 overflow-hidden">
-                  <img
-                    src={category.image || "/placeholder.svg"}
-                    alt={category.title}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-primary/20 group-hover:bg-primary/30 transition-colors duration-300" />
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="text-2xl font-bold text-primary mb-3 group-hover:text-primary/80 transition-colors">
-                    {category.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed mb-4">{category.description}</p>
-                  <div className="space-y-2">
-                    <h4 className="font-semibold text-primary text-sm">Featured Products:</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {category.products.map((product) => (
-                        <span
-                          key={product}
-                          className="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full font-medium"
-                        >
-                          {product}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-          ))}
+  if (selectedProduct) {
+    return (
+      <section className="py-16 bg-white min-h-[75vh]">
+        <div className="max-w-4xl mx-auto px-4 flex flex-col gap-8 border rounded-lg shadow bg-green-50">
+          <button
+            onClick={() => setSelectedProduct(null)}
+            className="self-start mt-6 mb-2 px-4 py-1 rounded bg-green-700 text-white hover:bg-green-900"
+          >
+            ← Back to Products
+          </button>
+          <div className="flex gap-12 items-center mt-4 mb-6 w-full">
+            <img
+              src={selectedProduct.image}
+              alt={selectedProduct.name}
+              className="w-60 h-60 object-contain rounded-lg border bg-white"
+            />
+            <div className="flex-1">
+              <h2 className="text-3xl font-bold text-green-900 mb-4">{selectedProduct.name}</h2>
+              <p className="mb-6 text-green-800">{selectedProduct.description}</p>
+              <h3 className="font-bold text-green-900 mb-2">🌱 Key Benefits</h3>
+              <ul className="mb-4 list-disc list-inside text-green-700">
+                {selectedProduct.keyBenefits.map((benefit, idx) => (
+                  <li key={idx}>{benefit}</li>
+                ))}
+              </ul>
+              <h3 className="font-bold text-green-900 mb-2">📋 Recommended Dosage</h3>
+              <ul className="mb-4 list-disc list-inside text-green-700">
+                {selectedProduct.dosage.map((dosage, idx) => (
+                  <li key={idx}>{dosage}</li>
+                ))}
+              </ul>
+              <h3 className="font-bold text-green-900 mb-2">🌾 Where to Use</h3>
+              <div className="flex flex-wrap gap-2 mb-6">
+                {selectedProduct.whereToUse.map((crop, idx) => (
+                  <span
+                    key={idx}
+                    className="bg-green-100 text-green-900 px-2 py-1 rounded text-sm"
+                  >
+                    {crop}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
+    );
+  }
+
+  return (
+    <section className="py-16 bg-white min-h-[75vh]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex gap-6">
+        <aside className="w-1/6 bg-green-100 rounded-md p-4">
+          <h2 className="text-lg font-bold text-green-900 mb-4">Categories</h2>
+          <div className="flex flex-col space-y-3">
+            {productCategories.map((category) => (
+              <button
+                key={category.title}
+                className={`px-3 py-2 rounded text-sm font-semibold text-left border transition ${
+                  selectedCategory.title === category.title
+                    ? "bg-green-800 text-white border-green-800"
+                    : "bg-white text-green-800 border-green-800 hover:bg-green-200"
+                }`}
+                onClick={() => {
+                  setSelectedCategory(category);
+                  setSelectedProduct(null);
+                }}
+              >
+                {category.title}
+              </button>
+            ))}
+          </div>
+        </aside>
+        <main className="w-5/6 bg-green-50 rounded-md p-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {selectedCategory.products.map((product) => (
+              <div
+                key={product.name}
+                className="flex flex-col items-center border border-green-300 rounded-xl p-6 bg-white shadow hover:bg-green-100 cursor-pointer transition"
+                onClick={() => setSelectedProduct(product)}
+              >
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="w-32 h-32 object-contain mb-4 rounded"
+                />
+                <span className="text-lg font-bold text-green-900 text-center">{product.name}</span>
+              </div>
+            ))}
+          </div>
+        </main>
       </div>
     </section>
-  )
+  );
 }
