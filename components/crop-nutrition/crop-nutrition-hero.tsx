@@ -1,26 +1,32 @@
 export function CropNutritionHero() {
   return (
-    <section className="relative py-32 overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/healthy-green-crops-in-field-with-organic-fertiliz.jpg"
-          alt="Crop nutrition and protection"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-primary/60" />
+    <section className="relative overflow-hidden bg-white">
+      {/* Full-width wavey green header */}
+      <div className="absolute top-0 left-0 w-full h-50">
+        <svg
+          viewBox="0 0 1440 320"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-full"
+          preserveAspectRatio="none"
+        >
+          {/* Main green wave */}
+          <path
+            d="M0,200 Q160,100 820,200 T1440,200 L1440,0 L0,0 Z"
+            fill="#059c5b"
+          />
+          {/* Optional darker overlay for depth */}
+          <path
+            d="M0,200 Q180,140 720,240 T1440,240 L1440,0 L0,0 Z"
+            fill="#19703d"
+            opacity="0.8"
+          />
+        </svg>
       </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 text-balance animate-fade-in-up">
-            Crop Nutrition & Protection
-          </h1>
-          <p className="text-xl md:text-2xl text-white/90 leading-relaxed text-pretty animate-fade-in-up">
-            Palm International provides innovative, farmer-first crop nutrition & protection products that enhance
-            productivity while promoting sustainable agriculture.
-          </p>
-        </div>
+   <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-12 pt-12 pb-24">
+        <h1 className="text-4xl mid:text-6xl font-bold text-white">
+         Crop Nutrition & Protection
+        </h1>
       </div>
     </section>
-  )
+  );
 }

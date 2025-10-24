@@ -4,7 +4,7 @@ import { Award, Shield, FileCheck, Leaf, Globe } from "lucide-react"
 
 const awards = [
   {
-    title: "ISO 9001:2015",
+    title: "ISO 9001",
     category: "Quality Management",
     description:
       "International standard for quality management systems, ensuring consistent quality in our products and services.",
@@ -29,7 +29,7 @@ const awards = [
     issuer: "State Drug Control Authority",
   },
   {
-    title: "Agricultural Licenses",
+    title: "Agri- licenses ",
     category: "Agriculture",
     description: "Comprehensive licensing for manufacturing and distribution of agricultural products and fertilizers.",
     icon: Leaf,
@@ -37,7 +37,7 @@ const awards = [
     issuer: "Department of Agriculture",
   },
   {
-    title: "RCMC Certificate",
+    title: "RCMC",
     category: "Export Promotion",
     description: "Registration-cum-Membership Certificate from Export Promotion Council for international trade.",
     icon: Award,

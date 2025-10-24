@@ -29,34 +29,37 @@ import { Linkedin, Mail } from "lucide-react";
 //   },
 // ];
 
+
 export function Leadership() {
-  return (
-    <section className="relative py-20 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center px-4 sm:px-6 lg:px-8">
-        {/* Left: Clipped Image */}
-        <div className="w-full md:w-1/2 flex-shrink-0 relative min-h-[280px] md:min-h-[350px]">
-          <div
-            className="h-full w-full overflow-hidden"
-            style={{
-              clipPath: "polygon(10% 0%, 80% 0%, 100% 100%, 0% 100%)",
-            }}
-          >
-            <Image
-              src="public/Vision.jpg" // path relative to public folder
-              alt="Vision"
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
-        </div>
-        {/* Right: Content */}
-        <div className="w-full md:w-1/2 px-0 md:px-12 py-14 md:py-0 flex flex-col justify-center items-start">
-          <h2 className="text-4xl md:text-5xl font-bold text-green-700 mb-4">A New Era of Agriculture</h2>
-          <p className="text-lg md:text-xl text-gray-700 mb-6 max-w-xl">
-Agriculture is evolving and so are we. Palm Group is leading the shift toward a new era of farming that prioritizes ecology, efficiency, and sustainability. Through next-generation bio-products and eco-friendly practices, we’re helping build a future where farming is smarter, cleaner, and more resilient for generations to come.          </p>
-        </div>
-      </div>
-    </section>
-  );
+  return (
+    <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center px-4 sm:px-6 md:px-8 lg:px-12">
+        {/* Left: Clipped Image */}
+        <div className="w-full md:w-1/2 flex-shrink-0 relative min-h-[200px] sm:min-h-[250px] md:min-h-[300px] lg:min-h-[350px]">
+          <div
+            className="h-full w-full overflow-hidden relative"
+            style={{
+              clipPath: 'ellipse(80% 90% at 60% 40%)', // Smoother, oval shape for better aesthetics
+            }}
+          >
+            <img
+              src="/female-indian-farmer-portrait-in-cotton-field.jpg"
+              alt="A new era of agriculture"
+              style={{ objectFit: "cover" }}
+
+            />
+          </div>
+        </div>
+        {/* Right: Content */}
+        <div className="w-full md:w-1/2 px-0 md:px-8 lg:px-12 py-8 sm:py-10 md:py-12 lg:py-0 flex flex-col justify-center items-start">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-green-700 mb-4">
+            A New Era of Agriculture
+          </h2>
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 mb-6 max-w-full sm:max-w-md md:max-w-lg lg:max-w-xl">
+            Agriculture is evolving and so are we. Palm Group is leading the shift toward a new era of farming that prioritizes ecology, efficiency, and sustainability. Through next-generation bio-products and eco-friendly practices, we’re helping build a future where farming is smarter, cleaner, and more resilient for generations to come.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
 }

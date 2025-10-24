@@ -1,6 +1,6 @@
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
-import VerticalTimeline from "@/components/awards/verticaltimeline"
+// import VerticalTimeline from "@/components/awards/verticaltimeline"
 import { AwardsGrid } from "@/components/awards/awards-grid"
 
 export default function AwardsPage() {
@@ -8,7 +8,7 @@ export default function AwardsPage() {
     <div className="min-h-screen">
       <Navigation />
       <main>
-        < VerticalTimeline/>
+        {/* < VerticalTimeline/> */}
 
         <AwardsGrid />
       </main>

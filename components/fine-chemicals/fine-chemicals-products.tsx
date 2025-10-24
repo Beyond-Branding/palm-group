@@ -1,82 +1,91 @@
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+"use client";
 
-const fineChemicalProducts = [
-  {
-    name: "1,6 Hexandiol",
-    category: "Diol",
-    description: "High-purity diol used in polymer synthesis and industrial applications.",
-    applications: ["Polymer synthesis", "Coatings", "Adhesives"],
-  },
-  {
-    name: "2-Ethylaniline",
-    category: "Aromatic Amine",
-    description: "Aromatic amine compound used in dye and pharmaceutical intermediate synthesis.",
-    applications: ["Dye intermediates", "Pharmaceutical synthesis", "Chemical manufacturing"],
-  },
-  {
-    name: "6-B.A.",
-    category: "Plant Growth Regulator",
-    description: "6-Benzylaminopurine, a cytokinin plant growth regulator for agricultural applications.",
-    applications: ["Plant tissue culture", "Growth regulation", "Agricultural research"],
-  },
-  {
-    name: "Aluminium Molybdate",
-    category: "Inorganic Salt",
-    description: "High-purity inorganic compound used in catalysis and analytical applications.",
-    applications: ["Catalysis", "Analytical chemistry", "Industrial processes"],
-  },
-  {
-    name: "Benzyl Acetate",
-    category: "Ester",
-    description: "Aromatic ester used in fragrance and flavor applications.",
-    applications: ["Fragrance industry", "Flavor compounds", "Solvent applications"],
-  },
-  {
-    name: "Citric Acid Monohydrate",
-    category: "Organic Acid",
-    description: "High-purity citric acid for food, pharmaceutical, and industrial applications.",
-    applications: ["Food additives", "Pharmaceutical excipients", "Cleaning agents"],
-  },
-]
+const fineChemicals = [
+  { name: "1,6 Hexandiol" },
+  { name: "2-Ethylaniline" },
+  { name: "6-B.A." },
+  { name: "Aluminium Molybdate" },
+  { name: "Amino Acids (20%, 30%, 50%, 70%, 80%, etc.)" },
+  { name: "Ammonium Molybdate" },
+  { name: "Ascorbic Acid" },
+  { name: "Borax" },
+  { name: "Boric Acid" },
+  { name: "Chelated Amino Proteinate (Zn, Fe, Ca, Mg, Mn, Cu, Bo)" },
+  { name: "Chitisan" },
+  { name: "Citric Acid" },
+  { name: "Cobalt Sulphate" },
+  { name: "Copper Sulphate" },
+  { name: "DA-6" },
+  { name: "E.D.D.H.A.-Fe" },
+  { name: "Ferulic Acid" },
+  { name: "Folic Acid" },
+  { name: "5-Hydroxytryptophan (5-HTP)" },
+  { name: "Histidine Hydrochloride" },
+  { name: "Kinetin" },
+  { name: "L – Isoleuine" },
+  { name: "L – Leucine" },
+  { name: "L – Methionine" },
+  { name: "L - Phenyl alanine" },
+  { name: "L – Threonine" },
+  { name: "L – Tryptophan" },
+  { name: "Lead Bromide" },
+  { name: "Lead Chloride" },
+  { name: "L-Lysine Hydrochloride" },
+  { name: "L-Valine" },
+  { name: "Magnesium Oxide (Light)" },
+  { name: "N-acetyl thiozolidine-4-carboxylic acid (NATCA)" },
+  { name: "Naphthalene Acetic Acid" },
+  { name: "Phosphoric Acid" },
+  { name: "Potassium Bicarbonate" },
+  { name: "Potassium Bisulphite" },
+  { name: "Potassium Dihydrogen O Phosphate" },
+  { name: "Potassium Molybdate" },
+  { name: "Potassium Sulfate" },
+  { name: "Seaweed Extracts" },
+  { name: "Sodium Moybdate" },
+  { name: "Sodium Nitrophenolate" },
+  { name: "Tri-iodo-benzoic acid" },
+  { name: "Uracil" },
+];
 
 export function FineChemicalsProducts() {
   return (
-    <section className="py-20 section-gradient">
+    <section className="py-12 bg-white min-h-[80vh] w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6 text-balance">Shah Scientific Products</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-            Our extensive catalog of fine chemicals serves diverse industries with consistent quality and reliable
-            supply chain management.
-          </p>
-        </div>
+        <h2 className="text-3xl font-bold text-green-900 mb-6 text-center">
+          Fine Chemicals
+        </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {fineChemicalProducts.map((product, index) => (
-            <Card key={product.name} className="group hover:shadow-lg transition-all duration-300">
-              <CardContent className="p-6">
-                <Badge variant="outline" className="mb-3">
-                  {product.category}
-                </Badge>
-                <h3 className="text-xl font-bold text-primary mb-3">{product.name}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-4">{product.description}</p>
-                <div className="space-y-2">
-                  <h4 className="font-semibold text-primary text-sm">Applications:</h4>
-                  <ul className="space-y-1">
-                    {product.applications.map((application) => (
-                      <li key={application} className="text-sm text-muted-foreground flex items-center">
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full mr-2 flex-shrink-0" />
-                        {application}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="overflow-x-auto rounded-lg shadow-lg">
+          <table className="w-full bg-green-50 border border-green-200 rounded-xl">
+            <thead>
+              <tr>
+                <th className="py-3 px-5 text-left bg-green-700 text-white font-semibold rounded-tl-xl w-24">
+                  Sr No
+                </th>
+                <th className="py-3 px-5 text-left bg-green-700 text-white font-semibold rounded-tr-xl">
+                  Product Name
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {fineChemicals.map((prod, idx) => (
+                <tr
+                  key={idx}
+                  className="border-b border-green-200 even:bg-white odd:bg-green-50"
+                >
+                  <td className="py-3 px-5 text-black-800 font-medium">
+                    {idx + 1}
+                  </td>
+                  <td className="py-3 px-5 text-black-900 font-medium">
+                    {prod.name}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
-  )
+  );
 }

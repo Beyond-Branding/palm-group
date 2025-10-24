@@ -1,69 +1,47 @@
 'use client'
 
-import { Phone, Mail, Users, TrendingUp, Headphones } from 'lucide-react';
-
-const cards = [
-  {
-    heading: 'For Business Enquires',
-    description: 'Contact us for strategic partnerships, collaborations, or other business-related inquiries.',
-    number: '+1 234 567 8901',
-    email: 'business@example.com',
-    icon: <Users className="text-green-600 w-10 h-10" />
-  },
-  {
-    heading: 'For Marketing / Sales',
-    description: 'Reach out to our sales and marketing team for new deals, campaigns, or sales support.',
-    number: '+1 987 654 3210',
-    email: 'sales@example.com',
-    icon: <TrendingUp className="text-pink-600 w-10 h-10" />
-  },
-  {
-    heading: 'Export / Customer Care',
-    description: 'Our support specialists assist with export queries and customer care needs.',
-    number: '+1 456 123 7890',
-    email: 'support@example.com',
-    icon: <Headphones className="text-green-600 w-10 h-10" />
-  },
-];
+import { Phone, Mail, Clock } from 'lucide-react'
 
 export default function ContactCards() {
   return (
     <div className="py-12">
-      {/* Get in Touch Section */}
-      <div className="text-center mb-16">
-        <h1 className="text-4xl font-bold text-green-600 mb-4">Get in Touch</h1>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Thanks for your interest. Please use this area to ask a question, make a comment or request information.
-        </p>
-      </div>
-      
-      {/* Contact Cards */}
-      <div className="space-y-14">
-        {cards.map((card, idx) => (
-        <div
-          key={card.heading}
-          className={`flex justify-center ${
-            idx % 2 === 1 ? 'md:justify-end' : 'md:justify-start'
-          }`}
-        >
-          <div className="flex items-center p-8 gap-6 bg-white rounded-xl shadow-md md:w-2/3 w-full max-w-4xl">
-            {card.icon}
-            <div className="flex flex-col">
-              <h2 className="text-2xl font-bold text-green-700 mb-4">{card.heading}</h2>
-              <p className="mb-5 text-gray-700">{card.description}</p>
-              <div className="flex items-center text-gray-900 mb-3 text-lg">
-                <Phone className="mr-3 text-indigo-500 w-5 h-5" />
-                <span>{card.number}</span>
-              </div>
-              <div className="flex items-center text-gray-900 text-lg">
-                <Mail className="mr-3 text-pink-500 w-5 h-5" />
-                <span>{card.email}</span>
-              </div>
+     
+      <div className="flex flex-col lg:flex-row items-start gap-10 max-w-6xl mx-auto">
+        
+        {/* Left: Map */}
+        <div className="w-full lg:w-1/2 h-80 lg:h-[450px] rounded-xl overflow-hidden shadow-md">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4315.739416475277!2d72.84003885647303!3d19.102681001394977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c9000a350379%3A0xf563a17dc30c38f7!2sPalm%20International!5e0!3m2!1sen!2sin!4v1759341456424!5m2!1sen!2sin" width="600" height="450" loading="lazy"></iframe>
+        </div>
+
+        {/* Right: Contact Information */}
+        <div className="w-full lg:w-1/2 bg-white rounded-xl shadow-md p-8">
+          <h2 className="text-3xl font-bold text-green-700 mb-6">Contact Information</h2>
+          <p className="text-gray-700 mb-6">
+            For more information, feel free to contact us using the details below.
+          </p>
+
+          {/* Phone */}
+          <div className="flex items-center text-gray-900 mb-4 text-lg">
+            <Phone className="mr-3 text-blue-400 w-5 h-5" />
+            <span>+91 8779083022 / +91 9821133714</span>
+          </div>
+
+          {/* Email */}
+          <div className="flex items-center text-gray-900 mb-4 text-lg">
+            <Mail className="mr-3 text-pink-400 w-5 h-5" />
+            <span>palminter@hotmail.com<br></br>aman.shah@palmgrp.com<br></br>vikas@palmgrp.com</span>
+          </div>
+
+          {/* Business Hours */}
+          <div className="flex items-start text-gray-900 text-lg">
+            <Clock className="mr-3 text-green-400 w-5 h-5 mt-1" />
+            <div>
+              <p className="font-semibold">Business Hours</p>
+              <p> Mon-Sat 10:00AM - 7:00 PM</p>
             </div>
           </div>
         </div>
-        ))}
       </div>
     </div>
-  );
+  )
 }

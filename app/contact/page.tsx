@@ -12,7 +12,7 @@ export default function ContactPage() {
         <ContactHero />
         <ContactCards />
         {/* <div className="grid grid-cols-1 lg:grid-cols-2"> */}
-          <ContactInfo />
+          {/* <ContactInfo /> */}
         {/* </div> */}
       </main>
       <Footer />

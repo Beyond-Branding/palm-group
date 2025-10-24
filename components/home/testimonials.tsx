@@ -31,43 +31,43 @@ const testimonials = [
     name: "Anita Desai",
     location: "Rajasthan, India",
     quote: "Palm Group’s innovative crop solutions helped increase our yields sustainably.",
-    image: "/female-farmer-portrait.jpg",
+    image: "/indian-farmer-portrait-smiling-in-agricultural-fie.jpg",
   },
   {
     name: "Mohit Singh",
     location: "Haryana, India",
     quote: "I rely on Palm Group for their excellent technical support and products.",
-    image: "/male-farmer-portrait.jpg",
+    image: "/agricultural-farm-field-with-green-crops-growing--.jpg",
   },
   {
     name: "Sonal Verma",
     location: "Karnataka, India",
     quote: "Effective and eco-friendly. Palm Group’s products have improved my crop quality tremendously.",
-    image: "/female-farmer2.jpg",
+    image: "/female-indian-farmer-portrait-in-cotton-field.jpg",
   },
   {
     name: "Vikram Patel",
     location: "Gujarat, India",
     quote: "Unmatched commitment to sustainable agriculture.",
-    image: "/male-farmer2.jpg",
+    image: "/experienced-indian-farmer-portrait-with-vegetables.jpg",
   },
   {
     name: "Neha Shah",
     location: "Maharashtra, India",
     quote: "The best partner farmers can have for success.",
-    image: "/female-farmer3.jpg",
+    image: "/female-indian-farmer-portrait-in-cotton-field.jpg",
   },
   {
     name: "Rohan Mehta",
     location: "Punjab, India",
     quote: "Palm Group’s products consistently deliver quality and yield.",
-    image: "/male-farmer3.jpg",
+    image: "/agricultural-farm-field-with-green-crops-growing--.jpg",
   },
   {
     name: "Sunita Kaur",
     location: "Himachal Pradesh, India",
     quote: "Professional, reliable, and effective farming solutions.",
-    image: "/female-farmer4.jpg",
+    image: "/indian-farmer-portrait-smiling-in-agricultural-fie.jpg",
   },
 ]
 
@@ -118,7 +118,7 @@ export function Testimonials() {
     <div className="absolute inset-0 -z-10 pointer-events-none">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1440 370"
+          viewBox="0 0 1440 350" //change the down wavey height here
           className="w-full h-full"
           preserveAspectRatio="none"
         >

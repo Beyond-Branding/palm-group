@@ -19,7 +19,7 @@ export function CoreValues() {
             clipPath: 'polygon(20% 0, 100% 0, 100% 100%, 0% 100%)'
           }}>
             <img
-              src="/your-image-path.jpg" // replace with your image file
+              src="/healthy-green-crops-in-field-with-organic-fertiliz.jpg" // replace with your image file
               alt="Our Mission"
               className="object-cover w-full h-full"
             />
