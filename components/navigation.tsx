@@ -44,7 +44,7 @@ export function Navigation() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-foreground hover:text-primary text-m font-medium transition-colors duration-200 whitespace-normal break-words max-w-[150px] text-center"
+                className="text-foreground hover:text-green-600  text-m font-medium transition-colors duration-200 whitespace-normal break-words max-w-[150px] text-center"
               >
                 {item.name}
               </Link>
