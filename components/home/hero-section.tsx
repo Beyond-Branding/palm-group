@@ -1,58 +1,66 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import Image from "next/image";
-import { Swiper, SwiperSlide } from 
-'swiper/react'
-import 'swiper/css';
-import 'swiper/css/autoplay';
-import { Autoplay } from 'swiper/modules';
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/autoplay";
+import { Autoplay } from "swiper/modules";
 
 const slides = [
   {
     src: "/farmer.avif",
-    bgColor: "#08A84B"
+    bgColor: "#5AA7E8",
   },
   {
     src: "/hero section.jpg",
-    bgColor: "#44a17bff"
+    bgColor: "#44A17B",
   },
   {
     src: "/farmer in green crop.jpg",
-    bgColor: "#67a3e0ff"
-  }
+    bgColor: "#67A3E0",
+  },
 ];
 
 export function HeroSection() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    // Main container: Keep relative and flex-col for mobile, auto-adapting for desktop
-    <section className="relative flex flex-col min-h-[500px] lg:min-h-0 pb-2">
-      
-      {/* LEFT PANEL (COLOR BLOB - now with a lower z-index than the slider on desktop) */}
-      {/* On mobile, it acts as a full-width background below the slider.
-          On desktop, it takes its original width and curve.
-          Adjusted z-index for desktop.
-      */}
+    <section className="relative w-full flex flex-col lg:flex-row items-stretch overflow-hidden min-h-[600px] lg:min-h-[700px]">
+      {/* LEFT SECTION - TEXT AREA */}
       <div
-        className="relative z-0 w-full pt-[37vw] min-h-[500px] flex flex-col justify-end pb-20 px-8 
-                   lg:z-20 lg:w-[80vw] lg:h-[40vw] lg:rounded-br-[80vw] lg:pl-18 lg:pr-5 lg:pb-0 lg:justify-center lg:pt-0
-                   transition-colors duration-500"
+        className="relative flex flex-col justify-center px-10 lg:px-24 py-20 text-white w-full lg:w-[50%] transition-colors duration-700 ease-in-out"
         style={{ backgroundColor: slides[activeIndex].bgColor }}
-      > 
-        <div className="max-w-md">
-          <h1 className="text-white text-4xl lg:text-5xl font-bold leading-tight mb-3">
-            Welcome to<br />Palm Group!
+      >
+        <div className="max-w-lg z-10">
+          <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
+            Welcome to <br /> Palm Group!
           </h1>
-          <p className="text-white text-lg mb-7">Helping you from seed to fruit.</p>
+          <p className="text-lg lg:text-xl mb-8">
+            Helping you from seed to fruit.
+          </p>
+          <button className="bg-white text-black px-6 py-3 rounded-lg font-semibold shadow hover:bg-gray-200 transition">
+            Learn More
+          </button>
         </div>
+
+        {/* RIGHT CURVED SHAPE OVERLAY */}
+        <svg
+          className="absolute top-0 right-[-1px] h-full w-[200%] hidden lg:block"
+          viewBox="0 0 1600 800"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+        >
+          {/* This curve blends beautifully into the right side */}
+          <path
+            d="M0,0 C950,150 950,650 0,800 L1600,800 L1600,0 Z"
+            fill={slides[activeIndex].bgColor}
+          />
+        </svg>
       </div>
 
-      {/* RIGHT IMAGE SLIDER (ON TOP FOR BOTH MOBILE AND DESKTOP) */}
-      {/* Increased z-index to ensure it sits above the green blob. */}
-      {/* ⚠️ NOTE: This original absolute layout will cause horizontal overflow on mobile screens. */}
-      <div className="absolute top-0 right-0 w-2/3 h-[37vw] z-30 rounded-bl-[80vw] overflow-hidden">
+      {/* RIGHT SECTION - IMAGE SLIDER */}
+      <div className="relative w-full lg:w-[60%] overflow-hidden">
         <Swiper
           modules={[Autoplay]}
           autoplay={{ delay: 3000, disableOnInteraction: false }}
@@ -62,24 +70,30 @@ export function HeroSection() {
         >
           {slides.map((slide, index) => (
             <SwiperSlide key={index}>
-              <Image
-                src={slide.src}
-                alt={`Farm image ${index + 1}`}
-                fill
-                className="object-cover"
-                priority={index === 0}
-              />
+              <div className="relative w-full h-[400px] lg:h-[700px]">
+                <Image
+                  src={slide.src}
+                  alt={`Farm image ${index + 1}`}
+                  fill
+                  className="object-cover transition-transform duration-700 ease-in-out scale-100 hover:scale-105"
+                  priority={index === 0}
+                />
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
 
-      {/* Bottom SVG curve */}
-      <div className="absolute left-0 bottom-0 w-full h-[65px] overflow-hidden z-30">
-        <svg viewBox="0 0 1728 90" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-          <path d="M0 70C220 140 1480 -20 1729 70V90H0V70Z" fill="#ffffff"/>
+      {/* BOTTOM WHITE WAVE */}
+      <div className="absolute bottom-0 left-0 w-full h-[90px] overflow-hidden z-20">
+        <svg
+          viewBox="0 0 1728 100"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-full"
+        >
+          <path d="M0 70C220 140 1480 -20 1729 70V100H0V70Z" fill="#ffffff" />
         </svg>
       </div>
     </section>
-  )
+  );
 }
