@@ -1,67 +1,68 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
 
 const testimonials = [
   {
-    name: "Rajesh Kumar",
-    location: "Punjab, India",
+    name: "Basavraj Patil",
+    location: "Jamkhandi, Karnataka",
     quote:
       "Palm Group's crop nutrition products have transformed my farm's productivity. The Golden Drop biostimulant increased my wheat yield by 30% while maintaining soil health.",
-    image: "/indian-farmer-portrait-smiling-in-agricultural-fie.jpg",
+    image: "/basavrajtesti.jpg",
   },
   {
-    name: "Priya Sharma",
-    location: "Maharashtra, India",
+    name: "Ganesh Dhonge",
+    location: "Rasegaon, Tal. Nashik",
     quote:
       "As a progressive farmer, I appreciate Palm Group's commitment to sustainable agriculture. Their products are effective and environmentally responsible.",
-    image: "/female-indian-farmer-portrait-in-cotton-field.jpg",
+    image: "/Ganeshtesti.jpg",
   },
   {
-    name: "Suresh Patel",
-    location: "Gujarat, India",
+    name: "Park Hyun Soo",
+    location: "South Korea",
     quote:
       "The technical support from Palm Group is exceptional. They don't just sell products; they partner with us to ensure farming success.",
-    image: "/experienced-indian-farmer-portrait-with-vegetables.jpg",
+    image: "/parktesti.jpg",
   },
   {
-    name: "Anita Desai",
-    location: "Rajasthan, India",
+    name: "Ramana Gowda",
+    location: "Karnataka",
     quote: "Palm Group’s innovative crop solutions helped increase our yields sustainably.",
-    image: "/indian-farmer-portrait-smiling-in-agricultural-fie.jpg",
+    image: "/ramanatesti.jpg",
   },
   {
-    name: "Mohit Singh",
-    location: "Haryana, India",
+    name: "Ramchandra Patil",
+    location: "Samdoli, Sangli Miraj",
     quote: "I rely on Palm Group for their excellent technical support and products.",
-    image: "/agricultural-farm-field-with-green-crops-growing--.jpg",
+    image: "/ramchandratesti.jpg",
   },
   {
-    name: "Sonal Verma",
-    location: "Karnataka, India",
+    name: "Shivraj Billur",
+    location: "Siddhanath, Taluka Jath",
     quote: "Effective and eco-friendly. Palm Group’s products have improved my crop quality tremendously.",
-    image: "/female-indian-farmer-portrait-in-cotton-field.jpg",
+    image: "/shivrajtesti.jpg",
   },
   {
-    name: "Vikram Patel",
-    location: "Gujarat, India",
+    name: "Shri Dattatray Patil",
+    location: "Kavthe Mahankal, Sangli Maharashtra",
     quote: "Unmatched commitment to sustainable agriculture.",
-    image: "/experienced-indian-farmer-portrait-with-vegetables.jpg",
+    image: "/dattrayatesti.jpg",
   },
   {
-    name: "Neha Shah",
-    location: "Maharashtra, India",
+    name: "Suresh Salunkhe",
+    location: "Satara",
     quote: "The best partner farmers can have for success.",
-    image: "/female-indian-farmer-portrait-in-cotton-field.jpg",
+    image: "/sureshtesti.jpg",
   },
   {
-    name: "Rohan Mehta",
-    location: "Punjab, India",
+    name: "Tanaji Kudale",
+    location: "Tarale, Nashik",
     quote: "Palm Group’s products consistently deliver quality and yield.",
-    image: "/agricultural-farm-field-with-green-crops-growing--.jpg",
+    image: "/tanajitesti.jpg",
   },
   {
     name: "Sunita Kaur",
@@ -87,14 +88,17 @@ const pastelShades = [
 
 export function Testimonials() {
   const [currentStartIndex, setCurrentStartIndex] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
   const itemsPerPage = 3
 
+  // Auto-advance with smooth fade/slide using framer-motion
   useEffect(() => {
+    if (isPaused) return
     const timer = setInterval(() => {
       setCurrentStartIndex((prevIndex) => (prevIndex + itemsPerPage) % testimonials.length)
-    }, 5000)
+    }, 4500)
     return () => clearInterval(timer)
-  }, [])
+  }, [isPaused])
 
   const goToPrevious = () => {
     setCurrentStartIndex(
@@ -106,28 +110,26 @@ export function Testimonials() {
     setCurrentStartIndex((prevIndex) => (prevIndex + itemsPerPage) % testimonials.length)
   }
 
-  const visibleTestimonials = Array.from({ length: itemsPerPage }, (_, i) => {
-    return testimonials[(currentStartIndex + i) % testimonials.length]
-  })
+  const visibleTestimonials = useMemo(() => {
+    return Array.from({ length: itemsPerPage }, (_, i) => {
+      return testimonials[(currentStartIndex + i) % testimonials.length]
+    })
+  }, [currentStartIndex])
 
   return (
     <section className="relative pb-18 overflow-hidden">
-      
-      {/* SVG Background behind the entire section */}
-    {/* Wave background */}
-    <div className="absolute inset-0 -z-10 pointer-events-none">
+      {/* Wave background */}
+      <div className="absolute inset-0 -z-10 pointer-events-none">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1440 350" //change the down wavey height here
+          viewBox="0 0 1440 350"
           className="w-full h-full"
           preserveAspectRatio="none"
         >
-          <path
-            fill="#119152"
-            d="M0,0 H1440 V300 Q720,370 0,300 Z"
-          />
+          <path fill="#119152" d="M0,0 H1440 V300 Q720,370 0,300 Z" />
         </svg>
       </div>
+
       {/* Heading & Subtitle */}
       <div className="relative z-20 pt-40 pb-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">What Farmers Say</h2>
@@ -135,35 +137,55 @@ export function Testimonials() {
           Real stories from farmers who trust Palm Group for their agricultural needs.
         </p>
       </div>
-      
+
       {/* Testimonials Cards Section */}
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-        {/* Background SVG behind the cards */}
-        
+        <div
+          className="relative flex items-center justify-center"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentStartIndex}
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -30 }}
+              transition={{ type: "spring", stiffness: 70, damping: 18 }}
+              className="grid grid-cols-1 sm:grid-cols-3 gap-10 w-full max-w-9xl"
+            >
+              {visibleTestimonials.map((testimonial, idx) => (
+                <Card
+                  key={testimonial.name + idx}
+                  className={`${
+                    pastelShades[(currentStartIndex + idx) % pastelShades.length]
+                  } rounded-3xl shadow-2xl flex flex-col items-center overflow-hidden h-[520px] transition-colors`}
+                >
+                  {/* Increased media box height + no top gap */}
+                  <div className="w-full h-[380px] flex items-center overflow-hidden relative">
+                    <img
+                      src={testimonial.image || "/placeholder.svg"}
+                      alt={testimonial.name}
+                      loading="lazy"
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
 
-        {/* Testimonials grid */}
-        <div className="relative flex items-center justify-center">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 w-full max-w-7xl">
-            {visibleTestimonials.map((testimonial, idx) => (
-              <Card
-                key={testimonial.name + idx}
-                className={`rounded-3xl shadow-2xl flex flex-col items-center overflow-hidden h-[480px] ${pastelShades[(currentStartIndex + idx) % pastelShades.length]} transition-colors`}
-              >
-                <div className="w-full h-44 bg-white flex items-center overflow-hidden relative">
-                  <img
-                    src={testimonial.image || "/placeholder.svg"}
-                    alt={testimonial.name}
-                    className="object-cover w-full h-full rounded-t-3xl"
-                  />
-                </div>
-                <CardContent className="flex flex-col items-center gap-1 py-6 px-6 h-full">
-                  <h3 className="font-bold text-xl text-[#22543d] mb-1 text-center">{testimonial.name}</h3>
-                  <div className="mb-2 font-medium text-[#59744b] text-center">{testimonial.location}</div>
-                  <p className="italic text-[#628b60] text-base leading-relaxed text-center mt-2">{testimonial.quote}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                  <CardContent className="flex flex-col items-center gap-1 py-5 px-6 h-full">
+                    <h3 className="font-bold text-xl text-[#22543d] mb-1 text-center">
+                      {testimonial.name}
+                    </h3>
+                    <div className="mb-2 font-medium text-[#59744b] text-center">
+                      {testimonial.location}
+                    </div>
+                    <p className="italic text-[#628b60] text-base leading-relaxed text-center mt-2">
+                      {testimonial.quote}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
+            </motion.div>
+          </AnimatePresence>
 
           {/* Navigation Buttons */}
           <Button

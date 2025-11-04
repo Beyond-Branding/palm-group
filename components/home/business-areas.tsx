@@ -1,71 +1,110 @@
-"use client"
-import { useRef } from 'react';
-import Link from 'next/link'; // Import Link for routing
+"use client";
+import Image from "next/image";
+import Link from "next/link";
 
-export default function ProductsSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  // NOTE: I've updated the 'cap' colors to simple strings to ensure Tailwind works correctly.
+export default function BusinessAreas() {
   const products = [
-    { name: 'Golden Drop', color: 'bg-blue-400',  image: '/golen drop .png' },
-    { name: 'AG-F', color: 'bg-purple-500',  image: '/agf s.png' },
-    { name: 'AG-F Superplus', color: 'bg-indigo-400', image: '/AG-F Superplus.png' },
-    { name: 'Crop Giant', color: 'bg-green-400',  image: '/crop giant.png' },
-    { name: 'Palm Sulf', color: 'bg-yellow-400', image: '/palm sulf.png' },
-    { name: 'Cropper', color: 'bg-red-400',  image: '/cropper.png' },
-    { name: 'Cropper Plus', color: 'bg-pink-400',  image: '/copperplus.png' },
-    { name: 'Silicose', color: 'bg-teal-400',  image: '/silicose.png' },
+    {
+      name: "Herbicides",
+      color: "bg-[#6A4B3B]",
+      icon: "/grapes.svg",
+      image: "/image-Photoroom.png",
+      link: "/products/herbicides",
+    },
+    {
+      name: "Insecticides",
+      color: "bg-[#000000]",
+      icon: "/icons/insecticide-icon.svg",
+      image: "/products/Black_Insecticide.png",
+      link: "/products/insecticides",
+    },
+    {
+      name: "Fungicides",
+      color: "bg-[#006D43]",
+      icon: "/icons/fungicide-icon.svg",
+      image: "/products/Green_Fungicide.png",
+      link: "/products/fungicides",
+    },
+    {
+      name: "Harvest Aids",
+      color: "bg-[#F59E0B]",
+      icon: "/icons/harvest-icon.svg",
+      image: "/products/Orange_Harvest.png",
+      link: "/products/harvest-aids",
+    },
+    {
+      name: "Nematicide",
+      color: "bg-[#7E22CE]",
+      icon: "/icons/nematicide-icon.svg",
+      image: "/products/Purple_Nematicide.png",
+      link: "/products/nematicide",
+    },
   ];
 
   return (
-    <section className="py-2 bg-white-50">
-      <div className="container mx-auto text-center">
-        <h2 className="text-4xl font-bold text-gray-800 py-0 mb-4">Our Products</h2>
-        <p className="text-gray-600 mb-8">Discover our solutions to simplify your farming</p>
-        
-        {/* Wrapper with overflow-hidden to contain the scrolling */}
-        <div className="overflow-hidden relative">
-          {/* Animated container for seamless infinite scroll */}
-          <div
-            className="flex whitespace-nowrap animate-scroll"
-            style={{ animationDuration: '40s' }} // Adjust duration for speed
-          >
-            {/* Duplicate products for seamless loop */}
-            {[...products, ...products].map((product, index) => (
-              // 🔑 KEY CHANGE: Set static href="/products"
-              <Link 
-                key={index} 
-                href="/products" // <-- Redirects all clicks to the general /products page
-                passHref
-                className="inline-block mx-4 p-6 rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:bg-opacity-90 cursor-pointer"
-                style={{ minWidth: '200px' }}
-              >
-                {/* The content of the product item */}
-                <h3 className="text-xl font-semibold">{product.name}</h3>
-                <div className="mt-4">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-32 object-cover rounded"
+    <section className="py-16 bg-white">
+      <div className="container mx-auto px-6 text-center">
+        <h2 className="text-4xl font-bold text-gray-800 mb-4">Our Products</h2>
+        <p className="text-gray-600 mb-10">
+          Discover solutions to simplify your farming
+        </p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 justify-center">
+          {products.map((product, index) => (
+            <Link
+              href={product.link}
+              key={index}
+              className={`product-category-card ${product.color} rounded-2xl p-6 flex flex-col items-center justify-between transition-transform duration-300 hover:scale-105 hover:shadow-2xl`}
+            >
+              {/* Icon & Title */}
+              <div className="w-full text-left">
+                <div className="flex items-center gap-2 mb-3">
+                  <Image
+                    src={product.icon}
+                    alt={`${product.name} icon`}
+                    width={45}
+                    height={45}
                   />
-                    <span className="text-white font-bold">A</span>
-                  </div>
-                
-              </Link>
-            ))}
-          </div>
+                </div>
+                <h3 className="text-2xl font-bold text-white">{product.name}</h3>
+              </div>
+
+              {/* Product image (larger sticker) */}
+              <div className="mt-10 flex justify-center items-end flex-grow">
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  width={230}  // increased from 180
+                  height={300} // increased from 220
+                  className="mx-auto drop-shadow-xl scale-110"
+                />
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
-      
-      {/* CSS animation for scrolling */}
+
+      {/* Card styling to match structure */}
       <style jsx>{`
-        @keyframes scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
+        .product-category-card {
+          position: relative;
+          overflow: hidden;
+          height: 420px; /* slightly taller to fit bigger image */
         }
-        .animate-scroll {
-          display: inline-flex;
-          animation: scroll linear infinite;
+        .product-category-card::before {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 40%;
+          opacity: 0.1;
+          background-image: radial-gradient(
+            circle,
+            rgba(255, 255, 255, 0.15) 20%,
+            transparent 20%
+          );
+          background-size: 20px 20px;
         }
       `}</style>
     </section>
