@@ -15,8 +15,8 @@ export function Footer() {
               </h4>
               <ul className="space-y-2 text-gray-700">
                 <li>
-                  <Link href="/about" className="hover:underline">
-                    About Palm
+                  <Link href="/" className="hover:underline">
+                    Home
                   </Link>
                 </li>
                 {/* <li>
@@ -27,6 +27,11 @@ export function Footer() {
                 {/* <li><Link href="#" className="hover:underline">Our Team</Link></li> */}
                 {/* <li><Link href="#" className="hover:underline">Career</Link></li> */}
                 <li>
+                  <Link href="/about" className="hover:underline">
+                    About Us
+                  </Link>
+                </li>
+               <li>
                   <Link href="/contact" className="hover:underline">
                     Contact Us
                   </Link>
