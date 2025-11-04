@@ -1,5 +1,8 @@
 "use client";
 
+import React, { useMemo, useState } from "react";
+import { Search, FlaskConical } from "lucide-react";
+
 const fineChemicals = [
   { name: "1,6 Hexandiol" },
   { name: "2-Ethylaniline" },
@@ -48,43 +51,145 @@ const fineChemicals = [
   { name: "Uracil" },
 ];
 
-export function FineChemicalsProducts() {
-  return (
-    <section className="py-12 bg-white min-h-[80vh] w-full">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-green-900 mb-6 text-center">
-          Fine Chemicals
-        </h2>
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
-        <div className="overflow-x-auto rounded-lg shadow-lg">
-          <table className="w-full bg-green-50 border border-green-200 rounded-xl">
-            <thead>
-              <tr>
-                <th className="py-3 px-5 text-left bg-green-700 text-white font-semibold rounded-tl-xl w-24">
-                  Sr No
-                </th>
-                <th className="py-3 px-5 text-left bg-green-700 text-white font-semibold rounded-tr-xl">
-                  Product Name
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {fineChemicals.map((prod, idx) => (
-                <tr
-                  key={idx}
-                  className="border-b border-green-200 even:bg-white odd:bg-green-50"
-                >
-                  <td className="py-3 px-5 text-black-800 font-medium">
-                    {idx + 1}
-                  </td>
-                  <td className="py-3 px-5 text-black-900 font-medium">
-                    {prod.name}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+export function FineChemicalsProducts() {
+  const [q, setQ] = useState("");
+  const [letter, setLetter] = useState<string | null>(null);
+
+  const filtered = useMemo(() => {
+    let items = fineChemicals;
+    if (letter) items = items.filter((i) => i.name.toUpperCase().startsWith(letter));
+    if (q.trim()) {
+      const s = q.trim().toLowerCase();
+      items = items.filter((i) => i.name.toLowerCase().includes(s));
+    }
+    return [...items].sort((a, b) => a.name.localeCompare(b.name));
+  }, [q, letter]);
+
+  return (
+    <section className="py-12 bg-white w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* Intro paragraph (right below hero) */}
+        <div className="max-w-3xl mx-auto text-justify mb-8 sm:mb-10">
+          <div className="h-1 w-16 mx-auto mb-4 rounded-full bg-green-600" />
+          <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+            Shah Scientific (India) is a leading supplier of laboratory chemicals, reagents
+            and fine chemicals. Serving companies, universities, research institutions, and
+            industrial R&amp;D labs since 1969, we provide top-grade chemicals that enable
+            accurate testing and innovation. Our customer-centric approach and dependable
+            supply chain make us a preferred partner for scientific needs across India.
+          </p>
         </div>
+
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-6">
+          <div>
+            <h2 className="text-2xl font-semibold text-gray-900 flex items-center gap-2">
+              <FlaskConical className="size-6 text-green-700" />
+              Fine Chemicals
+            </h2>
+            <p className="text-sm text-gray-500">{fineChemicals.length} products available</p>
+          </div>
+
+          {/* Search */}
+          <div className="relative w-full sm:w-72">
+            <Search className="size-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
+            <input
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              placeholder="Search products..."
+              className="w-full pl-9 pr-3 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-green-600/30 transition"
+            />
+          </div>
+        </div>
+
+        {/* A–Z Filter */}
+        <div className="flex flex-wrap gap-1 mb-4">
+          <button
+            onClick={() => setLetter(null)}
+            className={`text-xs px-2.5 py-1.5 rounded-md border ${
+              letter === null ? "bg-green-100 text-green-800 border-green-300" : "text-gray-600"
+            }`}
+          >
+            All A–Z
+          </button>
+
+          {letters.map((ltr) => (
+            <button
+              key={ltr}
+              onClick={() => setLetter(ltr)}
+              className={`w-7 h-7 rounded-md border grid place-items-center text-xs ${
+                letter === ltr
+                  ? "bg-green-600 text-white border-green-600"
+                  : "text-gray-700 hover:border-gray-300"
+              }`}
+            >
+              {ltr}
+            </button>
+          ))}
+        </div>
+
+        {/* Mobile Cards */}
+        <div className="grid gap-3 sm:hidden">
+          {filtered.map((item, idx) => (
+            <div key={item.name} className="rounded-xl border p-4 bg-white shadow-sm">
+              <div className="text-sm text-gray-500 font-medium">#{String(idx + 1).padStart(3, "0")}</div>
+              <div className="mt-1 text-base font-semibold">{item.name}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop Table */}
+        <div className="hidden sm:block overflow-hidden rounded-2xl border border-green-200 shadow-md">
+          <div className="overflow-y-auto max-h-[70vh]">
+            <table className="w-full text-left">
+              <thead className="sticky top-0 z-10 bg-green-700 text-white text-sm">
+                <tr>
+                  <th className="px-5 py-3 w-24 font-semibold">Sr No</th>
+                  <th className="px-5 py-3 font-semibold">Product Name</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filtered.map((item, idx) => (
+                  <tr
+                    key={item.name}
+                    className="border-b border-green-100 even:bg-white odd:bg-green-50/60 hover:bg-green-100/50 transition"
+                  >
+                    <td className="px-5 py-3 font-medium text-gray-700">
+                      {String(idx + 1).padStart(3, "0")}
+                    </td>
+                    <td className="px-5 py-3 font-medium text-gray-900">{item.name}</td>
+                  </tr>
+                ))}
+
+                {filtered.length === 0 && (
+                  <tr>
+                    <td colSpan={2} className="text-center py-10 text-gray-500 text-sm">
+                      No results found
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Footer */}
+          <div className="bg-green-50/80 px-5 py-3 text-sm text-gray-700 flex justify-between">
+            Showing {filtered.length} of {fineChemicals.length}
+            <button
+              onClick={() => {
+                setQ("");
+                setLetter(null);
+              }}
+              className="text-green-700 underline underline-offset-4"
+            >
+              Reset Filters
+            </button>
+          </div>
+        </div>
+
       </div>
     </section>
   );
