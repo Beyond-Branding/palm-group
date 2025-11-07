@@ -1,30 +1,31 @@
 export function AboutHero() {
   return (
-    <section className="relative py-16 sm:py-20 md:py-32 bg-white overflow-hidden">
-      {/* Background/Accent Shape with Image */}
-      <div className="absolute inset-y-0 right-0 w-full md:w-2/3 lg:w-1/2 z-0">
-        <div className="h-full w-full">
-          {/* Custom Clip-Path for the image */}
-          <img
-            src="/agricultural-farm-field-with-green-crops-growing--.jpg"
-            alt="Modern sustainable farming"
-            className="object-cover h-full w-full"
-            style={{
-              clipPath: 'ellipse(80% 80% at 70% 30%)', // Slightly adjusted for better mobile fit
-            }}
+    <section className="relative overflow-hidden bg-white">
+      {/* Full-width wavey green header */}
+      <div className="absolute top-0 left-0 w-full h-50">
+        <svg
+          viewBox="0 0 1440 320"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-full"
+          preserveAspectRatio="none"
+        >
+          {/* Main green wave */}
+          <path
+            d="M0,200 Q160,100 820,200 T1440,200 L1440,0 L0,0 Z"
+            fill="#059c5b"
           />
-        </div>
+          {/* Optional darker overlay for depth */}
+          <path
+            d="M0,200 Q180,140 720,240 T1440,240 L1440,0 L0,0 Z"
+            fill="#19703d"
+            opacity="0.8"
+          />
+        </svg>
       </div>
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 flex flex-col md:flex-row items-start">
-        <div className="w-full md:w-[48%] py-8 sm:py-12 md:py-24 pr-0 md:pr-12 text-left flex flex-col">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-green-700 mb-4 max-w-xl">
-            Who We Are At Palm Group
-          </h1>
-          <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-6 max-w-lg">
-            At Palm Group, we are a passionate team of agri-innovators committed to transforming traditional farming into a more sustainable, productive, and farmer-first experience. With deep roots in organic science and rural empowerment, we aim to redefine agriculture through solutions that work with nature not against it.
-          </p>
-        </div>
+   <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-12 pt-12 pb-24">
+        <h1 className="text-4xl mid:text-6xl font-bold text-white">
+         About Us
+        </h1>
       </div>
     </section>
   );

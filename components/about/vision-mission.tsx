@@ -1,39 +1,116 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Target, Eye, Lightbulb } from "lucide-react";
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 export function VisionMission() {
+  const textRef1 = useRef<HTMLDivElement | null>(null);
+  const imgRef1 = useRef<HTMLDivElement | null>(null);
+  const textRef2 = useRef<HTMLDivElement | null>(null);
+  const imgRef2 = useRef<HTMLDivElement | null>(null);
+
+  const [textShown1, setTextShown1] = useState(false);
+  const [imgShown1, setImgShown1] = useState(false);
+  const [textShown2, setTextShown2] = useState(false);
+  const [imgShown2, setImgShown2] = useState(false);
+
+  useEffect(() => {
+    const reduced =
+      typeof window !== "undefined" &&
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reduced) {
+      setTextShown1(true);
+      setImgShown1(true);
+      setTextShown2(true);
+      setImgShown2(true);
+      return;
+    }
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          if (e.target === textRef1.current) setTextShown1(true);
+          if (e.target === imgRef1.current) setImgShown1(true);
+          if (e.target === textRef2.current) setTextShown2(true);
+          if (e.target === imgRef2.current) setImgShown2(true);
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    if (textRef1.current) obs.observe(textRef1.current);
+    if (imgRef1.current) obs.observe(imgRef1.current);
+    if (textRef2.current) obs.observe(textRef2.current);
+    if (imgRef2.current) obs.observe(imgRef2.current);
+
+    return () => obs.disconnect();
+  }, []);
+
   return (
-    <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center px-4 sm:px-6 md:px-8 lg:px-12">
-        {/* Left: Clipped Image */}
-        <div className="w-full md:w-1/2 flex-shrink-0 relative min-h-[200px] sm:min-h-[250px] md:min-h-[300px] lg:min-h-[350px]">
-          <div
-            className="h-full w-full overflow-hidden relative"
-            style={{
-              clipPath: 'polygon(10% 0%, 100% 0%, 80% 100%, 0% 100%)',
-            }}
-          >
-            <img
-              src="/vision.jpg"
-              alt="Vision"
-              style={{ objectFit: "cover" }}
-            />
+    <>
+      {/* ---------- SECTION 1 (image on right) ---------- */}
+      <section className="relative bg-white overflow-hidden">
+        <div className="mx-auto max-w-7xl px-6 md:px-0 py-16 md:py-20">
+          <div className="grid grid-cols-1 md:grid-cols-12 items-center gap-10 md:gap-12">
+            {/* LEFT: TEXT */}
+            <div
+              ref={textRef1}
+              className={[
+                "order-2 md:order-1 md:col-span-6 md:pl-10 lg:pl-12",
+                textShown1 ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-6",
+                "transition-all duration-700 ease-out will-change-transform",
+              ].join(" ")}
+            >
+              <div
+                aria-hidden
+                className="mb-6 h-[6px] w-40"
+                style={{
+                  backgroundImage: "radial-gradient(currentColor 1px, transparent 1px)",
+                  backgroundSize: "8px 6px",
+                  color: "#94a3b8",
+                }}
+              />
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900">
+                Nurturing Those Who{" "}
+                <span className="text-green-600">Nurture the Earth</span>
+              </h2>
+              <p className="mt-5 text-gray-700 text-base md:text-lg leading-7 md:leading-8 max-w-prose">
+                At Palm Group, we believe farmers are the backbone of agriculture.
+                That’s why we empower them with innovative, organic, and non-toxic
+                solutions designed to improve crop yield, quality, and soil health.
+                Our goal is to support farmers in making informed, sustainable
+                choices that strengthen their livelihoods and the land they
+                cultivate.
+              </p>
+            </div>
+
+            {/* RIGHT: IMAGE (contained, reduced width) */}
+            <div className="order-1 md:order-2 md:col-span-6 flex items-center">
+              <div
+                ref={imgRef1}
+                className={[
+                  "w-full max-w-none md:max-w-[520px] h-[300px] sm:h-[340px] md:h-[400px] lg:h-[440px] overflow-hidden relative",
+                  imgShown1 ? "opacity-100 translate-x-0" : "opacity-0 translate-x-6",
+                  "transition-all duration-700 ease-out will-change-transform ml-auto",
+                ].join(" ")}
+              >
+                <Image
+                  src="/vision.jpg"
+                  alt="Farmers in the field"
+                  fill
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  style={{ objectFit: "cover", objectPosition: "right center" }}
+                />
+              </div>
+            </div>
           </div>
         </div>
-        {/* Right: Content */}
-        <div className="w-full md:w-1/2 px-0 md:px-8 lg:px-12 py-8 sm:py-10 md:py-12 lg:py-0 flex flex-col justify-center items-start">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-green-700 mb-4">
-            Our Vision
-          </h2>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 mb-6 max-w-full sm:max-w-md md:max-w-lg lg:max-w-xl">
-            To build a world where sustainable agriculture supports thriving rural communities and resilient ecosystems. We are committed to offering farmer-centric, organic, and non-toxic bio-products that improve both crop yield and quality, while nurturing the health of the soil and environment.
-          </p>
-          {/* <button className="px-7 py-3 bg-green-600 text-white font-semibold rounded-lg shadow hover:bg-green-700 transition-all duration-200">
-            Read More →
-          </button> */}
-        </div>
-      </div>
-    </section>
+      </section>
+
+
+    </>
   );
 }
