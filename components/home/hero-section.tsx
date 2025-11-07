@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/autoplay";
@@ -10,89 +9,70 @@ import { Autoplay } from "swiper/modules";
 const slides = [
   {
     src: "/farmer.avif",
-    bgColor: "#5AA7E8",
+    title: "Innovating Growth at Every Stage",
+    description:
+      "From soil to harvest, our advanced formulations ensure stronger crops, better yields, and consistent performance.",
   },
   {
-    src: "/hero section.jpg",
-    bgColor: "#44A17B",
+    src: "/hero.jpg",
+    title: "Science Behind Every Successful Harvest",
+    description:
+      "Delivering high-efficiency nutrition products that boost crop health, enhance productivity, and maximize potential.",
   },
   {
     src: "/farmer in green crop.jpg",
-    bgColor: "#67A3E0",
+    title: "Empowering Farmers, Driving Progress",
+    description:
+      "Partnering with farmers through reliable solutions and continuous support to help them achieve greater success every season.",
   },
 ];
 
 export function HeroSection() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const BG_COLOR = "#00712D"; // solid green background
 
   return (
-    <section className="relative w-full flex flex-col lg:flex-row items-stretch overflow-hidden min-h-[600px] lg:min-h-[700px]">
-      {/* LEFT SECTION - TEXT AREA */}
-      <div
-        className="relative flex flex-col justify-center px-10 lg:px-24 py-20 text-white w-full lg:w-[50%] transition-colors duration-700 ease-in-out"
-        style={{ backgroundColor: slides[activeIndex].bgColor }}
-      >
-        <div className="max-w-lg z-10">
-          <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
-            Welcome to <br /> Palm Group!
-          </h1>
-          <p className="text-lg lg:text-xl mb-8">
-            Helping you from seed to fruit.
-          </p>
-          <button className="bg-white text-black px-6 py-3 rounded-lg font-semibold shadow hover:bg-gray-200 transition">
-            Learn More
-          </button>
+    <section className="w-full relative" style={{ backgroundColor: BG_COLOR }}>
+      <div className="relative w-full min-h-[520px] lg:min-h-[720px] flex flex-col-reverse lg:flex-row">
+        {/* LEFT: text column (bottom on mobile, left on desktop) */}
+        <div className="w-full lg:w-[40%] px-6 md:px-12 lg:px-16 py-12 md:py-20 lg:py-44 z-20 relative flex items-center justify-center">
+          <div className="max-w-[520px] text-white text-center lg:text-left">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight mb-5">
+              {slides[activeIndex].title}
+            </h1>
+            <p className="text-base sm:text-lg lg:text-xl opacity-95 leading-relaxed">
+              {slides[activeIndex].description}
+            </p>
+          </div>
         </div>
 
-        {/* RIGHT CURVED SHAPE OVERLAY */}
-        <svg
-          className="absolute top-0 right-[-1px] h-full w-[200%] hidden lg:block"
-          viewBox="0 0 1600 800"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
-        >
-          {/* This curve blends beautifully into the right side */}
-          <path
-            d="M0,0 C950,150 950,650 0,800 L1600,800 L1600,0 Z"
-            fill={slides[activeIndex].bgColor}
-          />
-        </svg>
-      </div>
+        {/* RIGHT: image area (top on mobile, right on desktop) */}
+        <div className="relative w-full lg:w-[60%] h-[300px] sm:h-[420px] lg:h-auto">
+          <div className="relative w-full h-full">
+            {/* Gradient overlay (desktop only) */}
+            <div className="hidden lg:block absolute left-0 top-0 w-[300px] h-full bg-gradient-to-r from-[#00712D] via-[#00712D]/95 to-transparent z-10"></div>
 
-      {/* RIGHT SECTION - IMAGE SLIDER */}
-      <div className="relative w-full lg:w-[60%] overflow-hidden">
-        <Swiper
-          modules={[Autoplay]}
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
-          loop={true}
-          onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-          className="w-full h-full"
-        >
-          {slides.map((slide, index) => (
-            <SwiperSlide key={index}>
-              <div className="relative w-full h-[400px] lg:h-[700px]">
-                <Image
-                  src={slide.src}
-                  alt={`Farm image ${index + 1}`}
-                  fill
-                  className="object-cover transition-transform duration-700 ease-in-out scale-100 hover:scale-105"
-                  priority={index === 0}
-                />
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-
-      {/* BOTTOM WHITE WAVE */}
-      <div className="absolute bottom-0 left-0 w-full h-[90px] overflow-hidden z-20">
-        <svg
-          viewBox="0 0 1728 100"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-full"
-        >
-          <path d="M0 70C220 140 1480 -20 1729 70V100H0V70Z" fill="#ffffff" />
-        </svg>
+            <Swiper
+              modules={[Autoplay]}
+              autoplay={{ delay: 3500, disableOnInteraction: false }}
+              loop
+              onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+              className="w-full h-full"
+            >
+              {slides.map((s, i) => (
+                <SwiperSlide key={i}>
+                  <div className="w-full h-full">
+                    <img
+                      src={s.src}
+                      alt={s.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        </div>
       </div>
     </section>
   );
