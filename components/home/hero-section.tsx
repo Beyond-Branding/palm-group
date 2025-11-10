@@ -8,7 +8,7 @@ import { Autoplay } from "swiper/modules";
 
 const slides = [
   {
-    src: "/farmer.avif",
+    src: "/farmer.png",
     title: "Innovating Growth at Every Stage",
     description:
       "From soil to harvest, our advanced formulations ensure stronger crops, better yields, and consistent performance.",
@@ -29,7 +29,13 @@ const slides = [
 
 export function HeroSection() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const BG_COLOR = "#00712D"; // solid green background
+  const BG_COLOR = "#00712D"; // base left background (text column)
+
+  // Tweak these values to control where and how the green fades:
+  // FADE_POINT controls where the color becomes mostly transparent (in percent)
+  // You can set 40 for fade to start near text edge; lower = earlier fade, higher = later fade.
+  const FADE_POINT = 60; // percent across the section where green → transparent
+  const GREEN = "7,113,45"; // rgb for #00712D — used in rgba(...) below
 
   return (
     <section className="w-full relative" style={{ backgroundColor: BG_COLOR }}>
@@ -49,8 +55,27 @@ export function HeroSection() {
         {/* RIGHT: image area (top on mobile, right on desktop) */}
         <div className="relative w-full lg:w-[60%] h-[300px] sm:h-[420px] lg:h-auto">
           <div className="relative w-full h-full">
-            {/* Gradient overlay (desktop only) */}
-            <div className="hidden lg:block absolute left-0 top-0 w-[300px] h-full bg-gradient-to-r from-[#00712D] via-[#00712D]/95 to-transparent z-10"></div>
+            {/* Smooth full-width gradient overlay:
+                - starts fully opaque (matches the left BG) and gradually becomes transparent
+                - adjust FADE_POINT to control where transparency reaches (in %)
+            */}
+            <div
+              aria-hidden
+              className="absolute inset-0 z-10 pointer-events-none"
+              style={{
+                background: `linear-gradient(90deg,
+                  rgba(${GREEN},1) 0%,
+                  rgba(${GREEN},0.98) 10%,
+                  rgba(${GREEN},0.85) 25%,
+                  rgba(${GREEN},0.55) ${Math.max(20, FADE_POINT - 15)}%,
+                  rgba(${GREEN},0.25) ${Math.max(30, FADE_POINT)}%,
+                  rgba(${GREEN},0.08) ${Math.min(FADE_POINT + 10, 70)}%,
+                  transparent 100%
+                )`,
+                // optional subtle mix-blend to help colors blend nicely:
+                mixBlendMode: "normal",
+              }}
+            />
 
             <Swiper
               modules={[Autoplay]}
@@ -66,6 +91,7 @@ export function HeroSection() {
                       src={s.src}
                       alt={s.title}
                       className="w-full h-full object-cover"
+                      style={{ filter: "brightness(1.03)" }} // small boost if needed
                     />
                   </div>
                 </SwiperSlide>
