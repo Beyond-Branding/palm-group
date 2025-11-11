@@ -29,18 +29,14 @@ const slides = [
 
 export function HeroSection() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const BG_COLOR = "#00712D"; // base left background (text column)
-
-  // Tweak these values to control where and how the green fades:
-  // FADE_POINT controls where the color becomes mostly transparent (in percent)
-  // You can set 40 for fade to start near text edge; lower = earlier fade, higher = later fade.
-  const FADE_POINT = 60; // percent across the section where green → transparent
-  const GREEN = "7,113,45"; // rgb for #00712D — used in rgba(...) below
+  const BG_COLOR = "#00712D";
+  const FADE_POINT = 60;
+  const GREEN = "7,113,45";
 
   return (
     <section className="w-full relative" style={{ backgroundColor: BG_COLOR }}>
       <div className="relative w-full min-h-[520px] lg:min-h-[720px] flex flex-col-reverse lg:flex-row">
-        {/* LEFT: text column (bottom on mobile, left on desktop) */}
+        {/* LEFT TEXT SECTION */}
         <div className="w-full lg:w-[40%] px-6 md:px-12 lg:px-16 py-12 md:py-20 lg:py-44 z-20 relative flex items-center justify-center">
           <div className="max-w-[520px] text-white text-center lg:text-left">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight mb-5">
@@ -52,16 +48,13 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* RIGHT: image area (top on mobile, right on desktop) */}
+        {/* RIGHT IMAGE SECTION */}
         <div className="relative w-full lg:w-[60%] h-[300px] sm:h-[420px] lg:h-auto">
           <div className="relative w-full h-full">
-            {/* Smooth full-width gradient overlay:
-                - starts fully opaque (matches the left BG) and gradually becomes transparent
-                - adjust FADE_POINT to control where transparency reaches (in %)
-            */}
+            {/* ✅ Gradient only visible on desktop */}
             <div
               aria-hidden
-              className="absolute inset-0 z-10 pointer-events-none"
+              className="absolute inset-0 z-10 pointer-events-none hidden lg:block"
               style={{
                 background: `linear-gradient(90deg,
                   rgba(${GREEN},1) 0%,
@@ -72,7 +65,6 @@ export function HeroSection() {
                   rgba(${GREEN},0.08) ${Math.min(FADE_POINT + 10, 70)}%,
                   transparent 100%
                 )`,
-                // optional subtle mix-blend to help colors blend nicely:
                 mixBlendMode: "normal",
               }}
             />
@@ -91,7 +83,7 @@ export function HeroSection() {
                       src={s.src}
                       alt={s.title}
                       className="w-full h-full object-cover"
-                      style={{ filter: "brightness(1.03)" }} // small boost if needed
+                      style={{ filter: "brightness(1.03)" }}
                     />
                   </div>
                 </SwiperSlide>
