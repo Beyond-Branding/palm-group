@@ -170,16 +170,9 @@ export default function AwardsGrid() {
     <>
       <CertificationsHero />
       <section className="relative py-24 overflow-hidden">
-        {/* Background flair: aurora + grid + sparkles */}
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          {/* soft grid */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,theme(colors.primary/10)_1px,transparent_1px)] [background-size:22px_22px]" />
-          {/* brand-tinted gradient sheets */}
-          <div className="absolute -top-40 left-1/2 h-[44rem] w-[44rem] -translate-x-1/2 rounded-full blur-3xl opacity-40 bg-[radial-gradient(circle_at_30%_20%,#11915233,transparent_60%)]" />
-          <div className="absolute -bottom-40 right-1/3 h-[36rem] w-[36rem] rounded-full blur-3xl opacity-30 bg-[radial-gradient(circle_at_70%_80%,#0E7C4540,transparent_60%)]" />
-          {/* subtle vignette */}
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
-        </div>
+        
+          <div className="absolute inset-0 -z-10 bg-white" />
+
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Cards */}
