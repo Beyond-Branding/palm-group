@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useRef, useEffect} from "react";
 
 type Testimonial = {
   id: number;
@@ -162,118 +162,275 @@ export function Testimonials() {
   const [modalTestimonial, setModalTestimonial] = useState<Testimonial | null>(null);
   const [isRunning, setIsRunning] = useState(true);
 
-  // constants matching card layout
-  const CARD_WIDTH = 320;       // px; matches w-[320px]
-  const GAP = 24;              // px; gap-6 = 1.5rem = 24px
-  const VISIBLE_GAP_PADDING = 16; // px: your container px-4 adds 16px left+right; handled separately below if needed
-
+  const CARD_WIDTH = 320;
+  const GAP = 24;
+  const STEP = CARD_WIDTH + GAP;
   const count = testimonials.length;
   const doubled = useMemo(() => [...testimonials, ...testimonials], []);
 
-  // total shift = width of one set (cards + gaps between them)
-  // note: for N cards there are (N - 1) gaps between them when measuring inline gaps,
-  // but when duplicating as a continuous sequence we want shift = N*(cardWidth) + N*(gap)
-  // (we assume consistent spacing). Using (CARD_WIDTH + GAP) * count is safe for seamless movement.
-  const shiftPx = (CARD_WIDTH + GAP) * count; // px to move left (we'll use negative)
+  // refs & state for transform-based loop
+  const trackRef = useRef<HTMLDivElement | null>(null); // element we transform
+  const wrapperRef = useRef<HTMLDivElement | null>(null); // visible viewport (for measuring)
+  const rafRef = useRef<number | null>(null);
+  const lastRef = useRef<number | null>(null);
+  const loopWidthRef = useRef<number>(0); // measured pixel width of one set
+  const offsetRef = useRef<number>(0); // current offset in px (0..loopWidth)
+  const manualAnimatingRef = useRef<boolean>(false);
 
-  // animation duration in seconds (you asked for 1s faster than previous)
-  const DURATION_SECONDS = 27; // adjust as you like
+  // speed (px/sec) — reduce this to slow, increase to speed up
+  const SPEED_PX_PER_SEC = 80;
 
   const openModal = (t: Testimonial) => {
     setModalTestimonial(t);
     setIsRunning(false);
     document.body.style.overflow = "hidden";
   };
-
   const closeModal = () => {
     setModalTestimonial(null);
     setIsRunning(true);
     document.body.style.overflow = "";
   };
 
+  // measure loop width (left offset of first element of second copy)
+  useEffect(() => {
+    const measure = () => {
+      const track = trackRef.current;
+      if (!track) return;
+      const items = track.querySelectorAll<HTMLElement>(".testimonial-item");
+      const secondStart = items[count]; // first of second copy
+      if (secondStart) {
+        // loop width equals offsetLeft of secondStart relative to track container
+        loopWidthRef.current = secondStart.offsetLeft;
+      } else {
+        loopWidthRef.current = count * (CARD_WIDTH + GAP);
+      }
+    };
+
+    measure();
+    const t = setTimeout(measure, 200);
+    window.addEventListener("resize", measure);
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener("resize", measure);
+    };
+  }, [count]);
+
+  // apply transform to track element (GPU-friendly)
+  const applyTransform = (offsetPx: number) => {
+    const track = trackRef.current;
+    if (!track) return;
+    // We translate NEGATIVE offset so content moves left as offset increases
+    track.style.transform = `translate3d(${-offsetPx}px, 0, 0)`;
+  };
+
+  // rAF loop: increment offset and wrap
+  useEffect(() => {
+    lastRef.current = performance.now();
+
+    const tick = (now: number) => {
+      const track = trackRef.current;
+      if (!track) {
+        rafRef.current = requestAnimationFrame(tick);
+        return;
+      }
+
+      const last = lastRef.current ?? now;
+      const dt = (now - last) / 1000;
+      lastRef.current = now;
+
+      if (isRunning && !manualAnimatingRef.current) {
+        const delta = SPEED_PX_PER_SEC * dt;
+        let next = offsetRef.current + delta;
+        const loopPoint = loopWidthRef.current || count * (CARD_WIDTH + GAP);
+
+        // wrap seamlessly
+        if (next >= loopPoint) next -= loopPoint;
+
+        offsetRef.current = next;
+        applyTransform(next);
+      }
+
+      rafRef.current = requestAnimationFrame(tick);
+    };
+
+    rafRef.current = requestAnimationFrame(tick);
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, [isRunning, count]);
+
+  // ensure transform matches offset on mount / when measured
+  useEffect(() => {
+    applyTransform(offsetRef.current);
+  }, []);
+
+  // handle arrow manual moves: we animate transform to target using CSS transition
+  const moveByStep = (direction: "left" | "right") => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    setIsRunning(false);
+    manualAnimatingRef.current = true;
+
+    const loopPoint = loopWidthRef.current || count * (CARD_WIDTH + GAP);
+    // compute target offset
+    const delta = direction === "left" ? -STEP : STEP;
+    let target = offsetRef.current + delta;
+
+    // normalize target into [0, loopPoint)
+    while (target < 0) target += loopPoint;
+    while (target >= loopPoint) target -= loopPoint;
+
+    // We'll animate using CSS transition — but we must handle the shortest path visually.
+    // Because track uses translate(-offset), we need to detect if direct transition crosses boundary visually.
+    // To keep it simple and smooth, we:
+    // 1) disable existing transition
+    track.style.transition = "";
+
+    // 2) set current transform to current offset (ensures starting point)
+    applyTransform(offsetRef.current);
+
+    // 3) force a small reflow so transition applies correctly
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    track.offsetHeight;
+
+    // 4) set transition and animate to target
+    track.style.transition = "transform 420ms cubic-bezier(.22,.9,.26,1)";
+
+    // But if the shortest path crosses the loop boundary, we may prefer to animate via an adjusted target.
+    // We'll compute two possible visual distances and pick the smaller:
+    const directDist = Math.abs(target - offsetRef.current);
+    const wrapDist = loopPoint - directDist; // distance if going the other way via wrap
+
+    // choose visually shorter direction
+    let visualTarget = target;
+    if (wrapDist < directDist) {
+      // If wrapped path is shorter, shift target by +/- loopPoint so CSS transform animates the shorter delta
+      // Example: offset=10, target= (loopPoint - 20) -> directDist large, but should animate -30 using negative wrap
+      if (target > offsetRef.current) {
+        // going forward across loop: animate to target - loopPoint (negative value)
+        visualTarget = target - loopPoint;
+      } else {
+        // going backward across loop: animate to target + loopPoint
+        visualTarget = target + loopPoint;
+      }
+    }
+
+    // Set transformed value to visualTarget (may be negative or > loopPoint) — animation will run smoothly
+    applyTransform(visualTarget);
+
+    // after transition ends, snap state to canonical target (0..loopPoint) without transition
+    const onTransEnd = () => {
+      // cleanup
+      track.removeEventListener("transitionend", onTransEnd);
+      track.style.transition = "";
+      // set canonical transform & offset
+      offsetRef.current = target;
+      applyTransform(offsetRef.current);
+      manualAnimatingRef.current = false;
+      setIsRunning(true);
+    };
+
+    track.addEventListener("transitionend", onTransEnd);
+
+    // safety fallback: if transitionend doesn't fire, force resume after timeout
+    window.setTimeout(() => {
+      if (manualAnimatingRef.current) {
+        track.removeEventListener("transitionend", onTransEnd);
+        track.style.transition = "";
+        offsetRef.current = target;
+        applyTransform(offsetRef.current);
+        manualAnimatingRef.current = false;
+        setIsRunning(true);
+      }
+    }, 600);
+  };
+
   return (
     <section className="relative overflow-hidden py-12">
-      {/* Wave green background */}
       <div className="absolute inset-0 -z-10 pointer-events-none">
-  {/* solid green fill behind everything */}
-  <div className="absolute inset-0 bg-[#119152]" />
-  
-  {/* decorative white wave at bottom edge */}
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 1440 320"
-    preserveAspectRatio="none"
-    className="absolute bottom-0 w-full h-[120px]"
-  >
-    </svg>
-</div>
+        <div className="absolute inset-0 bg-[#119152]" />
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none" className="absolute bottom-0 w-full h-[120px]" />
+      </div>
 
       <div className="relative z-10 text-center mb-8">
         <h2 className="text-4xl md:text-5xl font-bold text-white">What Farmers Say</h2>
         <p className="text-white/90 max-w-2xl mx-auto mt-2">Real stories from farmers who trust Palm Group.</p>
+        <p className="text-white/90 max-w-2xl mx-auto mt-2">(Translated to English)</p>
       </div>
 
-      {/* Carousel wrapper */}
       <div
-        className="w-full"
-        onMouseEnter={() => setIsRunning(false)}
-        onMouseLeave={() => setIsRunning(true)}
+        ref={wrapperRef}
+        className="w-full relative"
+        onMouseEnter={() => { setIsRunning(false); }}
+        onMouseLeave={() => { if (!manualAnimatingRef.current) setIsRunning(true); }}
       >
-        {/* We set CSS variables via inline style so keyframes use exact px value */}
-        <div
-          className="scroller flex items-stretch px-4"
-          // set CSS vars: --shift (negative px target), --duration (seconds)
-          style={
-            {
-              animationPlayState: isRunning ? "running" : "paused",
-              // provide negative shift so keyframe "to" uses translateX(var(--shift))
-              // React requires CSS variables to be written in string keys
-              ["--shift" as any]: `${-shiftPx}px`,
-              ["--duration" as any]: `${DURATION_SECONDS}s`,
-              // provide gap and card width here to ensure CSS uses same numbers
-              ["--card-width" as any]: `${CARD_WIDTH}px`,
-              ["--gap" as any]: `${GAP}px`,
-            } as React.CSSProperties
-          }
+        {/* Left arrow */}
+        <button
+          aria-label="Previous"
+          onClick={() => moveByStep("left")}
+          className="absolute left-3 top-1/2 -translate-y-1/2 z-20 rounded-full bg-white/90 p-2 shadow hover:scale-105 transition-transform"
         >
-          {doubled.map((t, idx) => {
-            const instanceKey = `${t.id}-${idx}`;
-            return (
-              <article
-                key={instanceKey}
-                className="card bg-white rounded-2xl shadow-lg flex-shrink-0"
-                aria-labelledby={`t-${instanceKey}-name`}
-                // force exact width on each card via inline style that reads same card width var
-                style={{ width: CARD_WIDTH }}
-              >
-                <div className="relative h-40 overflow-hidden">
-                  <img src={t.image} alt={t.name} className="w-full h-full object-cover" loading="lazy" />
-                  <div className="absolute top-3 left-3 bg-[#0f8a4c] text-white text-sm px-3 py-1 rounded-xl font-semibold shadow-md max-w-[68%] truncate">
-                    {t.location}
-                  </div>
-                </div>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path d="M15 6L9 12L15 18" stroke="#0f8a4c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
 
-                <div className="p-4 h-[220px] flex flex-col justify-between">
-                  <div>
-                    <h3 id={`t-${instanceKey}-name`} className="text-xl font-bold text-[#22543d] mb-2">
-                      {t.name}
-                    </h3>
-                    <p className="text-[#476a4f] italic text-sm">{t.shortText}</p>
+        {/* Right arrow */}
+        <button
+          aria-label="Next"
+          onClick={() => moveByStep("right")}
+          className="absolute right-3 top-1/2 -translate-y-1/2 z-20 rounded-full bg-white/90 p-2 shadow hover:scale-105 transition-transform"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
+            <path d="M9 6L15 12L9 18" stroke="#0f8a4c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+
+        {/* Track wrapper — overflow hidden on parent; track is flex and duplicated */}
+        <div className="overflow-hidden">
+          <div
+            ref={trackRef}
+            className="flex items-stretch will-change-transform"
+            style={{ gap: `${GAP}px`, padding: "0 1rem" }}
+            // track holds duplicated items in DOM; we only change transform on this element
+          >
+            {doubled.map((t, idx) => {
+              const key = `${t.id}-${idx}`;
+              return (
+                <article
+                  key={key}
+                  className="testimonial-item card bg-white rounded-2xl shadow-lg flex-shrink-0"
+                  style={{ width: CARD_WIDTH }}
+                  aria-labelledby={`testi-${key}`}
+                >
+                  <div className="relative h-40 overflow-hidden">
+                    <img src={t.image} alt={t.name} className="w-full h-full object-cover" loading="lazy" />
+                    <div className="absolute top-3 left-3 bg-[#0f8a4c] text-white text-sm px-3 py-1 rounded-xl font-semibold shadow-md max-w-[68%] truncate">
+                      {t.location}
+                    </div>
                   </div>
 
-                  <div>
-                    <button
-                      onClick={() => openModal(t)}
-                      className="w-full mt-4 inline-block rounded border border-[#119152] px-4 py-2 text-sm font-medium text-[#119152] hover:bg-[#119152] hover:text-white transition-colors"
-                      aria-controls="testimonial-modal"
-                    >
-                      Read more
-                    </button>
+                  <div className="p-4 h-[220px] flex flex-col justify-between">
+                    <div>
+                      <h3 id={`testi-${key}`} className="text-xl font-bold text-[#22543d] mb-2">{t.name}</h3>
+                      <p className="text-[#476a4f] italic text-sm">{t.shortText}</p>
+                    </div>
+
+                    <div>
+                      <button
+                        onClick={() => openModal(t)}
+                        className="w-full mt-4 inline-block rounded border border-[#119152] px-4 py-2 text-sm font-medium text-[#119152] hover:bg-[#119152] hover:text-white transition-colors"
+                        aria-controls="testimonial-modal"
+                      >
+                        Read more
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </article>
-            );
-          })}
+                </article>
+              );
+            })}
+          </div>
         </div>
       </div>
 
@@ -281,52 +438,31 @@ export function Testimonials() {
       {modalTestimonial && (
         <div className="fixed inset-0 z-50 flex items-center justify-center px-4" role="dialog" aria-modal="true" aria-labelledby="modal-title">
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={closeModal} />
-
           <div className="relative z-10 w-full max-w-3xl bg-white rounded-2xl shadow-2xl overflow-hidden">
-            <button onClick={closeModal} className="absolute top-4 right-4 z-20 bg-white/90 hover:bg-white text-gray-700 rounded-full p-2 shadow" aria-label="Close">
-              ✕
-            </button>
+            <button onClick={closeModal} className="absolute top-4 right-4 z-20 bg-white/90 hover:bg-white text-gray-700 rounded-full p-2 shadow" aria-label="Close">✕</button>
 
             <div className="grid grid-cols-1 md:grid-cols-3">
-              {/* image */}
               <div className="md:col-span-1 h-64 md:h-auto">
                 <img src={modalTestimonial.image} alt={modalTestimonial.name} className="w-full h-full object-cover" />
               </div>
 
-              {/* content */}
               <div className="md:col-span-2 p-6 max-h-[78vh] overflow-y-auto">
                 <h3 id="modal-title" className="text-2xl font-bold text-[#22543d] mb-2">{modalTestimonial.name}</h3>
-
                 <div className="flex gap-3 mb-4 items-center">
                   <div className="text-sm text-[#4b6b53]"><strong>Location:</strong> {modalTestimonial.location}</div>
                 </div>
 
-                {modalTestimonial.crop && (
-                  <div className="text-sm text-[#4b6b53] mb-2"><strong>Crop:</strong> {modalTestimonial.crop}</div>
-                )}
-
-                {modalTestimonial.productUsed && (
-                  <div className="text-sm text-[#4b6b53] mb-2"><strong>Products Used:</strong> {modalTestimonial.productUsed}</div>
-                )}
-
-                {modalTestimonial.application && (
-                  <div className="text-sm text-[#4b6b53] mb-4"><strong>Application:</strong> {modalTestimonial.application}</div>
-                )}
+                {modalTestimonial.crop && <div className="text-sm text-[#4b6b53] mb-2"><strong>Crop:</strong> {modalTestimonial.crop}</div>}
+                {modalTestimonial.productUsed && <div className="text-sm text-[#4b6b53] mb-2"><strong>Products Used:</strong> {modalTestimonial.productUsed}</div>}
+                {modalTestimonial.application && <div className="text-sm text-[#4b6b53] mb-4"><strong>Application:</strong> {modalTestimonial.application}</div>}
 
                 <div className="prose prose-sm max-w-none text-[#234f35] whitespace-pre-wrap">
-                  {modalTestimonial.english && (
-                    <p className="mt-2">{modalTestimonial.english}</p>
-                  )}
-
-                  {modalTestimonial.regional && (
-                    <p className="mt-4">{modalTestimonial.regional}</p>
-                  )}
+                  {modalTestimonial.english && <p className="mt-2">{modalTestimonial.english}</p>}
+                  {modalTestimonial.regional && <p className="mt-4">{modalTestimonial.regional}</p>}
                 </div>
 
                 <div className="mt-6 text-right">
-                  <button onClick={closeModal} className="inline-block rounded bg-[#119152] text-white px-5 py-2 font-medium hover:opacity-95">
-                    Close
-                  </button>
+                  <button onClick={closeModal} className="inline-block rounded bg-[#119152] text-white px-5 py-2 font-medium hover:opacity-95">Close</button>
                 </div>
               </div>
             </div>
@@ -334,42 +470,16 @@ export function Testimonials() {
         </div>
       )}
 
-      {/* Scoped CSS */}
       <style jsx>{`
-        /* The scroller will move from 0 to the provided CSS var --shift (negative px) */
-        .scroller {
-          display: flex;
-          gap: var(--gap, 24px);
-          padding: 1rem 0;
+        .will-change-transform {
           will-change: transform;
-          align-items: stretch;
-          animation: scroll-left var(--duration, 27s) linear infinite;
         }
-
-        .scroller > .card {
-          flex: 0 0 var(--card-width, 320px); /* match what's set inline */
+        .testimonial-item img {
+          display: block;
         }
-
-        @keyframes scroll-left {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(var(--shift));
-          }
-        }
-
-        /* Slightly slower on mobile but still 1s faster than earlier */
+        /* small-screen width */
         @media (max-width: 768px) {
-          .scroller {
-            animation-duration: calc(var(--duration, 27s) + 8s); /* e.g. 35s if --duration is 27s */
-          }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .scroller {
-            animation: none;
-          }
+          .testimonial-item { width: ${Math.max(220, CARD_WIDTH - 120)}px !important; }
         }
       `}</style>
     </section>

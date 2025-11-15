@@ -3,10 +3,12 @@
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/free-mode";
+import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, FreeMode } from "swiper/modules";
+import { Autoplay, FreeMode, Navigation } from "swiper/modules";
 import Image from "next/image";
-import { useState } from "react";
+import Link from "next/link";
+import { useRef, useState } from "react";
 
 export default function BusinessAreas() {
   const CARD_WIDTH = 300;
@@ -17,32 +19,18 @@ export default function BusinessAreas() {
   const IMAGE_HEIGHT = 520;
 
   // fraction of image height that will sit outside the card.
-  // this is multiplied by the final (possibly scaled) imageHeight.
   const OUTSIDE_FRACTION = 0.30;
 
   // reserve extra bottom space so the overflow isn't clipped
   const EXTRA_BOTTOM = Math.round(IMAGE_HEIGHT * OUTSIDE_FRACTION + 48);
 
-  // Per-product overrides: set scale and vertical offset (px)
-  // - scale: multiplies IMAGE_WIDTH/IMAGE_HEIGHT for that product
-  // - offsetPx: added to computed imageOutsidePx (positive => more outside / pulled down,
-  //                                     negative => pulled up / more inside)
-  // I left Crop Giant, Cropper Plus, Golden Drop and AG-F untouched (scale 1, offset 0)
-  const perProductOverrides: Record<
-    string,
-    { scale?: number; offsetPx?: number }
-  > = {
-    // unchanged (examples — explicitly keeping them at default)
+  const perProductOverrides: Record<string, { scale?: number; offsetPx?: number }> = {
     "CROP GIANT": { scale: 1, offsetPx: 0 },
     "CROPPER PLUS": { scale: 1, offsetPx: 0 },
     "GOLDEN DROP": { scale: 1, offsetPx: 0 },
     "AG-F": { scale: 1, offsetPx: 0 },
-
-    // increase size and bring down slightly:
     "PALM SULF": { scale: 1.12, offsetPx: 25 },
     "CROPPER": { scale: 1.12, offsetPx: 18 },
-
-    // decrease size and pull up (more inside the card):
     "SILICOSE": { scale: 0.55, offsetPx: -40 },
     "AG-F SUPER PLUS": { scale: 0.60, offsetPx: -45 },
   };
@@ -117,10 +105,21 @@ export default function BusinessAreas() {
   const [swiperInstance, setSwiperInstance] = useState<any>(null);
   const TRAIN_SPEED = 8000;
 
+  // navigation refs for Swiper (desktop)
+  const prevRef = useRef<HTMLButtonElement | null>(null);
+  const nextRef = useRef<HTMLButtonElement | null>(null);
+
+  // helper to build a slug — replace with actual product links if available
+  const slugify = (s: string) =>
+    s
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/[^a-z0-9\-]/g, "");
+
   return (
     <section
-      className="relative bg-white"
-      style={{ paddingBottom: `${EXTRA_BOTTOM}px`, overflow: "visible" }}
+      className="relative bg-white overflow-x-hidden"
+      style={{ paddingBottom: `${EXTRA_BOTTOM}px`, overflowX: "hidden" }}
     >
       {/* full-bleed wave (positioned behind container) */}
       <div
@@ -130,7 +129,8 @@ export default function BusinessAreas() {
           top: 0,
           left: "50%",
           transform: "translateX(-50%)",
-          width: "140vw",
+          width: "120vw",
+          maxWidth: "1600px",
           height: 220,
           overflow: "hidden",
           zIndex: 0,
@@ -143,7 +143,11 @@ export default function BusinessAreas() {
           style={{ width: "100%", height: "100%", display: "block" }}
         >
           <path d="M-80,200 Q200,100 820,200 T1520,200 L1520,0 L-80,0 Z" fill="#059c5b" />
-          <path d="M-80,200 Q320,140 720,240 T1520,240 L1520,0 L-80,0 Z" fill="#00712D" opacity="0.8" />
+          <path
+            d="M-80,200 Q320,140 720,240 T1520,240 L1520,0 L-80,0 Z"
+            fill="#00712D"
+            opacity="0.8"
+          />
         </svg>
       </div>
 
@@ -157,9 +161,70 @@ export default function BusinessAreas() {
           onMouseLeave={() => swiperInstance?.autoplay?.start()}
           className="relative z-20 mt-24 md:mt-28"
         >
+          {/* LEFT ARROW (desktop) - green accent */}
+          <button
+            ref={prevRef}
+            aria-label="Previous"
+            className="hidden md:flex items-center justify-center absolute left-2 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-white hover:scale-105 transition-transform focus:outline-none"
+            style={{
+              border: "2px solid #0B8A44",
+              boxShadow: "0 6px 22px rgba(11,138,68,0.12)",
+            }}
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+              <path d="M15 6L9 12l6 6" stroke="#0B8A44" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+
+          {/* RIGHT ARROW (desktop) - green accent */}
+          <button
+            ref={nextRef}
+            aria-label="Next"
+            className="hidden md:flex items-center justify-center absolute right-2 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-white hover:scale-105 transition-transform focus:outline-none"
+            style={{
+              border: "2px solid #0B8A44",
+              boxShadow: "0 6px 22px rgba(11,138,68,0.12)",
+            }}
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+              <path d="M9 6l6 6-6 6" stroke="#0B8A44" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+
+          {/* ===== MOBILE ARROWS: centered below (bigger, green-accented) ===== */}
+          <div className="flex md:hidden items-center justify-center gap-4 absolute left-1/2 -translate-x-1/2 -bottom-20 z-50">
+            <button
+              aria-label="Previous mobile"
+              onClick={() => swiperInstance?.slidePrev()}
+              className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-lg focus:outline-none"
+              style={{
+                border: "3px solid #0B8A44",
+                boxShadow: "0 8px 28px rgba(11,138,68,0.14), 0 0 18px rgba(11,138,68,0.06) inset",
+              }}
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+                <path d="M15 6L9 12l6 6" stroke="#0B8A44" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+
+            <button
+              aria-label="Next mobile"
+              onClick={() => swiperInstance?.slideNext()}
+              className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-lg focus:outline-none"
+              style={{
+                border: "3px solid #0B8A44",
+                boxShadow: "0 8px 28px rgba(11,138,68,0.14), 0 0 18px rgba(11,138,68,0.06) inset",
+              }}
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
+                <path d="M9 6l6 6-6 6" stroke="#0B8A44" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+          </div>
+
           <Swiper
             className="product-swiper !overflow-visible"
-            modules={[Autoplay, FreeMode]}
+            modules={[Autoplay, FreeMode, Navigation]}
             autoplay={{
               delay: 0,
               disableOnInteraction: false,
@@ -169,28 +234,44 @@ export default function BusinessAreas() {
             speed={TRAIN_SPEED}
             loop={true}
             slidesPerGroup={1}
-            spaceBetween={2}
+            spaceBetween={16}
             observer={true}
             observeParents={true}
             breakpoints={{
-              320: { slidesPerView: 1, spaceBetween: 2 },
-              640: { slidesPerView: 2, spaceBetween: 2 },
-              1024: { slidesPerView: 3, spaceBetween: 2 },
-              1280: { slidesPerView: 4, spaceBetween: 2 },
+              320: { slidesPerView: 1.05, spaceBetween: 12 },
+              640: { slidesPerView: 2.1, spaceBetween: 12 },
+              1024: { slidesPerView: 3.2, spaceBetween: 16 },
+              1280: { slidesPerView: 4.1, spaceBetween: 18 },
             }}
-            onSwiper={(s) => setSwiperInstance(s)}
+            navigation={{
+              prevEl: prevRef.current,
+              nextEl: nextRef.current,
+            }}
+            onSwiper={(s) => {
+              setSwiperInstance(s);
+              // assign refs to navigation after initialization
+              // using timeout ensures refs exist
+              setTimeout(() => {
+                if (s.params && s.navigation) {
+                  // @ts-ignore - mutate internal params for navigation
+                  s.params.navigation = {
+                    prevEl: prevRef.current,
+                    nextEl: nextRef.current,
+                  };
+                  s.navigation.init();
+                  s.navigation.update();
+                }
+              }, 0);
+            }}
           >
             {products.map((product, i) => {
-              // determine overrides (or defaults)
               const ov = perProductOverrides[product.name] ?? {};
               const scale = ov.scale ?? 1;
               const extraOffsetPx = ov.offsetPx ?? 0;
 
-              // compute size per product
               const imageWidth = Math.round(IMAGE_WIDTH * scale);
               const imageHeight = Math.round(IMAGE_HEIGHT * scale);
 
-              // base outside px (fraction of scaled height) + per-product offsetPx
               const imageOutsidePx = Math.round(imageHeight * OUTSIDE_FRACTION) + extraOffsetPx;
 
               const cssVars = {
@@ -198,76 +279,87 @@ export default function BusinessAreas() {
                 "--overlay-color": product.overlayColor,
               } as React.CSSProperties;
 
+              const productLink = `/products/${slugify(product.name)}`;
+
               return (
                 <SwiperSlide key={i} className="!flex !justify-center overflow-visible">
-                  <div
-                    className={`relative group product-card overflow-visible rounded-xl ${product.color} text-white p-6 flex flex-col justify-between transition-transform duration-500`}
-                    style={{
-                      width: `${CARD_WIDTH}px`,
-                      height: `${CARD_HEIGHT}px`,
-                      minWidth: `${CARD_WIDTH}px`,
-                      minHeight: `${CARD_HEIGHT}px`,
-                      ...cssVars,
-                    }}
-                  >
-                    {/* dotted background */}
+                  <Link href={productLink} className="block no-underline" aria-label={`Open ${product.name}`} style={{ textDecoration: "none" }}>
                     <div
-                      className="card-dots pointer-events-none"
-                      aria-hidden
+                      className={`relative group product-card overflow-visible rounded-xl ${product.color} text-white p-6 flex flex-col justify-between transition-transform duration-500`}
                       style={{
-                        position: "absolute",
-                        inset: 0,
-                        zIndex: 12,
-                        backgroundImage: `radial-gradient(circle, var(--dot-color, rgba(255,255,255,0.05)) 2px, transparent 2px)`,
-                        backgroundSize: "20px 20px",
-                        mixBlendMode: "overlay",
-                      }}
-                    />
-
-                    {/* overlay */}
-                    <div
-                      className="card-overlay pointer-events-none"
-                      aria-hidden
-                      style={{
-                        position: "absolute",
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        height: "60%",
-                        zIndex: 18,
-                        background:
-                          "linear-gradient(to top, var(--overlay-color, rgba(0,0,0,0.28)) 0%, rgba(0,0,0,0.12) 30%, rgba(0,0,0,0.04) 60%, transparent 100%)",
-                        filter: "blur(0.3px)",
-                      }}
-                    />
-
-                    {/* content */}
-                    <div className="w-full text-left z-20">
-                      <div className="flex items-center gap-3 mb-3">
-                        <div style={{ width: 40, height: 40 }} className="relative">
-                          <Image src={product.icon} alt={`${product.name} icon`} fill sizes="40px" />
-                        </div>
-                      </div>
-                      <h3 className="text-2xl font-bold">{product.name}</h3>
-                    </div>
-
-                    <div className="flex-grow" />
-
-                    {/* product image — this is what overflows below the card */}
-                    <div
-                      className="absolute-image absolute left-1/2 transform -translate-x-1/2 pointer-events-none transition-transform duration-500 ease-out group-hover:scale-105 group-hover:-translate-y-1"
-                      style={{
-                        bottom: `${-imageOutsidePx}px`,
-                        zIndex: 30,
-                        width: `${imageWidth}px`,
-                        height: `${imageHeight}px`,
+                        width: `${CARD_WIDTH}px`,
+                        height: `${CARD_HEIGHT}px`,
+                        // removed minWidth to avoid forcing horizontal overflow
+                        minHeight: `${CARD_HEIGHT}px`,
+                        ...cssVars,
+                        cursor: "pointer",
                       }}
                     >
-                      <div style={{ width: "100%", height: "100%" }} className="relative">
-                        <Image src={product.image} alt={product.name} fill style={{ objectFit: "contain" }} priority={i < 4} />
+                      {/* dotted background (brought above overlay so it's visible) */}
+                      <div
+                        className="card-dots pointer-events-none"
+                        aria-hidden
+                        style={{
+                          position: "absolute",
+                          inset: 0,
+                          zIndex: 22,
+                          backgroundImage: `radial-gradient(circle, var(--dot-color, rgba(255,255,255,0.12)) 3px, transparent 3px)`,
+                          backgroundSize: "24px 24px",
+                          mixBlendMode: "overlay",
+                        }}
+                      />
+
+                      {/* overlay */}
+                      <div
+                        className="card-overlay pointer-events-none"
+                        aria-hidden
+                        style={{
+                          position: "absolute",
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          height: "60%",
+                          zIndex: 18,
+                          background:
+                            "linear-gradient(to top, var(--overlay-color, rgba(0,0,0,0.28)) 0%, rgba(0,0,0,0.12) 30%, rgba(0,0,0,0.04) 60%, transparent 100%)",
+                          filter: "blur(0.3px)",
+                        }}
+                      />
+
+                      {/* content */}
+                      <div className="w-full text-left z-30">
+                        <div className="flex items-center gap-3 mb-3">
+                          <div style={{ width: 40, height: 40 }} className="relative">
+                            <Image src={product.icon} alt={`${product.name} icon`} fill sizes="40px" />
+                          </div>
+                        </div>
+                        <h3 className="text-2xl font-bold">{product.name}</h3>
+                      </div>
+
+                      <div className="flex-grow" />
+
+                      {/* product image */}
+                      <div
+                        className="absolute-image absolute left-1/2 transform -translate-x-1/2 pointer-events-none transition-transform duration-500 ease-out group-hover:scale-105 group-hover:-translate-y-1"
+                        style={{
+                          bottom: `${-imageOutsidePx}px`,
+                          zIndex: 30,
+                          width: `${imageWidth}px`,
+                          height: `${imageHeight}px`,
+                        }}
+                      >
+                        <div style={{ width: "100%", height: "100%" }} className="relative">
+                          <Image
+                            src={product.image}
+                            alt={product.name}
+                            fill
+                            style={{ objectFit: "contain" }}
+                            priority={i < 4}
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 </SwiperSlide>
               );
             })}
@@ -284,11 +376,11 @@ export default function BusinessAreas() {
           z-index: 30;
           overflow: visible; /* keep small spill visible */
         }
-        /* gentler hover so image doesn't overshoot */
         .product-card:hover {
           transform: translateY(-10px) rotateX(4deg) scale(1.03);
           box-shadow: 0 20px 60px rgba(0,0,0,0.18);
         }
+        /* keep slides overflow visible so the product image can spill out */
         .product-swiper :global(.swiper-slide) {
           overflow: visible;
           display: flex;
@@ -300,6 +392,11 @@ export default function BusinessAreas() {
         .product-card, .product-card * {
           backface-visibility: hidden;
           -webkit-backface-visibility: hidden;
+        }
+        /* keyboard focus for arrow buttons */
+        button:focus {
+          outline: none;
+          box-shadow: 0 0 0 4px rgba(11,138,68,0.14);
         }
       `}</style>
     </section>

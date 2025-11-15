@@ -77,7 +77,9 @@ export function VisionMission() {
                 Nurturing Those Who{" "}
                 <span className="text-green-600">Nurture the Earth</span>
               </h2>
-              <p className="mt-5 text-gray-700 text-base md:text-lg leading-7 md:leading-8 max-w-prose">
+
+              {/* <-- UPDATED: paragraph sizing now matches your other components --> */}
+              <p className="mt-5 text-gray-700 text-sm md:text-base leading-7 md:leading-8 max-w-prose">
                 At Palm Group, we believe farmers are the backbone of agriculture.
                 That’s why we empower them with innovative, organic, and non-toxic
                 solutions designed to improve crop yield, quality, and soil health.
@@ -109,7 +111,6 @@ export function VisionMission() {
           </div>
         </div>
       </section>
-
 
     </>
   );

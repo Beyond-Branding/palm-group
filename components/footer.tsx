@@ -21,14 +21,7 @@ export function Footer() {
                 to support farmers worldwide.
               </p>
 
-              {/* Optional certification badges */}
-              <div className="mt-6 flex items-center gap-3">
-                {/* Replace with actual certification image URLs or remove */}
-                <img src="/badge1.png" alt="Certification" className="h-8 w-auto" />
-                <img src="/badge2.png" alt="Certification" className="h-8 w-auto" />
-                <img src="/badge3.png" alt="Certification" className="h-8 w-auto" />
-                <img src="/badge4.png" alt="Certification" className="h-8 w-auto" />
-              </div>
+              
             </div>
 
             {/* COMPANY */}
@@ -105,7 +98,7 @@ export function Footer() {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             {/* Left side: copyright + dev credit */}
             <div className="text-sm text-gray-600 text-center sm:text-left">
-              © {new Date().getFullYear()} Palm International. All rights reserved. Site designed and developed by{" "}
+              © {new Date().getFullYear()} Palm International. All rights reserved. Website designed and developed by{" "}
               <span className="font-semibold text-black-800">Beyond Branding</span>
             </div>
 

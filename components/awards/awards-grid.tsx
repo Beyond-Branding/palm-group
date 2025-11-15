@@ -16,58 +16,56 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Award, Shield, FileCheck, Leaf, Globe, X, Eye, Share2, Copy } from "lucide-react"
 
-// NOTE: In Next.js, assets placed in /public are served from the root path (e.g. "/IEC.jpg"),
-// so you do NOT prefix them with "/public" in the src.
 
 const awards = [
   {
-    title: "ISO 9001",
-    category: "Quality Management",
+    title: "ISO 9001:2015",
+    category: "Quality Management System",
     description:
-      "International standard for quality management systems, ensuring consistent quality in our products and services.",
+    "Manufacturing and marketing of organic, eco-friendly and bio products for the agri-input and crop care industry.",
     icon: Shield,
     year: "2023",
-    issuer: "International Organization for Standardization",
+    issuer: "TSN Certification Private Limited",
     certificateUrl: "/ISO.jpg",
   },
   {
-    title: "IEC Certificate",
-    category: "Export Compliance",
+    title: "Importer-Exporter Code (IEC)",
+    category: "Import–Export Registration",
     description:
-      "Import Export Code certificate enabling us to engage in international trade operations.",
+      "Government-issued registration that authorizes a business to legally import and export goods in India.",
     icon: Globe,
-    year: "2023",
-    issuer: "Directorate General of Foreign Trade",
+    year: "2021",
+    issuer: "Directorate General of Foreign Trade (DGFT), Ministry of Commerce & Industry, Government of India",
     certificateUrl: "/IEC.jpg",
   },
   {
-    title: "PPC Drug License",
-    category: "Pharmaceutical",
+    title: "Drug Wholesale License",
+    category: "Pharmaceutical Wholesale Authorization",
     description:
-      "Pharmaceutical Product Certificate for manufacturing and distribution of pharmaceutical products.",
+      "Government-issued license permitting the sale, stock, distribution of drugs by wholesale, excluding drugs under Schedules C, C(1), and X.",
     icon: FileCheck,
-    year: "2023",
-    issuer: "State Drug Control Authority",
+    year: "2024",
+    issuer: "Food & Drug Administration, Maharashtra (FDA Maharashtra)",
     certificateUrl: "/Drug.jpg",
   },
   {
-    title: "Agri- licenses ",
-    category: "Agriculture",
+    title: "FSSAI Central License (Form C)",
+    category: "Food Business License",
     description:
-      "Comprehensive licensing for manufacturing and distribution of agricultural products and fertilizers.",
+      "Government-authorized license issued under the Food Safety and Standards Act, 2006 that permits the business to operate in food-related activities such as import, retail, and distribution.",
     icon: Leaf,
-    year: "2023",
-    issuer: "Department of Agriculture",
+    year: "2024",
+    issuer: "Food Safety and Standards Authority of India (FSSAI)",
     certificateUrl: "/Agri.jpg",
   },
   {
-    title: "RCMC",
-    category: "Export Promotion",
+    title: "Form A2 Bio-Stimulant Wholesale Dealer Acknowledgement",
+    category: "Fertilizer & Bio-Stimulant Dealer Authorization",
     description:
-      "Registration-cum-Membership Certificate from Export Promotion Council for international trade.",
+      "Government authorization issued for conducting wholesale business of bio-stimulants under the Fertilizer (Control) Order. This acknowledgement acts as a letter permitting the dealer to operate for a period of 5 years unless suspended or revoked.",
     icon: Award,
-    year: "2023",
-    issuer: "Export Promotion Council",
+    year: "2025",
+    issuer: "Government of Maharashtra – Department of Agriculture",
     certificateUrl: "/RCMC.jpg",
   },
 ]
@@ -169,6 +167,22 @@ export default function AwardsGrid() {
   return (
     <>
       <CertificationsHero />
+
+      {/* ---------- INSERTED: Commitment box directly after the wave (exact same markup) ---------- */}
+      <div className="mt-8 text-center">
+        <div className="relative mx-auto max-w-4xl rounded-3xl border bg-card/60 p-8 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-card/50">
+          {/* brand accent bar */}
+          <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-[#0E7C45] to-[#14A165] rounded-t-3xl" />
+          <h3 className="text-2xl font-bold mb-3">Our Commitment to Excellence</h3>
+          <p className="text-muted-foreground">
+            At Palm Group, certifications aren’t just documents they’re a promise. Each recognition validates our focus
+            on quality, safety, and regulatory compliance, ensuring our partners receive world-class products and
+            service.
+          </p>
+        </div>
+      </div>
+      {/* ---------- end inserted commitment box ---------- */}
+
       <section className="relative py-24 overflow-hidden">
         
           <div className="absolute inset-0 -z-10 bg-white" />
@@ -228,19 +242,6 @@ export default function AwardsGrid() {
             })}
           </div>
 
-          {/* Commitment box */}
-          <div className="mt-16 text-center">
-            <div className="relative mx-auto max-w-4xl rounded-3xl border bg-card/60 p-8 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-card/50">
-              {/* brand accent bar */}
-              <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-[#0E7C45] to-[#14A165] rounded-t-3xl" />
-              <h3 className="text-2xl font-bold mb-3">Our Commitment to Excellence</h3>
-              <p className="text-muted-foreground">
-                At Palm Group, certifications aren’t just documents—they’re a promise. Each recognition validates our focus
-                on quality, safety, and regulatory compliance, ensuring our partners receive world‑class products and
-                service.
-              </p>
-            </div>
-          </div>
         </div>
 
         {/* Toast */}
