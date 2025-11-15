@@ -1,30 +1,7 @@
 "use client";
 import { useMemo, useState } from "react";
-import { Card, CardContent } from "@/components/ui/card"; // (ok if unused)
-import { Badge } from "@/components/ui/badge";
-import Link from "next/link";
 import { Search as SearchIcon } from "lucide-react";
-import { Facebook, Instagram, Share2 } from "lucide-react";
 import { FaWhatsapp as WhatsAppIcon } from "react-icons/fa";
-
-function shareTo(platform: string, productName: string) {
-  const url = typeof window !== "undefined" ? window.location.href : "";
-  const text = `Check this product: ${productName}`;
-
-  const shareLinks: Record<string, string> = {
-    facebook: `https://facebook.com/sharer/sharer.php?u=${url}`,
-    instagram: `https://www.instagram.com/`, // Manual share
-    whatsapp: `https://wa.me/?text=${encodeURIComponent(text + " " + url)}`,
-    native: "" // Fallback to navigator.share
-  };
-
-  if (platform === "native" && navigator.share) {
-    navigator.share({ title: productName, url }).catch(() => {});
-    return;
-  }
-
-  window.open(shareLinks[platform], "_blank");
-}
 
 /* ------------------ DATA ------------------ */
 const products = [
@@ -45,12 +22,9 @@ const products = [
     dosage:
       "0.5–0.75 ml per litre of water. Spray during flowering and early fruiting stages every 12–15 days for best results.",
     usage:
-      "Grapes, Tomato, Mango, Paddy, Onion, Chilli, Citrus Fruits, Vegetables, Strawberries, Capsicum, Pomegranate, Sugarcane, Tea, Coffee, Cashew, Banana.",
+      "Golden Drop is ideal for a wide range of crops including: Grapes, Tomato, Mango, Paddy, Onion, Chilli, Citrus Fruits, Vegetables, Strawberries, Capsicum, Pomegranate, Sugarcane, Tea, Coffee, Cashew, Banana.",
     image: "/golden drop-Photoroom shadow.png",
     secondaryImage: "/golden-drop-side.png",
-    modeOfAction: "Protein Hydrolysate Biostimulant",
-    majorCrops: "Grapes, Mango, Citrus, Vegetables",
-    dosePerAcre: "0.5–0.75 ml/Liter of water",
   },
   {
     name: "AG-F",
@@ -71,9 +45,6 @@ const products = [
     usage: "Ideal for all crops.",
     image: "/agf-Photoroom (1).png",
     secondaryImage: "/copperplus.png",
-    modeOfAction: "Spreader, Sticker, Activator",
-    majorCrops: "All Crops",
-    dosePerAcre: "1 ml/Liter of water",
   },
   {
     name: "AG-F SUPER PLUS",
@@ -95,15 +66,12 @@ const products = [
       "Perfect for all crops where complete coverage and high spray efficiency are crucial.",
     image: "/AG-F Superplus-Photoroom shadow.png",
     secondaryImage: "/ag-f-super-side.jpg",
-    modeOfAction: "Silicone-Based Spreading & Activating",
-    majorCrops: "All Crops (High Efficiency Required)",
-    dosePerAcre: "1 ml/8 Liters of water",
   },
   {
     name: "CROP GIANT",
     category: "Organic Plant Extract (Carbohydrate Theory)",
     description:
-      "Organic extract formulated to enhance fruit quality, prevent cracking, and increase sugar.",
+      "Crop Giant is an organic plant extract formulated using the carbohydrate theory to enhance fruit quality, prevent cracking, and increase sugar accumulation.",
     detailedDescription:
       "Crop Giant is an organic plant extract formulated using the carbohydrate theory to enhance fruit quality, prevent cracking, and increase sugar accumulation.",
     benefits: [
@@ -115,12 +83,9 @@ const products = [
     dosage:
       "Spray: 1.5 ml per litre of water when berries reach pea size. Repeat after 7 days for maximum effectiveness.",
     usage:
-      "Grapes, Strawberry, Citrus, Apple, Mango, Tomato, Capsicum, Watermelon, Cucumbers, Brinjal, Chilli, Pomegranate.",
+      "Crop Giant is ideal for a wide range of crops including: Grapes, Strawberry, Citrus, Apple, Mango, Tomato, Capsicum, Watermelon, Cucumbers, Brinjal, Chilli, Pomegranate.",
     image: "/crop giant shadow.png",
     secondaryImage: "/crop giant.png",
-    modeOfAction: "Foliar Spray for Fruit Quality",
-    majorCrops: "Grapes, Strawberry, Citrus, Apple, Mango",
-    dosePerAcre: "1.5 ml/Liter of water",
   },
   {
     name: "PALM SULF",
@@ -137,12 +102,9 @@ const products = [
     ],
     dosage: "Foliar Spray: 3 ml per litre of water. Drip Application: 7.5 litres per hectare.",
     usage:
-      "Wheat, Rice, Grapes, Citrus, Mango, Chilli, Onion, Spinach, Potato, Tomato, Capsicum, Carrot.",
+      "Palm Sulf is ideal for a wide range of crops including: Wheat, Rice, Grapes, Citrus, Mango, Chilli, Onion, Spinach, Potato, Tomato, Capsicum, Carrot.",
     image: "/palm sulf-Photoroom shadow.png",
     secondaryImage: "/palm-sulf-side.jpg",
-    modeOfAction: "Foliar Spray and Drip Application",
-    majorCrops: "Wheat, Rice, Grapes, Citrus, Mango, Chilli",
-    dosePerAcre: "3 ml/Liter (Foliar) / 7.5 L/Ha (Drip)",
   },
   {
     name: "CROPPER",
@@ -160,12 +122,9 @@ const products = [
     dosage:
       "Soil Application: 7.5 L/Ha. Foliar Spray: 2 ml per litre. Seed Treatment: 2.5 L per MT of seed. With Fertilizers: 7.5 L/Ha.",
     usage:
-      "Maize, Wheat, Rice, Sunflower, Potato, Tomato, Garlic, Onion, Spinach, Coconut, Citrus, Mango.",
+      "Cropper is ideal for a wide range of crops including: Maize, Wheat, Rice, Sunflower, Potato, Tomato, Garlic, Onion, Spinach, Coconut, Citrus, Mango.",
     image: "/cropper shadow.png",
     secondaryImage: "/cropper-side.jpg",
-    modeOfAction: "Soil and Foliar Application",
-    majorCrops: "Maize, Wheat, Rice, Sunflower, Potato",
-    dosePerAcre: "7.5 L/Ha (Soil) / 2 ml/Liter (Foliar)",
   },
   {
     name: "CROPPER PLUS",
@@ -183,12 +142,9 @@ const products = [
     dosage:
       "Soil Application: 2.5–4 L/Ha. Foliar Spray: 1 ml per litre. Seed Treatment: 1.5 L per MT of seed. With Fertilizers: 2.5–4 L/Ha.",
     usage:
-      "Wheat, Rice, Maize, Sunflower, Potato, Leafy Greens, Coconut, Grapes, Citrus, Mango, Tomato, Chilli.",
+      "Cropper Plus is ideal for a wide range of crops including: Wheat, Rice, Maize, Sunflower, Potato, Leafy Greens, Coconut, Grapes, Citrus, Mango, Tomato, Chilli.",
     image: "/copperplus-Photoroom shadow.png",
     secondaryImage: "/cropper-plus-side.png",
-    modeOfAction: "Soil and Foliar Application (Concentrated)",
-    majorCrops: "Wheat, Rice, Maize, Sunflower, Potato",
-    dosePerAcre: "2.5–4 L/Ha (Soil) / 1 ml/Liter (Foliar)",
   },
   {
     name: "SILICOSE",
@@ -206,12 +162,9 @@ const products = [
     ],
     dosage: "Foliar Spray: 3 ml per litre of water. Drip Application: 5–7.5 L/Ha.",
     usage:
-      "Rice, Wheat, Maize, Grapes, Mango, Citrus, Potato, Chilli, Tomato, Onion, Spinach, Strawberry, Sugarcane.",
+      "Silicose is ideal for a wide range of crops including: Rice, Wheat, Maize, Grapes, Mango, Citrus, Potato, Chilli, Tomato, Onion, Spinach, Strawberry, Sugarcane.",
     image: "/silicose-Photoroom shadow.png",
     secondaryImage: "/silicose-side.png",
-    modeOfAction: "Foliar Spray and Drip Application",
-    majorCrops: "Rice, Wheat, Maize, Grapes, Mango, Citrus",
-    dosePerAcre: "3 ml/Liter (Foliar) / 5–7.5 L/Ha (Drip)",
   },
 ];
 
@@ -235,9 +188,6 @@ function productMatchesQuery(p: Product, q: string) {
       p.detailedDescription,
       p.dosage,
       p.usage,
-      p.modeOfAction,
-      p.majorCrops,
-      p.dosePerAcre,
       ...(p.benefits || []),
     ]
       .filter(Boolean)
@@ -275,7 +225,6 @@ function canonicalCrop(label: string): string {
   const key = normalize(raw);
   if (CROP_ALIASES[key]) return CROP_ALIASES[key];
 
-  // basic singularization for common plurals (Tomatoes -> Tomato, Apples -> Apple)
   if (/ies$/i.test(raw)) return raw.replace(/ies$/i, "y");
   if (/s$/i.test(raw) && !/Grapes|Citrus|Leafy Greens/i.test(raw)) return raw.replace(/s$/i, "");
   return raw;
@@ -317,34 +266,32 @@ export default function ProductListingAndDetails() {
     setQuery("");
   };
 
-  /* ---------- DETAIL VIEW ---------- */
+  /* ---------- DETAIL VIEW (SIMPLIFIED) ---------- */
   if (selectedProduct) {
     return (
-      <section className="pt-0 pb-12 md:pb-16 bg-white min-h-screen">
+      <section className="pt-6 pb-12 md:pb-16 bg-white min-h-screen">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <button
             onClick={() => setSelectedIndex(null)}
-            className="mb-8 px-4 py-2 text-[#388e3c] border border-[#388e3c] rounded hover:bg-[#e8f5e9] transition font-semibold"
+            className="mb-6 px-4 py-2 text-[#1b5e20] border border-[#1b5e20] rounded hover:bg-[#e8f5e9] transition font-semibold"
           >
             &larr; Back to Products
           </button>
 
-          <div className="flex flex-col md:flex-row gap-8 lg:gap-12">
-            <div className="md:w-1/2 p-4 flex flex-col items-center">
-
-              {/* ✅ Product Image */}
-              <div className="bg-white rounded-xl shadow-inner ring-1 ring-gray-200 flex justify-center items-center h-[500px] w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+            {/* Image */}
+            <div className="flex flex-col items-center">
+              <div className="w-full rounded-xl bg-neutral-50 ring-1 ring-gray-200 overflow-hidden shadow-inner">
                 <img
                   src={selectedProduct.image || "/placeholder.svg"}
                   alt={selectedProduct.name}
-                  className="w-full h-full object-contain"
+                  className="w-full h-[420px] object-contain"
                 />
               </div>
 
-              {/* ✅ Book Now Button */}
-              <div className="mt-6 w-full flex justify-center">
+              <div className="mt-5">
                 <a
-                  href={`https://wa.me/919999999999?text=Hi! I want to know more about ${encodeURIComponent(selectedProduct.name)}`}
+                  href={`https://wa.me/919821133714?text=Hi! I want to book this product ${encodeURIComponent(selectedProduct.name)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-[#1b5e20] hover:bg-[#155a32] text-white font-semibold rounded-full shadow-md transition"
@@ -353,71 +300,44 @@ export default function ProductListingAndDetails() {
                   Book Now
                 </a>
               </div>
-
-              {/* ✅ Share Icons - Green Theme */}
-              <div className="mt-6 flex justify-center gap-4">
-                <button
-                  onClick={() => shareTo("facebook", selectedProduct.name)}
-                  className="h-11 w-11 flex items-center justify-center rounded-full border border-[#1b5e20] text-[#1b5e20] hover:bg-[#e8f5e9] hover:text-[#145017] transition"
-                  title="Share on Facebook"
-                >
-                  <Facebook className="h-5 w-5" />
-                </button>
-
-                <button
-                  onClick={() => shareTo("instagram", selectedProduct.name)}
-                  className="h-11 w-11 flex items-center justify-center rounded-full border border-[#1b5e20] text-[#1b5e20] hover:bg-[#e8f5e9] hover:text-[#145017] transition"
-                  title="Share on Instagram"
-                >
-                  <Instagram className="h-5 w-5" />
-                </button>
-
-                <button
-                  onClick={() => shareTo("whatsapp", selectedProduct.name)}
-                  className="h-11 w-11 flex items-center justify-center rounded-full border border-[#1b5e20] text-[#1b5e20] hover:bg-[#e8f5e9] hover:text-[#145017] transition"
-                  title="Share on WhatsApp"
-                >
-                  <WhatsAppIcon className="h-5 w-5" />
-                </button>
-
-                <button
-                  onClick={() => shareTo("native", selectedProduct.name)}
-                  className="h-11 w-11 flex items-center justify-center rounded-full border border-[#1b5e20] text-[#1b5e20] hover:bg-[#e8f5e9] hover:text-[#145017] transition"
-                  title="Share"
-                >
-                  <Share2 className="h-5 w-5" />
-                </button>
-              </div>
             </div>
 
-            <div className="md:w-1/2 p-4">
-              <Badge variant="secondary" className="mb-2 text-sm text-[#388e3c] bg-[#e8f5e9] border border-[#388e3c]">
-                {selectedProduct.category}
-              </Badge>
+            {/* Details: only the requested sections */}
+            <div>
+              {/* Heading */}
+              <h1 className="text-4xl font-extrabold text-[#1b5e20] mb-4">
+                {selectedProduct.name}
+              </h1>
 
-              <h1 className="text-4xl font-extrabold text-[#388e3c] mb-2">{selectedProduct.name}</h1>
-
-              <p className="text-lg text-gray-700 font-semibold mb-6" style={{ textAlign: "justify" }}>
+              {/* Paragraph (detailedDescription) */}
+              <p className="text-gray-700 mb-6" style={{ textAlign: "justify" }}>
                 {selectedProduct.detailedDescription}
               </p>
 
+              {/* Key Benefits */}
               <div className="mb-6">
                 <h2 className="text-2xl font-bold text-gray-800 mb-3">Key Benefits</h2>
                 <ul className="list-disc list-inside space-y-2 text-base text-gray-700 pl-4" style={{ textAlign: "justify" }}>
-                  {selectedProduct.benefits.map((benefit, index) => (
-                    <li key={index} className="font-medium">{benefit}</li>
+                  {selectedProduct.benefits.map((b, i) => (
+                    <li key={i} className="font-medium">{b}</li>
                   ))}
                 </ul>
               </div>
 
-              <div className="mt-8 border-t pt-4">
-                <h3 className="text-xl font-bold text-gray-800 mb-3">Technical Specifications</h3>
-                <div className="space-y-1 text-gray-700">
-                  <p><strong className="font-semibold text-gray-900">Mode of Action:</strong> {selectedProduct.modeOfAction}</p>
-                  <p><strong className="font-semibold text-gray-900">Major Crops:</strong> {selectedProduct.majorCrops}</p>
-                  <p><strong className="font-semibold text-gray-900">Dosage:</strong> {selectedProduct.dosage}</p>
-                  <p><strong className="font-semibold text-gray-900">Usage/Crops:</strong> {selectedProduct.usage}</p>
-                </div>
+              {/* Recommended Dosage */}
+              <div className="mb-6">
+                <h3 className="text-xl font-semibold text-gray-800 mb-2">Recommended Dosage</h3>
+                <p className="text-gray-700" style={{ textAlign: "justify" }}>
+                  {selectedProduct.dosage}
+                </p>
+              </div>
+
+              {/* Where to Use */}
+              <div className="mb-6">
+                <h3 className="text-xl font-semibold text-gray-800 mb-2">Where to Use</h3>
+                <p className="text-gray-700" style={{ textAlign: "justify" }}>
+                  {selectedProduct.usage}
+                </p>
               </div>
             </div>
           </div>
@@ -494,7 +414,6 @@ export default function ProductListingAndDetails() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           {/* LEFT: Crops accordion with groups */}
           <aside className="md:col-span-3">
-            {/* Top row: Crops */}
             <button
               className="w-full flex items-center justify-between py-2"
               onClick={() => setCropsOpen((v) => !v)}
@@ -508,12 +427,10 @@ export default function ProductListingAndDetails() {
             </button>
             <div className="h-px bg-gray-200" />
 
-            {/* Panel with groups */}
             {cropsOpen && (
               <div id="crops-panel" className="mt-3 space-y-2">
                 {Object.entries(CROPS_BY_GROUP).map(([group, crops]) => (
                   <div key={group} className="pb-1">
-                    {/* Group row */}
                     <button
                       className="w-full flex items-center justify-between py-2 pl-1"
                       onClick={() =>
@@ -528,7 +445,6 @@ export default function ProductListingAndDetails() {
                       </span>
                     </button>
 
-                    {/* Crops inside this group */}
                     {groupOpen[group] && (
                       <div id={`group-${group}`} className="ml-2 mt-1 space-y-2">
                         {crops.map((crop) => {
@@ -559,7 +475,6 @@ export default function ProductListingAndDetails() {
                   </div>
                 ))}
 
-                {/* Clear crops */}
                 {selectedCrops.length > 0 && (
                   <button
                     onClick={() => setSelectedCrops([])}
@@ -574,7 +489,6 @@ export default function ProductListingAndDetails() {
 
           {/* RIGHT: search + chips + 2-col grid */}
           <div className="md:col-span-9">
-            {/* Selected crop chips */}
             {selectedCrops.length > 0 && (
               <div className="mb-3 flex flex-wrap gap-2">
                 {selectedCrops.map((c) => (
@@ -625,35 +539,23 @@ export default function ProductListingAndDetails() {
                   }
                 >
                   <div
-  className="
-    relative aspect-square cursor-pointer
-    rounded-lg        
-    bg-white
-    border border-gray-200
-    transition-all duration-300
-    group
-    hover:scale-[1.03]     
-    hover:border-gray-400
-    shadow-md hover:shadow-2xl
-  "
->
-  <img
-    src={product.image || '/placeholder.svg'}
-    alt={product.name}
-    className="
-      absolute inset-0 m-auto
-      w-[92%] h-[92%] md:w-[95%] md:h-[95%]
-      object-contain
-      drop-shadow-[0_14px_36px_rgba(0,0,0,0.28)]
-      transition-transform duration-300
-      group-hover:scale-[1.05]  
-    "
-  />
-</div>
+                    className="
+                      relative aspect-square cursor-pointer
+                      rounded-lg bg-white border border-gray-200
+                      transition-all duration-300 group hover:scale-[1.03] hover:border-gray-400
+                      shadow-md hover:shadow-2xl
+                    "
+                  >
+                    <img
+                      src={product.image || '/placeholder.svg'}
+                      alt={product.name}
+                      className="
+                        absolute inset-0 m-auto w-[92%] h-[92%] md:w-[95%] md:h-[95%]
+                        object-contain transition-transform duration-300 group-hover:scale-[1.05]
+                      "
+                    />
+                  </div>
 
-
-
-                  {/* Title below */}
                   <h3 className="mt-4 text-2xl font-extrabold tracking-tight text-gray-900">
                     {product.name}
                   </h3>

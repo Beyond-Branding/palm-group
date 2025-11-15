@@ -43,6 +43,7 @@ export function CoreValues() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Grid: two crisp-edged cards (Vision first, then Mission) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          
           {/* --- CARD 1 (Vision) - slides in from left --- */}
           <article
             ref={card1Ref}
@@ -68,12 +69,11 @@ export function CoreValues() {
 
             <div className="p-6">
               <h3 className="text-xl md:text-2xl font-semibold mb-3 text-black-800">
-                {/* Title split: ending word green */}
                 Sowing the Seeds of a Sustainable Future
-                
               </h3>
 
-              <p className="text-gray-700 text-base md:text-lg leading-relaxed">
+              {/* UPDATED TEXT SIZE */}
+              <p className="text-gray-700 text-sm md:text-base leading-relaxed">
                 To build a world where sustainable agriculture supports thriving rural
                 communities and resilient ecosystems. We are committed to offering
                 farmer-centric, organic, and non-toxic bio-products that improve both
@@ -108,11 +108,11 @@ export function CoreValues() {
 
             <div className="p-6">
               <h3 className="text-xl md:text-2xl font-semibold mb-3 text-black-800">
-                {/* Title split: ending words green */}
                 Transforming Agriculture, Organic Innovation for Every Farmer
               </h3>
 
-              <p className="text-gray-700 text-base md:text-lg leading-relaxed">
+              {/* UPDATED TEXT SIZE */}
+              <p className="text-gray-700 text-sm md:text-base leading-relaxed">
                 At The Palm Group, our mission is to empower farmers by promoting
                 organic farming and the use of next-generation, eco-friendly solutions.
                 Through innovative, non-toxic agricultural inputs, we aim to help

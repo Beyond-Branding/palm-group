@@ -10,8 +10,8 @@ type Props = {
 };
 
 export default function WhatsAppFloat({
-  number = "919876543210",
-  message = "Hi! I would like to know more.",
+  number = "918779083022",
+  message = "Hi! I would like to know more about palm group.",
   size = 200, 
   hideOnMobile = false,
 }: Props) {

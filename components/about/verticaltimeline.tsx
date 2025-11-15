@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useMemo } from "react";
 
 type Section = {
   id: string;
@@ -102,7 +102,7 @@ const SECTIONS: Section[] = [
         </p>
       </>
     ),
-    image: "/ramanatesti.jpg",
+    image: "/innovationagri.jpg",
     imageAlt: "Innovation & farmer-centric solutions in the 2000s",
   },
   {
@@ -120,7 +120,7 @@ const SECTIONS: Section[] = [
         </p>
       </>
     ),
-    image: "/plot-vegetables-California-Capay.jpg",
+    image: "/organicagri.jpg",
     imageAlt: "Entry into organic agri-solutions",
   },
   {
@@ -138,7 +138,7 @@ const SECTIONS: Section[] = [
         </p>
       </>
     ),
-    image: "/medicalplant.jpg",
+    image: "/expansionpharma.jpg",
     imageAlt: "Expansion into pharmaceuticals",
   },
   {
@@ -161,15 +161,21 @@ const SECTIONS: Section[] = [
 ];
 
 export default function PalmVerticalTimelineExact() {
+  // Render earliest-first: reverse SECTIONS so top starts at 1969, then 1994, ... Today at bottom
+  const ordered = useMemo(() => [...SECTIONS].slice().reverse(), []);
+
+  // refs sized for ordered array
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
   const textRefs = useRef<(HTMLDivElement | null)[]>([]);
   const imgRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [active, setActive] = useState(0);
+
+  // initialize reveal state arrays based on ordered length
   const [textShown, setTextShown] = useState<boolean[]>(
-    () => Array(SECTIONS.length).fill(false)
+    () => Array(ordered.length).fill(false)
   );
   const [imgShown, setImgShown] = useState<boolean[]>(
-    () => Array(SECTIONS.length).fill(false)
+    () => Array(ordered.length).fill(false)
   );
 
   // New function: choose active by section top crossing a trigger line
@@ -204,9 +210,9 @@ export default function PalmVerticalTimelineExact() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, []);
+  }, [ordered.length]);
 
-  // Reveal text
+  // Reveal text Observer
   useEffect(() => {
     const io = new IntersectionObserver(
       (entries) => {
@@ -225,9 +231,9 @@ export default function PalmVerticalTimelineExact() {
     );
     textRefs.current.forEach((el) => el && io.observe(el));
     return () => io.disconnect();
-  }, []);
+  }, [ordered.length]);
 
-  // Reveal images
+  // Reveal images Observer
   useEffect(() => {
     const io = new IntersectionObserver(
       (entries) => {
@@ -246,7 +252,7 @@ export default function PalmVerticalTimelineExact() {
     );
     imgRefs.current.forEach((el) => el && io.observe(el));
     return () => io.disconnect();
-  }, []);
+  }, [ordered.length]);
 
   const prefersReduced =
     typeof window !== "undefined" &&
@@ -268,13 +274,13 @@ export default function PalmVerticalTimelineExact() {
               className="text-green-600 font-extrabold leading-none"
               style={{ fontSize: "clamp(1.5rem, 4vw, 2.4rem)" }}
             >
-              {SECTIONS[active]?.year}
+              {ordered[active]?.year}
             </div>
           </div>
         </aside>
 
         <div className="relative">
-          {SECTIONS.map((s, i) => {
+          {ordered.map((s, i) => {
             const textVisible = prefersReduced || textShown[i];
             const imgVisible = prefersReduced || imgShown[i];
 
