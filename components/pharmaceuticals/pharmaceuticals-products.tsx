@@ -130,51 +130,72 @@ const rawPharmaceuticals: PharmaItem[] = [
 
 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
+function interleaveArrays<T>(a: T[], b: T[]) {
+  const out: T[] = [];
+  const max = Math.max(a.length, b.length);
+  for (let i = 0; i < max; i++) {
+    if (i < a.length) out.push(a[i]);
+    if (i < b.length) out.push(b[i]);
+  }
+  return out;
+}
+
 export function PharmaceuticalsProducts() {
   const [q, setQ] = useState("");
   const [letter, setLetter] = useState<string | null>(null);
   const [category, setCategory] = useState<"All" | "API" | "Intermediate">("All");
 
   const filtered = useMemo(() => {
-    let items = rawPharmaceuticals;
-    if (category !== "All") items = items.filter(i => i.category === category);
-    if (letter) items = items.filter(i => i.name.toUpperCase().startsWith(letter));
+    // start with full list then apply letter/search filters
+    let items = rawPharmaceuticals.slice();
+
+    if (letter) {
+      items = items.filter((i) => i.name.toUpperCase().startsWith(letter));
+    }
+
     if (q.trim()) {
       const s = q.trim().toLowerCase();
-      items = items.filter(i => i.name.toLowerCase().includes(s));
+      items = items.filter((i) => i.name.toLowerCase().includes(s));
     }
-    return [...items].sort((a, b) => a.name.localeCompare(b.name));
+
+    // If a specific category selected — just filter + alpha sort
+    if (category === "API" || category === "Intermediate") {
+      const res = items.filter((i) => i.category === category).sort((a, b) => a.name.localeCompare(b.name));
+      return res;
+    }
+
+    // category === "All" => we want to show both types but interleaved so APIs appear often.
+    const apis = items.filter((i) => i.category === "API").sort((a, b) => a.name.localeCompare(b.name));
+    const intermediates = items.filter((i) => i.category === "Intermediate").sort((a, b) => a.name.localeCompare(b.name));
+
+    // Interleave the two lists so APIs and Intermediates both appear in the All view.
+    const interleaved = interleaveArrays(apis, intermediates);
+
+    // Edge case: if one group is empty, return the other
+    if (interleaved.length === 0) return [];
+
+    return interleaved;
   }, [q, letter, category]);
 
   const counts = useMemo(() => {
-    const api = rawPharmaceuticals.filter(i => i.category === "API").length;
-    const inter = rawPharmaceuticals.filter(i => i.category === "Intermediate").length;
+    const api = rawPharmaceuticals.filter((i) => i.category === "API").length;
+    const inter = rawPharmaceuticals.filter((i) => i.category === "Intermediate").length;
     return { api, inter, total: rawPharmaceuticals.length };
   }, []);
 
   return (
     <section className="py-12 bg-white w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        {/* ⬇️ Intro paragraph (place this right below your Hero) */}
-        {/* <div className="max-w-3xl mx-auto text-justify mb-8 sm:mb-10">
-          <div className="h-1 w-16 mx-auto mb-4 rounded-full bg-green-600" />
-          <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-            Palm Pharmachem is a trusted pharmaceutical supplier offering high-quality APIs, excipients, and intermediates. With decades of experience and strong global partnerships, we ensure reliable, compliant, and timely solutions backed by full documentation (COA, MSDS, DMFs). Our commitment to quality helps healthcare companies manufacture life-saving medicines with confidence.
-          </p>
-        </div> */}
-        {/* ⬆️ Intro paragraph ends */}
-
         <div className="mt-0 mb-8 text-center">
-        <div className="relative mx-auto max-w-4xl rounded-3xl border bg-card/60 p-8 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-card/50">
-          {/* brand accent bar */}
-          <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-[#0E7C45] to-[#14A165] rounded-t-3xl" />
-          <h3 className="text-2xl font-bold mb-3">Trusted Partner in Pharmaceutical Supply</h3>
-          <p className="text-muted-foreground">
-            Palm Pharmachem is a trusted pharmaceutical supplier offering high-quality APIs, excipients, and intermediates. With decades of experience and strong global partnerships, we ensure reliable, compliant, and timely solutions backed by full documentation (COA, MSDS, DMFs). Our commitment to quality helps healthcare companies manufacture life-saving medicines with confidence.
-          </p>
+          <div className="relative mx-auto max-w-4xl rounded-3xl border bg-card/60 p-8 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-card/50">
+            {/* brand accent bar */}
+            <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-[#0E7C45] to-[#14A165] rounded-t-3xl" />
+            <h3 className="text-2xl font-bold mb-3">Trusted Partner in Pharmaceutical Supply</h3>
+            <p className="text-muted-foreground">
+              Palm Pharmachem is a trusted pharmaceutical supplier offering high-quality APIs, excipients, and intermediates. With decades of experience and strong global partnerships, we ensure reliable, compliant, and timely solutions backed by full documentation (COA, MSDS, DMFs). Our commitment to quality helps healthcare companies manufacture life-saving medicines with confidence.
+            </p>
+          </div>
         </div>
-      </div>
 
         {/* Header */}
         <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">

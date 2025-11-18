@@ -22,9 +22,8 @@ const awards = [
     title: "ISO 9001:2015",
     category: "Quality Management System",
     description:
-    "Manufacturing and marketing of organic, eco-friendly and bio products for the agri-input and crop care industry.",
+      "Manufacturing and marketing of organic, eco-friendly and bio products for the agri-input and crop care industry.",
     icon: Shield,
-    year: "2023",
     issuer: "TSN Certification Private Limited",
     certificateUrl: "/ISO.jpg",
   },
@@ -34,37 +33,33 @@ const awards = [
     description:
       "Government-issued registration that authorizes a business to legally import and export goods in India.",
     icon: Globe,
-    year: "2021",
     issuer: "Directorate General of Foreign Trade (DGFT), Ministry of Commerce & Industry, Government of India",
     certificateUrl: "/IEC.jpg",
   },
   {
-    title: "Drug Wholesale License",
+    title: "Drug License",
     category: "Pharmaceutical Wholesale Authorization",
     description:
-      "Government-issued license permitting the sale, stock, distribution of drugs by wholesale, excluding drugs under Schedules C, C(1), and X.",
+      "Government-issued license permitting the sale, stock, distribution of drugs by wholesale.",
     icon: FileCheck,
-    year: "2024",
     issuer: "Food & Drug Administration, Maharashtra (FDA Maharashtra)",
     certificateUrl: "/Drug.jpg",
   },
   {
-    title: "FSSAI Central License (Form C)",
+    title: "FSSAI Central License",
     category: "Food Business License",
     description:
       "Government-authorized license issued under the Food Safety and Standards Act, 2006 that permits the business to operate in food-related activities such as import, retail, and distribution.",
     icon: Leaf,
-    year: "2024",
     issuer: "Food Safety and Standards Authority of India (FSSAI)",
     certificateUrl: "/Agri.jpg",
   },
   {
-    title: "Form A2 Bio-Stimulant Wholesale Dealer Acknowledgement",
+    title: "Bio-Stimulant Manufacturing License",
     category: "Fertilizer & Bio-Stimulant Dealer Authorization",
     description:
-      "Government authorization issued for conducting wholesale business of bio-stimulants under the Fertilizer (Control) Order. This acknowledgement acts as a letter permitting the dealer to operate for a period of 5 years unless suspended or revoked.",
+      "Government authorization issued for conducting business of bio-stimulants under the Fertilizer (Control) Order.",
     icon: Award,
-    year: "2025",
     issuer: "Government of Maharashtra – Department of Agriculture",
     certificateUrl: "/RCMC.jpg",
   },
@@ -141,7 +136,7 @@ export default function AwardsGrid() {
 
   const handleShare = useCallback(async (award: (typeof awards)[number]) => {
     const url = shareLinkFor(award)
-    const data = { title: award.title, text: `${award.title} • ${award.issuer} (${award.year})`, url }
+    const data = { title: award.title, text: `${award.title} • ${award.issuer}`, url }
 
     try {
       if (navigator.share) {
@@ -219,7 +214,6 @@ export default function AwardsGrid() {
                     </p>
 
                     <div className="space-y-1">
-                      <p className="text-sm font-medium">Issued: {award.year}</p>
                       <p className="text-xs text-muted-foreground">{award.issuer}</p>
                     </div>
 
@@ -260,7 +254,7 @@ export default function AwardsGrid() {
             <DialogHeader className="px-6 pt-6">
               <DialogTitle className="text-[#119152]">{activeAward?.title}</DialogTitle>
               <DialogDescription>
-                {activeAward?.issuer} • Issued {activeAward?.year}
+                {activeAward?.issuer}
               </DialogDescription>
             </DialogHeader>
 

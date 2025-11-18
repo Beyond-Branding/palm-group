@@ -19,17 +19,17 @@ export default function ContactCards() {
 
         {/* Right: Contact Information */}
         <div className="w-full lg:w-1/2 bg-white rounded-xl shadow-md p-8">
-          <h2 className="text-3xl font-bold text-green-700 mb-6">
+          <h2 className="text-2xl font-bold text-green-700 mb-4">
             Contact Information
           </h2>
 
-          <p className="text-gray-700 mb-6 text-base md:text-lg leading-relaxed">
+          <p className="text-gray-700 mb-5 text-sm leading-relaxed">
             For Business Enquires / Marketing / Sales / Export / Customer Care please reach out to us at:
           </p>
 
           {/* Phone */}
-          <div className="flex items-center text-gray-900 mb-4 text-base md:text-lg leading-relaxed">
-            <Phone className="mr-3 text-green-600 w-5 h-5" />
+          <div className="flex items-center text-gray-900 mb-3 text-sm leading-relaxed">
+            <Phone className="mr-3 text-green-600 w-4 h-4" />
             <span>
               <a href="tel:+918779083022" className="hover:underline">
                 +91 8779083022
@@ -42,9 +42,9 @@ export default function ContactCards() {
           </div>
 
           {/* Email */}
-          <div className="flex items-start text-gray-900 mb-4 text-base md:text-lg leading-relaxed">
-            <Mail className="mr-3 text-green-600 w-5 h-5" />
-            <div>
+          <div className="flex items-start text-gray-900 mb-3 text-sm leading-relaxed">
+            <Mail className="mr-3 text-green-600 w-4 h-4 mt-1" />
+            <div className="space-y-1">
               <a href="mailto:palminter@hotmail.com" className="hover:underline block">
                 palminter@hotmail.com
               </a>
@@ -58,11 +58,11 @@ export default function ContactCards() {
           </div>
 
           {/* Business Hours */}
-          <div className="flex items-start text-gray-900 text-base md:text-lg leading-relaxed">
-            <Clock className="mr-3 text-green-600 w-5 h-5 mt-1" />
+          <div className="flex items-start text-gray-900 text-sm leading-relaxed">
+            <Clock className="mr-3 text-green-600 w-4 h-4 mt-1" />
             <div>
-              <p className="font-semibold">Business Hours</p>
-              <p>Mon–Sat: 10:00 AM – 7:00 PM</p>
+              <p className="font-semibold text-sm">Business Hours</p>
+              <p className="text-sm">Mon–Sat: 10:00 AM – 7:00 PM</p>
             </div>
           </div>
         </div>
