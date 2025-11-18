@@ -130,11 +130,7 @@ const SECTIONS: Section[] = [
     body: (
       <>
         <p>
-          Recognizing the growing healthcare needs of India, Palm Group
-          diversified into the supply of Pharmaceutical APIs, intermediates, and
-          C&amp;F agency services. By partnering with leading domestic and
-          international pharma companies, the Group built a reputation for
-          reliability, timely supply, and uncompromising quality standards.
+          Recognizing the growing healthcare needs of India, Palm Group diversified into the pharmaceutical sector through its dedicated division, Palm Pharmachem, focusing on the supply of Pharmaceutical APIs, intermediates, and C&F agency services. By partnering with leading domestic and international pharma companies, the Group built a reputation for reliability, timely supply, and uncompromising quality standards.
         </p>
       </>
     ),
@@ -148,10 +144,7 @@ const SECTIONS: Section[] = [
     body: (
       <>
         <p>
-          Palm Group was established in Mumbai with its first division dedicated
-          to Laboratory and Fine Chemicals, catering to the growing needs of
-          research institutions, universities, and industries. This marked the
-          beginning of a journey rooted in quality, innovation, and service.
+          Palm Group was established in Mumbai with Shah Scientific (India), dedicated to Laboratory and Fine Chemicals catering to the growing needs of research institutions, universities, and industries.This marked the beginning of a journey rooted in quality, innovation, and service.
         </p>
       </>
     ),
@@ -262,20 +255,27 @@ export default function PalmVerticalTimelineExact() {
     <section className="relative bg-white">
       {/* vertical rail */}
       <div
-        aria-hidden
-        className="hidden md:block pointer-events-none absolute left-[5.25rem] md:left-[8rem] top-0 bottom-0 w-[2px] bg-green-500/60"
-      />
+  aria-hidden
+  className="hidden md:block pointer-events-none absolute left-[5.75rem] md:left-[9.55rem] top-0 bottom-0 w-[2px] bg-green-500/60"
+/>
 
-      <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-[12rem_1fr] gap-6 md:gap-12 px-6 md:px-8">
+
+      <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-[8.5rem_1fr] gap-6 md:gap-12 px-6 md:px-8">
         {/* Sticky year (md+) — slightly smaller clamp */}
         <aside className="relative hidden md:block">
           <div className="sticky top-20 md:top-20">
             <div
-              className="text-green-600 font-extrabold leading-none"
-              style={{ fontSize: "clamp(1.5rem, 4vw, 2.4rem)" }}
-            >
-              {ordered[active]?.year}
-            </div>
+  className="text-green-600 font-extrabold leading-none pl-1.5"
+  style={{
+    fontSize:
+      ordered[active]?.year === "2000s"
+        ? "clamp(1.45rem, 3.9vw, 2.2rem)" // slightly smaller
+        : "clamp(1.5rem, 4vw, 2.4rem)",
+  }}
+>
+  {ordered[active]?.year}
+</div>
+
           </div>
         </aside>
 

@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, FreeMode, Navigation } from "swiper/modules";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 export default function BusinessAreas() {
   const CARD_WIDTH = 300;
@@ -25,14 +25,14 @@ export default function BusinessAreas() {
   const EXTRA_BOTTOM = Math.round(IMAGE_HEIGHT * OUTSIDE_FRACTION + 48);
 
   const perProductOverrides: Record<string, { scale?: number; offsetPx?: number }> = {
-    "CROP GIANT": { scale: 1, offsetPx: 0 },
-    "CROPPER PLUS": { scale: 1, offsetPx: 0 },
+    "CROP GIANT": { scale: 1, offsetPx: -25 },
+    "CROPPER PLUS": { scale: 1, offsetPx: -15 },
     "GOLDEN DROP": { scale: 1, offsetPx: 0 },
-    "AG-F": { scale: 1, offsetPx: 0 },
-    "PALM SULF": { scale: 1.12, offsetPx: 25 },
-    "CROPPER": { scale: 1.12, offsetPx: 18 },
-    "SILICOSE": { scale: 0.55, offsetPx: -40 },
-    "AG-F SUPER PLUS": { scale: 0.60, offsetPx: -45 },
+    "AG-F": { scale: 1, offsetPx: -10 },
+    "PALM SULF": { scale: 1, offsetPx: 1.50 },
+    "CROPPER": { scale: 1, offsetPx: 2 },
+    "SILICOSE": { scale: 1, offsetPx: 0 },
+    "AG-F SUPER PLUS": { scale: 0.60, offsetPx: -65 },
   };
 
   const products = [
@@ -64,7 +64,7 @@ export default function BusinessAreas() {
       name: "CROP GIANT",
       color: "bg-[#C81E1E]",
       icon: "/farm4.svg",
-      image: "/crop giant shadow.png",
+      image: "/crop giant (1).png",
       dotColor: "rgba(255,255,255,0.07)",
       overlayColor: "rgba(0,0,0,0.25)",
     },
@@ -72,7 +72,7 @@ export default function BusinessAreas() {
       name: "PALM SULF",
       color: "bg-[#E65100]",
       icon: "/farm1.svg",
-      image: "/palm sulf-Photoroom shadow.png",
+      image: "/palmsulfnew.png",
       dotColor: "rgba(255,255,255,0.06)",
       overlayColor: "rgba(0,0,0,0.25)",
     },
@@ -80,7 +80,7 @@ export default function BusinessAreas() {
       name: "CROPPER",
       color: "bg-[#4E342E]",
       icon: "/farm6.svg",
-      image: "/cropper shadow.png",
+      image: "/croppernew.png",
       dotColor: "rgba(255,255,255,0.06)",
       overlayColor: "rgba(0,0,0,0.25)",
     },
@@ -88,7 +88,7 @@ export default function BusinessAreas() {
       name: "CROPPER PLUS",
       color: "bg-[#D97706]",
       icon: "/farm7.svg",
-      image: "/copperplus-Photoroom shadow.png",
+      image: "/cropperplusnew.png",
       dotColor: "rgba(255,255,255,0.07)",
       overlayColor: "rgba(0,0,0,0.24)",
     },
@@ -96,7 +96,7 @@ export default function BusinessAreas() {
       name: "SILICOSE",
       color: "bg-[#2563EB]",
       icon: "/farm8.svg",
-      image: "/silicose-Photoroom shadow.png",
+      image: "/silicosenew.png",
       dotColor: "rgba(255,255,255,0.05)",
       overlayColor: "rgba(0,0,0,0.24)",
     },
@@ -115,6 +115,35 @@ export default function BusinessAreas() {
       .toLowerCase()
       .replace(/\s+/g, "-")
       .replace(/[^a-z0-9\-]/g, "");
+
+  // Re-bind navigation once swiper instance and refs are available.
+  useEffect(() => {
+    if (!swiperInstance) return;
+    if (!prevRef.current || !nextRef.current) return;
+
+    try {
+      // ensure params contain the DOM elements
+      // @ts-ignore mutate internal params
+      swiperInstance.params.navigation = {
+        ...(swiperInstance.params?.navigation || {}),
+        prevEl: prevRef.current,
+        nextEl: nextRef.current,
+      };
+
+      // if navigation exists, destroy it first so init picks up the new elements
+      if (swiperInstance.navigation) {
+        swiperInstance.navigation.destroy();
+      }
+
+      // init and update navigation safely
+      swiperInstance.navigation?.init?.();
+      swiperInstance.navigation?.update?.();
+    } catch (err) {
+      // log instead of throwing to avoid runtime crash
+      // eslint-disable-next-line no-console
+      console.warn("Swiper navigation initialization failed:", err);
+    }
+  }, [swiperInstance]);
 
   return (
     <section
@@ -244,24 +273,12 @@ export default function BusinessAreas() {
               1280: { slidesPerView: 4.1, spaceBetween: 18 },
             }}
             navigation={{
+              // these will be bound after mount in useEffect
               prevEl: prevRef.current,
               nextEl: nextRef.current,
             }}
             onSwiper={(s) => {
               setSwiperInstance(s);
-              // assign refs to navigation after initialization
-              // using timeout ensures refs exist
-              setTimeout(() => {
-                if (s.params && s.navigation) {
-                  // @ts-ignore - mutate internal params for navigation
-                  s.params.navigation = {
-                    prevEl: prevRef.current,
-                    nextEl: nextRef.current,
-                  };
-                  s.navigation.init();
-                  s.navigation.update();
-                }
-              }, 0);
             }}
           >
             {products.map((product, i) => {
@@ -279,7 +296,9 @@ export default function BusinessAreas() {
                 "--overlay-color": product.overlayColor,
               } as React.CSSProperties;
 
-              const productLink = `/products/${slugify(product.name)}`;
+              // NOTE: changed to link to products page with product= query param
+              // so product-grid.tsx can read `product` search param and open the correct product
+              const productLink = `/products?product=${encodeURIComponent(product.name)}`;
 
               return (
                 <SwiperSlide key={i} className="!flex !justify-center overflow-visible">

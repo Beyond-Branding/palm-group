@@ -1,9 +1,11 @@
 "use client";
-import { useMemo, useState } from "react";
+
+import { useMemo, useState, useEffect } from "react";
 import { Search as SearchIcon } from "lucide-react";
 import { FaWhatsapp as WhatsAppIcon } from "react-icons/fa";
+import { useSearchParams } from "next/navigation";
 
-/* ------------------ DATA ------------------ */
+/* ------------------ DATA (now includes styling fields) ------------------ */
 const products = [
   {
     name: "GOLDEN DROP",
@@ -25,6 +27,11 @@ const products = [
       "Golden Drop is ideal for a wide range of crops including: Grapes, Tomato, Mango, Paddy, Onion, Chilli, Citrus Fruits, Vegetables, Strawberries, Capsicum, Pomegranate, Sugarcane, Tea, Coffee, Cashew, Banana.",
     image: "/golden drop-Photoroom shadow.png",
     secondaryImage: "/golden-drop-side.png",
+
+    // styling
+    backgroundHex: "#0B5D3E",
+    dotColor: "rgba(255,255,255,0.06)",
+    overlayColor: "rgba(0,0,0,0.25)",
   },
   {
     name: "AG-F",
@@ -45,6 +52,11 @@ const products = [
     usage: "Ideal for all crops.",
     image: "/agf-Photoroom (1).png",
     secondaryImage: "/copperplus.png",
+
+    // styling
+    backgroundHex: "#F5C400",
+    dotColor: "rgba(255,255,255,0.08)",
+    overlayColor: "rgba(0,0,0,0.22)",
   },
   {
     name: "AG-F SUPER PLUS",
@@ -64,8 +76,13 @@ const products = [
     dosage: "1 ml per 8 litres of water. Use with herbicides, insecticides, fungicides, micronutrients & foliar sprays.",
     usage:
       "Perfect for all crops where complete coverage and high spray efficiency are crucial.",
-    image: "/AG-F Superplus-Photoroom shadow.png",
+    image: "/AG-F Superplus-Photoroom (1).png",
     secondaryImage: "/ag-f-super-side.jpg",
+
+    // styling
+    backgroundHex: "#0057B7",
+    dotColor: "rgba(255,255,255,0.07)",
+    overlayColor: "rgba(0,0,0,0.25)",
   },
   {
     name: "CROP GIANT",
@@ -84,8 +101,13 @@ const products = [
       "Spray: 1.5 ml per litre of water when berries reach pea size. Repeat after 7 days for maximum effectiveness.",
     usage:
       "Crop Giant is ideal for a wide range of crops including: Grapes, Strawberry, Citrus, Apple, Mango, Tomato, Capsicum, Watermelon, Cucumbers, Brinjal, Chilli, Pomegranate.",
-    image: "/crop giant shadow.png",
+    image: "/crop giant (1).png",
     secondaryImage: "/crop giant.png",
+
+    // styling
+    backgroundHex: "#C81E1E",
+    dotColor: "rgba(255,255,255,0.07)",
+    overlayColor: "rgba(0,0,0,0.25)",
   },
   {
     name: "PALM SULF",
@@ -103,8 +125,13 @@ const products = [
     dosage: "Foliar Spray: 3 ml per litre of water. Drip Application: 7.5 litres per hectare.",
     usage:
       "Palm Sulf is ideal for a wide range of crops including: Wheat, Rice, Grapes, Citrus, Mango, Chilli, Onion, Spinach, Potato, Tomato, Capsicum, Carrot.",
-    image: "/palm sulf-Photoroom shadow.png",
+    image: "/palmsulfnew.png",
     secondaryImage: "/palm-sulf-side.jpg",
+
+    // styling
+    backgroundHex: "#E65100",
+    dotColor: "rgba(255,255,255,0.06)",
+    overlayColor: "rgba(0,0,0,0.25)",
   },
   {
     name: "CROPPER",
@@ -123,8 +150,13 @@ const products = [
       "Soil Application: 7.5 L/Ha. Foliar Spray: 2 ml per litre. Seed Treatment: 2.5 L per MT of seed. With Fertilizers: 7.5 L/Ha.",
     usage:
       "Cropper is ideal for a wide range of crops including: Maize, Wheat, Rice, Sunflower, Potato, Tomato, Garlic, Onion, Spinach, Coconut, Citrus, Mango.",
-    image: "/cropper shadow.png",
+    image: "/croppernew.png",
     secondaryImage: "/cropper-side.jpg",
+
+    // styling
+    backgroundHex: "#4E342E",
+    dotColor: "rgba(255,255,255,0.06)",
+    overlayColor: "rgba(0,0,0,0.25)",
   },
   {
     name: "CROPPER PLUS",
@@ -143,8 +175,13 @@ const products = [
       "Soil Application: 2.5–4 L/Ha. Foliar Spray: 1 ml per litre. Seed Treatment: 1.5 L per MT of seed. With Fertilizers: 2.5–4 L/Ha.",
     usage:
       "Cropper Plus is ideal for a wide range of crops including: Wheat, Rice, Maize, Sunflower, Potato, Leafy Greens, Coconut, Grapes, Citrus, Mango, Tomato, Chilli.",
-    image: "/copperplus-Photoroom shadow.png",
+    image: "/cropperplusnew.png",
     secondaryImage: "/cropper-plus-side.png",
+
+    // styling
+    backgroundHex: "#D97706",
+    dotColor: "rgba(255,255,255,0.07)",
+    overlayColor: "rgba(0,0,0,0.24)",
   },
   {
     name: "SILICOSE",
@@ -163,8 +200,13 @@ const products = [
     dosage: "Foliar Spray: 3 ml per litre of water. Drip Application: 5–7.5 L/Ha.",
     usage:
       "Silicose is ideal for a wide range of crops including: Rice, Wheat, Maize, Grapes, Mango, Citrus, Potato, Chilli, Tomato, Onion, Spinach, Strawberry, Sugarcane.",
-    image: "/silicose-Photoroom shadow.png",
+    image: "/silicosenew.png",
     secondaryImage: "/silicose-side.png",
+
+    // styling
+    backgroundHex: "#2563EB",
+    dotColor: "rgba(255,255,255,0.05)",
+    overlayColor: "rgba(0,0,0,0.24)",
   },
 ];
 
@@ -233,8 +275,52 @@ function productCropsCanonical(p: Product): string[] {
   return splitCrops(p.usage).map(canonicalCrop);
 }
 
+/* -------------------------
+   HIGHLIGHTING helper
+   ------------------------- */
+
+// list of exact phrases you wanted bolded
+const BOLD_PHRASES = [
+  "Golden Drop is ideal for a wide range of crops including:",
+  "Crop Giant is ideal for a wide range of crops including:",
+  "Palm Sulf is ideal for a wide range of crops including:",
+  "Cropper is ideal for a wide range of crops including:",
+  "Cropper Plus is ideal for a wide range of crops including:",
+  "Silicose is ideal for a wide range of crops including:",
+];
+
+// escape html to avoid accidental injection
+function escapeHtml(str: string) {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+// replace phrases (case-sensitive exact matches) with bolded HTML
+function highlightPhrases(text: string, phrases: string[]) {
+  if (!text) return "";
+  // start from escaped text
+  let html = escapeHtml(text);
+
+  // replace each phrase in the escaped text with a bolded version
+  phrases.forEach((phrase) => {
+    // escape phrase for regex
+    const esc = phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const regex = new RegExp(esc, "g");
+    html = html.replace(regex, `<strong>${escapeHtml(phrase)}</strong>`);
+  });
+
+  return html;
+}
+
 /* ------------------ COMPONENT ------------------ */
 export default function ProductListingAndDetails() {
+  const searchParams = useSearchParams();
+  const productQuery = searchParams?.get("product") ?? null;
+
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   // search + crops filter state
@@ -249,6 +335,35 @@ export default function ProductListingAndDetails() {
   );
 
   const selectedProduct = selectedIndex !== null ? products[selectedIndex] : null;
+
+  // If a product query param exists, auto-open the product on mount / when param changes
+  useEffect(() => {
+    if (!productQuery) return;
+    try {
+      const decoded = decodeURIComponent(productQuery);
+      const foundIndex = products.findIndex((p) => p.name.toLowerCase() === decoded.toLowerCase());
+      if (foundIndex >= 0) {
+        setSelectedIndex(foundIndex);
+        // scroll top so the top of the detail is visible
+        setTimeout(() => {
+          if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 50);
+      }
+    } catch (e) {
+      // ignore malformed param
+    }
+  }, [productQuery]);
+
+  // scroll to top when opening a product detail — ensures top is visible on manual opens as well
+  useEffect(() => {
+    if (selectedProduct) {
+      setTimeout(() => {
+        if (typeof window !== "undefined") {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      }, 50);
+    }
+  }, [selectedProduct]);
 
   // Apply search + crop filters (crops are canonicalized)
   const filteredProducts = useMemo(() => {
@@ -291,21 +406,23 @@ export default function ProductListingAndDetails() {
 
               <div className="mt-5">
                 <a
-                  href={`https://wa.me/919821133714?text=Hi! I want to book this product ${encodeURIComponent(selectedProduct.name)}`}
+                  href={`https://wa.me/918779083022?text=Hi! I want to book this product ${encodeURIComponent(
+                    selectedProduct.name
+                  )}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-[#1b5e20] hover:bg-[#155a32] text-white font-semibold rounded-full shadow-md transition"
                 >
                   <WhatsAppIcon className="h-5 w-5" />
-                  Book Now
+                  Buy Now
                 </a>
               </div>
             </div>
 
             {/* Details: only the requested sections */}
-            <div>
+            <div className="text-sm md:text-base"> {/* reduced text size for content area */}
               {/* Heading */}
-              <h1 className="text-4xl font-extrabold text-[#1b5e20] mb-4">
+              <h1 className="text-3xl md:text-4xl font-extrabold text-[#1b5e20] mb-4">
                 {selectedProduct.name}
               </h1>
 
@@ -316,8 +433,8 @@ export default function ProductListingAndDetails() {
 
               {/* Key Benefits */}
               <div className="mb-6">
-                <h2 className="text-2xl font-bold text-gray-800 mb-3">Key Benefits</h2>
-                <ul className="list-disc list-inside space-y-2 text-base text-gray-700 pl-4" style={{ textAlign: "justify" }}>
+                <h2 className="text-xl font-bold text-gray-800 mb-3">Key Benefits</h2>
+                <ul className="list-disc list-inside space-y-2 text-sm text-gray-700 pl-4" style={{ textAlign: "justify" }}>
                   {selectedProduct.benefits.map((b, i) => (
                     <li key={i} className="font-medium">{b}</li>
                   ))}
@@ -326,7 +443,7 @@ export default function ProductListingAndDetails() {
 
               {/* Recommended Dosage */}
               <div className="mb-6">
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">Recommended Dosage</h3>
+                <h3 className="text-lg font-semibold text-gray-800 mb-2">Recommended Dosage</h3>
                 <p className="text-gray-700" style={{ textAlign: "justify" }}>
                   {selectedProduct.dosage}
                 </p>
@@ -334,10 +451,15 @@ export default function ProductListingAndDetails() {
 
               {/* Where to Use */}
               <div className="mb-6">
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">Where to Use</h3>
-                <p className="text-gray-700" style={{ textAlign: "justify" }}>
-                  {selectedProduct.usage}
-                </p>
+                <h3 className="text-lg font-semibold text-gray-800 mb-2">Where to Use</h3>
+                {/* render usage with bolded phrases */}
+                <p
+                  className="text-gray-700"
+                  style={{ textAlign: "justify" }}
+                  dangerouslySetInnerHTML={{
+                    __html: highlightPhrases(selectedProduct.usage, BOLD_PHRASES),
+                  }}
+                />
               </div>
             </div>
           </div>
@@ -349,7 +471,7 @@ export default function ProductListingAndDetails() {
   /* ---------- LIST VIEW ---------- */
   return (
     <section className="bg-gray-50">
-      {/* ---- HERO ---- */}
+      {/* ---- HERO (same as before) ---- */}
       <div className="relative overflow-hidden bg-white">
         <div className="absolute inset-0 opacity-5 pointer-events-none">
           <svg aria-hidden className="w-full h-full" viewBox="0 0 800 400" preserveAspectRatio="none">
@@ -364,50 +486,49 @@ export default function ProductListingAndDetails() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-10 md:pt-0 md:pb-14 -mt-1 md:-mt-1">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
-  {/* IMAGE: show first on mobile, second on desktop */}
-  <div className="md:col-span-5 order-1 md:order-2">
-    <div className="relative h-72 md:h-96 bg-white rounded-2xl md:rounded-2xl ring-1 ring-gray-200 shadow-sm overflow-hidden">
-      <img
-        src="/rice-field-7890204_1280.png"
-        alt="Rice field"
-        className="absolute inset-0 w-full h-full object-cover"
-      />
-    </div>
-  </div>
+            {/* IMAGE: show first on mobile, second on desktop */}
+            <div className="md:col-span-5 order-1 md:order-2">
+              <div className="relative h-72 md:h-96 bg-white rounded-2xl md:rounded-2xl ring-1 ring-gray-200 shadow-sm overflow-hidden">
+                <img
+                  src="/rice-field-7890204_1280.png"
+                  alt="Rice field"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </div>
+            </div>
 
-  {/* TEXT: show below image on mobile, left on desktop */}
-  <div className="md:col-span-7 order-2 md:order-1">
-    <h1 className="text-3xl md:text-4xl font-extrabold text-[#388e3c] tracking-tight">
-      Palm International
-    </h1>
-    <p className="mt-4 text-xs md:text-sm text-gray-700 leading-7" style={{ textAlign: "justify" }}>
-      Palm International is a leading Indian agri-inputs company since 1998 with expertise
-      in developing, manufacturing, and exporting high-quality biostimulants, silicon-based
-      foliar sprays, humic acid solutions, and crop care products. Our mission is to provide
-      farmers with sustainable, science-backed solutions that improve soil health, boost crop
-      yields, and enhance farm profitability.
-    </p>
-    <p className="mt-4 text-xs md:text-sm text-gray-700 leading-7" style={{ textAlign: "justify" }}>
-      With a global presence, Palm International has become a trusted partner for farmers and
-      agri-distributors worldwide.
-    </p>
+            {/* TEXT: show below image on mobile, left on desktop */}
+            <div className="md:col-span-7 order-2 md:order-1">
+              <h1 className="text-3xl md:text-4xl font-extrabold text-[#388e3c] tracking-tight">
+                Palm International
+              </h1>
+              <p className="mt-4 text-xs md:text-sm text-gray-700 leading-7" style={{ textAlign: "justify" }}>
+                Palm International is a leading Indian agri-inputs company since 1998 with expertise
+                in developing, manufacturing, and exporting high-quality biostimulants, silicon-based
+                foliar sprays, humic acid solutions, and crop care products. Our mission is to provide
+                farmers with sustainable, science-backed solutions that improve soil health, boost crop
+                yields, and enhance farm profitability.
+              </p>
+              <p className="mt-4 text-xs md:text-sm text-gray-700 leading-7" style={{ textAlign: "justify" }}>
+                With a global presence, Palm International has become a trusted partner for farmers and
+                agri-distributors worldwide.
+              </p>
 
-    <p className="mt-6 text-xs md:text-sm text-gray-700 leading-7" style={{ textAlign: "justify" }}>
-      Our flagship brands – AG-F, AG-F Super Plus, Golden Drop, Crop Giant, Silicose, Palm Sulf,
-      and Cropper Plus – are designed to solve real challenges like nutrient efficiency, drought
-      stress, fruit drop, and fungal attacks, helping farmers achieve better quality produce, higher
-      yields, and longer shelf life.
-    </p>
-    <p className="mt-4 text-xs md:text-sm text-gray-700 leading-7" style={{ textAlign: "justify" }}>
-      Palm International is committed to innovation, farmer education, and field trials, ensuring
-      our products deliver consistent and proven results. With a strong focus on sustainability and
-      residue-free agriculture, we aim to build a healthier future for farming communities globally.
-    </p>
-  </div>
-</div>
+              <p className="mt-6 text-xs md:text-sm text-gray-700 leading-7" style={{ textAlign: "justify" }}>
+                Our flagship brands – AG-F, AG-F Super Plus, Golden Drop, Crop Giant, Silicose, Palm Sulf,
+                and Cropper Plus – are designed to solve real challenges like nutrient efficiency, drought
+                stress, fruit drop, and fungal attacks, helping farmers achieve better quality produce, higher
+                yields, and longer shelf life.
+              </p>
+              <p className="mt-4 text-xs md:text-sm text-gray-700 leading-7" style={{ textAlign: "justify" }}>
+                Palm International is committed to innovation, farmer education, and field trials, ensuring
+                our products deliver consistent and proven results. With a strong focus on sustainability and
+                residue-free agriculture, we aim to build a healthier future for farming communities globally.
+              </p>
+            </div>
           </div>
         </div>
-
+      </div>
 
       {/* ---- FILTERS + SEARCH + GRID ---- */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 md:mt-12 lg:mt-16 pb-12 md:pb-20">
@@ -538,24 +659,52 @@ export default function ProductListingAndDetails() {
                     setSelectedIndex(products.findIndex((p) => p.name === product.name))
                   }
                 >
-                  <div
-                    className="
-                      relative aspect-square cursor-pointer
-                      rounded-lg bg-white border border-gray-200
-                      transition-all duration-300 group hover:scale-[1.03] hover:border-gray-400
-                      shadow-md hover:shadow-2xl
-                    "
-                  >
-                    <img
-                      src={product.image || '/placeholder.svg'}
-                      alt={product.name}
-                      className="
-                        absolute inset-0 m-auto w-[92%] h-[92%] md:w-[95%] md:h-[95%]
-                        object-contain transition-transform duration-300 group-hover:scale-[1.05]
-                      "
-                    />
+                  {/* === FULL-BLEED COLOURED CARD === */}
+                  <div className="w-full rounded-lg overflow-hidden transition-all duration-300 group-hover:scale-[1.02]">
+                    {/* Use responsive square (padding-bottom) to guarantee full coverage */}
+                    <div style={{ width: "100%", paddingBottom: "100%" }} className="relative">
+                      {/* coloured surface */}
+                      <div
+                        className="absolute inset-0 rounded-lg"
+                        style={{ backgroundColor: product.backgroundHex }}
+                      >
+                        {/* dotted pattern */}
+                        <div
+                          aria-hidden
+                          className="absolute inset-0"
+                          style={{
+                            backgroundImage: `radial-gradient(circle, ${product.dotColor} 1px, transparent 1px)`,
+                            backgroundSize: "18px 18px",
+                            zIndex: 1,
+                            pointerEvents: "none",
+                          }}
+                        />
+
+                        {/* bottom->top gradient overlay */}
+                        <div
+                          aria-hidden
+                          className="absolute inset-0"
+                          style={{
+                            background: `linear-gradient(to top, ${product.overlayColor}, rgba(0,0,0,0.06) 45%, rgba(0,0,0,0) 75%)`,
+                            zIndex: 2,
+                            pointerEvents: "none",
+                          }}
+                        />
+
+                        {/* image on top */}
+                        <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
+                          <img
+                            src={product.image || "/placeholder.svg"}
+                            alt={product.name}
+                            className="max-w-[100%] max-h-[100%] object-contain"
+                            style={{ filter: "drop-shadow(0 10px 18px rgba(0,0,0,0.18))" }}
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
+                  {/* title (outside the colored area) */}
                   <h3 className="mt-4 text-2xl font-extrabold tracking-tight text-gray-900">
                     {product.name}
                   </h3>

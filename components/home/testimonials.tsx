@@ -1,6 +1,11 @@
-"use client";
+// TestimonialSwiper.jsx
+"use client"; // Next.js / React 18 app-router; remove if not needed
 
-import React, { useState, useMemo, useRef, useEffect} from "react";
+import React, { useRef, useState, useEffect, useMemo } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 
 type Testimonial = {
   id: number;
@@ -64,7 +69,7 @@ const testimonials: Testimonial[] = [
 With Golden Drop, my tomato and onion plants reduced flower droppings and more vigorous growth, significantly enhancing their natural resistance. The overall health and vibrancy of my fields have never been better.
 Crop Giant truly lived up to its name! It dramatically improved the size and firmness of my tomatoes, making them visually appealing and robust. For both my tomatoes and onions, I observed a fantastic increase in shelf life by an impressive 30-35%, all while maintaining zero chemical residue on the produce. 
 ”`,
-    image: "/dattrayatesti.jpg",
+    image: "/nimaltomato.png",
   },
 
   {
@@ -168,16 +173,14 @@ export function Testimonials() {
   const count = testimonials.length;
   const doubled = useMemo(() => [...testimonials, ...testimonials], []);
 
-  // refs & state for transform-based loop
-  const trackRef = useRef<HTMLDivElement | null>(null); // element we transform
-  const wrapperRef = useRef<HTMLDivElement | null>(null); // visible viewport (for measuring)
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
   const rafRef = useRef<number | null>(null);
   const lastRef = useRef<number | null>(null);
-  const loopWidthRef = useRef<number>(0); // measured pixel width of one set
-  const offsetRef = useRef<number>(0); // current offset in px (0..loopWidth)
+  const loopWidthRef = useRef<number>(0);
+  const offsetRef = useRef<number>(0);
   const manualAnimatingRef = useRef<boolean>(false);
 
-  // speed (px/sec) — reduce this to slow, increase to speed up
   const SPEED_PX_PER_SEC = 80;
 
   const openModal = (t: Testimonial) => {
@@ -191,15 +194,13 @@ export function Testimonials() {
     document.body.style.overflow = "";
   };
 
-  // measure loop width (left offset of first element of second copy)
   useEffect(() => {
     const measure = () => {
       const track = trackRef.current;
       if (!track) return;
       const items = track.querySelectorAll<HTMLElement>(".testimonial-item");
-      const secondStart = items[count]; // first of second copy
+      const secondStart = items[count];
       if (secondStart) {
-        // loop width equals offsetLeft of secondStart relative to track container
         loopWidthRef.current = secondStart.offsetLeft;
       } else {
         loopWidthRef.current = count * (CARD_WIDTH + GAP);
@@ -215,15 +216,12 @@ export function Testimonials() {
     };
   }, [count]);
 
-  // apply transform to track element (GPU-friendly)
   const applyTransform = (offsetPx: number) => {
     const track = trackRef.current;
     if (!track) return;
-    // We translate NEGATIVE offset so content moves left as offset increases
     track.style.transform = `translate3d(${-offsetPx}px, 0, 0)`;
   };
 
-  // rAF loop: increment offset and wrap
   useEffect(() => {
     lastRef.current = performance.now();
 
@@ -243,7 +241,6 @@ export function Testimonials() {
         let next = offsetRef.current + delta;
         const loopPoint = loopWidthRef.current || count * (CARD_WIDTH + GAP);
 
-        // wrap seamlessly
         if (next >= loopPoint) next -= loopPoint;
 
         offsetRef.current = next;
@@ -259,12 +256,10 @@ export function Testimonials() {
     };
   }, [isRunning, count]);
 
-  // ensure transform matches offset on mount / when measured
   useEffect(() => {
     applyTransform(offsetRef.current);
   }, []);
 
-  // handle arrow manual moves: we animate transform to target using CSS transition
   const moveByStep = (direction: "left" | "right") => {
     const track = trackRef.current;
     if (!track) return;
@@ -273,58 +268,33 @@ export function Testimonials() {
     manualAnimatingRef.current = true;
 
     const loopPoint = loopWidthRef.current || count * (CARD_WIDTH + GAP);
-    // compute target offset
     const delta = direction === "left" ? -STEP : STEP;
     let target = offsetRef.current + delta;
 
-    // normalize target into [0, loopPoint)
     while (target < 0) target += loopPoint;
     while (target >= loopPoint) target -= loopPoint;
 
-    // We'll animate using CSS transition — but we must handle the shortest path visually.
-    // Because track uses translate(-offset), we need to detect if direct transition crosses boundary visually.
-    // To keep it simple and smooth, we:
-    // 1) disable existing transition
     track.style.transition = "";
-
-    // 2) set current transform to current offset (ensures starting point)
     applyTransform(offsetRef.current);
-
-    // 3) force a small reflow so transition applies correctly
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     track.offsetHeight;
-
-    // 4) set transition and animate to target
     track.style.transition = "transform 420ms cubic-bezier(.22,.9,.26,1)";
 
-    // But if the shortest path crosses the loop boundary, we may prefer to animate via an adjusted target.
-    // We'll compute two possible visual distances and pick the smaller:
     const directDist = Math.abs(target - offsetRef.current);
-    const wrapDist = loopPoint - directDist; // distance if going the other way via wrap
-
-    // choose visually shorter direction
+    const wrapDist = loopPoint - directDist;
     let visualTarget = target;
     if (wrapDist < directDist) {
-      // If wrapped path is shorter, shift target by +/- loopPoint so CSS transform animates the shorter delta
-      // Example: offset=10, target= (loopPoint - 20) -> directDist large, but should animate -30 using negative wrap
       if (target > offsetRef.current) {
-        // going forward across loop: animate to target - loopPoint (negative value)
         visualTarget = target - loopPoint;
       } else {
-        // going backward across loop: animate to target + loopPoint
         visualTarget = target + loopPoint;
       }
     }
 
-    // Set transformed value to visualTarget (may be negative or > loopPoint) — animation will run smoothly
     applyTransform(visualTarget);
 
-    // after transition ends, snap state to canonical target (0..loopPoint) without transition
     const onTransEnd = () => {
-      // cleanup
       track.removeEventListener("transitionend", onTransEnd);
       track.style.transition = "";
-      // set canonical transform & offset
       offsetRef.current = target;
       applyTransform(offsetRef.current);
       manualAnimatingRef.current = false;
@@ -333,7 +303,6 @@ export function Testimonials() {
 
     track.addEventListener("transitionend", onTransEnd);
 
-    // safety fallback: if transitionend doesn't fire, force resume after timeout
     window.setTimeout(() => {
       if (manualAnimatingRef.current) {
         track.removeEventListener("transitionend", onTransEnd);
@@ -365,7 +334,6 @@ export function Testimonials() {
         onMouseEnter={() => { setIsRunning(false); }}
         onMouseLeave={() => { if (!manualAnimatingRef.current) setIsRunning(true); }}
       >
-        {/* Left arrow */}
         <button
           aria-label="Previous"
           onClick={() => moveByStep("left")}
@@ -376,7 +344,6 @@ export function Testimonials() {
           </svg>
         </button>
 
-        {/* Right arrow */}
         <button
           aria-label="Next"
           onClick={() => moveByStep("right")}
@@ -387,13 +354,11 @@ export function Testimonials() {
           </svg>
         </button>
 
-        {/* Track wrapper — overflow hidden on parent; track is flex and duplicated */}
         <div className="overflow-hidden">
           <div
             ref={trackRef}
             className="flex items-stretch will-change-transform"
             style={{ gap: `${GAP}px`, padding: "0 1rem" }}
-            // track holds duplicated items in DOM; we only change transform on this element
           >
             {doubled.map((t, idx) => {
               const key = `${t.id}-${idx}`;
@@ -413,8 +378,8 @@ export function Testimonials() {
 
                   <div className="p-4 h-[220px] flex flex-col justify-between">
                     <div>
-                      <h3 id={`testi-${key}`} className="text-xl font-bold text-[#22543d] mb-2">{t.name}</h3>
-                      <p className="text-[#476a4f] italic text-sm">{t.shortText}</p>
+                      <h3 id={`testi-${key}`} className="text-lg md:text-xl font-bold text-[#22543d] mb-2">{t.name}</h3>
+                      <p className="text-[#476a4f] italic text-xs md:text-sm">{t.shortText}</p>
                     </div>
 
                     <div>
@@ -438,16 +403,31 @@ export function Testimonials() {
       {modalTestimonial && (
         <div className="fixed inset-0 z-50 flex items-center justify-center px-4" role="dialog" aria-modal="true" aria-labelledby="modal-title">
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={closeModal} />
-          <div className="relative z-10 w-full max-w-3xl bg-white rounded-2xl shadow-2xl overflow-hidden">
+          <div className="relative z-10 w-full max-w-5xl bg-white rounded-2xl shadow-2xl overflow-hidden">
             <button onClick={closeModal} className="absolute top-4 right-4 z-20 bg-white/90 hover:bg-white text-gray-700 rounded-full p-2 shadow" aria-label="Close">✕</button>
 
-            <div className="grid grid-cols-1 md:grid-cols-3">
-              <div className="md:col-span-1 h-64 md:h-auto">
-                <img src={modalTestimonial.image} alt={modalTestimonial.name} className="w-full h-full object-cover" />
+            {/* grid: becomes stacked on mobile */}
+            <div className="grid grid-cols-1 md:grid-cols-6">
+              {/* Image column */}
+              <div className="md:col-span-2 flex items-center justify-center p-4 bg-gray-50">
+                <img
+                  src={modalTestimonial.image}
+                  alt={modalTestimonial.name}
+                  className="modal-image"
+                  style={{
+                    display: "block",
+                    maxWidth: "100%",
+                    maxHeight: "58vh", // desktop max height
+                    height: "auto",
+                    width: "auto",
+                    objectFit: "contain",
+                  }}
+                />
               </div>
 
-              <div className="md:col-span-2 p-6 max-h-[78vh] overflow-y-auto">
-                <h3 id="modal-title" className="text-2xl font-bold text-[#22543d] mb-2">{modalTestimonial.name}</h3>
+              {/* Text column */}
+              <div className="md:col-span-4 p-4 md:p-6 max-h-[78vh] overflow-y-auto">
+                <h3 id="modal-title" className="text-lg md:text-2xl font-bold text-[#22543d] mb-2">{modalTestimonial.name}</h3>
                 <div className="flex gap-3 mb-4 items-center">
                   <div className="text-sm text-[#4b6b53]"><strong>Location:</strong> {modalTestimonial.location}</div>
                 </div>
@@ -456,7 +436,7 @@ export function Testimonials() {
                 {modalTestimonial.productUsed && <div className="text-sm text-[#4b6b53] mb-2"><strong>Products Used:</strong> {modalTestimonial.productUsed}</div>}
                 {modalTestimonial.application && <div className="text-sm text-[#4b6b53] mb-4"><strong>Application:</strong> {modalTestimonial.application}</div>}
 
-                <div className="prose prose-sm max-w-none text-[#234f35] whitespace-pre-wrap">
+                <div className="prose prose-sm max-w-none text-[#234f35] whitespace-pre-wrap text-sm md:text-base">
                   {modalTestimonial.english && <p className="mt-2">{modalTestimonial.english}</p>}
                   {modalTestimonial.regional && <p className="mt-4">{modalTestimonial.regional}</p>}
                 </div>
@@ -474,12 +454,25 @@ export function Testimonials() {
         .will-change-transform {
           will-change: transform;
         }
-        .testimonial-item img {
-          display: block;
-        }
-        /* small-screen width */
+        .testimonial-item img { display: block; }
+
+        /* MOBILE ADJUSTMENTS */
         @media (max-width: 768px) {
+          /* make the cards narrower on small screens (keeps layout tidy) */
           .testimonial-item { width: ${Math.max(220, CARD_WIDTH - 120)}px !important; }
+
+          /* REDUCED modal image height on mobile (very small) */
+          .modal-image {
+            max-height: 22vh !important; /* <<-- change this number to increase/decrease mobile image size */
+            width: auto !important;
+            height: auto !important;
+          }
+
+          /* reduce paddings in modal */
+          .testimonial-modal-pad { padding: 8px !important; }
+
+          /* shrink modal title a little on small screens */
+          .modal-small-title { font-size: 1rem !important; }
         }
       `}</style>
     </section>

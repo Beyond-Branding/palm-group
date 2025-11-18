@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Facebook, Linkedin, Youtube } from "lucide-react";
+import { Facebook, Linkedin, Youtube, Instagram } from "lucide-react";
 
 export function Footer() {
   return (
@@ -11,9 +11,7 @@ export function Footer() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
             {/* ABOUT US */}
             <div className="lg:col-span-4">
-              <h4 className="text-sm font-semibold text-gray-500 tracking-wider mb-4">
-                ABOUT US
-              </h4>
+              
               <p className="text-gray-700 text-sm leading-relaxed">
                 Palm International delivers high-efficiency crop nutrition and protection
                 products to improve crop health, enhance productivity, and maximise potential
@@ -26,9 +24,7 @@ export function Footer() {
 
             {/* COMPANY */}
             <div className="lg:col-span-2">
-              <h4 className="text-sm font-semibold text-gray-500 tracking-wider mb-4">
-                COMPANY
-              </h4>
+              
               <ul className="space-y-2 text-gray-700 text-sm">
                 <li><Link href="/" className="hover:underline">Home</Link></li>
                 <li><Link href="/about" className="hover:underline">About Us</Link></li>
@@ -38,10 +34,13 @@ export function Footer() {
 
             {/* OUR PRODUCTS */}
             <div className="lg:col-span-3">
-              <h4 className="text-sm font-semibold text-gray-500 tracking-wider mb-4">
-                OUR PRODUCTS
-              </h4>
+              
               <ul className="space-y-2 text-gray-700 text-sm">
+                <li>
+                  <Link href="/products" className="hover:underline">
+                    Our Products
+                  </Link>
+                </li>
                 <li>
                   <Link href="/crop-nutrition" className="hover:underline">
                     Crop Protection & Nutrition
@@ -86,6 +85,14 @@ export function Footer() {
                 >
                   <Linkedin className="h-4 w-4" />
                 </Link>
+
+                {/* Instagram - added */}
+                <Link
+                  href="https://www.instagram.com/palminternational1998/" 
+                  className="bg-[#119152] hover:bg-[#0f7b45] text-white p-2 rounded-full shadow-sm"
+                >
+                  <Instagram className="h-4 w-4" />
+                </Link>
               </div>
             </div>
           </div>
@@ -108,7 +115,7 @@ export function Footer() {
                 Privacy Policy
               </Link>
               <span className="text-gray-300">/</span>
-              <Link href="/terms" className="hover:underline">
+              <Link href="/termsandcondition" className="hover:underline">
                 Terms &amp; Conditions
               </Link>
             </div>
