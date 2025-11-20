@@ -485,49 +485,54 @@ export default function ProductListingAndDetails() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-10 md:pt-0 md:pb-14 -mt-1 md:-mt-1">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
-            {/* IMAGE: show first on mobile, second on desktop */}
-            <div className="md:col-span-5 order-1 md:order-2">
-              <div className="relative h-72 md:h-96 bg-white rounded-2xl md:rounded-2xl ring-1 ring-gray-200 shadow-sm overflow-hidden">
-                <img
-                  src="/rice-field-7890204_1280.png"
-                  alt="Rice field"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-              </div>
-            </div>
+  <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
+    {/* IMAGE: show first on mobile, second on desktop */}
+    <div className="md:col-span-5 order-1 md:order-2">
+      <div className="relative h-72 md:h-96 bg-white rounded-2xl md:rounded-2xl ring-1 ring-gray-200 shadow-sm overflow-hidden">
+        <img
+          src="/rice-field-7890204_1280.png"
+          alt="Rice field"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      </div>
+    </div>
 
-            {/* TEXT: show below image on mobile, left on desktop */}
-            <div className="md:col-span-7 order-2 md:order-1">
-              <h1 className="text-3xl md:text-4xl font-extrabold text-[#388e3c] tracking-tight">
-                Palm International
-              </h1>
-              <p className="mt-4 text-xs md:text-sm text-gray-700 leading-7" style={{ textAlign: "justify" }}>
-                Palm International is a leading Indian agri-inputs company since 1998 with expertise
-                in developing, manufacturing, and exporting high-quality biostimulants, silicon-based
-                foliar sprays, humic acid solutions, and crop care products. Our mission is to provide
-                farmers with sustainable, science-backed solutions that improve soil health, boost crop
-                yields, and enhance farm profitability.
-              </p>
-              <p className="mt-4 text-xs md:text-sm text-gray-700 leading-7" style={{ textAlign: "justify" }}>
-                With a global presence, Palm International has become a trusted partner for farmers and
-                agri-distributors worldwide.
-              </p>
+    {/* TEXT: show below image on mobile, left on desktop */}
+    <div className="md:col-span-7 order-2 md:order-1">
+      {/* Heading: 20px mobile / 30px desktop (text-xl / md:text-3xl) */}
+      <h1 className="text-xl md:text-3xl font-extrabold text-[#388e3c] tracking-tight">
+        Palm International
+      </h1>
 
-              <p className="mt-6 text-xs md:text-sm text-gray-700 leading-7" style={{ textAlign: "justify" }}>
-                Our flagship brands – AG-F, AG-F Super Plus, Golden Drop, Crop Giant, Silicose, Palm Sulf,
-                and Cropper Plus – are designed to solve real challenges like nutrient efficiency, drought
-                stress, fruit drop, and fungal attacks, helping farmers achieve better quality produce, higher
-                yields, and longer shelf life.
-              </p>
-              <p className="mt-4 text-xs md:text-sm text-gray-700 leading-7" style={{ textAlign: "justify" }}>
-                Palm International is committed to innovation, farmer education, and field trials, ensuring
-                our products deliver consistent and proven results. With a strong focus on sustainability and
-                residue-free agriculture, we aim to build a healthier future for farming communities globally.
-              </p>
-            </div>
-          </div>
-        </div>
+      {/* Paragraphs: 16px on all breakpoints (text-base) */}
+      <p className="mt-4 text-base text-gray-700 leading-7" style={{ textAlign: "justify" }}>
+        Palm International is a leading Indian agri-inputs company since 1998 with expertise
+        in developing, manufacturing, and exporting high-quality biostimulants, silicon-based
+        foliar sprays, humic acid solutions, and crop care products. Our mission is to provide
+        farmers with sustainable, science-backed solutions that improve soil health, boost crop
+        yields, and enhance farm profitability.
+      </p>
+
+      <p className="mt-4 text-base text-gray-700 leading-7" style={{ textAlign: "justify" }}>
+        With a global presence, Palm International has become a trusted partner for farmers and
+        agri-distributors worldwide.
+      </p>
+
+      <p className="mt-6 text-base text-gray-700 leading-7" style={{ textAlign: "justify" }}>
+        Our flagship brands – AG-F, AG-F Super Plus, Golden Drop, Crop Giant, Silicose, Palm Sulf,
+        and Cropper Plus – are designed to solve real challenges like nutrient efficiency, drought
+        stress, fruit drop, and fungal attacks, helping farmers achieve better quality produce, higher
+        yields, and longer shelf life.
+      </p>
+
+      <p className="mt-4 text-base text-gray-700 leading-7" style={{ textAlign: "justify" }}>
+        Palm International is committed to innovation, farmer education, and field trials, ensuring
+        our products deliver consistent and proven results. With a strong focus on sustainability and
+        residue-free agriculture, we aim to build a healthier future for farming communities globally.
+      </p>
+    </div>
+  </div>
+</div>
       </div>
 
       {/* ---- FILTERS + SEARCH + GRID ---- */}

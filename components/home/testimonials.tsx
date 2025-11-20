@@ -157,7 +157,7 @@ Crop Giant truly lived up to its name! It dramatically improved the size and fir
     shortText:
       "I have seen tremendous change since I started using the Palm product range.",
     english: "For years, achieving a top-quality raisin batch was a challenge, especially with pests and maintaining the perfect golden color. Since using Palm Sulf, my results have been truly premium.Palm Sulf not only effectively controlled Mites and prevented fungal issues but also played a crucial role in improving the final quality. It ensured the grapes were healthy, leading to better color consistency and uniform drying. The result, as you can see, is a premium, residue-free product that fetches the highest price in the market. Palm Sulf is essential for any serious raisin producer!",
-    regional: "ವರ್ಷಗಳಿಂದ, ದ್ರಾಕ್ಷಿಯಲ್ಲಿ ಕೀಟಗಳ ನಿಯಂತ್ರಣ ಮತ್ತು ಪರಿಪೂರ್ಣ ಚಿನ್ನದ ಬಣ್ಣವನ್ನು (golden color) ಕಾಪಾಡಿಕೊಳ್ಳುವುದು ಒಂದು ಸವಾಲಾಗಿತ್ತು. ಪಾಮ್ ಸಲ್ಫ್ ಬಳಸಿದ ನಂತರ, ನನ್ನ ಫಲಿತಾಂಶಗಳು ನಿಜವಾಗಿಯೂ ಉತ್ತಮವಾಗಿವೆ.ಪಾಮ್ ಸಲ್ಫ್ ಕೀಟಗಳನ್ನು (Mites) ಪರಿಣಾಮಕಾರಿಯಾಗಿ ನಿಯಂತ್ರಿಸುತ್ತದೆ ಮತ್ತು ಶಿಲೀಂಧ್ರ ರೋಗಗಳನ್ನು ತಡೆಯುತ್ತದೆ. ಅತ್ಯಂತ ಮುಖ್ಯವಾಗಿ, ಇದು ಉತ್ತಮವಾದ ಬಣ್ಣ ಸ್ಥಿರತೆ ಮತ್ತು ಏಕರೂಪದ ಒಣಗುವಿಕೆಗೆ (uniform drying) ಕಾರಣವಾಯಿತು. ಇದರ ಫಲಿತಾಂಶವಾಗಿ, ನಾನು ಉತ್ತಮ ಗುಣಮಟ್ಟದ, ಶೇಷ-ಮುಕ್ತ ಉತ್ಪನ್ನವನ್ನು ಪಡೆದಿದ್ದೇನೆ, ಅದು ಮಾರುಕಟ್ಟೆಯಲ್ಲಿ ಅತ್ಯಧಿಕ ಬೆಲೆಯನ್ನು ತರುತ್ತದೆ. ಪ್ರತಿ ಒಣ ದ್ರಾಕ್ಷಿ ಉತ್ಪಾದಕರಿಗೆ ಪಾಮ್ ಸಲ್ಫ್ ಒಂದು ಅತ್ಯಗತ್ಯ ಉತ್ಪನ್ನವಾಗಿದೆ!",
+    regional: "ವರ್ಷಗಳಿಂದ, ದ್ರಾಕ್ಷಿಯಲ್ಲಿ ಕೀಟಗಳ ನಿಯಂತ್ರಣ ಮತ್ತು ಪರಿಪೂರ್ಣ ಚಿನ್ನದ ಬಣ್ಣವನ್ನು (golden color) ಕಾಪಾಡಿಕೊಳ್ಳುವುದು ಒಂದು ಸವಾಲಾಗಿತ್ತು. ಪಾಮ್ ಸಲ್ಫ್ ಬಳಸಿದ ನಂತರ, ನನ್ನ ಫಲಿತಾಂಶಗಳು ನಿಜವಾಗಿಯೂ ಉತ್ತಮವಾಗಿವೆ.ಪಾಮ್ ಸಲ್ಫ್ ಕೀಟಗಳನ್ನು (Mites) ಪರಿಣಾಮಕಾರಿಯಾಗಿ ನಿಯಂತ್ರಿಸುತ್ತದೆ ಮತ್ತು ಶಿಲೀಂಧ್ರ ರೋಗಗಳನ್ನು ತಡೆಯುತ್ತದೆ. ಅತ್ಯಂತ ಮುಖ್ಯವಾಗಿ, ಇದು ಉತ್ತಮವಾದ ಬಣ್ಣ ಸ್ಥಿರತೆ ಮತ್ತು ಏಕರೂಪದ ಒಣಗುವಿಕೆಗೆ (uniform drying) ಕಾರಣವಾಯಿತು. ಇದರ ಫಲಿತಾಂಶವಾಗಿ, ನಾನು ಉತ್ತಮ ಗುಣಮಟ್ಟದ, ಶೇಷ-ಮುಕ್ತ ಉತ್ಪನ್ನವನ್ನು ಪಡೆದಿದ್ದೇನೆ, ಅದು ಮಾರುಕಟ್ಟೆಯಲ್ಲಿ అత్యಧಿಕ ಬೆಲೆಯನ್ನು ತರುತ್ತದೆ. ಪ್ರತಿ ಒಣ ದ್ರಾಕ್ಷಿ ಉತ್ಪಾದಕರಿಗೆ ಪಾಮ್ ಸಲ್ಫ್ ಒಂದು ಅತ್ಯಗತ್ಯ ಉತ್ಪನ್ನವಾಗಿದೆ!",
     image: "/basavrajtesti.jpg"
   }
 
@@ -181,11 +181,19 @@ export function Testimonials() {
   const offsetRef = useRef<number>(0);
   const manualAnimatingRef = useRef<boolean>(false);
 
+  // NEW: pause timer ref used to pause auto-scrolling after manual nav
+  const pauseTimeoutRef = useRef<number | null>(null);
+
   const SPEED_PX_PER_SEC = 80;
 
   const openModal = (t: Testimonial) => {
     setModalTestimonial(t);
     setIsRunning(false);
+    // clear any manual pause timer so modal controls behavior deterministically
+    if (pauseTimeoutRef.current) {
+      clearTimeout(pauseTimeoutRef.current);
+      pauseTimeoutRef.current = null;
+    }
     document.body.style.overflow = "hidden";
   };
   const closeModal = () => {
@@ -260,12 +268,24 @@ export function Testimonials() {
     applyTransform(offsetRef.current);
   }, []);
 
+  // Helper: clear any existing pause timer
+  const clearPauseTimer = () => {
+    if (pauseTimeoutRef.current) {
+      clearTimeout(pauseTimeoutRef.current);
+      pauseTimeoutRef.current = null;
+    }
+  };
+
   const moveByStep = (direction: "left" | "right") => {
     const track = trackRef.current;
     if (!track) return;
 
+    // stop auto while manual animation runs
     setIsRunning(false);
     manualAnimatingRef.current = true;
+
+    // clear any previously scheduled resume; we'll schedule a fresh 5s resume after this move
+    clearPauseTimer();
 
     const loopPoint = loopWidthRef.current || count * (CARD_WIDTH + GAP);
     const delta = direction === "left" ? -STEP : STEP;
@@ -274,8 +294,10 @@ export function Testimonials() {
     while (target < 0) target += loopPoint;
     while (target >= loopPoint) target -= loopPoint;
 
+    // prepare transition
     track.style.transition = "";
     applyTransform(offsetRef.current);
+    // force reflow so transition applies
     track.offsetHeight;
     track.style.transition = "transform 420ms cubic-bezier(.22,.9,.26,1)";
 
@@ -290,6 +312,7 @@ export function Testimonials() {
       }
     }
 
+    // start visual transform
     applyTransform(visualTarget);
 
     const onTransEnd = () => {
@@ -298,11 +321,18 @@ export function Testimonials() {
       offsetRef.current = target;
       applyTransform(offsetRef.current);
       manualAnimatingRef.current = false;
-      setIsRunning(true);
+
+      // After manual nav, pause auto-scrolling for 5 seconds, then resume
+      clearPauseTimer();
+      pauseTimeoutRef.current = window.setTimeout(() => {
+        setIsRunning(true);
+        pauseTimeoutRef.current = null;
+      }, 5000);
     };
 
     track.addEventListener("transitionend", onTransEnd);
 
+    // safety: if transitionend doesn't fire, finish after timeout
     window.setTimeout(() => {
       if (manualAnimatingRef.current) {
         track.removeEventListener("transitionend", onTransEnd);
@@ -310,10 +340,23 @@ export function Testimonials() {
         offsetRef.current = target;
         applyTransform(offsetRef.current);
         manualAnimatingRef.current = false;
-        setIsRunning(true);
+
+        clearPauseTimer();
+        pauseTimeoutRef.current = window.setTimeout(() => {
+          setIsRunning(true);
+          pauseTimeoutRef.current = null;
+        }, 5000);
       }
-    }, 600);
+    }, 700);
   };
+
+  // clear timers on unmount
+  useEffect(() => {
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      clearPauseTimer();
+    };
+  }, []);
 
   return (
     <section className="relative overflow-hidden py-12">
@@ -331,8 +374,18 @@ export function Testimonials() {
       <div
         ref={wrapperRef}
         className="w-full relative"
-        onMouseEnter={() => { setIsRunning(false); }}
-        onMouseLeave={() => { if (!manualAnimatingRef.current) setIsRunning(true); }}
+        onMouseEnter={() => {
+          // pause on hover — clear any pending resume so user can read without it resuming unexpectedly
+          setIsRunning(false);
+          clearPauseTimer();
+        }}
+        onMouseLeave={() => {
+          // only resume automatic motion if not manually animating; if a pause timer was running, keep it
+          if (!manualAnimatingRef.current) {
+            // if there is a pause timer already scheduled (from manual nav), keep it — otherwise resume immediately
+            if (!pauseTimeoutRef.current) setIsRunning(true);
+          }
+        }}
       >
         <button
           aria-label="Previous"
