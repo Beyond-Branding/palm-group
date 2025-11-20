@@ -61,9 +61,6 @@ export function Footer() {
 
             {/* SOCIAL */}
             <div className="lg:col-span-3">
-              <h4 className="text-sm font-semibold text-gray-500 tracking-wider mb-4">
-                SOCIAL
-              </h4>
               <div className="flex items-center gap-3">
                 <Link
                   href="https://www.facebook.com/profile.php?id=100077642690727"

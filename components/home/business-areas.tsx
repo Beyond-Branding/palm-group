@@ -1,3 +1,4 @@
+// BusinessAreas.tsx
 "use client";
 
 import "swiper/css";
@@ -22,12 +23,12 @@ export default function BusinessAreas() {
   const EXTRA_BOTTOM = Math.round(IMAGE_HEIGHT * OUTSIDE_FRACTION + 48);
 
   const perProductOverrides: Record<string, { scale?: number; offsetPx?: number }> = {
-    "CROP GIANT": { scale: 1, offsetPx: -25 },
-    "CROPPER PLUS": { scale: 1, offsetPx: -15 },
+    "CROP GIANT": { scale: 1, offsetPx: -18 },
+    "CROPPER PLUS": { scale: 1, offsetPx: -10 },
     "GOLDEN DROP": { scale: 1, offsetPx: 0 },
-    "AG-F": { scale: 1, offsetPx: -10 },
+    "AG-F": { scale: 1, offsetPx: 1.3 },
     "PALM SULF": { scale: 1, offsetPx: 1.5 },
-    "CROPPER": { scale: 1, offsetPx: 2 },
+    "CROPPER": { scale: 1, offsetPx: 7.5 },
     "SILICOSE": { scale: 1, offsetPx: 0 },
     "AG-F SUPER PLUS": { scale: 0.6, offsetPx: -65 },
   };
@@ -48,13 +49,19 @@ export default function BusinessAreas() {
   const prevRef = useRef<HTMLButtonElement | null>(null);
   const nextRef = useRef<HTMLButtonElement | null>(null);
 
-  const slugify = (s: string) =>
-    s.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9\-]/g, "");
+  // match testimonial behavior: pause duration after manual click
+  const PAUSE_MS = 5000;
 
+  // manual pause timer ref (like testimonial's pauseTimeoutRef)
+  const pauseTimeoutRef = useRef<number | null>(null);
+
+  // lock while manual transition running (like manualAnimatingRef in testimonial)
+  const manualAnimatingRef = useRef<boolean>(false);
+
+  // attach navigation once swiper is ready
   useEffect(() => {
     if (!swiperInstance) return;
     if (!prevRef.current || !nextRef.current) return;
-
     try {
       // @ts-ignore
       swiperInstance.params.navigation = { ...(swiperInstance.params?.navigation || {}), prevEl: prevRef.current, nextEl: nextRef.current };
@@ -66,11 +73,95 @@ export default function BusinessAreas() {
       swiperInstance.navigation?.init?.();
       swiperInstance.navigation?.update?.();
     } catch (err) {
-      // avoid crashing if navigation init fails
+      // ignore navigation init errors
       // eslint-disable-next-line no-console
       console.warn("Swiper navigation initialization failed:", err);
     }
+
+    // Ensure autoplay doesn't wait for transitions (prevents pause at loop boundaries)
+    try {
+      swiperInstance.params.autoplay = { ...(swiperInstance.params.autoplay || {}), waitForTransition: false, delay: 0, disableOnInteraction: false, pauseOnMouseEnter: false };
+      // Set freeMode options (no momentum/sticky) for a natural continuous motion
+      swiperInstance.params.freeMode = { enabled: true, sticky: false, momentum: false };
+    } catch (e) {
+      // non-critical
+    }
   }, [swiperInstance]);
+
+  const clearPauseTimer = () => {
+    if (pauseTimeoutRef.current) {
+      window.clearTimeout(pauseTimeoutRef.current);
+      pauseTimeoutRef.current = null;
+    }
+  };
+
+  /**
+   * manualNavigate
+   * - direction: "next" | "prev"
+   * - performs one slide navigation
+   * - stops autoplay and schedules resume after PAUSE_MS
+   * - ignores clicks while manualAnimatingRef is true (same as testimonial)
+   */
+  const manualNavigate = (direction: "next" | "prev") => {
+    if (!swiperInstance) return;
+    if (manualAnimatingRef.current) {
+      return; // ignore clicks while animating
+    }
+
+    manualAnimatingRef.current = true;
+
+    // stop autoplay immediately
+    try {
+      swiperInstance.autoplay?.stop?.();
+    } catch (e) {}
+
+    // clear old pause timer and schedule fresh resume
+    clearPauseTimer();
+
+    // perform single navigation (this triggers normal sliding behavior)
+    try {
+      if (direction === "next") swiperInstance.slideNext();
+      else swiperInstance.slidePrev();
+    } catch (e) {}
+
+    // listen for transition end and release lock
+    const finishHandler = () => {
+      try {
+        swiperInstance.off?.("transitionEnd", finishHandler);
+        swiperInstance.off?.("slideChangeTransitionEnd", finishHandler);
+      } catch (e) {}
+      manualAnimatingRef.current = false;
+    };
+
+    try {
+      // prefer once() if available
+      swiperInstance.once?.("transitionEnd", finishHandler);
+      swiperInstance.once?.("slideChangeTransitionEnd", finishHandler);
+    } catch (e) {
+      // fallback: release lock after reasonable timeout (close to swiper speed)
+      window.setTimeout(() => {
+        manualAnimatingRef.current = false;
+      }, Math.max(420, swiperInstance.params?.speed ?? 420));
+    }
+
+    // schedule autoplay resume after PAUSE_MS
+    pauseTimeoutRef.current = window.setTimeout(() => {
+      try {
+        swiperInstance.autoplay?.start?.();
+      } catch (e) {}
+      pauseTimeoutRef.current = null;
+    }, PAUSE_MS);
+  };
+
+  const onPrevClick = () => manualNavigate("prev");
+  const onNextClick = () => manualNavigate("next");
+
+  // cleanup pause timer on unmount
+  useEffect(() => {
+    return () => {
+      clearPauseTimer();
+    };
+  }, []);
 
   return (
     <section className="relative bg-white overflow-x-hidden" style={{ paddingBottom: `${EXTRA_BOTTOM}px`, overflowX: "hidden" }}>
@@ -87,31 +178,50 @@ export default function BusinessAreas() {
           <h2 className="text-4xl md:text-5xl font-bold text-white text-left">Our Products</h2>
         </div>
 
-        <div onMouseEnter={() => swiperInstance?.autoplay?.stop()} onMouseLeave={() => swiperInstance?.autoplay?.start()} className="relative z-20 mt-24 md:mt-28">
-          <button ref={prevRef} aria-label="Previous" className="hidden md:flex items-center justify-center absolute left-2 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-white hover:scale-105 transition-transform focus:outline-none" style={{ border: "2px solid #0B8A44", boxShadow: "0 6px 22px rgba(11,138,68,0.12)" }}>
+        <div
+          onMouseEnter={() => {
+            // pause autoplay on hover and clear manual pause because user is reading
+            try { swiperInstance?.autoplay?.stop?.(); } catch (e) {}
+            clearPauseTimer();
+          }}
+          onMouseLeave={() => {
+            // only resume autoplay immediately if there is no manual pause in flight
+            if (!pauseTimeoutRef.current) {
+              try { swiperInstance?.autoplay?.start?.(); } catch (e) {}
+            }
+            // if a manual pause timer is scheduled, let it resume when it fires
+          }}
+          className="relative z-20 mt-24 md:mt-28"
+        >
+          {/* Prev button - visible on all screen sizes and vertically centered */}
+          <button
+            ref={prevRef}
+            aria-label="Previous"
+            onClick={onPrevClick}
+            className="flex items-center justify-center absolute left-2 md:left-2 top-1/2 -translate-y-1/2 z-50 rounded-full bg-white hover:scale-105 transition-transform focus:outline-none"
+            style={{ width: 44, height: 44, border: "2px solid #0B8A44", boxShadow: "0 6px 22px rgba(11,138,68,0.12)" }}
+          >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M15 6L9 12l6 6" stroke="#0B8A44" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
           </button>
 
-          <button ref={nextRef} aria-label="Next" className="hidden md:flex items-center justify-center absolute right-2 top-1/2 -translate-y-1/2 z-50 w-12 h-12 rounded-full bg-white hover:scale-105 transition-transform focus:outline-none" style={{ border: "2px solid #0B8A44", boxShadow: "0 6px 22px rgba(11,138,68,0.12)" }}>
+          {/* Next button - visible on all screen sizes and vertically centered */}
+          <button
+            ref={nextRef}
+            aria-label="Next"
+            onClick={onNextClick}
+            className="flex items-center justify-center absolute right-2 md:right-2 top-1/2 -translate-y-1/2 z-50 rounded-full bg-white hover:scale-105 transition-transform focus:outline-none"
+            style={{ width: 44, height: 44, border: "2px solid #0B8A44", boxShadow: "0 6px 22px rgba(11,138,68,0.12)" }}
+          >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M9 6l6 6-6 6" stroke="#0B8A44" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
           </button>
-
-          {/* mobile arrows */}
-          <div className="flex md:hidden items-center justify-center gap-4 absolute left-1/2 -translate-x-1/2 -bottom-20 z-50">
-            <button aria-label="Previous mobile" onClick={() => swiperInstance?.slidePrev()} className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-lg focus:outline-none" style={{ border: "3px solid #0B8A44", boxShadow: "0 8px 28px rgba(11,138,68,0.14), 0 0 18px rgba(11,138,68,0.06) inset" }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M15 6L9 12l6 6" stroke="#0B8A44" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </button>
-
-            <button aria-label="Next mobile" onClick={() => swiperInstance?.slideNext()} className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-lg focus:outline-none" style={{ border: "3px solid #0B8A44", boxShadow: "0 8px 28px rgba(11,138,68,0.14), 0 0 18px rgba(11,138,68,0.06) inset" }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M9 6l6 6-6 6" stroke="#0B8A44" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </button>
-          </div>
 
           <Swiper
             className="product-swiper !overflow-visible"
             modules={[Autoplay, FreeMode, Navigation]}
-            autoplay={{ delay: 0, disableOnInteraction: false, pauseOnMouseEnter: false }}
-            freeMode={true}
+            // continuous autoplay: no delay, don't wait for transitions
+            autoplay={{ delay: 0, disableOnInteraction: false, pauseOnMouseEnter: false, waitForTransition: false }}
+            // freeMode as an object disables sticky/momentum for smoother continuous flow
+            freeMode={{ enabled: true, sticky: false, momentum: false }}
             speed={TRAIN_SPEED}
             loop={true}
             slidesPerGroup={1}
