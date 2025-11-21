@@ -473,7 +473,7 @@ export default function ProductListingAndDetails() {
     <section className="bg-gray-50">
       {/* ---- HERO (same as before) ---- */}
       <div className="relative overflow-hidden bg-white">
-        <div className="absolute inset-0 opacity-5 pointer-events-none">
+        {/* <div className="absolute inset-0 opacity-5 pointer-events-none">
           <svg aria-hidden className="w-full h-full" viewBox="0 0 800 400" preserveAspectRatio="none">
             <defs>
               <pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -482,14 +482,15 @@ export default function ProductListingAndDetails() {
             </defs>
             <rect width="100%" height="100%" fill="url(#dots)"></rect>
           </svg>
-        </div>
+        </div> */}
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-10 md:pt-0 md:pb-14 -mt-1 md:-mt-1">
   <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
     {/* IMAGE: show first on mobile, second on desktop */}
     <div className="md:col-span-5 order-1 md:order-2">
-      <div className="relative h-72 md:h-96 bg-white rounded-2xl md:rounded-2xl ring-1 ring-gray-200 shadow-sm overflow-hidden">
-        <img
+      <div className="relative h-[15rem] md:h-[26rem] bg-white rounded-2xl ring-1 ring-gray-200 shadow-sm overflow-hidden">
+
+              <img
           src="/rice-field-7890204_1280.png"
           alt="Rice field"
           className="absolute inset-0 w-full h-full object-cover"
@@ -526,9 +527,9 @@ export default function ProductListingAndDetails() {
       </p>
 
       <p className="mt-4 text-base text-gray-700 leading-7" style={{ textAlign: "justify" }}>
-        Palm International is committed to innovation, farmer education, and field trials, ensuring
+        Palm International is committed to innovation, farmer education, field trials, ensuring
         our products deliver consistent and proven results. With a strong focus on sustainability and
-        residue-free agriculture, we aim to build a healthier future for farming communities globally.
+        residue free agriculture, we aim to build a healthier future for farming communities globally.
       </p>
     </div>
   </div>
