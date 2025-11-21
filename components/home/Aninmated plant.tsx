@@ -7,9 +7,9 @@ import animationData from "../../public/Tomato plant.json";
 
 /* ------------------ USER TUNABLE CONSTANTS ------------------ */
 // Desktop default sticker size (unchanged)
-const DEFAULT_DESKTOP_SIZE = 160; // px (desktop)
+const DEFAULT_DESKTOP_SIZE = 190; // px (desktop)
 // Much smaller mobile size so pills/images don't overlap
-const DEFAULT_MOBILE_SIZE = 60; // px (mobile width < 768)
+const DEFAULT_MOBILE_SIZE = 130; // px (mobile width < 768)
 
 // Per-product sizes (px).
 // NOTE: set null so responsive size is used. If you set numbers here, they'll override responsive sizing.
@@ -25,28 +25,28 @@ const PRODUCT_SIZES: (number | null)[] = [
   null, // product 7
 ];
 
-// Desktop positions for each product (8 items). Use percent strings.
+// Desktop positions for each product (8 items)
 const POSITIONS_DESKTOP: { left: string; top: string }[] = [
-  { left: "38%", top: "75%" }, // product 0
-  { left: "22%", top: "58%" }, // product 1
-  { left: "36%", top: "0%" },  // product 2
-  { left: "22%", top: "8%" },  // product 3
-  { left: "65%", top: "75%" }, // product 4
-  { left: "78%", top: "58%" }, // product 5
-  { left: "65%", top: "0%" },  // product 6
-  { left: "78%", top: "8%" },  // product 7
+  { left: "28%", top: "75%" }, // product 0 GOLDEN DROP
+  { left: "12%", top: "58%" }, // product 1 AG-F
+  { left: "28%", top: "-10%" },  // product 2 AG-F SUPER PLUS
+  { left: "12%", top: "8%" },  // product 3 CROP GIANT
+  { left: "75%", top: "75%" }, // product 4 PALM SULF
+  { left: "88%", top: "58%" }, // product 5 CROPPER
+  { left: "75%", top: "-10%" },  // product 6 CROPPER PLUS
+  { left: "88%", top: "8%" },  // product 7 SILICOSE
 ];
 
-// Mobile-specific positions (tuned to push pills lower / away from center plant)
+// Mobile-specific positions 
 const POSITIONS_MOBILE: { left: string; top: string }[] = [
-  { left: "22%", top: "90%" }, // GOLDEN DROP
-  { left: "10%", top: "45%" }, // AG-F
-  { left: "32%", top: "-20%" },  // AG-F SUPER PLUS
-  { left: "10%", top: "-2%" }, // CROP GIANT
-  { left: "78%", top: "90%" }, // PALM SULF
-  { left: "90%", top: "45%" }, // CROPPER
-  { left: "65%", top: "-20%" }, // CROPPER PLUS
-  { left: "90%", top: "-2%" }, // SILICOSE
+  { left: "28%", top: "75%" }, // GOLDEN DROP
+  { left: "10%", top: "35%" }, // AG-F
+  { left: "32%", top: "-51%" },  // AG-F SUPER PLUS
+  { left: "10%", top: "-35%" }, // CROP GIANT
+  { left: "72%", top: "75%" }, // PALM SULF
+  { left: "90%", top: "35%" }, // CROPPER
+  { left: "69%", top: "-51%" }, // CROPPER PLUS
+  { left: "90%", top: "-35%" }, // SILICOSE
 ];
 
 

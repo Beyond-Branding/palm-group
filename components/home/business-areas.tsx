@@ -1,15 +1,9 @@
 // BusinessAreas.tsx
 "use client";
 
-import "swiper/css";
-import "swiper/css/autoplay";
-import "swiper/css/free-mode";
-import "swiper/css/navigation";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, FreeMode, Navigation } from "swiper/modules";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useMemo } from "react";
 
 export default function BusinessAreas() {
   const CARD_WIDTH = 300;
@@ -44,50 +38,89 @@ export default function BusinessAreas() {
     { name: "SILICOSE", color: "bg-[#2563EB]", icon: "/farm8.svg", image: "/silicosenew.png", dotColor: "rgba(255,255,255,0.05)", overlayColor: "rgba(0,0,0,0.24)" },
   ];
 
-  const [swiperInstance, setSwiperInstance] = useState<any>(null);
-  const TRAIN_SPEED = 8000;
-  const prevRef = useRef<HTMLButtonElement | null>(null);
-  const nextRef = useRef<HTMLButtonElement | null>(null);
+  // Slider state & refs (RAF-driven duplicated-track loop)
+  const CARD_GAP = 16; // keeps same spacing as previous spaceBetween
+  const STEP = CARD_WIDTH + CARD_GAP;
+  const doubledProducts = useMemo(() => [...products, ...products], [products]);
 
-  // match testimonial behavior: pause duration after manual click
-  const PAUSE_MS = 5000;
-
-  // manual pause timer ref (like testimonial's pauseTimeoutRef)
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
+  const rafRef = useRef<number | null>(null);
+  const lastRef = useRef<number | null>(null);
+  const loopWidthRef = useRef<number>(0);
+  const offsetRef = useRef<number>(0);
+  const manualAnimatingRef = useRef<boolean>(false);
   const pauseTimeoutRef = useRef<number | null>(null);
 
-  // lock while manual transition running (like manualAnimatingRef in testimonial)
-  const manualAnimatingRef = useRef<boolean>(false);
+  // px per second (tweak to adjust continuous speed)
+  const SPEED_PX_PER_SEC = 60;
 
-  // attach navigation once swiper is ready
+  // measure loop width (distance where second copy starts)
   useEffect(() => {
-    if (!swiperInstance) return;
-    if (!prevRef.current || !nextRef.current) return;
-    try {
-      // @ts-ignore
-      swiperInstance.params.navigation = { ...(swiperInstance.params?.navigation || {}), prevEl: prevRef.current, nextEl: nextRef.current };
+    const measure = () => {
+      const track = trackRef.current;
+      if (!track) return;
+      const items = track.querySelectorAll<HTMLElement>(".product-slide");
+      const secondStart = items[products.length];
+      if (secondStart) {
+        loopWidthRef.current = secondStart.offsetLeft;
+      } else {
+        loopWidthRef.current = products.length * (CARD_WIDTH + CARD_GAP);
+      }
+    };
 
-      if (swiperInstance.navigation) {
-        swiperInstance.navigation.destroy();
+    measure();
+    const t = window.setTimeout(measure, 200);
+    window.addEventListener("resize", measure);
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener("resize", measure);
+    };
+  }, [products, CARD_WIDTH]);
+
+  // apply transform to track
+  const applyTransform = (x: number) => {
+    const track = trackRef.current;
+    if (!track) return;
+    track.style.transform = `translate3d(${-x}px, 0, 0)`;
+  };
+
+  // RAF loop for continuous scrolling
+  useEffect(() => {
+    lastRef.current = performance.now();
+
+    const tick = (now: number) => {
+      const track = trackRef.current;
+      if (!track) {
+        rafRef.current = requestAnimationFrame(tick);
+        return;
       }
 
-      swiperInstance.navigation?.init?.();
-      swiperInstance.navigation?.update?.();
-    } catch (err) {
-      // ignore navigation init errors
-      // eslint-disable-next-line no-console
-      console.warn("Swiper navigation initialization failed:", err);
-    }
+      const last = lastRef.current ?? now;
+      const dt = (now - last) / 1000;
+      lastRef.current = now;
 
-    // Ensure autoplay doesn't wait for transitions (prevents pause at loop boundaries)
-    try {
-      swiperInstance.params.autoplay = { ...(swiperInstance.params.autoplay || {}), waitForTransition: false, delay: 0, disableOnInteraction: false, pauseOnMouseEnter: false };
-      // Set freeMode options (no momentum/sticky) for a natural continuous motion
-      swiperInstance.params.freeMode = { enabled: true, sticky: false, momentum: false };
-    } catch (e) {
-      // non-critical
-    }
-  }, [swiperInstance]);
+      if (!manualAnimatingRef.current && !pauseTimeoutRef.current) {
+        const delta = SPEED_PX_PER_SEC * dt;
+        let next = offsetRef.current + delta;
+        const loopPoint = loopWidthRef.current || products.length * (CARD_WIDTH + CARD_GAP);
 
+        if (next >= loopPoint) next -= loopPoint;
+
+        offsetRef.current = next;
+        applyTransform(next);
+      }
+
+      rafRef.current = requestAnimationFrame(tick);
+    };
+
+    rafRef.current = requestAnimationFrame(tick);
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, [products.length]);
+
+  // Helper to clear pause timer
   const clearPauseTimer = () => {
     if (pauseTimeoutRef.current) {
       window.clearTimeout(pauseTimeoutRef.current);
@@ -95,78 +128,96 @@ export default function BusinessAreas() {
     }
   };
 
-  /**
-   * manualNavigate
-   * - direction: "next" | "prev"
-   * - performs one slide navigation
-   * - stops autoplay and schedules resume after PAUSE_MS
-   * - ignores clicks while manualAnimatingRef is true (same as testimonial)
-   */
-  const manualNavigate = (direction: "next" | "prev") => {
-    if (!swiperInstance) return;
-    if (manualAnimatingRef.current) {
-      return; // ignore clicks while animating
-    }
+  // manual step navigation (left or right)
+  const moveByStep = (direction: "left" | "right") => {
+    const track = trackRef.current;
+    if (!track) return;
 
+    // lock manual animation
     manualAnimatingRef.current = true;
-
-    // stop autoplay immediately
-    try {
-      swiperInstance.autoplay?.stop?.();
-    } catch (e) {}
-
-    // clear old pause timer and schedule fresh resume
     clearPauseTimer();
 
-    // perform single navigation (this triggers normal sliding behavior)
-    try {
-      if (direction === "next") swiperInstance.slideNext();
-      else swiperInstance.slidePrev();
-    } catch (e) {}
+    const loopPoint = loopWidthRef.current || products.length * (CARD_WIDTH + CARD_GAP);
+    const delta = direction === "left" ? -STEP : STEP;
+    let target = offsetRef.current + delta;
 
-    // listen for transition end and release lock
-    const finishHandler = () => {
-      try {
-        swiperInstance.off?.("transitionEnd", finishHandler);
-        swiperInstance.off?.("slideChangeTransitionEnd", finishHandler);
-      } catch (e) {}
-      manualAnimatingRef.current = false;
-    };
+    // wrap target into [0, loopPoint)
+    while (target < 0) target += loopPoint;
+    while (target >= loopPoint) target -= loopPoint;
 
-    try {
-      // prefer once() if available
-      swiperInstance.once?.("transitionEnd", finishHandler);
-      swiperInstance.once?.("slideChangeTransitionEnd", finishHandler);
-    } catch (e) {
-      // fallback: release lock after reasonable timeout (close to swiper speed)
-      window.setTimeout(() => {
-        manualAnimatingRef.current = false;
-      }, Math.max(420, swiperInstance.params?.speed ?? 420));
+    // prepare transition
+    track.style.transition = "";
+    applyTransform(offsetRef.current);
+    // force reflow to ensure transition applies
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    track.offsetHeight;
+    track.style.transition = "transform 420ms cubic-bezier(.22,.9,.26,1)";
+
+    // determine shortest visual path (account for wrapping)
+    const directDist = Math.abs(target - offsetRef.current);
+    const wrapDist = loopPoint - directDist;
+    let visualTarget = target;
+    if (wrapDist < directDist) {
+      if (target > offsetRef.current) visualTarget = target - loopPoint;
+      else visualTarget = target + loopPoint;
     }
 
-    // schedule autoplay resume after PAUSE_MS
-    pauseTimeoutRef.current = window.setTimeout(() => {
-      try {
-        swiperInstance.autoplay?.start?.();
-      } catch (e) {}
-      pauseTimeoutRef.current = null;
-    }, PAUSE_MS);
+    // start visual transform
+    applyTransform(visualTarget);
+
+    const onTransEnd = () => {
+      track.removeEventListener("transitionend", onTransEnd);
+      track.style.transition = "";
+      offsetRef.current = target;
+      applyTransform(offsetRef.current);
+      manualAnimatingRef.current = false;
+
+      // pause auto-scrolling for 5s after manual navigation
+      clearPauseTimer();
+      pauseTimeoutRef.current = window.setTimeout(() => {
+        pauseTimeoutRef.current = null;
+      }, 5000);
+    };
+
+    track.addEventListener("transitionend", onTransEnd);
+
+    // safety fallback if transitionend doesn't fire
+    window.setTimeout(() => {
+      if (manualAnimatingRef.current) {
+        track.removeEventListener("transitionend", onTransEnd);
+        track.style.transition = "";
+        offsetRef.current = target;
+        applyTransform(offsetRef.current);
+        manualAnimatingRef.current = false;
+        clearPauseTimer();
+        pauseTimeoutRef.current = window.setTimeout(() => {
+          pauseTimeoutRef.current = null;
+        }, 5000);
+      }
+    }, 700);
   };
 
-  const onPrevClick = () => manualNavigate("prev");
-  const onNextClick = () => manualNavigate("next");
-
-  // cleanup pause timer on unmount
+  // clean up on unmount
   useEffect(() => {
     return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
       clearPauseTimer();
     };
   }, []);
 
+  // NEW: hide horizontal scrollbar at document level to prevent page overflow
+  useEffect(() => {
+    const prev = document.documentElement.style.overflowX;
+    document.documentElement.style.overflowX = "hidden";
+    return () => {
+      document.documentElement.style.overflowX = prev || "";
+    };
+  }, []);
+
   return (
-    <section className="relative bg-white overflow-x-hidden" style={{ paddingBottom: `${EXTRA_BOTTOM}px`, overflowX: "hidden" }}>
+    <section className="relative bg-white overflow-visible" style={{ paddingBottom: `${EXTRA_BOTTOM}px` }}>
       {/* decorative wave behind */}
-      <div aria-hidden style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: "120vw", maxWidth: "1600px", height: 220, overflow: "hidden", zIndex: 0 }}>
+      <div aria-hidden style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: "120vw", maxWidth: "1600px", height: 220, overflow: "visible", zIndex: 0 }}>
         <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ width: "100%", height: "100%", display: "block" }}>
           <path d="M-80,200 Q200,100 820,200 T1520,200 L1520,0 L-80,0 Z" fill="#059c5b" />
           <path d="M-80,200 Q320,140 720,240 T1520,240 L1520,0 L-80,0 Z" fill="#00712D" opacity="0.8" />
@@ -179,25 +230,25 @@ export default function BusinessAreas() {
         </div>
 
         <div
+          ref={wrapperRef}
           onMouseEnter={() => {
-            // pause autoplay on hover and clear manual pause because user is reading
-            try { swiperInstance?.autoplay?.stop?.(); } catch (e) {}
+            // pause while pointer is over (keeps same Testimonial behavior)
             clearPauseTimer();
+            // long sentinel to indicate hover pause
+            pauseTimeoutRef.current = window.setTimeout(() => {}, 1_000_000);
           }}
           onMouseLeave={() => {
-            // only resume autoplay immediately if there is no manual pause in flight
-            if (!pauseTimeoutRef.current) {
-              try { swiperInstance?.autoplay?.start?.(); } catch (e) {}
+            if (pauseTimeoutRef.current) {
+              window.clearTimeout(pauseTimeoutRef.current);
+              pauseTimeoutRef.current = null;
             }
-            // if a manual pause timer is scheduled, let it resume when it fires
           }}
           className="relative z-20 mt-24 md:mt-28"
         >
           {/* Prev button - visible on all screen sizes and vertically centered */}
           <button
-            ref={prevRef}
             aria-label="Previous"
-            onClick={onPrevClick}
+            onClick={() => moveByStep("left")}
             className="flex items-center justify-center absolute left-2 md:left-2 top-1/2 -translate-y-1/2 z-50 rounded-full bg-white hover:scale-105 transition-transform focus:outline-none"
             style={{ width: 44, height: 44, border: "2px solid #0B8A44", boxShadow: "0 6px 22px rgba(11,138,68,0.12)" }}
           >
@@ -206,83 +257,75 @@ export default function BusinessAreas() {
 
           {/* Next button - visible on all screen sizes and vertically centered */}
           <button
-            ref={nextRef}
             aria-label="Next"
-            onClick={onNextClick}
+            onClick={() => moveByStep("right")}
             className="flex items-center justify-center absolute right-2 md:right-2 top-1/2 -translate-y-1/2 z-50 rounded-full bg-white hover:scale-105 transition-transform focus:outline-none"
             style={{ width: 44, height: 44, border: "2px solid #0B8A44", boxShadow: "0 6px 22px rgba(11,138,68,0.12)" }}
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M9 6l6 6-6 6" stroke="#0B8A44" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
           </button>
 
-          <Swiper
-            className="product-swiper !overflow-visible"
-            modules={[Autoplay, FreeMode, Navigation]}
-            // continuous autoplay: no delay, don't wait for transitions
-            autoplay={{ delay: 0, disableOnInteraction: false, pauseOnMouseEnter: false, waitForTransition: false }}
-            // freeMode as an object disables sticky/momentum for smoother continuous flow
-            freeMode={{ enabled: true, sticky: false, momentum: false }}
-            speed={TRAIN_SPEED}
-            loop={true}
-            slidesPerGroup={1}
-            spaceBetween={16}
-            observer={true}
-            observeParents={true}
-            breakpoints={{ 320: { slidesPerView: 1.05, spaceBetween: 12 }, 640: { slidesPerView: 2.1, spaceBetween: 12 }, 1024: { slidesPerView: 3.2, spaceBetween: 16 }, 1280: { slidesPerView: 4.1, spaceBetween: 18 } }}
-            navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}
-            onSwiper={(s) => setSwiperInstance(s)}
-          >
-            {products.map((product, i) => {
-              const ov = perProductOverrides[product.name] ?? {};
-              const scale = ov.scale ?? 1;
-              const extraOffsetPx = ov.offsetPx ?? 0;
-              const imageWidth = Math.round(IMAGE_WIDTH * scale);
-              const imageHeight = Math.round(IMAGE_HEIGHT * scale);
-              const imageOutsidePx = Math.round(imageHeight * OUTSIDE_FRACTION) + extraOffsetPx;
-              const cssVars = { "--dot-color": product.dotColor, "--overlay-color": product.overlayColor } as React.CSSProperties;
+          <div style={{ overflow: "visible" }}>
+            <div ref={trackRef} className="flex items-stretch" style={{ gap: `${CARD_GAP}px`, padding: "0 1rem", willChange: "transform" }}>
+              {doubledProducts.map((product, i) => {
+                const ov = perProductOverrides[product.name] ?? {};
+                const scale = ov.scale ?? 1;
+                const extraOffsetPx = ov.offsetPx ?? 0;
+                const imageWidth = Math.round(IMAGE_WIDTH * scale);
+                const imageHeight = Math.round(IMAGE_HEIGHT * scale);
+                const imageOutsidePx = Math.round(imageHeight * OUTSIDE_FRACTION) + extraOffsetPx;
+                const cssVars = { "--dot-color": product.dotColor, "--overlay-color": product.overlayColor } as React.CSSProperties;
 
-              // link to products page with product= query param
-              const productLink = `/products?product=${encodeURIComponent(product.name)}`;
+                // link to products page with product= query param
+                const productLink = `/products?product=${encodeURIComponent(product.name)}`;
 
-              return (
-                <SwiperSlide key={i} className="!flex !justify-center overflow-visible">
-                  <Link href={productLink} prefetch={false} className="block no-underline" aria-label={`Open ${product.name}`} style={{ textDecoration: "none" }}>
-                    <div className={`relative group product-card overflow-visible rounded-xl ${product.color} text-white p-6 flex flex-col justify-between transition-transform duration-500`} style={{ width: `${CARD_WIDTH}px`, height: `${CARD_HEIGHT}px`, minHeight: `${CARD_HEIGHT}px`, ...cssVars, cursor: "pointer" }}>
-                      <div className="card-dots pointer-events-none" aria-hidden style={{ position: "absolute", inset: 0, zIndex: 22, backgroundImage: `radial-gradient(circle, var(--dot-color, rgba(255,255,255,0.12)) 3px, transparent 3px)`, backgroundSize: "24px 24px", mixBlendMode: "overlay" }} />
-                      <div className="card-overlay pointer-events-none" aria-hidden style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: "60%", zIndex: 18, background: "linear-gradient(to top, var(--overlay-color, rgba(0,0,0,0.28)) 0%, rgba(0,0,0,0.12) 30%, rgba(0,0,0,0.04) 60%, transparent 100%)", filter: "blur(0.3px)" }} />
+                return (
+                  <div key={`${product.name}-${i}`} className="product-slide" style={{ flex: "0 0 auto" }}>
+                    <Link href={productLink} prefetch={false} className="block no-underline" aria-label={`Open ${product.name}`} style={{ textDecoration: "none" }}>
+                      <div className={`relative group product-card overflow-visible rounded-xl ${product.color} text-white p-6 flex flex-col justify-between transition-transform duration-500`} style={{ width: `${CARD_WIDTH}px`, height: `${CARD_HEIGHT}px`, minHeight: `${CARD_HEIGHT}px`, ...cssVars, cursor: "pointer" }}>
+                        <div className="card-dots pointer-events-none" aria-hidden style={{ position: "absolute", inset: 0, zIndex: 22, backgroundImage: `radial-gradient(circle, var(--dot-color, rgba(255,255,255,0.12)) 3px, transparent 3px)`, backgroundSize: "24px 24px", mixBlendMode: "overlay" }} />
+                        <div className="card-overlay pointer-events-none" aria-hidden style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: "60%", zIndex: 18, background: "linear-gradient(to top, var(--overlay-color, rgba(0,0,0,0.28)) 0%, rgba(0,0,0,0.12) 30%, rgba(0,0,0,0.04) 60%, transparent 100%)", filter: "blur(0.3px)" }} />
 
-                      <div className="w-full text-left z-30">
-                        <div className="flex items-center gap-3 mb-3">
-                          <div style={{ width: 40, height: 40 }} className="relative">
-                            <Image src={product.icon} alt={`${product.name} icon`} fill sizes="40px" />
+                        <div className="w-full text-left z-30">
+                          <div className="flex items-center gap-3 mb-3">
+                            <div style={{ width: 40, height: 40 }} className="relative">
+                              <Image src={product.icon} alt={`${product.name} icon`} fill sizes="40px" />
+                            </div>
+                          </div>
+                          <h3 className="text-2xl font-bold">{product.name}</h3>
+                        </div>
+
+                        <div className="flex-grow" />
+
+                        <div className="absolute-image absolute left-1/2 transform -translate-x-1/2 pointer-events-none transition-transform duration-500 ease-out group-hover:scale-105 group-hover:-translate-y-1" style={{ bottom: `${-imageOutsidePx}px`, zIndex: 30, width: `${imageWidth}px`, height: `${imageHeight}px` }}>
+                          <div style={{ width: "100%", height: "100%" }} className="relative">
+                            <Image src={product.image} alt={product.name} fill style={{ objectFit: "contain" }} priority={i < 4} />
                           </div>
                         </div>
-                        <h3 className="text-2xl font-bold">{product.name}</h3>
                       </div>
-
-                      <div className="flex-grow" />
-
-                      <div className="absolute-image absolute left-1/2 transform -translate-x-1/2 pointer-events-none transition-transform duration-500 ease-out group-hover:scale-105 group-hover:-translate-y-1" style={{ bottom: `${-imageOutsidePx}px`, zIndex: 30, width: `${imageWidth}px`, height: `${imageHeight}px` }}>
-                        <div style={{ width: "100%", height: "100%" }} className="relative">
-                          <Image src={product.image} alt={product.name} fill style={{ objectFit: "contain" }} priority={i < 4} />
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
+                    </Link>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
 
       <style>{`
         .product-card { box-shadow: 0 10px 34px rgba(0,0,0,0.10); transform-origin: center bottom; transition: transform 0.5s ease, box-shadow 0.5s ease; position: relative; z-index: 30; overflow: visible; }
         .product-card:hover { transform: translateY(-10px) rotateX(4deg) scale(1.03); box-shadow: 0 20px 60px rgba(0,0,0,0.18); }
-        .product-swiper :global(.swiper-slide) { overflow: visible; display: flex; justify-content: center; }
         .absolute-image { will-change: transform; }
         .product-card, .product-card * { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
         button:focus { outline: none; box-shadow: 0 0 0 4px rgba(11,138,68,0.14); }
+
+        /* ensure duplicated content lines up */
+        .product-slide { margin-right: ${CARD_GAP}px; }
+
+        /* small screens adjustments */
+        @media (max-width: 640px) {
+          .product-slide { margin-right: 12px; }
+        }
       `}</style>
     </section>
   );
