@@ -15,8 +15,8 @@ type Testimonial = {
   productUsed?: string;
   application?: string;
   shortText?: string;
-  english?: string; // English full text
-  regional?: string; // Regional language full text (optional)
+  english?: string; 
+  regional?: string; 
   image?: string;
   area?: string;
 };
@@ -35,7 +35,7 @@ const testimonials: Testimonial[] = [
     regional: `वापर: दुसरी फवारणी — छाटणीनंतर १९ व्या दिवशी (द्राक्षे)
 परिणाम:
 "गोल्डन ड्रॉप आणि क्रॉप जायंट एकत्र वापरल्यानंतर उत्कृष्ट परिणाम दिसून आले. घड जीरणेची समस्या पूर्णपणे थांबली आहे; घड अधिक मजबूत झाले आहेत, फुले एकसारखी आली आहेत आणि फळ गळणे लक्षणीयरीत्या कमी झाले आहे. वेलींची वाढ चांगली झाली आहे आणि फळधारणा सुधारली आहे."`,
-    image: "/dattrayatesti.jpg"
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764223390/dattrayatesti_vseqkw.jpg"
   },
 
   {
@@ -53,7 +53,7 @@ const testimonials: Testimonial[] = [
     regional: `वापर: दुसरी फवारणी — छाटणीनंतर १९ व्या दिवशी (द्राक्षे)
 परिणाम:
 "गोल्डन ड्रॉप आणि क्रॉप जायंट वापरल्यानंतर ‘घड जीरणे’ची समस्या पूर्णपणे थांबली आहे. घड मजबूत झाले, फळांना अधिक चमक आली आणि साठवणक्षमता खूपच सुधारली. या उत्पादनांच्या परिणामावर मी अत्यंत समाधानी आहे."`,
-    image: "/shivrajtesti.jpg"
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764223471/shivrajtesti_vlpaat.jpg"
   },
 
   {
@@ -69,7 +69,7 @@ const testimonials: Testimonial[] = [
 With Golden Drop, my tomato and onion plants reduced flower droppings and more vigorous growth, significantly enhancing their natural resistance. The overall health and vibrancy of my fields have never been better.
 Crop Giant truly lived up to its name! It dramatically improved the size and firmness of my tomatoes, making them visually appealing and robust. For both my tomatoes and onions, I observed a fantastic increase in shelf life by an impressive 30-35%, all while maintaining zero chemical residue on the produce. 
 ”`,
-    image: "/nimaltomato.png",
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764223675/nimaltomato_dguqgq.png",
   },
 
   {
@@ -82,7 +82,7 @@ Crop Giant truly lived up to its name! It dramatically improved the size and fir
       "Silicose reduced fungal infection and strengthened plants during the monsoon.",
     english: `Result:
 “Silicose reduced fungal infection and strengthened plants during the monsoon. Palm Sulf provided a reliable source of sulfur which could be used at high temperatures and controlled fungal issues effectively without chemicals.”`,
-    image: "/parktesti.jpg"
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764223739/parktesti_lrlajh.jpg"
   },
 
   {
@@ -95,7 +95,7 @@ Crop Giant truly lived up to its name! It dramatically improved the size and fir
     english: `Result:
 “I achieved phenomenal results using Golden Drop + AG-F for dormancy breaking in my vineyard. In just 18 days, my vines showed excellent, uniform shoot growth, as you can see in the pictures. The biggest win for me? I successfully achieved this strong growth without using any Hydrogen Cyanamide. This combination is the key to a healthier, faster, and more natural start to the season. I highly recommend it!”`,
     regional: `"माझ्या द्राक्ष बागेत फुटवा घेण्यासाठी मी गोल्डन ड्रॉप + AG-F वापरले आणि मला उत्कृष्ट परिणाम मिळाले. फक्त १८ दिवसांत वेलींवर एकसारखा आणि जोमदार फुटवा आला, जे तुम्ही चित्रांमध्ये पाहू शकता. माझ्यासाठी सर्वात मोठा फायदा म्हणजे? मी हायड्रोजन सायनमाइड वापरल्याशिवाय हा जोमदार फुटवा यशस्वीपणे साध्य केला. हा संयोजन हंगामाची सुरुवात नैसर्गिक आणि निरोगी करण्यासाठी सर्वोत्तम आहे. मी याची अत्यंत शिफारस करतो!"`,
-    image: "/Ganeshtesti.jpg"
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764223778/Ganeshtesti_di2lmq.jpg"
   },
 
   {
@@ -107,7 +107,7 @@ Crop Giant truly lived up to its name! It dramatically improved the size and fir
       "I am Ramchandra Tukaram Patil from Samdoli, Sangli Miraj. I used Golden Drop on my Marigold crop",
     english: "I am Ramchandra Tukaram Patil from Samdoli, Sangli Miraj. I used Golden Drop on my Marigold crop, and the results are fantastic. It completely changed my flowering season! Golden Drop significantly induced heavy and early flowering. As you can see, the flowers are huge, have vibrant color, and there was no flower dropping. This product truly boosts yield quality. I highly recommend Golden Drop for anyone growing flowers!",
     regional: "माझे नाव रामचंद्र तुकाराम पाटील, सामडोळी (सांगली-मिरज) येथील रहिवासी आहे. मी माझ्या झेंडूच्या पिकावर गोल्डन ड्रॉप वापरले. रिझल्ट्स खूप चांगले आले! गोल्डन ड्रॉपने फुलांची संख्या मोठ्या प्रमाणात वाढवली आणि फुलगळ पूर्णपणे थांबवली. आपण पाहू शकता, फुलांचा आकार मोठा आणि रंग खूप आकर्षक आहे. या उत्पादनामुळे माझ्या उत्पन्नात मोठी वाढ झाली आहे. फुलशेती करणाऱ्या सर्व शेतकऱ्यांसाठी गोल्डन ड्रॉप अत्यंत उपयुक्त आहे.",
-    image: "/ramchandratesti.jpg"
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764223866/ramchandratesti_uljoqi.jpg"
   },
 
   {
@@ -120,7 +120,7 @@ Crop Giant truly lived up to its name! It dramatically improved the size and fir
       "Using Palm's products has been a game-changer. AG-F helped me reduce my glyphosate dosage by 50%, saving on costs",
     english: "Using Palm's products has been a game-changer. AG-F helped me reduce my glyphosate dosage by 50%, saving on costs. Golden Drop was fantastic, cutting flower drop by 75% and leading to excellent fruit set. With Palm Sulf, my crop stayed healthy and free of mites. Finally, Crop Giant gave my pomegranates a great shine, firmness, and extended their shelf life, fetching a top price in the market. I highly recommend this complete package!",
     regional: "Palm ची उत्पादने वापरल्याने माझ्या डाळिंब बागेत मोठा फरक पडला. AG-F मुळे मला ग्लायफोसेटचा वापर ५०% कमी करता आला, ज्यामुळे खर्च वाचला. Golden Drop मुळे फुलगळ ७५% कमी झाली आणि फळधारणा चांगली झाली. Palm Sulf ने बागेतील रोग आणि कोळी नियंत्रण केले. सर्वात महत्त्वाचे म्हणजे, Crop Giant ने डाळिंबांना चांगली चमक, टणकपणा आणि उत्कृष्ट टिकाऊपणा दिला. या पूर्ण पॅकेजमुळे माझ्या मालाला बाजारात चांगला भाव मिळाला!",
-    image: "/sureshtesti.jpg",
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764223916/sureshtesti_igwvfb.jpg",
   },
 
   {
@@ -133,7 +133,7 @@ Crop Giant truly lived up to its name! It dramatically improved the size and fir
       "On my 28-30 day old soybean crop, I used the combination of Golden Drop (6ml/pump) and AG-F (10ml/pump) in the first spray",
     english: "On my 28-30 day old soybean crop, I used the combination of Golden Drop (6ml/pump) and AG-F (10ml/pump) in the first spray. The results were immediate and powerful! My plot is now considered the best plot in the area. The soybean plants show exceptional, vigorous growth and height, with outstanding branching (फुटवा) starting right from the base. This combination gave my crop the best possible start. If you want the best growth for your soybean, you must try Golden Drop and AG-F!",
     regional: "माझ्या २८ ते ३० दिवसांच्या सोयाबीन पिकावर, मी पहिल्या फवारणीत गोल्डन ड्रॉप (६ मिली/पंप) आणि AG-F (१० मिली/पंप) चा वापर केला. याचे परिणाम लगेच आणि खूप प्रभावी दिसले! माझा प्लॉट आता परिसरातील 'सर्वोत्कृष्ट प्लॉट' म्हणून ओळखला जातो. सोयाबीनच्या झाडांना उत्कृष्ट, जोमदार वाढ आणि उंची मिळाली आहे, तसेच तळापासून फुटवे (branching) मोठ्या प्रमाणात निघाले आहेत. या संयोगाने माझ्या पिकाला सर्वोत्तम सुरुवात दिली. जर तुम्हाला तुमच्या सोयाबीन पिकासाठी उत्कृष्ट वाढ हवी असेल, तर गोल्डन ड्रॉप आणि AG-F चा वापर नक्की करा!",
-    image: "/tanajitesti.jpg"
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764223954/tanajitesti_lulcxt.jpg"
   },
 
   {
@@ -146,7 +146,7 @@ Crop Giant truly lived up to its name! It dramatically improved the size and fir
       "I have seen tremendous change since I started using the Palm product range.",
     english: "I have seen tremendous change since I started using the Palm product range. AG-F is a must-have; it boosts the performance of all my sprays and helps keep my input costs low. The combination of Golden Drop and Crop Giant on my vegetables and paddy is truly fantastic.Golden Drop gives the plants a powerful start and ensures maximum flowering and fruit set. For my final produce, Crop Giant is key—it guarantees excellent size, firmness, and shelf life, which directly results in higher profits at the market. My soil health and overall yield have definitely improved by over 20% with these products!",
     regional: "ಉತ್ಪನ್ನಗಳು: ಗೋಲ್ಡನ್ ಡ್ರಾಪ್ (Golden Drop), ಎಜಿ-ಎಫ್ (AG-F), ಕ್ರಾಪ್ ಜೈಂಟ್ (Crop Giant)ನಾನು ಪಾಮ್ ಉತ್ಪನ್ನಗಳ ಶ್ರೇಣಿಯನ್ನು ಬಳಸಲು ಪ್ರಾರಂಭಿಸಿದ ನಂತರ ನನ್ನ ಕೃಷಿಯಲ್ಲಿ ಭಾರಿ ಬದಲಾವಣೆಯನ್ನು ನೋಡಿದ್ದೇನೆ. ಎಜಿ-ಎಫ್ (AG-F) ಒಂದು ಅತ್ಯಗತ್ಯ ಉತ್ಪನ್ನವಾಗಿದೆ; ಇದು ನನ್ನ ಎಲ್ಲಾ ಸಿಂಪಡಣೆಗಳ (Sprays) ಕಾರ್ಯಕ್ಷಮತೆಯನ್ನು ಹೆಚ್ಚಿಸುತ್ತದೆ ಮತ್ತು ಇನ್‌ಪುಟ್ ವೆಚ್ಚವನ್ನು ಕಡಿಮೆ ಮಾಡಲು ಸಹಾಯ ಮಾಡುತ್ತದೆ. ನನ್ನ ತರಕಾರಿ ಮತ್ತು ಭತ್ತದ ಬೆಳೆಗಳಿಗೆ ಗೋಲ್ಡನ್ ಡ್ರಾಪ್ ಮತ್ತು ಕ್ರಾಪ್ ಜೈಂಟ್ ಸಂಯೋಜನೆಯು ನಿಜಕ್ಕೂ ಅದ್ಭುತವಾಗಿದೆ.ಗೋಲ್ಡನ್ ಡ್ರಾಪ್ ಸಸ್ಯಗಳಿಗೆ ಬಲವಾದ ಆರಂಭವನ್ನು ನೀಡುತ್ತದೆ ಮತ್ತು ಗರಿಷ್ಠ ಹೂಬಿಡುವಿಕೆ ಹಾಗೂ ಉತ್ತಮ ಕಾಯಿ ಕಚ್ಚುವಿಕೆಯನ್ನು ಖಚಿತಪಡಿಸುತ್ತದೆ. ಅಂತಿಮ ಉತ್ಪನ್ನಕ್ಕಾಗಿ ಕ್ರಾಪ್ ಜೈಂಟ್ ಬಹಳ ಮುಖ್ಯ—ಇದು ಅತ್ಯುತ್ತಮ ಗಾತ್ರ, ಗಡಸುತನ ಮತ್ತು ದೀರ್ಘಕಾಲದ ಶೆಲ್ಫ್ ಲೈಫ್ ಅನ್ನು ಖಾತರಿಪಡಿಸುತ್ತದೆ, ಇದರಿಂದ ನನಗೆ ಮಾರುಕಟ್ಟೆಯಲ್ಲಿ ಹೆಚ್ಚಿನ ಲಾಭ ದೊರೆಯುತ್ತದೆ. ಈ ಉತ್ಪನ್ನಗಳಿಂದ ನನ್ನ ಇಳುವರಿ ಖಂಡಿತವಾಗಿಯೂ 20% ಕ್ಕಿಂತ ಹೆಚ್ಚು ಸುಧಾರಿಸಿದೆ!",
-    image: "/ramanatesti.jpg"
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764223995/ramanatesti_fr1duv.jpg"
   },
 
   {
@@ -158,7 +158,7 @@ Crop Giant truly lived up to its name! It dramatically improved the size and fir
       "I have seen tremendous change since I started using the Palm product range.",
     english: "For years, achieving a top-quality raisin batch was a challenge, especially with pests and maintaining the perfect golden color. Since using Palm Sulf, my results have been truly premium.Palm Sulf not only effectively controlled Mites and prevented fungal issues but also played a crucial role in improving the final quality. It ensured the grapes were healthy, leading to better color consistency and uniform drying. The result, as you can see, is a premium, residue-free product that fetches the highest price in the market. Palm Sulf is essential for any serious raisin producer!",
     regional: "ವರ್ಷಗಳಿಂದ, ದ್ರಾಕ್ಷಿಯಲ್ಲಿ ಕೀಟಗಳ ನಿಯಂತ್ರಣ ಮತ್ತು ಪರಿಪೂರ್ಣ ಚಿನ್ನದ ಬಣ್ಣವನ್ನು (golden color) ಕಾಪಾಡಿಕೊಳ್ಳುವುದು ಒಂದು ಸವಾಲಾಗಿತ್ತು. ಪಾಮ್ ಸಲ್ಫ್ ಬಳಸಿದ ನಂತರ, ನನ್ನ ಫಲಿತಾಂಶಗಳು ನಿಜವಾಗಿಯೂ ಉತ್ತಮವಾಗಿವೆ.ಪಾಮ್ ಸಲ್ಫ್ ಕೀಟಗಳನ್ನು (Mites) ಪರಿಣಾಮಕಾರಿಯಾಗಿ ನಿಯಂತ್ರಿಸುತ್ತದೆ ಮತ್ತು ಶಿಲೀಂಧ್ರ ರೋಗಗಳನ್ನು ತಡೆಯುತ್ತದೆ. ಅತ್ಯಂತ ಮುಖ್ಯವಾಗಿ, ಇದು ಉತ್ತಮವಾದ ಬಣ್ಣ ಸ್ಥಿರತೆ ಮತ್ತು ಏಕರೂಪದ ಒಣಗುವಿಕೆಗೆ (uniform drying) ಕಾರಣವಾಯಿತು. ಇದರ ಫಲಿತಾಂಶವಾಗಿ, ನಾನು ಉತ್ತಮ ಗುಣಮಟ್ಟದ, ಶೇಷ-ಮುಕ್ತ ಉತ್ಪನ್ನವನ್ನು ಪಡೆದಿದ್ದೇನೆ, ಅದು ಮಾರುಕಟ್ಟೆಯಲ್ಲಿ అత్యಧಿಕ ಬೆಲೆಯನ್ನು ತರುತ್ತದೆ. ಪ್ರತಿ ಒಣ ದ್ರಾಕ್ಷಿ ಉತ್ಪಾದಕರಿಗೆ ಪಾಮ್ ಸಲ್ಫ್ ಒಂದು ಅತ್ಯಗತ್ಯ ಉತ್ಪನ್ನವಾಗಿದೆ!",
-    image: "/basavrajtesti.jpg"
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764224027/basavrajtesti_zkv9az.jpg"
   }
 
 ];

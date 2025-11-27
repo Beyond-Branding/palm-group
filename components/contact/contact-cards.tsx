@@ -7,7 +7,6 @@ export default function ContactCards() {
     <div className="py-12">
       <div className="flex flex-col lg:flex-row items-start gap-10 max-w-6xl mx-auto">
         
-        {/* Left: Map */}
         <div className="w-full lg:w-1/2 h-80 lg:h-[450px] rounded-xl overflow-hidden shadow-md">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4315.739416475277!2d72.84003885647303!3d19.102681001394977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c9000a350379%3A0xf563a17dc30c38f7!2sPalm%20International!5e0!3m2!1sen!2sin!4v1759341456424!5m2!1sen!2sin"
@@ -17,7 +16,6 @@ export default function ContactCards() {
           />
         </div>
 
-        {/* Right: Contact Information */}
         <div className="w-full lg:w-1/2 bg-white rounded-xl shadow-md p-8">
           <h2 className="text-2xl font-bold text-green-700 mb-4">
             Contact Information
@@ -27,7 +25,6 @@ export default function ContactCards() {
             For Business Enquires / Marketing / Sales / Export / Customer Care please reach out to us at:
           </p>
 
-          {/* Phone */}
           <div className="flex items-center text-gray-900 mb-3 text-sm leading-relaxed">
             <Phone className="mr-3 text-green-600 w-4 h-4" />
             <span>
@@ -41,7 +38,6 @@ export default function ContactCards() {
             </span>
           </div>
 
-          {/* Email */}
           <div className="flex items-start text-gray-900 mb-3 text-sm leading-relaxed">
             <Mail className="mr-3 text-green-600 w-4 h-4 mt-1" />
             <div className="space-y-1">
@@ -56,8 +52,6 @@ export default function ContactCards() {
               </a>
             </div>
           </div>
-
-          {/* Business Hours */}
           <div className="flex items-start text-gray-900 text-sm leading-relaxed">
             <Clock className="mr-3 text-green-600 w-4 h-4 mt-1" />
             <div>

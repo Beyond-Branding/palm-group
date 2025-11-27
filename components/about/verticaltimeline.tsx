@@ -28,7 +28,7 @@ const SECTIONS: Section[] = [
         </p>
       </>
     ),
-    image: "/Time park.jpg",
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764225209/Time_park_vvrkvi.jpg",
     imageAlt: "Palm Group today",
   },
   {
@@ -47,7 +47,7 @@ const SECTIONS: Section[] = [
         </p>
       </>
     ),
-    image: "/Shivraj Billur-1.jpg",
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764223471/shivrajtesti_vlpaat.jpg",
     imageAlt: "Global expansion in the 2010s",
   },
   {
@@ -102,7 +102,7 @@ const SECTIONS: Section[] = [
         </p>
       </>
     ),
-    image: "/innovationagri.jpg",
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764225698/innovationagri_xf2p69.jpg",
     imageAlt: "Innovation & farmer-centric solutions in the 2000s",
   },
   {
@@ -120,7 +120,7 @@ const SECTIONS: Section[] = [
         </p>
       </>
     ),
-    image: "/organicagri.jpg",
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764225752/organicagri_brd0m4.jpg",
     imageAlt: "Entry into organic agri-solutions",
   },
   {
@@ -134,7 +134,7 @@ const SECTIONS: Section[] = [
         </p>
       </>
     ),
-    image: "/expansionpharma.jpg",
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764225787/expansionpharma_xww8av.jpg",
     imageAlt: "Expansion into pharmaceuticals",
   },
   {
@@ -148,22 +148,19 @@ const SECTIONS: Section[] = [
         </p>
       </>
     ),
-    image: "/Found.jpg",
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764225829/Found_thwkfk.jpg",
     imageAlt: "Foundation of Palm Group",
   },
 ];
 
 export default function PalmVerticalTimelineExact() {
-  // Render earliest-first: reverse SECTIONS so top starts at 1969, then 1994, ... Today at bottom
   const ordered = useMemo(() => [...SECTIONS].slice().reverse(), []);
 
-  // refs sized for ordered array
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
   const textRefs = useRef<(HTMLDivElement | null)[]>([]);
   const imgRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [active, setActive] = useState(0);
 
-  // initialize reveal state arrays based on ordered length
   const [textShown, setTextShown] = useState<boolean[]>(
     () => Array(ordered.length).fill(false)
   );
@@ -171,31 +168,25 @@ export default function PalmVerticalTimelineExact() {
     () => Array(ordered.length).fill(false)
   );
 
-  // New function: choose active by section top crossing a trigger line
   function getActiveIndexByTop(refs: (HTMLDivElement | null)[]) {
     if (typeof window === "undefined") return 0;
-    // trigger line: 20% down from top on desktop, slightly different on small screens
     const trigger = window.innerWidth >= 768 ? window.innerHeight * 0.20 : window.innerHeight * 0.18;
     let lastIndex = 0;
     for (let i = 0; i < refs.length; i++) {
       const el = refs[i];
       if (!el) continue;
       const rect = el.getBoundingClientRect();
-      // if section top is above or equal to trigger line, it is "active" (we keep last one)
       if (rect.top <= trigger) {
         lastIndex = i;
       } else {
-        // since sections are sequential, once we find first one below trigger we can break
         break;
       }
     }
     return lastIndex;
   }
 
-  // Sticky year switching (md+). Uses the new top-based active logic.
   useEffect(() => {
     const onScroll = () => setActive(getActiveIndexByTop(itemRefs.current));
-    // run once to set initial active
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
@@ -205,7 +196,6 @@ export default function PalmVerticalTimelineExact() {
     };
   }, [ordered.length]);
 
-  // Reveal text Observer
   useEffect(() => {
     const io = new IntersectionObserver(
       (entries) => {
@@ -226,7 +216,6 @@ export default function PalmVerticalTimelineExact() {
     return () => io.disconnect();
   }, [ordered.length]);
 
-  // Reveal images Observer
   useEffect(() => {
     const io = new IntersectionObserver(
       (entries) => {
@@ -253,7 +242,6 @@ export default function PalmVerticalTimelineExact() {
 
   return (
     <section className="relative bg-white">
-      {/* vertical rail */}
       <div
   aria-hidden
   className="hidden md:block pointer-events-none absolute left-[5.75rem] md:left-[9.55rem] top-0 bottom-0 w-[2px] bg-green-500/60"
@@ -261,7 +249,6 @@ export default function PalmVerticalTimelineExact() {
 
 
       <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-[8.5rem_1fr] gap-6 md:gap-12 px-6 md:px-8">
-        {/* Sticky year (md+) — slightly smaller clamp */}
         <aside className="relative hidden md:block">
           <div className="sticky top-20 md:top-20">
             <div
@@ -269,7 +256,7 @@ export default function PalmVerticalTimelineExact() {
   style={{
     fontSize:
       ordered[active]?.year === "2000s"
-        ? "clamp(1.45rem, 3.9vw, 2.2rem)" // slightly smaller
+        ? "clamp(1.45rem, 3.9vw, 2.2rem)"
         : "clamp(1.5rem, 4vw, 2.4rem)",
   }}
 >
@@ -289,7 +276,6 @@ export default function PalmVerticalTimelineExact() {
                 key={s.id}
                 ref={(el) => (itemRefs.current[i] = el)}
                 className={[
-                  // smaller vertical spacing and align content to top for first section
                   "relative pl-6 pr-2 py-8 md:pl-14 md:pr-0",
                   i === 0
                     ? "md:min-h-[20vh] md:items-start md:pt-2"
@@ -298,12 +284,10 @@ export default function PalmVerticalTimelineExact() {
                 ].join(" ")}
               >
                 <article className="max-w-3xl w-full">
-                  {/* Inline year on mobile — slightly smaller */}
                   <div className="md:hidden mb-2 text-green-600 font-extrabold text-2xl">
                     {s.year}
                   </div>
 
-                  {/* Title + body (reduced sizes) */}
                   <div
                     ref={(el) => (textRefs.current[i] = el)}
                     data-index={i}
@@ -311,7 +295,6 @@ export default function PalmVerticalTimelineExact() {
                       textVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2",
                       prefersReduced ? "" : "transition-all duration-500 ease-out",
                     ].join(" ")}
-                    // pull the first title a little upward so it starts level with the sticky year
                     style={i === 0 ? { marginTop: "-0.8rem" } : undefined}
                   >
                     <h3 className="text-xl md:text-3xl font-bold">{s.title}</h3>
@@ -320,7 +303,6 @@ export default function PalmVerticalTimelineExact() {
                     </div>
                   </div>
 
-                  {/* Image (kept styling but slightly smaller shadow) */}
                   <div className="mt-4 md:mt-6">
                     <div
                       ref={(el) => (imgRefs.current[i] = el)}

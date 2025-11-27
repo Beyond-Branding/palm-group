@@ -4,12 +4,9 @@ import { Facebook, Linkedin, Youtube, Instagram } from "lucide-react";
 export function Footer() {
   return (
     <footer className="w-full bg-white">
-      {/* Top footer section */}
       <div className="border-t-4 border-[#119152] bg-[#f7f7f7]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          {/* 12-column grid. About on left; three blocks shifted right (no headings). */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-            {/* ABOUT US - left */}
             <div className="lg:col-span-4">
               <p className="text-gray-700 text-sm leading-relaxed">
                 Palm International delivers high-efficiency crop nutrition and protection
@@ -18,8 +15,6 @@ export function Footer() {
                 to support farmers worldwide.
               </p>
             </div>
-
-            {/* COMPANY - shifted to the right (no title) */}
             <div className="lg:col-start-5 lg:col-span-2 mt-6 lg:mt-0 lg:pl-6">
               <ul className="space-y-2 text-gray-700 text-sm">
                 <li><Link href="/" className="hover:underline">Home</Link></li>
@@ -28,7 +23,6 @@ export function Footer() {
               </ul>
             </div>
 
-            {/* OUR PRODUCTS - shifted further right (no title) */}
             <div className="lg:col-start-7 lg:col-span-3 mt-6 lg:mt-0 lg:pl-6">
               <ul className="space-y-2 text-gray-700 text-sm">
                 <li><Link href="/products" className="hover:underline">Our Products</Link></li>
@@ -38,7 +32,6 @@ export function Footer() {
               </ul>
             </div>
 
-            {/* SOCIAL - nudged to the right and right-aligned inside its cell */}
             <div className="lg:col-start-10 lg:col-span-2 mt-6 lg:mt-0 flex lg:justify-end lg:pl-4">
               <div className="flex items-center gap-3">
                 <Link
@@ -78,7 +71,6 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Bottom single-line bar */}
       <div className="bg-white border-t border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">

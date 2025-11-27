@@ -5,7 +5,6 @@ import { Search as SearchIcon } from "lucide-react";
 import { FaWhatsapp as WhatsAppIcon } from "react-icons/fa";
 import { useSearchParams } from "next/navigation";
 
-/* ------------------ DATA (now includes styling fields) ------------------ */
 const products = [
   {
     name: "GOLDEN DROP",
@@ -25,10 +24,8 @@ const products = [
       "0.5–0.75 ml per litre of water. Spray during flowering and early fruiting stages every 12–15 days for best results.",
     usage:
       "Golden Drop is ideal for a wide range of crops including: Grapes, Tomato, Mango, Paddy, Onion, Chilli, Citrus Fruits, Vegetables, Strawberries, Capsicum, Pomegranate, Sugarcane, Tea, Coffee, Cashew, Banana.",
-    image: "/golden drop-Photoroom shadow.png",
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173725/golden_drop-Photoroom_shadow_m9aigy.png",
     secondaryImage: "/golden-drop-side.png",
-
-    // styling
     backgroundHex: "#0B5D3E",
     dotColor: "rgba(255,255,255,0.06)",
     overlayColor: "rgba(0,0,0,0.25)",
@@ -50,10 +47,8 @@ const products = [
     dosage:
       "1 ml per litre of water to reduce herbicide dosage by 50%. Use with herbicides, insecticides, fungicides, micronutrients & foliar fertilizers.",
     usage: "Ideal for all crops.",
-    image: "/agf-Photoroom (1).png",
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173812/agf-Photoroom_1_cmpcyy.png",
     secondaryImage: "/copperplus.png",
-
-    // styling
     backgroundHex: "#F5C400",
     dotColor: "rgba(255,255,255,0.08)",
     overlayColor: "rgba(0,0,0,0.22)",
@@ -76,10 +71,8 @@ const products = [
     dosage: "1 ml per 8 litres of water. Use with herbicides, insecticides, fungicides, micronutrients & foliar sprays.",
     usage:
       "Perfect for all crops where complete coverage and high spray efficiency are crucial.",
-    image: "/AG-F Superplus-Photoroom (1).png",
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173861/AG-F_Superplus-Photoroom_shadow_kdb8m9.png",
     secondaryImage: "/ag-f-super-side.jpg",
-
-    // styling
     backgroundHex: "#0057B7",
     dotColor: "rgba(255,255,255,0.07)",
     overlayColor: "rgba(0,0,0,0.25)",
@@ -101,10 +94,8 @@ const products = [
       "Spray: 1.5 ml per litre of water when berries reach pea size. Repeat after 7 days for maximum effectiveness.",
     usage:
       "Crop Giant is ideal for a wide range of crops including: Grapes, Strawberry, Citrus, Apple, Mango, Tomato, Capsicum, Watermelon, Cucumbers, Brinjal, Chilli, Pomegranate.",
-    image: "/crop giant (1).png",
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173895/crop_giant_1_cs6nnn.png",
     secondaryImage: "/crop giant.png",
-
-    // styling
     backgroundHex: "#C81E1E",
     dotColor: "rgba(255,255,255,0.07)",
     overlayColor: "rgba(0,0,0,0.25)",
@@ -125,10 +116,8 @@ const products = [
     dosage: "Foliar Spray: 3 ml per litre of water. Drip Application: 7.5 litres per hectare.",
     usage:
       "Palm Sulf is ideal for a wide range of crops including: Wheat, Rice, Grapes, Citrus, Mango, Chilli, Onion, Spinach, Potato, Tomato, Capsicum, Carrot.",
-    image: "/palmsulfnew.png",
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173960/palmsulfnew_ntrjwo.png",
     secondaryImage: "/palm-sulf-side.jpg",
-
-    // styling
     backgroundHex: "#E65100",
     dotColor: "rgba(255,255,255,0.06)",
     overlayColor: "rgba(0,0,0,0.25)",
@@ -150,10 +139,8 @@ const products = [
       "Soil Application: 7.5 L/Ha. Foliar Spray: 2 ml per litre. Seed Treatment: 2.5 L per MT of seed. With Fertilizers: 7.5 L/Ha.",
     usage:
       "Cropper is ideal for a wide range of crops including: Maize, Wheat, Rice, Sunflower, Potato, Tomato, Garlic, Onion, Spinach, Coconut, Citrus, Mango.",
-    image: "/croppernew.png",
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174014/croppernew_qydobw.png",
     secondaryImage: "/cropper-side.jpg",
-
-    // styling
     backgroundHex: "#4E342E",
     dotColor: "rgba(255,255,255,0.06)",
     overlayColor: "rgba(0,0,0,0.25)",
@@ -175,10 +162,8 @@ const products = [
       "Soil Application: 2.5–4 L/Ha. Foliar Spray: 1 ml per litre. Seed Treatment: 1.5 L per MT of seed. With Fertilizers: 2.5–4 L/Ha.",
     usage:
       "Cropper Plus is ideal for a wide range of crops including: Wheat, Rice, Maize, Sunflower, Potato, Leafy Greens, Coconut, Grapes, Citrus, Mango, Tomato, Chilli.",
-    image: "/cropperplusnew.png",
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174140/cropperplusnew_gxqz3w.png",
     secondaryImage: "/cropper-plus-side.png",
-
-    // styling
     backgroundHex: "#D97706",
     dotColor: "rgba(255,255,255,0.07)",
     overlayColor: "rgba(0,0,0,0.24)",
@@ -200,10 +185,8 @@ const products = [
     dosage: "Foliar Spray: 3 ml per litre of water. Drip Application: 5–7.5 L/Ha.",
     usage:
       "Silicose is ideal for a wide range of crops including: Rice, Wheat, Maize, Grapes, Mango, Citrus, Potato, Chilli, Tomato, Onion, Spinach, Strawberry, Sugarcane.",
-    image: "/silicosenew.png",
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174176/silicosenew_t2zou5.png",
     secondaryImage: "/silicose-side.png",
-
-    // styling
     backgroundHex: "#2563EB",
     dotColor: "rgba(255,255,255,0.05)",
     overlayColor: "rgba(0,0,0,0.24)",
@@ -212,7 +195,6 @@ const products = [
 
 type Product = typeof products[number];
 
-/* ------------------ HELPERS ------------------ */
 function normalize(text: string) {
   return (text || "")
     .toLowerCase()
@@ -242,7 +224,6 @@ function splitCrops(usage?: string) {
   return usage.split(",").map((s) => s.trim()).filter(Boolean);
 }
 
-/** Crop groups (for the filter) */
 const CROPS_BY_GROUP: Record<string, string[]> = {
   Fruits: ["Apple","Banana","Citrus","Grapes","Mango","Pomegranate","Strawberry","Watermelon"],
   Vegetables: ["Brinjal","Capsicum","Carrot","Cucumber","Garlic","Onion","Potato","Spinach","Leafy Greens","Tomato"],
@@ -252,7 +233,6 @@ const CROPS_BY_GROUP: Record<string, string[]> = {
   Industrial: ["Sugarcane"],
 };
 
-/** Synonyms / plurals → canonical crop */
 const CROP_ALIASES: Record<string, string> = {
   paddy: "Rice",
   "citrus fruits": "Citrus",
@@ -275,11 +255,6 @@ function productCropsCanonical(p: Product): string[] {
   return splitCrops(p.usage).map(canonicalCrop);
 }
 
-/* -------------------------
-   HIGHLIGHTING helper
-   ------------------------- */
-
-// list of exact phrases you wanted bolded
 const BOLD_PHRASES = [
   "Golden Drop is ideal for a wide range of crops including:",
   "Crop Giant is ideal for a wide range of crops including:",
@@ -289,7 +264,6 @@ const BOLD_PHRASES = [
   "Silicose is ideal for a wide range of crops including:",
 ];
 
-// escape html to avoid accidental injection
 function escapeHtml(str: string) {
   return str
     .replace(/&/g, "&amp;")
@@ -299,15 +273,11 @@ function escapeHtml(str: string) {
     .replace(/'/g, "&#039;");
 }
 
-// replace phrases (case-sensitive exact matches) with bolded HTML
 function highlightPhrases(text: string, phrases: string[]) {
   if (!text) return "";
-  // start from escaped text
   let html = escapeHtml(text);
 
-  // replace each phrase in the escaped text with a bolded version
   phrases.forEach((phrase) => {
-    // escape phrase for regex
     const esc = phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const regex = new RegExp(esc, "g");
     html = html.replace(regex, `<strong>${escapeHtml(phrase)}</strong>`);
@@ -316,14 +286,12 @@ function highlightPhrases(text: string, phrases: string[]) {
   return html;
 }
 
-/* ------------------ COMPONENT ------------------ */
 export default function ProductListingAndDetails() {
   const searchParams = useSearchParams();
   const productQuery = searchParams?.get("product") ?? null;
 
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
-  // search + crops filter state
   const [query, setQuery] = useState("");
   const [cropsOpen, setCropsOpen] = useState(false);
   const [selectedCrops, setSelectedCrops] = useState<string[]>([]);
@@ -335,8 +303,6 @@ export default function ProductListingAndDetails() {
   );
 
   const selectedProduct = selectedIndex !== null ? products[selectedIndex] : null;
-
-  // If a product query param exists, auto-open the product on mount / when param changes
   useEffect(() => {
     if (!productQuery) return;
     try {
@@ -344,17 +310,14 @@ export default function ProductListingAndDetails() {
       const foundIndex = products.findIndex((p) => p.name.toLowerCase() === decoded.toLowerCase());
       if (foundIndex >= 0) {
         setSelectedIndex(foundIndex);
-        // scroll top so the top of the detail is visible
         setTimeout(() => {
           if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "smooth" });
         }, 50);
       }
     } catch (e) {
-      // ignore malformed param
     }
   }, [productQuery]);
 
-  // scroll to top when opening a product detail — ensures top is visible on manual opens as well
   useEffect(() => {
     if (selectedProduct) {
       setTimeout(() => {
@@ -365,7 +328,6 @@ export default function ProductListingAndDetails() {
     }
   }, [selectedProduct]);
 
-  // Apply search + crop filters (crops are canonicalized)
   const filteredProducts = useMemo(() => {
     return products.filter((p) => {
       if (!productMatchesQuery(p, query)) return false;
@@ -381,7 +343,6 @@ export default function ProductListingAndDetails() {
     setQuery("");
   };
 
-  /* ---------- DETAIL VIEW (SIMPLIFIED) ---------- */
   if (selectedProduct) {
     return (
       <section className="pt-6 pb-12 md:pb-16 bg-white min-h-screen">
@@ -394,7 +355,6 @@ export default function ProductListingAndDetails() {
           </button>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-            {/* Image */}
             <div className="flex flex-col items-center">
               <div className="w-full rounded-xl bg-neutral-50 ring-1 ring-gray-200 overflow-hidden shadow-inner">
                 <img
@@ -419,19 +379,15 @@ export default function ProductListingAndDetails() {
               </div>
             </div>
 
-            {/* Details: only the requested sections */}
-            <div className="text-sm md:text-base"> {/* reduced text size for content area */}
-              {/* Heading */}
+            <div className="text-sm md:text-base"> 
               <h1 className="text-3xl md:text-4xl font-extrabold text-[#1b5e20] mb-4">
                 {selectedProduct.name}
               </h1>
 
-              {/* Paragraph (detailedDescription) */}
               <p className="text-gray-700 mb-6" style={{ textAlign: "justify" }}>
                 {selectedProduct.detailedDescription}
               </p>
 
-              {/* Key Benefits */}
               <div className="mb-6">
                 <h2 className="text-xl font-bold text-gray-800 mb-3">Key Benefits</h2>
                 <ul className="list-disc list-inside space-y-2 text-sm text-gray-700 pl-4" style={{ textAlign: "justify" }}>
@@ -441,7 +397,6 @@ export default function ProductListingAndDetails() {
                 </ul>
               </div>
 
-              {/* Recommended Dosage */}
               <div className="mb-6">
                 <h3 className="text-lg font-semibold text-gray-800 mb-2">Recommended Dosage</h3>
                 <p className="text-gray-700" style={{ textAlign: "justify" }}>
@@ -449,10 +404,8 @@ export default function ProductListingAndDetails() {
                 </p>
               </div>
 
-              {/* Where to Use */}
               <div className="mb-6">
                 <h3 className="text-lg font-semibold text-gray-800 mb-2">Where to Use</h3>
-                {/* render usage with bolded phrases */}
                 <p
                   className="text-gray-700"
                   style={{ textAlign: "justify" }}
@@ -468,44 +421,26 @@ export default function ProductListingAndDetails() {
     );
   }
 
-  /* ---------- LIST VIEW ---------- */
   return (
     <section className="bg-gray-50">
-      {/* ---- HERO (same as before) ---- */}
       <div className="relative overflow-hidden bg-white">
-        {/* <div className="absolute inset-0 opacity-5 pointer-events-none">
-          <svg aria-hidden className="w-full h-full" viewBox="0 0 800 400" preserveAspectRatio="none">
-            <defs>
-              <pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                <circle cx="1" cy="1" r="1"></circle>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#dots)"></rect>
-          </svg>
-        </div> */}
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-0 pb-10 md:pt-0 md:pb-14 -mt-1 md:-mt-1">
   <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
-    {/* IMAGE: show first on mobile, second on desktop */}
     <div className="md:col-span-5 order-1 md:order-2">
       <div className="relative h-[15rem] md:h-[26rem] bg-white rounded-2xl ring-1 ring-gray-200 shadow-sm overflow-hidden">
 
               <img
-          src="/rice-field-7890204_1280.png"
+          src="https://res.cloudinary.com/daoju0r3c/image/upload/v1764227166/rice-field-7890204_1280_tldtn9.png"
           alt="Rice field"
           className="absolute inset-0 w-full h-full object-cover"
         />
       </div>
     </div>
-
-    {/* TEXT: show below image on mobile, left on desktop */}
     <div className="md:col-span-7 order-2 md:order-1">
-      {/* Heading: 20px mobile / 30px desktop (text-xl / md:text-3xl) */}
       <h1 className="text-xl md:text-3xl font-extrabold text-[#388e3c] tracking-tight">
         Palm International
       </h1>
-
-      {/* Paragraphs: 16px on all breakpoints (text-base) */}
       <p className="mt-4 text-base text-gray-700 leading-7" style={{ textAlign: "justify" }}>
         Palm International is a leading Indian agri-inputs company since 1998 with expertise
         in developing, manufacturing, and exporting high-quality biostimulants, silicon-based
@@ -536,10 +471,8 @@ export default function ProductListingAndDetails() {
 </div>
       </div>
 
-      {/* ---- FILTERS + SEARCH + GRID ---- */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 md:mt-12 lg:mt-16 pb-12 md:pb-20">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-          {/* LEFT: Crops accordion with groups */}
           <aside className="md:col-span-3">
             <button
               className="w-full flex items-center justify-between py-2"
@@ -614,7 +547,6 @@ export default function ProductListingAndDetails() {
             )}
           </aside>
 
-          {/* RIGHT: search + chips + 2-col grid */}
           <div className="md:col-span-9">
             {selectedCrops.length > 0 && (
               <div className="mb-3 flex flex-wrap gap-2">
@@ -642,7 +574,6 @@ export default function ProductListingAndDetails() {
               </div>
             )}
 
-            {/* search bar */}
             <div className="mb-6 flex items-center gap-3">
               <div className="relative flex-1">
                 <input
@@ -655,7 +586,6 @@ export default function ProductListingAndDetails() {
               </div>
             </div>
 
-            {/* grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-12">
               {filteredProducts.map((product) => (
                 <div
@@ -665,16 +595,12 @@ export default function ProductListingAndDetails() {
                     setSelectedIndex(products.findIndex((p) => p.name === product.name))
                   }
                 >
-                  {/* === FULL-BLEED COLOURED CARD === */}
                   <div className="w-full rounded-lg overflow-hidden transition-all duration-300 group-hover:scale-[1.02]">
-                    {/* Use responsive square (padding-bottom) to guarantee full coverage */}
                     <div style={{ width: "100%", paddingBottom: "100%" }} className="relative">
-                      {/* coloured surface */}
                       <div
                         className="absolute inset-0 rounded-lg"
                         style={{ backgroundColor: product.backgroundHex }}
                       >
-                        {/* dotted pattern */}
                         <div
                           aria-hidden
                           className="absolute inset-0"
@@ -685,8 +611,6 @@ export default function ProductListingAndDetails() {
                             pointerEvents: "none",
                           }}
                         />
-
-                        {/* bottom->top gradient overlay */}
                         <div
                           aria-hidden
                           className="absolute inset-0"
@@ -697,7 +621,6 @@ export default function ProductListingAndDetails() {
                           }}
                         />
 
-                        {/* image on top */}
                         <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
                           <img
                             src={product.image || "/placeholder.svg"}
@@ -709,8 +632,6 @@ export default function ProductListingAndDetails() {
                       </div>
                     </div>
                   </div>
-
-                  {/* title (outside the colored area) */}
                   <h3 className="mt-4 text-2xl font-extrabold tracking-tight text-gray-900">
                     {product.name}
                   </h3>

@@ -1,7 +1,6 @@
 export function ContactHero() {
   return (
     <section className="relative overflow-hidden bg-white">
-      {/* Full-width wavey green header */}
       <div className="absolute top-0 left-0 w-full h-50">
         <svg
           viewBox="0 0 1440 320"
@@ -9,12 +8,10 @@ export function ContactHero() {
           className="w-full h-full"
           preserveAspectRatio="none"
         >
-          {/* Main green wave */}
           <path
             d="M0,200 Q160,100 820,200 T1440,200 L1440,0 L0,0 Z"
             fill="#059c5b"
           />
-          {/* Optional darker overlay for depth */}
           <path
             d="M0,200 Q180,140 720,240 T1440,240 L1440,0 L0,0 Z"
             fill="#19703d"

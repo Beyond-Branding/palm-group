@@ -41,10 +41,7 @@ export function CoreValues() {
   return (
     <section className="relative py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Grid: two crisp-edged cards (Vision first, then Mission) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          
-          {/* --- CARD 1 (Vision) - slides in from left --- */}
           <article
             ref={card1Ref}
             className={[
@@ -58,7 +55,7 @@ export function CoreValues() {
 
             <div className="relative w-full h-56 sm:h-64 md:h-56 lg:h-64">
               <Image
-                src="/Seed.jpg"
+                src="https://res.cloudinary.com/daoju0r3c/image/upload/v1764226157/Seed_rhb5pj.jpg"
                 alt="Seedling / sprout symbolizing growth"
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
@@ -72,7 +69,6 @@ export function CoreValues() {
                 Sowing the Seeds of a Sustainable Future
               </h3>
 
-              {/* UPDATED TEXT SIZE */}
               <p className="text-gray-700 text-sm md:text-base leading-relaxed">
                 To build a world where sustainable agriculture supports thriving rural
                 communities and resilient ecosystems. We are committed to offering
@@ -83,7 +79,6 @@ export function CoreValues() {
             </div>
           </article>
 
-          {/* --- CARD 2 (Mission) - slides in from right --- */}
           <article
             ref={card2Ref}
             className={[
@@ -97,7 +92,7 @@ export function CoreValues() {
 
             <div className="relative w-full h-56 sm:h-64 md:h-56 lg:h-64">
               <Image
-                src="/pipe.jpg"
+                src="https://res.cloudinary.com/daoju0r3c/image/upload/v1764226202/pipe_ldy46m.jpg"
                 alt="Rows of healthy green crops"
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
@@ -111,7 +106,6 @@ export function CoreValues() {
                 Transforming Agriculture, Organic Innovation for Every Farmer
               </h3>
 
-              {/* UPDATED TEXT SIZE */}
               <p className="text-gray-700 text-sm md:text-base leading-relaxed">
                 At The Palm Group, our mission is to empower farmers by promoting
                 organic farming and the use of next-generation, eco-friendly solutions.
