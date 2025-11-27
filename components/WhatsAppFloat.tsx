@@ -5,14 +5,14 @@ import React from "react";
 type Props = {
   number?: string;
   message?: string;
-  size?: number; // default desktop size in px
+  size?: number; 
   hideOnMobile?: boolean;
 };
 
 export default function WhatsAppFloat({
   number = "918779083022",
   message = "Hi! I would like to know more about palm group.",
-  size = 200, // desktop size
+  size = 200, 
   hideOnMobile = false,
 }: Props) {
   const href = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
@@ -33,7 +33,7 @@ export default function WhatsAppFloat({
         src="/whatsapp-Photoroom.png"
         alt="WhatsApp Chat"
         className="object-contain hover:scale-110 transition-transform duration-200 drop-shadow-lg
-          w-[150px] h-[150px] sm:w-[190px] sm:h-[190px]" // smaller on mobile
+          w-[150px] h-[150px] sm:w-[190px] sm:h-[190px]" 
       />
     </a>
   );

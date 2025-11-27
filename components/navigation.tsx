@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation"; // ✅ for detecting current route
+import { usePathname } from "next/navigation"; 
 import { Menu, X } from "lucide-react";
 
 const navigationItems = [
@@ -18,7 +18,7 @@ const navigationItems = [
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
-  const pathname = usePathname(); // ✅ current active page
+  const pathname = usePathname(); 
 
   return (
     <nav className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
@@ -35,7 +35,6 @@ export function Navigation() {
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
           <div className="hidden lg:flex ml-10 space-x-8">
             {navigationItems.map((item) => {
               const isActive =
@@ -57,7 +56,6 @@ export function Navigation() {
             })}
           </div>
 
-          {/* Mobile menu button */}
           <div className="lg:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -68,8 +66,7 @@ export function Navigation() {
           </div>
         </div>
       </div>
-
-      {/* Mobile Navigation */}
+      
       {isOpen && (
         <div className="lg:hidden bg-white border-t border-gray-200">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">

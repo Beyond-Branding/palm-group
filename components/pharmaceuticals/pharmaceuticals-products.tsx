@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
-import { Search, FlaskConical, Filter } from "lucide-react"; // optional; remove if you don’t use lucide-react
+import { Search, FlaskConical, Filter } from "lucide-react"; 
 
 type PharmaItem = { name: string; category: "API" | "Intermediate" };
 
@@ -146,7 +146,6 @@ export function PharmaceuticalsProducts() {
   const [category, setCategory] = useState<"All" | "API" | "Intermediate">("All");
 
   const filtered = useMemo(() => {
-    // start with full list then apply letter/search filters
     let items = rawPharmaceuticals.slice();
 
     if (letter) {
@@ -158,20 +157,16 @@ export function PharmaceuticalsProducts() {
       items = items.filter((i) => i.name.toLowerCase().includes(s));
     }
 
-    // If a specific category selected — just filter + alpha sort
     if (category === "API" || category === "Intermediate") {
       const res = items.filter((i) => i.category === category).sort((a, b) => a.name.localeCompare(b.name));
       return res;
     }
 
-    // category === "All" => we want to show both types but interleaved so APIs appear often.
     const apis = items.filter((i) => i.category === "API").sort((a, b) => a.name.localeCompare(b.name));
     const intermediates = items.filter((i) => i.category === "Intermediate").sort((a, b) => a.name.localeCompare(b.name));
 
-    // Interleave the two lists so APIs and Intermediates both appear in the All view.
     const interleaved = interleaveArrays(apis, intermediates);
 
-    // Edge case: if one group is empty, return the other
     if (interleaved.length === 0) return [];
 
     return interleaved;
@@ -188,7 +183,6 @@ export function PharmaceuticalsProducts() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mt-0 mb-8 text-center">
           <div className="relative mx-auto max-w-4xl rounded-3xl border bg-card/60 p-8 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-card/50">
-            {/* brand accent bar */}
             <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-[#0E7C45] to-[#14A165] rounded-t-3xl" />
             <h3 className="text-2xl font-bold mb-3">Trusted Partner in Pharmaceutical Supply</h3>
             <p className="text-muted-foreground">
@@ -197,7 +191,6 @@ export function PharmaceuticalsProducts() {
           </div>
         </div>
 
-        {/* Header */}
         <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <h2 className="text-2xl font-semibold tracking-tight text-gray-900 flex items-center gap-2">
@@ -209,7 +202,6 @@ export function PharmaceuticalsProducts() {
             </p>
           </div>
 
-          {/* Controls */}
           <div className="w-full sm:w-auto flex flex-col sm:flex-row gap-2">
             <div className="relative w-full sm:w-72">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-gray-400" aria-hidden />
@@ -258,7 +250,6 @@ export function PharmaceuticalsProducts() {
           </div>
         </div>
 
-        {/* A–Z Filter */}
         <div className="mb-4 flex flex-wrap gap-1">
           <button
             onClick={() => setLetter(null)}
@@ -284,7 +275,6 @@ export function PharmaceuticalsProducts() {
           ))}
         </div>
 
-        {/* Mobile cards */}
         <div className="grid gap-3 sm:hidden">
           {filtered.map((item, idx) => (
             <div
@@ -306,7 +296,6 @@ export function PharmaceuticalsProducts() {
           ))}
         </div>
 
-        {/* Desktop table */}
         <div className="hidden sm:block overflow-hidden rounded-2xl border border-green-200 shadow-md">
           <div className="max-h-[70vh] overflow-y-auto">
             <table className="w-full text-left">
@@ -359,7 +348,7 @@ export function PharmaceuticalsProducts() {
               </tbody>
             </table>
           </div>
-          {/* Footer summary */}
+
           <div className="bg-green-50/60 px-5 py-3 text-sm text-gray-600 flex items-center justify-between">
             <span className="flex items-center gap-2">
               <FlaskConical className="size-4 text-green-700" aria-hidden />

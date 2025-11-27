@@ -25,7 +25,7 @@ const awards = [
       "Manufacturing and marketing of organic, eco-friendly and bio products for the agri-input and crop care industry.",
     icon: Shield,
     issuer: "TSN Certification Private Limited",
-    certificateUrl: "/ISO.jpg",
+    certificateUrl: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764227679/ISO_qxipqa.jpg",
   },
   {
     title: "Importer-Exporter Code (IEC)",
@@ -34,7 +34,7 @@ const awards = [
       "Government-issued registration that authorizes a business to legally import and export goods in India.",
     icon: Globe,
     issuer: "Directorate General of Foreign Trade (DGFT), Ministry of Commerce & Industry, Government of India",
-    certificateUrl: "/IEC.jpg",
+    certificateUrl: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764227736/IEC_rvotyp.jpg",
   },
   {
     title: "Drug License",
@@ -43,7 +43,7 @@ const awards = [
       "Government-issued license permitting the sale, stock, distribution of drugs by wholesale.",
     icon: FileCheck,
     issuer: "Food & Drug Administration, Maharashtra (FDA Maharashtra)",
-    certificateUrl: "/Drug.jpg",
+    certificateUrl: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764227774/Drug_df5iwu.jpg",
   },
   {
     title: "FSSAI Central License",
@@ -52,7 +52,7 @@ const awards = [
       "Government-authorized license issued under the Food Safety and Standards Act, 2006 that permits the business to operate in food-related activities such as import, retail, and distribution.",
     icon: Leaf,
     issuer: "Food Safety and Standards Authority of India (FSSAI)",
-    certificateUrl: "/Agri.jpg",
+    certificateUrl: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764227811/Agri_zvazty.jpg",
   },
   {
     title: "Bio-Stimulant Manufacturing License",
@@ -61,15 +61,13 @@ const awards = [
       "Government authorization issued for conducting business of bio-stimulants under the Fertilizer (Control) Order.",
     icon: Award,
     issuer: "Government of Maharashtra – Department of Agriculture",
-    certificateUrl: "/RCMC.jpg",
+    certificateUrl: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764227854/RCMC_aktgii.jpg",
   },
 ]
 
-// Top hero section (renamed to CertificationsHero and heading updated)
 export function CertificationsHero() {
   return (
     <section className="relative overflow-hidden bg-white">
-      {/* Full-width wavey green header */}
       <div className="absolute top-0 left-0 w-full h-50">
         <svg
           viewBox="0 0 1440 320"
@@ -77,12 +75,10 @@ export function CertificationsHero() {
           className="w-full h-full"
           preserveAspectRatio="none"
         >
-          {/* Main green wave */}
           <path
             d="M0,200 Q160,100 820,200 T1440,200 L1440,0 L0,0 Z"
             fill="#059c5b"
           />
-          {/* Optional darker overlay for depth */}
           <path
             d="M0,200 Q180,140 720,240 T1440,240 L1440,0 L0,0 Z"
             fill="#19703d"
@@ -103,7 +99,6 @@ export default function AwardsGrid() {
   const [open, setOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
 
-  // lightweight toast system (no external lib)
   const [toast, setToast] = useState<{ message: string; icon?: React.ReactNode } | null>(null)
   useEffect(() => {
     if (!toast) return
@@ -125,7 +120,6 @@ export default function AwardsGrid() {
 
   const shareLinkFor = useCallback(
     (award: (typeof awards)[number]) => {
-      // Prefer sharing the certificate itself. If you have a dedicated award route, swap this for that URL.
       const url = award.certificateUrl?.startsWith("http")
         ? award.certificateUrl
         : `${baseOrigin}${award.certificateUrl ?? ""}`
@@ -149,7 +143,6 @@ export default function AwardsGrid() {
         window.open(url, "_blank")
       }
     } catch (err) {
-      // Web Share API throws on user cancel or unsupported environments
       if (navigator.clipboard && url) {
         await navigator.clipboard.writeText(url)
         setToast({ message: "Share unavailable • Link copied", icon: <Copy className="h-4 w-4" /> })
@@ -163,10 +156,8 @@ export default function AwardsGrid() {
     <>
       <CertificationsHero />
 
-      {/* ---------- INSERTED: Commitment box directly after the wave (exact same markup) ---------- */}
       <div className="mt-8 text-center">
         <div className="relative mx-auto max-w-4xl rounded-3xl border bg-card/60 p-8 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-card/50">
-          {/* brand accent bar */}
           <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-[#0E7C45] to-[#14A165] rounded-t-3xl" />
           <h3 className="text-2xl font-bold mb-3">Our Commitment to Excellence</h3>
           <p className="text-muted-foreground">
@@ -176,15 +167,11 @@ export default function AwardsGrid() {
           </p>
         </div>
       </div>
-      {/* ---------- end inserted commitment box ---------- */}
 
-      <section className="relative py-24 overflow-hidden">
-        
+      <section className="relative py-24 overflow-hidden">    
           <div className="absolute inset-0 -z-10 bg-white" />
 
-
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {awards.map((award, index) => {
               const Icon = award.icon
@@ -193,10 +180,7 @@ export default function AwardsGrid() {
                   key={award.title}
                   className="group relative overflow-hidden rounded-2xl border-transparent bg-gradient-to-b from-background to-background/60 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-primary/30"
                 >
-                  {/* animated border gradient */}
                   <div className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity [background:linear-gradient(120deg,_#11915233,_transparent_30%,_transparent_70%,_#11915226)]" />
-
-                  {/* spotlight hover */}
                   <div className="pointer-events-none absolute -top-24 left-1/2 h-48 w-48 -translate-x-1/2 rounded-full opacity-0 group-hover:opacity-20 blur-2xl bg-[#119152]/40 transition-opacity" />
 
                   <CardContent className="relative p-6 text-center">
@@ -237,8 +221,6 @@ export default function AwardsGrid() {
           </div>
 
         </div>
-
-        {/* Toast */}
         {toast && (
           <div className="pointer-events-none fixed inset-x-0 top-4 z-50 flex justify-center">
             <div className="pointer-events-auto inline-flex items-center gap-2 rounded-full border bg-background/90 px-4 py-2 text-sm shadow-lg backdrop-blur">
@@ -248,7 +230,6 @@ export default function AwardsGrid() {
           </div>
         )}
 
-        {/* Dialog for certificate preview */}
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogContent className="max-w-3xl p-0">
             <DialogHeader className="px-6 pt-6">
@@ -261,7 +242,6 @@ export default function AwardsGrid() {
             <div className="px-6 pb-2">
               {activeAward?.certificateUrl ? (
                 <div className="overflow-hidden rounded-lg border">
-                  {/* If you use Next/Image, replace with <Image fill /> inside a relative container */}
                   <ScrollArea className="h-[60vh] w-full">
                     <img
                       src={activeAward.certificateUrl}
@@ -302,6 +282,4 @@ export default function AwardsGrid() {
     </>
   )
 }
-
-// For compatibility with named imports like: import { AwardsGrid } from "./awards-grid"
 export { AwardsGrid }

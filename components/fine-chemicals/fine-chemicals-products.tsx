@@ -71,21 +71,8 @@ export function FineChemicalsProducts() {
     <section className="py-12 bg-white w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Intro paragraph (right below hero) */}
-        {/* <div className="max-w-3xl mx-auto text-justify mb-8 sm:mb-10">
-          <div className="h-1 w-16 mx-auto mb-4 rounded-full bg-green-600" />
-          <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
-            Shah Scientific (India) is a leading supplier of laboratory chemicals, reagents
-            and fine chemicals. Serving companies, universities, research institutions, and
-            industrial R&amp;D labs since 1969, we provide top-grade chemicals that enable
-            accurate testing and innovation. Our customer-centric approach and dependable
-            supply chain make us a preferred partner for scientific needs across India.
-          </p>
-        </div> */}
-
         <div className="mt-0 mb-8 text-center">
         <div className="relative mx-auto max-w-4xl rounded-3xl border bg-card/60 p-8 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-card/50">
-          {/* brand accent bar */}
           <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-[#0E7C45] to-[#14A165] rounded-t-3xl" />
           <h3 className="text-2xl font-bold mb-3">Quality You Can Trust</h3>
           <p className="text-muted-foreground">
@@ -98,7 +85,6 @@ export function FineChemicalsProducts() {
         </div>
       </div>
 
-        {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-6">
           <div>
             <h2 className="text-2xl font-semibold text-gray-900 flex items-center gap-2">
@@ -108,7 +94,6 @@ export function FineChemicalsProducts() {
             <p className="text-sm text-gray-500">{fineChemicals.length} products available</p>
           </div>
 
-          {/* Search */}
           <div className="relative w-full sm:w-72">
             <Search className="size-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
@@ -120,7 +105,6 @@ export function FineChemicalsProducts() {
           </div>
         </div>
 
-        {/* A–Z Filter */}
         <div className="flex flex-wrap gap-1 mb-4">
           <button
             onClick={() => setLetter(null)}
@@ -146,7 +130,6 @@ export function FineChemicalsProducts() {
           ))}
         </div>
 
-        {/* Mobile Cards */}
         <div className="grid gap-3 sm:hidden">
           {filtered.map((item, idx) => (
             <div key={item.name} className="rounded-xl border p-4 bg-white shadow-sm">
@@ -156,7 +139,6 @@ export function FineChemicalsProducts() {
           ))}
         </div>
 
-        {/* Desktop Table */}
         <div className="hidden sm:block overflow-hidden rounded-2xl border border-green-200 shadow-md">
           <div className="overflow-y-auto max-h-[70vh]">
             <table className="w-full text-left">
@@ -190,7 +172,6 @@ export function FineChemicalsProducts() {
             </table>
           </div>
 
-          {/* Footer */}
           <div className="bg-green-50/80 px-5 py-3 text-sm text-gray-700 flex justify-between">
             Showing {filtered.length} of {fineChemicals.length}
             <button

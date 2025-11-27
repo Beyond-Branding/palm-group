@@ -28,18 +28,17 @@ export default function BusinessAreas() {
   };
 
   const products = [
-    { name: "GOLDEN DROP", color: "bg-[#0B5D3E]", icon: "/farm1.svg", image: "/golden drop-Photoroom shadow.png", dotColor: "rgba(255,255,255,0.06)", overlayColor: "rgba(0,0,0,0.25)" },
-    { name: "AG-F", color: "bg-[#F5C400]", icon: "/farm2.svg", image: "/agf-Photoroom (1).png", dotColor: "rgba(255,255,255,0.08)", overlayColor: "rgba(0,0,0,0.22)" },
-    { name: "AG-F SUPER PLUS", color: "bg-[#0057B7]", icon: "/farm3.svg", image: "/AG-F Superplus-Photoroom shadow.png", dotColor: "rgba(255,255,255,0.07)", overlayColor: "rgba(0,0,0,0.25)" },
-    { name: "CROP GIANT", color: "bg-[#C81E1E]", icon: "/farm4.svg", image: "/crop giant (1).png", dotColor: "rgba(255,255,255,0.07)", overlayColor: "rgba(0,0,0,0.25)" },
-    { name: "PALM SULF", color: "bg-[#E65100]", icon: "/farm1.svg", image: "/palmsulfnew.png", dotColor: "rgba(255,255,255,0.06)", overlayColor: "rgba(0,0,0,0.25)" },
-    { name: "CROPPER", color: "bg-[#4E342E]", icon: "/farm6.svg", image: "/croppernew.png", dotColor: "rgba(255,255,255,0.06)", overlayColor: "rgba(0,0,0,0.25)" },
-    { name: "CROPPER PLUS", color: "bg-[#D97706]", icon: "/farm7.svg", image: "/cropperplusnew.png", dotColor: "rgba(255,255,255,0.07)", overlayColor: "rgba(0,0,0,0.24)" },
-    { name: "SILICOSE", color: "bg-[#2563EB]", icon: "/farm8.svg", image: "/silicosenew.png", dotColor: "rgba(255,255,255,0.05)", overlayColor: "rgba(0,0,0,0.24)" },
+    { name: "GOLDEN DROP", color: "bg-[#0B5D3E]", icon: "/farm1.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173725/golden_drop-Photoroom_shadow_m9aigy.png", dotColor: "rgba(255,255,255,0.06)", overlayColor: "rgba(0,0,0,0.25)" },
+    { name: "AG-F", color: "bg-[#F5C400]", icon: "/farm2.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173812/agf-Photoroom_1_cmpcyy.png", dotColor: "rgba(255,255,255,0.08)", overlayColor: "rgba(0,0,0,0.22)" },
+    { name: "AG-F SUPER PLUS", color: "bg-[#0057B7]", icon: "/farm3.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173861/AG-F_Superplus-Photoroom_shadow_kdb8m9.png", dotColor: "rgba(255,255,255,0.07)", overlayColor: "rgba(0,0,0,0.25)" },
+    { name: "CROP GIANT", color: "bg-[#C81E1E]", icon: "/farm4.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173895/crop_giant_1_cs6nnn.png", dotColor: "rgba(255,255,255,0.07)", overlayColor: "rgba(0,0,0,0.25)" },
+    { name: "PALM SULF", color: "bg-[#E65100]", icon: "/farm1.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173960/palmsulfnew_ntrjwo.png", dotColor: "rgba(255,255,255,0.06)", overlayColor: "rgba(0,0,0,0.25)" },
+    { name: "CROPPER", color: "bg-[#4E342E]", icon: "/farm6.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174014/croppernew_qydobw.png", dotColor: "rgba(255,255,255,0.06)", overlayColor: "rgba(0,0,0,0.25)" },
+    { name: "CROPPER PLUS", color: "bg-[#D97706]", icon: "/farm7.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174140/cropperplusnew_gxqz3w.png", dotColor: "rgba(255,255,255,0.07)", overlayColor: "rgba(0,0,0,0.24)" },
+    { name: "SILICOSE", color: "bg-[#2563EB]", icon: "/farm8.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174176/silicosenew_t2zou5.png", dotColor: "rgba(255,255,255,0.05)", overlayColor: "rgba(0,0,0,0.24)" },
   ];
 
-  // Slider state & refs (RAF-driven duplicated-track loop)
-  const CARD_GAP = 16; // keeps same spacing as previous spaceBetween
+  const CARD_GAP = 16; 
   const STEP = CARD_WIDTH + CARD_GAP;
   const doubledProducts = useMemo(() => [...products, ...products], [products]);
 
@@ -52,10 +51,8 @@ export default function BusinessAreas() {
   const manualAnimatingRef = useRef<boolean>(false);
   const pauseTimeoutRef = useRef<number | null>(null);
 
-  // px per second (tweak to adjust continuous speed)
   const SPEED_PX_PER_SEC = 60;
 
-  // measure loop width (distance where second copy starts)
   useEffect(() => {
     const measure = () => {
       const track = trackRef.current;
@@ -78,14 +75,12 @@ export default function BusinessAreas() {
     };
   }, [products, CARD_WIDTH]);
 
-  // apply transform to track
   const applyTransform = (x: number) => {
     const track = trackRef.current;
     if (!track) return;
     track.style.transform = `translate3d(${-x}px, 0, 0)`;
   };
 
-  // RAF loop for continuous scrolling
   useEffect(() => {
     lastRef.current = performance.now();
 
@@ -120,7 +115,6 @@ export default function BusinessAreas() {
     };
   }, [products.length]);
 
-  // Helper to clear pause timer
   const clearPauseTimer = () => {
     if (pauseTimeoutRef.current) {
       window.clearTimeout(pauseTimeoutRef.current);
@@ -128,12 +122,10 @@ export default function BusinessAreas() {
     }
   };
 
-  // manual step navigation (left or right)
   const moveByStep = (direction: "left" | "right") => {
     const track = trackRef.current;
     if (!track) return;
 
-    // lock manual animation
     manualAnimatingRef.current = true;
     clearPauseTimer();
 
@@ -141,19 +133,14 @@ export default function BusinessAreas() {
     const delta = direction === "left" ? -STEP : STEP;
     let target = offsetRef.current + delta;
 
-    // wrap target into [0, loopPoint)
     while (target < 0) target += loopPoint;
     while (target >= loopPoint) target -= loopPoint;
 
-    // prepare transition
     track.style.transition = "";
     applyTransform(offsetRef.current);
-    // force reflow to ensure transition applies
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     track.offsetHeight;
     track.style.transition = "transform 420ms cubic-bezier(.22,.9,.26,1)";
 
-    // determine shortest visual path (account for wrapping)
     const directDist = Math.abs(target - offsetRef.current);
     const wrapDist = loopPoint - directDist;
     let visualTarget = target;
@@ -162,7 +149,6 @@ export default function BusinessAreas() {
       else visualTarget = target + loopPoint;
     }
 
-    // start visual transform
     applyTransform(visualTarget);
 
     const onTransEnd = () => {
@@ -172,7 +158,6 @@ export default function BusinessAreas() {
       applyTransform(offsetRef.current);
       manualAnimatingRef.current = false;
 
-      // pause auto-scrolling for 5s after manual navigation
       clearPauseTimer();
       pauseTimeoutRef.current = window.setTimeout(() => {
         pauseTimeoutRef.current = null;
@@ -181,7 +166,6 @@ export default function BusinessAreas() {
 
     track.addEventListener("transitionend", onTransEnd);
 
-    // safety fallback if transitionend doesn't fire
     window.setTimeout(() => {
       if (manualAnimatingRef.current) {
         track.removeEventListener("transitionend", onTransEnd);
@@ -197,7 +181,6 @@ export default function BusinessAreas() {
     }, 700);
   };
 
-  // clean up on unmount
   useEffect(() => {
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
@@ -205,7 +188,6 @@ export default function BusinessAreas() {
     };
   }, []);
 
-  // NEW: hide horizontal scrollbar at document level to prevent page overflow
   useEffect(() => {
     const prev = document.documentElement.style.overflowX;
     document.documentElement.style.overflowX = "hidden";
@@ -216,7 +198,6 @@ export default function BusinessAreas() {
 
   return (
     <section className="relative bg-white overflow-visible" style={{ paddingBottom: `${EXTRA_BOTTOM}px` }}>
-      {/* decorative wave behind */}
       <div aria-hidden style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: "120vw", maxWidth: "1600px", height: 220, overflow: "visible", zIndex: 0 }}>
         <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ width: "100%", height: "100%", display: "block" }}>
           <path d="M-80,200 Q200,100 820,200 T1520,200 L1520,0 L-80,0 Z" fill="#059c5b" />
@@ -232,9 +213,7 @@ export default function BusinessAreas() {
         <div
           ref={wrapperRef}
           onMouseEnter={() => {
-            // pause while pointer is over (keeps same Testimonial behavior)
             clearPauseTimer();
-            // long sentinel to indicate hover pause
             pauseTimeoutRef.current = window.setTimeout(() => {}, 1_000_000);
           }}
           onMouseLeave={() => {
@@ -245,7 +224,6 @@ export default function BusinessAreas() {
           }}
           className="relative z-20 mt-24 md:mt-28"
         >
-          {/* Prev button - visible on all screen sizes and vertically centered */}
           <button
             aria-label="Previous"
             onClick={() => moveByStep("left")}
@@ -255,7 +233,6 @@ export default function BusinessAreas() {
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M15 6L9 12l6 6" stroke="#0B8A44" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
           </button>
 
-          {/* Next button - visible on all screen sizes and vertically centered */}
           <button
             aria-label="Next"
             onClick={() => moveByStep("right")}
@@ -276,7 +253,6 @@ export default function BusinessAreas() {
                 const imageOutsidePx = Math.round(imageHeight * OUTSIDE_FRACTION) + extraOffsetPx;
                 const cssVars = { "--dot-color": product.dotColor, "--overlay-color": product.overlayColor } as React.CSSProperties;
 
-                // link to products page with product= query param
                 const productLink = `/products?product=${encodeURIComponent(product.name)}`;
 
                 return (

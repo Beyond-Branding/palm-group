@@ -15,7 +15,6 @@ export function ContactInfo() {
         </div>
 
         <div className="flex flex-col md:flex-row md:space-x-12">
-          {/* Left Side: Contact Cards */}
           <div className="md:w-1/2 space-y-6">
             <Card>
               <CardContent className="p-6">
@@ -112,7 +111,6 @@ export function ContactInfo() {
             </Card>
           </div>
 
-          {/* Right Side: Google Map */}
           <div className="md:w-1/2 mt-10 md:mt-0 h-[450px] rounded-xl overflow-hidden shadow-lg">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7334.713169687901!2d72.637466!3d23.193672000000003!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395c2a388ab6b67b%3A0xf91c34ff1f51a76a!2sPalm%20Group!5e0!3m2!1sen!2sus!4v1758964965108!5m2!1sen!2sus"

@@ -1,31 +1,23 @@
-// PlantWithProducts.tsx
 "use client";
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import Lottie from "lottie-react";
 import animationData from "../../public/Tomato plant.json";
 
-/* ------------------ USER TUNABLE CONSTANTS ------------------ */
-// Desktop default sticker size (unchanged)
-const DEFAULT_DESKTOP_SIZE = 190; // px (desktop)
-// Much smaller mobile size so pills/images don't overlap
-const DEFAULT_MOBILE_SIZE = 130; // px (mobile width < 768)
+const DEFAULT_DESKTOP_SIZE = 190; 
+const DEFAULT_MOBILE_SIZE = 130; 
 
-// Per-product sizes (px).
-// NOTE: set null so responsive size is used. If you set numbers here, they'll override responsive sizing.
-// Previously you had numbers here (200) which forced large images on mobile.
 const PRODUCT_SIZES: (number | null)[] = [
-  null, // product 0
-  null, // product 1
-  null, // product 2
-  null, // product 3
-  null, // product 4
-  null, // product 5
-  null, // product 6
-  null, // product 7
+  null, 
+  null, 
+  null, 
+  null, 
+  null, 
+  null, 
+  null, 
+  null, 
 ];
 
-// Desktop positions for each product (8 items)
 const POSITIONS_DESKTOP: { left: string; top: string }[] = [
   { left: "28%", top: "75%" }, // product 0 GOLDEN DROP
   { left: "12%", top: "58%" }, // product 1 AG-F
@@ -37,7 +29,6 @@ const POSITIONS_DESKTOP: { left: string; top: string }[] = [
   { left: "88%", top: "8%" },  // product 7 SILICOSE
 ];
 
-// Mobile-specific positions 
 const POSITIONS_MOBILE: { left: string; top: string }[] = [
   { left: "28%", top: "75%" }, // GOLDEN DROP
   { left: "10%", top: "35%" }, // AG-F
@@ -49,17 +40,15 @@ const POSITIONS_MOBILE: { left: string; top: string }[] = [
   { left: "90%", top: "-35%" }, // SILICOSE
 ];
 
-
-// Product image paths (order must match the above arrays)
 const PRODUCTS = [
-  "/golden drop-Photoroom shadow.png",
-  "/agf-Photoroom (1).png",
-  "/AG-F Superplus-Photoroom shadow.png",
-  "/crop giant (1).png",
-  "/palmsulfnew.png",
-  "/croppernew.png",
-  "/cropperplusnew.png",
-  "/silicosenew.png",
+  "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173725/golden_drop-Photoroom_shadow_m9aigy.png",
+  "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173812/agf-Photoroom_1_cmpcyy.png",
+  "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173861/AG-F_Superplus-Photoroom_shadow_kdb8m9.png",
+  "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173895/crop_giant_1_cs6nnn.png",
+  "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173960/palmsulfnew_ntrjwo.png",
+  "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174014/croppernew_qydobw.png",
+  "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174140/cropperplusnew_gxqz3w.png",
+  "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174176/silicosenew_t2zou5.png",
 ];
 
 const PRODUCT_NAMES = [
@@ -73,12 +62,10 @@ const PRODUCT_NAMES = [
   "SILICOSE",
 ];
 
-/* Timing & animation */
 const SHOW_GROUP_TIMINGS = [0.05, 0.10, 0.25, 0.35];
 const GROUP_STAGGER_MS = 80;
 const GROUP_VISIBLE_MS_EXTRA = 80;
 
-/* ---------------------- helper hooks ------------------------ */
 function useStickerSize() {
   const [size, setSize] = useState(() =>
     typeof window !== "undefined" && window.innerWidth < 768 ? DEFAULT_MOBILE_SIZE : DEFAULT_DESKTOP_SIZE
@@ -102,7 +89,6 @@ function useIsMobile(breakpoint = 768) {
   return isMobile;
 }
 
-/* -------------------- component ----------------------------- */
 export default function PlantWithProducts() {
   const STICKER_SIZE_RESPONSIVE = useStickerSize();
   const isMobile = useIsMobile();
@@ -110,7 +96,6 @@ export default function PlantWithProducts() {
   const timersRef = useRef<number[]>([]);
   const intervalRef = useRef<number | null>(null);
 
-  // compute lottie loop duration in ms (from animation data)
   const durationMs = useMemo(() => {
     try {
       const fr = (animationData as any).fr ?? 30;
@@ -123,7 +108,6 @@ export default function PlantWithProducts() {
     }
   }, []);
 
-  // schedule groups (pairs) to appear each loop
   useEffect(() => {
     const clearTimers = () => {
       timersRef.current.forEach((t) => clearTimeout(t));
@@ -132,14 +116,13 @@ export default function PlantWithProducts() {
 
     const scheduleCycle = () => {
       clearTimers();
-      setVisibleMap({}); // hide at cycle start
+      setVisibleMap({}); 
 
-      // exact pair order
       const pairs = [
-        [0, 4], // first
-        [1, 5], // then
-        [3, 7], // then
-        [2, 6], // last
+        [0, 4], 
+        [1, 5], 
+        [3, 7], 
+        [2, 6], 
       ];
 
       for (let groupIdx = 0; groupIdx < pairs.length; groupIdx++) {
@@ -156,14 +139,12 @@ export default function PlantWithProducts() {
         }
       }
 
-      // hide after the loop restarts
       const hideT = window.setTimeout(() => {
         setVisibleMap({});
       }, durationMs + GROUP_VISIBLE_MS_EXTRA);
       timersRef.current.push(hideT);
     };
 
-    // start repeating schedule
     scheduleCycle();
     intervalRef.current = window.setInterval(scheduleCycle, durationMs);
 
@@ -173,7 +154,6 @@ export default function PlantWithProducts() {
     };
   }, [durationMs]);
 
-  // cleanup on unmount
   useEffect(() => {
     return () => {
       timersRef.current.forEach((t) => clearTimeout(t));
@@ -181,32 +161,26 @@ export default function PlantWithProducts() {
     };
   }, []);
 
-  // helper: get size for product i (per-product size or responsive fallback)
   const getSizeFor = (i: number) => {
     const s = PRODUCT_SIZES[i];
     if (typeof s === "number" && s > 0) return s;
     return STICKER_SIZE_RESPONSIVE;
   };
 
-  // choose positions depending on mobile/desktop
   const positions = isMobile ? POSITIONS_MOBILE : POSITIONS_DESKTOP;
 
   return (
     <div className="relative w-full flex justify-center items-center py-8 bg-white">
       <div className="relative w-full max-w-[1100px] flex justify-center items-center">
-        {/* Lottie plant */}
         <div style={{ width: "100%", maxWidth: 820 }}>
           <Lottie animationData={animationData} loop autoplay style={{ width: "100%", height: "auto" }} />
         </div>
 
-        {/* stickers layer */}
         <div aria-hidden className="absolute inset-0 z-30">
           {positions.map((pos, i) => {
             const visible = Boolean(visibleMap[i]);
             const size = getSizeFor(i);
 
-            // container height includes extra space for the caption under the sticker
-            // on mobile we reserve slightly less vertical room
             const containerHeight = size + (isMobile ? 34 : 40);
 
             const baseStyle: React.CSSProperties = {
@@ -224,7 +198,7 @@ export default function PlantWithProducts() {
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "flex-start",
-              pointerEvents: "none", // keep stickers non-interactive
+              pointerEvents: "none",
             };
 
             return (
@@ -255,7 +229,6 @@ export default function PlantWithProducts() {
                   />
                 </div>
 
-                {/* caption pill: green background and white text */}
                 <div
                   style={{
                     marginTop: isMobile ? 8 : 8,
@@ -284,7 +257,6 @@ export default function PlantWithProducts() {
         </div>
       </div>
 
-      {/* extra small inline mobile CSS to ensure pills are smaller and centered on narrow screens */}
       <style>{`
         @media (max-width: 420px) {
           .absolute[aria-hidden] { /* no-op: just conservative selector to keep build happy */ }

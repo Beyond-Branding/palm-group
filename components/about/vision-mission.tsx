@@ -51,11 +51,9 @@ export function VisionMission() {
 
   return (
     <>
-      {/* ---------- SECTION 1 (image on right) ---------- */}
       <section className="relative bg-white overflow-hidden">
         <div className="mx-auto max-w-7xl px-6 md:px-0 py-16 md:py-20">
           <div className="grid grid-cols-1 md:grid-cols-12 items-center gap-10 md:gap-12">
-            {/* LEFT: TEXT */}
             <div
               ref={textRef1}
               className={[
@@ -77,8 +75,6 @@ export function VisionMission() {
                 Nurturing Those Who{" "}
                 <span className="text-green-600">Nurture the Earth</span>
               </h2>
-
-              {/* <-- UPDATED: paragraph sizing now matches your other components --> */}
               <p className="mt-5 text-gray-700 text-sm md:text-base leading-7 md:leading-8 max-w-prose">
                 At Palm Group, we believe farmers are the backbone of agriculture.
                 That’s why we empower them with innovative, organic, and non-toxic
@@ -89,7 +85,6 @@ export function VisionMission() {
               </p>
             </div>
 
-            {/* RIGHT: IMAGE (contained, reduced width) */}
             <div className="order-1 md:order-2 md:col-span-6 flex items-center">
               <div
                 ref={imgRef1}
@@ -100,7 +95,7 @@ export function VisionMission() {
                 ].join(" ")}
               >
                 <Image
-                  src="/vision.jpg"
+                  src="https://res.cloudinary.com/daoju0r3c/image/upload/v1764226033/vision_engobw.jpg"
                   alt="Farmers in the field"
                   fill
                   sizes="(min-width: 1024px) 50vw, 100vw"

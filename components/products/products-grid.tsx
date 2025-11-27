@@ -8,10 +8,8 @@ import { Facebook, Instagram, Share2 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import cropProtectionProducts, { CropProduct } from "@/lib/products";
 
-// ---- CONFIG: set your WhatsApp number (international format, no +, no spaces) ----
 const WHATSAPP_NUMBER = "918779083022";
 
-// Bold-phrases helper (unchanged)
 const BOLD_PHRASES = [
   "Golden Drop is ideal for a wide range of crops including:",
   "Crop Giant is ideal for a wide range of crops including:",
@@ -77,7 +75,6 @@ const ProductCards: React.FC<{ products: CropProduct[] }> = ({ products }) => {
         router.replace(url.pathname + url.search, { scroll: false });
       } catch {}
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedIndex]);
 
   function shareTo(platform: "facebook" | "whatsapp" | "instagram", title: string) {
