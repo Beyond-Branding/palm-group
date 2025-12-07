@@ -6,6 +6,13 @@ export type CropProduct = {
   backgroundHex: string;
   dotColor: string;
   overlayColor: string;
+  // optional sizing per product
+  imageSize?: {
+    paddingBottom?: string; // e.g. "115%" or "100%"
+    maxWidth?: string;      // e.g. "120%" or "100%"
+    maxHeight?: string;     // e.g. "120%" or "100%"
+    objectPosition?: string;// e.g. "right center"
+  };
 };
 
 export const cropProtectionProducts: CropProduct[] = [
@@ -19,6 +26,7 @@ export const cropProtectionProducts: CropProduct[] = [
     backgroundHex: "#0B5D3E",
     dotColor: "rgba(255,255,255,0.06)",
     overlayColor: "rgba(0,0,0,0.25)",
+    imageSize: { maxWidth: "130%", maxHeight: "130%", objectPosition: "right center" }
   },
   {
     name: "AG-F",
@@ -29,6 +37,7 @@ export const cropProtectionProducts: CropProduct[] = [
     backgroundHex: "#F5C400",
     dotColor: "rgba(255,255,255,0.08)",
     overlayColor: "rgba(0,0,0,0.22)",
+    imageSize: { maxWidth: "125%", maxHeight: "125%", objectPosition: "right center" }
   },
   {
     name: "AG-F SUPER PLUS",
@@ -40,6 +49,7 @@ export const cropProtectionProducts: CropProduct[] = [
     backgroundHex: "#0057B7",
     dotColor: "rgba(255,255,255,0.07)",
     overlayColor: "rgba(0,0,0,0.25)",
+    imageSize: { maxWidth: "85%", maxHeight: "85%", objectPosition: "right center" }
   },
   {
     name: "CROP GIANT",
@@ -51,6 +61,7 @@ export const cropProtectionProducts: CropProduct[] = [
     backgroundHex: "#C81E1E",
     dotColor: "rgba(255,255,255,0.07)",
     overlayColor: "rgba(0,0,0,0.25)",
+    imageSize: { maxWidth: "115%", maxHeight: "115%", objectPosition: "right center" }
   },
   {
     name: "PALM SULF",
@@ -61,6 +72,7 @@ export const cropProtectionProducts: CropProduct[] = [
     backgroundHex: "#E65100",
     dotColor: "rgba(255,255,255,0.06)",
     overlayColor: "rgba(0,0,0,0.25)",
+    imageSize: { maxWidth: "115%", maxHeight: "135%", objectPosition: "right center" }
   },
   {
     name: "CROPPER",
@@ -72,6 +84,7 @@ export const cropProtectionProducts: CropProduct[] = [
     backgroundHex: "#4E342E",
     dotColor: "rgba(255,255,255,0.06)",
     overlayColor: "rgba(0,0,0,0.25)",
+    imageSize: { maxWidth: "115%", maxHeight: "145%", objectPosition: "right center" }
   },
   {
     name: "CROPPER PLUS",

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
-import { Search, FlaskConical, Filter } from "lucide-react"; 
+import { Search, FlaskConical, Filter } from "lucide-react";
 
 type PharmaItem = { name: string; category: "API" | "Intermediate" };
 
@@ -162,14 +162,12 @@ export function PharmaceuticalsProducts() {
       return res;
     }
 
+    // For "All" — list ALL APIs first (sorted), then ALL Intermediates (sorted).
     const apis = items.filter((i) => i.category === "API").sort((a, b) => a.name.localeCompare(b.name));
     const intermediates = items.filter((i) => i.category === "Intermediate").sort((a, b) => a.name.localeCompare(b.name));
 
-    const interleaved = interleaveArrays(apis, intermediates);
-
-    if (interleaved.length === 0) return [];
-
-    return interleaved;
+    // Return apis first, then intermediates (no interleaving)
+    return [...apis, ...intermediates];
   }, [q, letter, category]);
 
   const counts = useMemo(() => {

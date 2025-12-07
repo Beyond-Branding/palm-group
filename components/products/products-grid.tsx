@@ -135,11 +135,11 @@ const ProductCards: React.FC<{ products: CropProduct[] }> = ({ products }) => {
                 <table className="w-full text-sm">
                   <tbody className="divide-y divide-[#1f6f3d]/20">
                     <tr>
-                      <td className="w-48 p-3 font-semibold text-[#1f6f3d]">Dosage</td>
+                      <td className="w-28 p-3 font-semibold text-[#1f6f3d]">Dosage</td>
                       <td className="p-3 text-neutral-800">{selectedProduct.targetPests}</td>
                     </tr>
                     <tr className="bg-[#e8f5e9]">
-                      <td className="w-48 p-3 font-semibold text-[#1f6f3d]">Usage/Crops</td>
+                      <td className="w-28 p-3 font-semibold text-[#1f6f3d]">Usage/Crops</td>
                       <td
                         className="p-3 text-neutral-800"
                         dangerouslySetInnerHTML={{
@@ -239,7 +239,7 @@ const ProductCards: React.FC<{ products: CropProduct[] }> = ({ products }) => {
               className="w-full cursor-pointer transition-all duration-300 rounded-lg border border-neutral-200 bg-transparent shadow-[0_2px_10px_rgba(0,0,0,0.05)] hover:border-neutral-900 hover:shadow-[0_10px_30px_rgba(0,0,0,0.15)] hover:-translate-y-0.5 overflow-hidden"
             >
               <div className="relative">
-                <div style={{ width: "100%", paddingBottom: "115%" }} className="relative">
+                <div style={{ width: "100%", paddingBottom: product.imageSize?.paddingBottom || "115%" }} className="relative">
                   <div className="absolute inset-0 rounded-lg" style={{ backgroundColor: product.backgroundHex }}>
                     <div
                       aria-hidden
@@ -264,8 +264,15 @@ const ProductCards: React.FC<{ products: CropProduct[] }> = ({ products }) => {
                       <img
                         src={product.image || "/placeholder.svg"}
                         alt={product.name}
-                        className="max-w-[120%] max-h-[120%] object-contain"
-                        style={{ filter: "drop-shadow(0 10px 18px rgba(0,0,0,0.18))" }}
+                        className="object-contain"
+                        style={{
+                          maxWidth: product.imageSize?.maxWidth ?? "120%",
+                          maxHeight: product.imageSize?.maxHeight ?? "120%",
+                          filter: "drop-shadow(0 10px 18px rgba(0,0,0,0.18))",
+                          objectPosition: product.imageSize?.objectPosition ?? "center",
+                          width: "auto",
+                          height: "auto",
+                        }}
                       />
                     </div>
                   </div>

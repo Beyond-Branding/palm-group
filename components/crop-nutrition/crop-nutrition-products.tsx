@@ -1,7 +1,8 @@
+// /components/ProductListingAndDetails.tsx
 "use client";
 
 import { useMemo, useState, useEffect } from "react";
-import { Search as SearchIcon } from "lucide-react";
+import { Search as SearchIcon, Facebook, Instagram, Share2 } from "lucide-react";
 import { FaWhatsapp as WhatsAppIcon } from "react-icons/fa";
 import { useSearchParams } from "next/navigation";
 
@@ -343,6 +344,42 @@ export default function ProductListingAndDetails() {
     setQuery("");
   };
 
+  function shareTo(platform: "facebook" | "whatsapp" | "instagram" | "generic", title: string) {
+    const url = typeof window !== "undefined" ? window.location.href : "";
+    const text = `${title} — check this out: ${url}`;
+    const encURL = encodeURIComponent(url);
+    const encText = encodeURIComponent(text);
+
+    if (platform === "facebook") {
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${encURL}`, "_blank");
+      return;
+    }
+
+    if (platform === "whatsapp") {
+      window.open(`https://wa.me/?text=${encText}`, "_blank");
+      return;
+    }
+
+    if (platform === "instagram") {
+      if ((navigator as any).share) {
+        (navigator as any).share({ title, text, url }).catch(() => {
+          alert("Instagram sharing isn’t available via direct web links. Copy the URL to share.");
+        });
+      } else {
+        alert("Instagram sharing isn’t available via direct web links. Copy the URL to share.");
+      }
+      return;
+    }
+
+    // generic
+    if ((navigator as any).share) {
+      (navigator as any).share({ title, text, url }).catch(() => {});
+    } else {
+      navigator.clipboard?.writeText(url);
+      alert("Link copied!");
+    }
+  }
+
   if (selectedProduct) {
     return (
       <section className="pt-6 pb-12 md:pb-16 bg-white min-h-screen">
@@ -364,7 +401,7 @@ export default function ProductListingAndDetails() {
                 />
               </div>
 
-              <div className="mt-5">
+              <div className="mt-5 flex flex-col items-center gap-3">
                 <a
                   href={`https://wa.me/918779083022?text=Hi! I want to book this product ${encodeURIComponent(
                     selectedProduct.name
@@ -376,10 +413,48 @@ export default function ProductListingAndDetails() {
                   <WhatsAppIcon className="h-5 w-5" />
                   Buy Now
                 </a>
+
+                {/* Share now row */}
+                <div className="w-full max-w-[380px]">
+                  <div className="mt-4 text-sm font-semibold text-neutral-800 mb-2 text-center">Share now</div>
+                  <div className="flex items-center gap-3">
+                    <button
+                      onClick={() => shareTo("facebook", selectedProduct.name)}
+                      title="Share on Facebook"
+                      className="rounded-full border border-[#1f6f3d] p-2 hover:bg-[#e8f5e9] transition"
+                    >
+                      <Facebook className="h-5 w-5 text-[#1f6f3d]" />
+                    </button>
+
+                    <button
+                      onClick={() => shareTo("instagram", selectedProduct.name)}
+                      title="Share on Instagram"
+                      className="rounded-full border border-[#1f6f3d] p-2 hover:bg-[#e8f5e9] transition"
+                    >
+                      <Instagram className="h-5 w-5 text-[#1f6f3d]" />
+                    </button>
+
+                    <button
+                      onClick={() => shareTo("whatsapp", selectedProduct.name)}
+                      title="Share on WhatsApp"
+                      className="rounded-full border border-[#1f6f3d] p-2 hover:bg-[#e8f5e9] transition"
+                    >
+                      <WhatsAppIcon className="h-5 w-5 text-[#1f6f3d]" />
+                    </button>
+
+                    <button
+                      onClick={() => shareTo("generic", selectedProduct.name)}
+                      title="Share"
+                      className="rounded-full border border-[#1f6f3d] p-2 hover:bg-[#e8f5e9] transition"
+                    >
+                      <Share2 className="h-5 w-5 text-[#1f6f3d]" />
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div className="text-sm md:text-base"> 
+            <div className="text-sm md:text-base">
               <h1 className="text-3xl md:text-4xl font-extrabold text-[#1b5e20] mb-4">
                 {selectedProduct.name}
               </h1>
@@ -397,22 +472,25 @@ export default function ProductListingAndDetails() {
                 </ul>
               </div>
 
-              <div className="mb-6">
-                <h3 className="text-lg font-semibold text-gray-800 mb-2">Recommended Dosage</h3>
-                <p className="text-gray-700" style={{ textAlign: "justify" }}>
-                  {selectedProduct.dosage}
-                </p>
-              </div>
-
-              <div className="mb-6">
-                <h3 className="text-lg font-semibold text-gray-800 mb-2">Where to Use</h3>
-                <p
-                  className="text-gray-700"
-                  style={{ textAlign: "justify" }}
-                  dangerouslySetInnerHTML={{
-                    __html: highlightPhrases(selectedProduct.usage, BOLD_PHRASES),
-                  }}
-                />
+              {/* Table below Key Benefits */}
+              <div className="mb-6 overflow-hidden rounded-xl border border-[#1f6f3d]/30">
+                <table className="w-full text-sm">
+                  <tbody className="divide-y divide-[#1f6f3d]/20">
+                    <tr>
+                      <td className="w-28 p-3 font-semibold text-[#1f6f3d]">Dosage</td>
+                      <td className="p-3 text-neutral-800">{selectedProduct.dosage}</td>
+                    </tr>
+                    <tr className="bg-[#e8f5e9]">
+                      <td className="w-28 p-3 font-semibold text-[#1f6f3d]">Usage/Crops</td>
+                      <td
+                        className="p-3 text-neutral-800"
+                        dangerouslySetInnerHTML={{
+                          __html: highlightPhrases(selectedProduct.usage, BOLD_PHRASES),
+                        }}
+                      />
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
