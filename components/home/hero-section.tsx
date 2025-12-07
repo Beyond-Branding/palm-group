@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/autoplay";
 import { Autoplay } from "swiper/modules";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const slides = [
   {
@@ -29,13 +30,36 @@ const slides = [
 
 export function HeroSection() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const swiperRef = useRef<any | null>(null);
+
   const BG_COLOR = "#00712D";
   const FADE_POINT = 60;
   const GREEN = "7,113,45";
 
   return (
     <section className="w-full relative" style={{ backgroundColor: BG_COLOR }}>
+      {/* LEFT / RIGHT ARROWS placed relative to the whole section so they sit at the extreme sides */}
+      <button
+        type="button"
+        onClick={() => swiperRef.current?.slidePrev()}
+        aria-label="Previous slide"
+        className="absolute left-2 lg:left-4 top-1/2 -translate-y-1/2 z-50 flex items-center justify-center h-12 w-12 rounded-full bg-black/40 hover:bg-black/60 transition shadow-lg border border-white/20"
+      >
+        <ChevronLeft className="h-6 w-6 text-white" />
+      </button>
+
+      <button
+        type="button"
+        onClick={() => swiperRef.current?.slideNext()}
+        aria-label="Next slide"
+        className="absolute right-2 lg:right-4 top-1/2 -translate-y-1/2 z-50 flex items-center justify-center h-12 w-12 rounded-full bg-black/40 hover:bg-black/60 transition shadow-lg border border-white/20"
+      >
+        <ChevronRight className="h-6 w-6 text-white" />
+      </button>
+
+      {/* HERO LAYOUT */}
       <div className="relative w-full min-h-[520px] lg:min-h-[720px] flex flex-col-reverse lg:flex-row">
+        {/* TEXT (left column) */}
         <div className="w-full lg:w-[40%] px-6 md:px-12 lg:px-16 py-12 md:py-20 lg:py-44 z-20 relative flex items-center justify-center">
           <div className="max-w-[520px] text-white text-center lg:text-left">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight mb-5">
@@ -47,8 +71,10 @@ export function HeroSection() {
           </div>
         </div>
 
+        {/* IMAGE / SWIPER (right column) */}
         <div className="relative w-full lg:w-[60%] h-[300px] sm:h-[420px] lg:h-auto">
           <div className="relative w-full h-full">
+            {/* gradient overlay (kept pointer-events-none so it doesn't block arrows) */}
             <div
               aria-hidden
               className="absolute inset-0 z-10 pointer-events-none hidden lg:block"
@@ -66,11 +92,15 @@ export function HeroSection() {
               }}
             />
 
+            {/* Swiper instance */}
             <Swiper
               modules={[Autoplay]}
               autoplay={{ delay: 3500, disableOnInteraction: false }}
               loop
               onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+              onSwiper={(swiper) => {
+                swiperRef.current = swiper;
+              }}
               className="w-full h-full"
             >
               {slides.map((s, i) => (

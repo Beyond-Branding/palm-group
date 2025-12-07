@@ -62,15 +62,7 @@ export function VisionMission() {
                 "transition-all duration-700 ease-out will-change-transform",
               ].join(" ")}
             >
-              <div
-                aria-hidden
-                className="mb-6 h-[6px] w-40"
-                style={{
-                  backgroundImage: "radial-gradient(currentColor 1px, transparent 1px)",
-                  backgroundSize: "8px 6px",
-                  color: "#94a3b8",
-                }}
-              />
+              
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900">
                 Nurturing Those Who{" "}
                 <span className="text-green-600">Nurture the Earth</span>

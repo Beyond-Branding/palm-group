@@ -254,14 +254,12 @@ export default function PalmVerticalTimelineExact() {
             <div
   className="text-green-600 font-extrabold leading-none pl-1.5"
   style={{
-    fontSize:
-      ordered[active]?.year === "2000s"
-        ? "clamp(1.45rem, 3.9vw, 2.2rem)"
-        : "clamp(1.5rem, 4vw, 2.4rem)",
+    fontSize: "clamp(1.5rem, 4vw, 2.0rem)",
   }}
 >
   {ordered[active]?.year}
 </div>
+
 
           </div>
         </aside>
