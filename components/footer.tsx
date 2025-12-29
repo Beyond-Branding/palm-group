@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Facebook, Linkedin, Youtube, Instagram } from "lucide-react";
+import { awards } from "@/lib/awards";
+
 
 export function Footer() {
   return (
@@ -7,14 +9,32 @@ export function Footer() {
       <div className="border-t-4 border-[#119152] bg-[#f7f7f7]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-            <div className="lg:col-span-4">
-              <p className="text-gray-700 text-sm leading-relaxed">
-                Palm International delivers high-efficiency crop nutrition and protection
-                products to improve crop health, enhance productivity, and maximise potential
-                for farmers. We combine sustainable practices with science-backed formulations
-                to support farmers worldwide.
-              </p>
-            </div>
+            <div className="lg:col-span-4 space-y-4">
+  <p className="text-gray-700 text-sm leading-relaxed">
+    Palm International delivers high-efficiency crop nutrition and protection
+    products to improve crop health, enhance productivity, and maximise potential
+    for farmers. We combine sustainable practices with science-backed formulations
+    to support farmers worldwide.
+  </p>
+
+  {/* Awards / Certifications */}
+  <div className="flex flex-wrap items-center gap-3 pt-2">
+    {awards.map((award) => {
+      const Icon = award.icon;
+      return (
+        <Link
+          key={award.title}
+          href="/awards"
+          aria-label={award.title}
+          className="group flex items-center justify-center h-12 w-12 rounded-full bg-[#119152]/10 hover:bg-[#119152]/20 transition"
+        >
+          <Icon className="h-5 w-5 text-[#119152] group-hover:scale-110 transition-transform" />
+        </Link>
+      );
+    })}
+  </div>
+</div>
+
             <div className="lg:col-start-5 lg:col-span-2 mt-6 lg:mt-0 lg:pl-6">
               <ul className="space-y-2 text-gray-700 text-sm">
                 <li><Link href="/" className="hover:underline">Home</Link></li>

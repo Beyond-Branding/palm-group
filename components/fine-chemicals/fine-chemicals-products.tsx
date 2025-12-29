@@ -70,7 +70,9 @@ export function FineChemicalsProducts() {
   return (
     <section className="py-12 bg-white w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
+      <h1 className="relative -top-6 text-xl md:text-3xl font-extrabold text-[#388e3c] tracking-tight">
+          Shah Scientific (India)
+      </h1>
         <div className="mt-0 mb-8 text-center">
         <div className="relative mx-auto max-w-4xl rounded-3xl border bg-card/60 p-8 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-card/50">
           <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-[#0E7C45] to-[#14A165] rounded-t-3xl" />

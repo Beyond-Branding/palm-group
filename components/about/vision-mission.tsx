@@ -87,7 +87,7 @@ export function VisionMission() {
                 ].join(" ")}
               >
                 <Image
-                  src="https://res.cloudinary.com/daoju0r3c/image/upload/v1764226033/vision_engobw.jpg"
+                  src="https://res.cloudinary.com/daoju0r3c/image/upload/v1767018826/Anar-Pomegranate1_kgkix2.jpg"
                   alt="Farmers in the field"
                   fill
                   sizes="(min-width: 1024px) 50vw, 100vw"

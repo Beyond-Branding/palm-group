@@ -40,6 +40,18 @@ const POSITIONS_MOBILE: { left: string; top: string }[] = [
   { left: "90%", top: "-35%" }, // SILICOSE
 ];
 
+const LABEL_OFFSET_DESKTOP: number[] = [
+  -30, // GOLDEN DROP
+  -25,  // AG-F
+  -10, // AG-F SUPER PLUS
+  -20, // CROP GIANT
+  -30, // PALM SULF
+  -30,  // CROPPER
+  -25, // CROPPER PLUS
+  -25, // SILICOSE
+];
+
+
 const PRODUCTS = [
   "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173725/golden_drop-Photoroom_shadow_m9aigy.png",
   "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173812/agf-Photoroom_1_cmpcyy.png",
@@ -230,25 +242,26 @@ export default function PlantWithProducts() {
                 </div>
 
                 <div
-                  style={{
-                    marginTop: isMobile ? 8 : 8,
-                    minWidth: Math.max(92, size * 0.6),
-                    padding: isMobile ? "6px 10px" : "6px 12px",
-                    background: "#0B5D3E",
-                    borderRadius: 999,
-                    boxShadow: "0 6px 20px rgba(0,0,0,0.08)",
-                    textAlign: "center",
-                    fontSize: isMobile ? 12 : 13,
-                    fontWeight: 700,
-                    color: "#ffffff",
-                    pointerEvents: "auto",
-                    whiteSpace: "nowrap",
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                    transform: isMobile ? "translateY(0)" : undefined,
-                  }}
-                  title={PRODUCT_NAMES[i]}
-                >
+  style={{
+    marginTop: isMobile ? 6 : 4,
+    minWidth: Math.max(92, size * 0.6),
+    padding: isMobile ? "6px 10px" : "6px 12px",
+    background: "#0B5D3E",
+    borderRadius: 999,
+    boxShadow: "0 6px 20px rgba(0,0,0,0.08)",
+    textAlign: "center",
+    fontSize: isMobile ? 12 : 13,
+    fontWeight: 700,
+    color: "#ffffff",
+    pointerEvents: "auto",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    transform: isMobile
+  ? "translateY(0)"
+  : `translateY(${LABEL_OFFSET_DESKTOP[i] ?? 0}px)`,
+  }}
+>                
                   {PRODUCT_NAMES[i]}
                 </div>
               </div>

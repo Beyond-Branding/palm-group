@@ -50,25 +50,25 @@ const SECTIONS: Section[] = [
           Palm International introduced a portfolio of specialized agri-inputs designed to solve specific crop challenges and improve farmer profitability. Each product combines innovation with sustainability:
         </p>
         <p>
-          Golden Drop – a protein hydrolysate–based organic biostimulant that boosts flowering, reduces flower drop.
+          <strong>Golden Drop</strong> – a protein hydrolysate–based organic biostimulant that boosts flowering, reduces flower drop.
         </p>
         <p>
-          AG-F – a premium non-ionic sticker, spreader, activator, and adjuvant that enhances the performance of pesticides, micronutrients, and plant growth regulators.
+          <strong>AG-F</strong> – a premium non-ionic sticker, spreader, activator, and adjuvant that enhances the performance of pesticides, micronutrients, and plant growth regulators.
         </p>
         <p>
-          AG-F Super Plus – an advanced silicon-based sticker, spreader, activator, and adjuvant, delivering superior spreading, rain resistance, and enhanced nutrient absorption.
+          <strong>AG-F Super Plus</strong> – an advanced silicon-based sticker, spreader, activator, and adjuvant, delivering superior spreading, rain resistance, and enhanced nutrient absorption.
         </p>
         <p>
-          Crop Giant – a plant nutrient solution developed based on the carbohydrate theory to prevent berry dropping and fruit cracking, while improving sugar content, storage quality, and improves fruit set.
+          <strong>Crop Giant</strong> – a plant nutrient solution developed based on the carbohydrate theory to prevent berry dropping and fruit cracking, while improving sugar content, storage quality, and improves fruit set.
         </p>
         <p>
-          Palm Sulf – an organic liquid sulfur, effective in controlling mites and fungal diseases while correcting sulfur deficiencies in crops.
+          <strong>Palm Sulf</strong> – an organic liquid sulfur, effective in controlling mites and fungal diseases while correcting sulfur deficiencies in crops.
         </p>
         <p>
-          Silicose – a concentrated secondary plant nutrient source for silica, which strengthens plant cell walls, improves disease resistance, and enhances stress tolerance.
+          <strong>Silicose</strong> – a concentrated secondary plant nutrient source for silica, which strengthens plant cell walls, improves disease resistance, and enhances stress tolerance.
         </p>
         <p>
-          Cropper 6%, Cropper Plus 12%, and Cropper Granules – humic acid-based soil health solutions that improve soil fertility, water-holding capacity, and nutrient uptake.
+          <strong>Cropper 6%, Cropper Plus 12%, and Cropper Granules</strong> – humic acid-based soil health solutions that improve soil fertility, water-holding capacity, and nutrient uptake.
         </p>
         <p>
           Each product was carefully researched and developed to address specific crop challenges, ensuring better yield, crop quality, and profitability for farmers.
@@ -232,7 +232,7 @@ export default function PalmVerticalTimelineExact() {
               <div
   key={s.id}
   ref={(el) => (itemRefs.current[i] = el)}
-  className="py-16"
+  className="py-4 md:py-6"
 >
                 <article className="max-w-3xl">
 
