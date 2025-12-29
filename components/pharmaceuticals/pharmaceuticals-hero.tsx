@@ -21,7 +21,7 @@ export function PharmaceuticalsHero() {
         </div>
      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-12 pt-12 pb-24">
           <h1 className="text-4xl mid:text-6xl font-bold text-white">
-          Palm Pharmachem
+          Pharmaceuticals
           </h1>
         </div>
       </section>

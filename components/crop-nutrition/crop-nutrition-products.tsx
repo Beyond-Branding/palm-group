@@ -30,6 +30,12 @@ const products = [
     backgroundHex: "#DFF2EA",
     dotColor: "rgba(255,255,255,0.06)",
     overlayColor: "rgba(0,0,0,0.25)",
+    imageStyle: {
+    maxWidth: "120%",
+    maxHeight: "115%",
+    objectPosition: "right center",
+    translateY: "2%",
+  },
   },
   {
     name: "AG-F",
@@ -55,6 +61,12 @@ const products = [
     backgroundHex: "#FFF3C4",
     dotColor: "rgba(255,255,255,0.08)",
     overlayColor: "rgba(0,0,0,0.22)",
+    imageStyle: {
+    maxWidth: "115%",
+    maxHeight: "115%",
+    objectPosition: "right center",
+    translateY: "2%",
+  },
   },
   {
     name: "AG-F SUPER PLUS",
@@ -81,6 +93,12 @@ const products = [
     backgroundHex: "#D6E8FF",
     dotColor: "rgba(255,255,255,0.07)",
     overlayColor: "rgba(0,0,0,0.25)",
+    imageStyle: {
+    maxWidth: "65%",
+    maxHeight: "115%",
+    objectPosition: "right center",
+    translateY: "-2%",
+  },
   },
   {
     name: "CROP GIANT",
@@ -107,6 +125,12 @@ const products = [
     backgroundHex: "#FADDDD",
     dotColor: "rgba(255,255,255,0.07)",
     overlayColor: "rgba(0,0,0,0.25)",
+    imageStyle: {
+    maxWidth: "105%",
+    maxHeight: "115%",
+    objectPosition: "right center",
+    translateY: "-2%",
+  },
   },
   {
     name: "PALM SULF",
@@ -131,6 +155,12 @@ const products = [
     backgroundHex: "#FFE3D1",
     dotColor: "rgba(255,255,255,0.06)",
     overlayColor: "rgba(0,0,0,0.25)",
+    imageStyle: {
+    maxWidth: "110%",
+    maxHeight: "115%",
+    objectPosition: "right center",
+    translateY: "7%",
+  },
   },
   {
     name: "CROPPER",
@@ -156,6 +186,12 @@ const products = [
     backgroundHex: "#E8DAD6",
     dotColor: "rgba(255,255,255,0.06)",
     overlayColor: "rgba(0,0,0,0.25)",
+    imageStyle: {
+    maxWidth: "120%",
+    maxHeight: "115%",
+    objectPosition: "right center",
+    translateY: "7%",
+  },
   },
   {
     name: "CROPPER PLUS",
@@ -182,6 +218,12 @@ const products = [
     backgroundHex: "#FFE8C7",
     dotColor: "rgba(255,255,255,0.07)",
     overlayColor: "rgba(0,0,0,0.24)",
+    imageStyle: {
+    maxWidth: "110%",
+    maxHeight: "110%",
+    objectPosition: "right center",
+    translateY: "3%",
+  },
   },
   {
     name: "SILICOSE",
@@ -206,6 +248,12 @@ const products = [
     backgroundHex: "#E0E9FF",
     dotColor: "rgba(255,255,255,0.05)",
     overlayColor: "rgba(0,0,0,0.24)",
+    imageStyle: {
+    maxWidth: "110%",
+    maxHeight: "110%",
+    objectPosition: "right center",
+    translateY: "7%",
+  },
   },
   {
     name: "CROPPER GRANULES",
@@ -230,6 +278,12 @@ const products = [
     backgroundHex: "#E6F8EC",
     dotColor: "rgba(255,255,255,0.05)",
     overlayColor: "rgba(0,0,0,0.24)",
+    imageStyle: {
+    maxWidth: "90%",
+    maxHeight: "90%",
+    objectPosition: "right center",
+    translateY: "3%",
+  },
   },
 ];
 
@@ -403,16 +457,6 @@ export default function ProductListingAndDetails() {
 
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
-  const [query, setQuery] = useState("");
-  const [cropsOpen, setCropsOpen] = useState(false);
-  const [selectedCrops, setSelectedCrops] = useState<string[]>([]);
-  const [groupOpen, setGroupOpen] = useState<Record<string, boolean>>(
-    Object.keys(CROPS_BY_GROUP).reduce(
-      (acc, g) => ((acc[g] = false), acc),
-      {} as Record<string, boolean>
-    )
-  );
-
   const selectedProduct = selectedIndex !== null ? products[selectedIndex] : null;
   useEffect(() => {
     if (!productQuery) return;
@@ -438,21 +482,6 @@ export default function ProductListingAndDetails() {
       }, 50);
     }
   }, [selectedProduct]);
-
-  const filteredProducts = useMemo(() => {
-    return products.filter((p) => {
-      if (!productMatchesQuery(p, query)) return false;
-      if (selectedCrops.length === 0) return true;
-
-      const pCrops = productCropsCanonical(p).map((c) => normalize(c));
-      return selectedCrops.some((c) => pCrops.includes(normalize(c)));
-    });
-  }, [query, selectedCrops]);
-
-  const clearFilters = () => {
-    setSelectedCrops([]);
-    setQuery("");
-  };
 
   function shareTo(platform: "facebook" | "whatsapp" | "instagram" | "generic", title: string) {
     const url = typeof window !== "undefined" ? window.location.href : "";
@@ -675,122 +704,15 @@ export default function ProductListingAndDetails() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 md:mt-12 lg:mt-16 pb-12 md:pb-20">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-          <aside className="md:col-span-3">
-            <button
-              className="w-full flex items-center justify-between py-2"
-              onClick={() => setCropsOpen((v) => !v)}
-              aria-expanded={cropsOpen}
-              aria-controls="crops-panel"
-            >
-              <span className="text-base font-semibold text-gray-800">Crops</span>
-              <span className="text-gray-600 text-xl leading-none select-none">
-                {cropsOpen ? "–" : "+"}
-              </span>
-            </button>
-            <div className="h-px bg-gray-200" />
+        <div>
+          
 
-            {cropsOpen && (
-              <div id="crops-panel" className="mt-3 space-y-2">
-                {Object.entries(CROPS_BY_GROUP).map(([group, crops]) => (
-                  <div key={group} className="pb-1">
-                    <button
-                      className="w-full flex items-center justify-between py-2 pl-1"
-                      onClick={() =>
-                        setGroupOpen((prev) => ({ ...prev, [group]: !prev[group] }))
-                      }
-                      aria-expanded={!!groupOpen[group]}
-                      aria-controls={`group-${group}`}
-                    >
-                      <span className="text-sm font-semibold text-gray-800">{group}</span>
-                      <span className="text-gray-500 text-lg leading-none select-none">
-                        {groupOpen[group] ? "–" : "+"}
-                      </span>
-                    </button>
+        
 
-                    {groupOpen[group] && (
-                      <div id={`group-${group}`} className="ml-2 mt-1 space-y-2">
-                        {crops.map((crop) => {
-                          const checked = selectedCrops.includes(crop);
-                          return (
-                            <label
-                              key={crop}
-                              className="flex items-center gap-3 text-sm text-gray-700 cursor-pointer pl-2"
-                            >
-                              <input
-                                type="checkbox"
-                                className="h-4 w-4 rounded border-gray-300 text-[#2e7d32] focus:ring-[#2e7d32]"
-                                checked={checked}
-                                onChange={(e) => {
-                                  setSelectedCrops((prev) =>
-                                    e.target.checked
-                                      ? [...prev, crop]
-                                      : prev.filter((c) => c !== crop)
-                                  );
-                                }}
-                              />
-                              <span>{crop}</span>
-                            </label>
-                          );
-                        })}
-                      </div>
-                    )}
-                  </div>
-                ))}
+            
 
-                {selectedCrops.length > 0 && (
-                  <button
-                    onClick={() => setSelectedCrops([])}
-                    className="mt-3 text-xs text-gray-500 underline underline-offset-2"
-                  >
-                    Clear crops
-                  </button>
-                )}
-              </div>
-            )}
-          </aside>
-
-          <div className="md:col-span-9">
-            {selectedCrops.length > 0 && (
-              <div className="mb-3 flex flex-wrap gap-2">
-                {selectedCrops.map((c) => (
-                  <span
-                    key={c}
-                    className="inline-flex items-center rounded-full bg-[#e8f5e9] border border-[#2e7d32]/30 px-2 py-0.5 text-xs text-[#2e7d32]"
-                  >
-                    {c}
-                    <button
-                      className="ml-1 text-[#2e7d32]/70 hover:text-[#2e7d32]"
-                      onClick={() => setSelectedCrops((prev) => prev.filter((x) => x !== c))}
-                      aria-label={`Remove ${c}`}
-                    >
-                      ×
-                    </button>
-                  </span>
-                ))}
-                <button
-                  className="text-xs text-gray-500 underline underline-offset-2"
-                  onClick={clearFilters}
-                >
-                  Clear all
-                </button>
-              </div>
-            )}
-
-            <div className="mb-6 flex items-center gap-3">
-              <div className="relative flex-1">
-                <input
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  placeholder="Type a product name, crop, key target or details"
-                  className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-[#2e7d32]"
-                />
-                <SearchIcon className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-12">
-              {filteredProducts.map((product) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12">
+              {products.map((product) => (
                 <div
                   key={product.name}
                   className="group cursor-pointer"
@@ -826,28 +748,29 @@ export default function ProductListingAndDetails() {
 
                         <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
                           <img
-                            src={product.image || "/placeholder.svg"}
-                            alt={product.name}
-                            className="max-w-[100%] max-h-[100%] object-contain"
-                            style={{ filter: "drop-shadow(0 10px 18px rgba(0,0,0,0.18))" }}
-                          />
+  src={product.image || "/placeholder.svg"}
+  alt={product.name}
+  className="object-contain transition-all duration-300"
+  style={{
+    maxWidth: product.imageStyle?.maxWidth ?? "100%",
+    maxHeight: product.imageStyle?.maxHeight ?? "100%",
+    objectPosition: product.imageStyle?.objectPosition ?? "center",
+    transform: product.imageStyle?.translateY
+      ? `translateY(${product.imageStyle.translateY})`
+      : undefined,
+    filter: "drop-shadow(0 10px 18px rgba(0,0,0,0.18))",
+  }}
+/>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <h3 className="mt-4 text-2xl font-extrabold tracking-tight text-gray-900">
+                  <h3 className="mt-4 text-2xl font-extrabold tracking-tight text-gray-900 text-center">
                     {product.name}
                   </h3>
                 </div>
               ))}
             </div>
-
-            {filteredProducts.length === 0 && (
-              <div className="mt-10 rounded-xl border border-dashed border-gray-300 p-10 text-center text-gray-500">
-                No products match your search or crop filter.
-              </div>
-            )}
-          </div>
         </div>
       </div>
     </section>
