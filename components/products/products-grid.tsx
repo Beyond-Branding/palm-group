@@ -17,6 +17,7 @@ const BOLD_PHRASES = [
   "Cropper is ideal for a wide range of crops including:",
   "Cropper Plus is ideal for a wide range of crops including:",
   "Silicose is ideal for a wide range of crops including:",
+  "Cropper Granules is ideal for a wide range of crops including:"
 ];
 
 function escapeHtml(str: string) {
@@ -280,8 +281,8 @@ const ProductCards: React.FC<{ products: CropProduct[] }> = ({ products }) => {
               </div>
             </div>
 
-            <div className="pt-4">
-              <h3 className="text-[18px] md:text-[20px] leading-tight font-extrabold tracking-tight text-neutral-900">
+            <div className="pt-4 text-center">
+              <h3 className="text-[20px] md:text-[22px] leading-tight font-extrabold tracking-tight text-neutral-900">
                 {product.name}
               </h3>
             </div>

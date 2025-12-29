@@ -25,17 +25,19 @@ export default function BusinessAreas() {
     "CROPPER": { scale: 1, offsetPx: 7.5 },
     "SILICOSE": { scale: 1, offsetPx: 0 },
     "AG-F SUPER PLUS": { scale: 0.6, offsetPx: -65 },
+    "CROPPER GRANULES": { scale: 0.6, offsetPx: -45 },
   };
-
+  
   const products = [
-    { name: "GOLDEN DROP", color: "bg-[#0B5D3E]", icon: "/farm1.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173725/golden_drop-Photoroom_shadow_m9aigy.png", dotColor: "rgba(255,255,255,0.06)", overlayColor: "rgba(0,0,0,0.25)" },
-    { name: "AG-F", color: "bg-[#F5C400]", icon: "/farm2.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173812/agf-Photoroom_1_cmpcyy.png", dotColor: "rgba(255,255,255,0.08)", overlayColor: "rgba(0,0,0,0.22)" },
-    { name: "AG-F SUPER PLUS", color: "bg-[#0057B7]", icon: "/farm3.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173861/AG-F_Superplus-Photoroom_shadow_kdb8m9.png", dotColor: "rgba(255,255,255,0.07)", overlayColor: "rgba(0,0,0,0.25)" },
-    { name: "CROP GIANT", color: "bg-[#C81E1E]", icon: "/farm4.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173895/crop_giant_1_cs6nnn.png", dotColor: "rgba(255,255,255,0.07)", overlayColor: "rgba(0,0,0,0.25)" },
-    { name: "PALM SULF", color: "bg-[#E65100]", icon: "/farm1.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173960/palmsulfnew_ntrjwo.png", dotColor: "rgba(255,255,255,0.06)", overlayColor: "rgba(0,0,0,0.25)" },
-    { name: "CROPPER", color: "bg-[#4E342E]", icon: "/farm6.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174014/croppernew_qydobw.png", dotColor: "rgba(255,255,255,0.06)", overlayColor: "rgba(0,0,0,0.25)" },
-    { name: "CROPPER PLUS", color: "bg-[#D97706]", icon: "/farm7.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174140/cropperplusnew_gxqz3w.png", dotColor: "rgba(255,255,255,0.07)", overlayColor: "rgba(0,0,0,0.24)" },
-    { name: "SILICOSE", color: "bg-[#2563EB]", icon: "/farm8.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174176/silicosenew_t2zou5.png", dotColor: "rgba(255,255,255,0.05)", overlayColor: "rgba(0,0,0,0.24)" },
+    { name: "GOLDEN DROP", color: "bg-[#DFF2EA]", icon: "/farm1.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173725/golden_drop-Photoroom_shadow_m9aigy.png", dotColor: "rgba(255,255,255,0.06)", overlayColor: "rgba(0,0,0,0.25)" },
+    { name: "AG-F", color: "bg-[#FFF3C4]", icon: "/farm2.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173812/agf-Photoroom_1_cmpcyy.png", dotColor: "rgba(255,255,255,0.08)", overlayColor: "rgba(0,0,0,0.22)" },
+    { name: "AG-F SUPER PLUS", color: "bg-[#D6E8FF]", icon: "/farm3.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173861/AG-F_Superplus-Photoroom_shadow_kdb8m9.png", dotColor: "rgba(255,255,255,0.07)", overlayColor: "rgba(0,0,0,0.25)" },
+    { name: "CROP GIANT", color: "bg-[#FADDDD]", icon: "/farm4.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173895/crop_giant_1_cs6nnn.png", dotColor: "rgba(255,255,255,0.07)", overlayColor: "rgba(0,0,0,0.25)" },
+    { name: "PALM SULF", color: "bg-[#FFE3D1]", icon: "/farm1.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173960/palmsulfnew_ntrjwo.png", dotColor: "rgba(255,255,255,0.06)", overlayColor: "rgba(0,0,0,0.25)" },
+    { name: "CROPPER", color: "bg-[#E8DAD6]", icon: "/farm6.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174014/croppernew_qydobw.png", dotColor: "rgba(255,255,255,0.06)", overlayColor: "rgba(0,0,0,0.25)" },
+    { name: "CROPPER PLUS", color: "bg-[#FFE8C7]", icon: "/farm7.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174140/cropperplusnew_gxqz3w.png", dotColor: "rgba(255,255,255,0.07)", overlayColor: "rgba(0,0,0,0.24)" },
+    { name: "SILICOSE", color: "bg-[#E0E9FF]", icon: "/farm8.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174176/silicosenew_t2zou5.png", dotColor: "rgba(255,255,255,0.05)", overlayColor: "rgba(0,0,0,0.24)" },
+    { name: "CROPPER GRANULES", color: "bg-[#E6F8EC]", icon: "/farm9.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1766901717/Screenshot_2025-12-28_112823-removebg-preview_hgnhjc.png", dotColor: "rgba(255,255,255,0.05)", overlayColor: "rgba(0,0,0,0.24)" },
   ];
 
   const CARD_GAP = 16; 
@@ -253,18 +255,18 @@ export default function BusinessAreas() {
                 const imageOutsidePx = Math.round(imageHeight * OUTSIDE_FRACTION) + extraOffsetPx;
                 const cssVars = { "--dot-color": product.dotColor, "--overlay-color": product.overlayColor } as React.CSSProperties;
 
-                const productLink = `/products?product=${encodeURIComponent(product.name)}`;
+                const productLink = `/crop-nutrition?product=${encodeURIComponent(product.name)}`;
 
                 return (
                   <div key={`${product.name}-${i}`} className="product-slide" style={{ flex: "0 0 auto" }}>
                     <Link href={productLink} prefetch={false} className="block no-underline" aria-label={`Open ${product.name}`} style={{ textDecoration: "none" }}>
-                      <div className={`relative group product-card overflow-visible rounded-xl ${product.color} text-white p-6 flex flex-col justify-between transition-transform duration-500`} style={{ width: `${CARD_WIDTH}px`, height: `${CARD_HEIGHT}px`, minHeight: `${CARD_HEIGHT}px`, ...cssVars, cursor: "pointer" }}>
+                      <div className={`relative group product-card overflow-visible rounded-xl ${product.color} text-gray-800 p-6 flex flex-col justify-between transition-transform duration-500`} style={{ width: `${CARD_WIDTH}px`, height: `${CARD_HEIGHT}px`, minHeight: `${CARD_HEIGHT}px`, ...cssVars, cursor: "pointer" }}>
                         <div className="card-dots pointer-events-none" aria-hidden style={{ position: "absolute", inset: 0, zIndex: 22, backgroundImage: `radial-gradient(circle, var(--dot-color, rgba(255,255,255,0.12)) 3px, transparent 3px)`, backgroundSize: "24px 24px", mixBlendMode: "overlay" }} />
                         <div className="card-overlay pointer-events-none" aria-hidden style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: "60%", zIndex: 18, background: "linear-gradient(to top, var(--overlay-color, rgba(0,0,0,0.28)) 0%, rgba(0,0,0,0.12) 30%, rgba(0,0,0,0.04) 60%, transparent 100%)", filter: "blur(0.3px)" }} />
 
                         <div className="w-full text-left z-30">
                           <div className="flex items-center gap-3 mb-3">
-                            <div style={{ width: 40, height: 40 }} className="relative">
+                            <div style={{ width: 40, height: 40, filter: "brightness(0)" }} className="relative">
                               <Image src={product.icon} alt={`${product.name} icon`} fill sizes="40px" />
                             </div>
                           </div>

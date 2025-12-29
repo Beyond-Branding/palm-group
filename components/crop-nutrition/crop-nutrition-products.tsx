@@ -10,16 +10,16 @@ const products = [
   {
     name: "GOLDEN DROP",
     category: "Premium Organic Biostimulant",
+    tagline:"Premium Organic Biostimulant",
     description:
       "Next-generation, protein hydrolysate-based biostimulant for improved flowering, enhanced fruit quality, and boosted overall plant health.",
     detailedDescription:
-      "Golden Drop is a next-generation, protein hydrolysate-based biostimulant designed to improve flowering, enhance fruit quality, and boost overall plant health. Trusted by progressive farmers across India, Golden Drop helps you get higher yields, better quality produce, and reduced losses from flower and fruit drop.",
+      "Golden Drop is a high-performance, protein hydrolysate-based biostimulant engineered for the modern farmer. By leveraging a concentrated blend of essential amino acids and bioactive peptides, Golden Drop optimizes the plant’s internal physiological processes to ensure peak productivity. Trusted by progressive farmers to secure high-quality harvests, Golden Drop helps you achieve higher yields, superior produce, enhanced fruit size and a significant reduction in losses from flower and fruit drop.",
     benefits: [
-      "Speeds Up Plant Growth – Activates natural plant processes, promoting faster flowering and uniform fruit development.",
-      "Improves Flowering & Fruiting – Reduces flower drop and encourages better fruit setting for a higher yield.",
-      "Boosts Chlorophyll & Photosynthesis – Ensures greener, healthier plants with improved energy production.",
-      "Protein-Rich Nutrition – Enriches plants with essential amino acids and peptides for better growth and stress tolerance.",
-      "Better Fruit Quality – Enhances size, weight, and appearance of fruits for improved market value.",
+      "Accelerated Plant Development: Actively stimulates metabolic pathways, promoting rapid flowering and uniform fruit development.",
+      "Enhanced Flowering, Fruit Set & Fruit Sizes: Dramatically reduces premature flower drop and encourages robust fruit setting for a heavier, larger fruit to give more consistent yield.",
+      "Photosynthetic Efficiency: Naturally boosts chlorophyll levels, ensuring deeper green, healthier foliage and maximized energy production.",
+      " Advanced Protein Nutrition: Enriches plants with essential amino acid and peptides, providing the building blocks for vigorous growth and superior stress tolerance.",
     ],
     dosage:
       "0.5–0.75 ml per litre of water. Spray during flowering and early fruiting stages every 12–15 days for best results.",
@@ -27,168 +27,207 @@ const products = [
       "Golden Drop is ideal for a wide range of crops including: Grapes, Tomato, Mango, Paddy, Onion, Chilli, Citrus Fruits, Vegetables, Strawberries, Capsicum, Pomegranate, Sugarcane, Tea, Coffee, Cashew, Banana.",
     image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173725/golden_drop-Photoroom_shadow_m9aigy.png",
     secondaryImage: "/golden-drop-side.png",
-    backgroundHex: "#0B5D3E",
+    backgroundHex: "#DFF2EA",
     dotColor: "rgba(255,255,255,0.06)",
     overlayColor: "rgba(0,0,0,0.25)",
   },
   {
     name: "AG-F",
     category: "Premium Activator, Spreader & Sticker",
+    tagline:"Maximum Coverage. Superior Absorption. Unmatched Efficacy",
     description:
       "Specialized non-ionic activator designed to maximize the effectiveness of crop protection agents and fertilizers.",
     detailedDescription:
-      "AG-F is a specialized non-ionic activator designed to maximize the effectiveness of pesticides, plant growth regulators, micronutrients, and water-soluble fertilizers. It ensures superior coverage, faster absorption, and longer rain persistence, helping farmers get the best results with lower agrochemical usage.",
+      "AG-F is a specialized, high-performance ionic & non-ionic activator engineered to amplify the effectiveness of your crop protection and nutrition programs. By drastically reducing the surface tension of spray droplets, AG-F ensures that pesticides, herbicides, growth regulators, and fertilizers are absorbed faster and stay on the plant longer. For the professional farmer, AG-F is the key to achieving superior results while reducing overall agrochemical inputs and costs. In modern farming, it’s not just about what you spray, but how it stays. AG-F ensures that every drop of your expensive agrochemicals works harder, penetrates deeper, and lasts longer, providing a significant return on investment through lower input costs and healthier crops.",
     benefits: [
-      "Enhances Agrochemical Performance – Improves penetration, spreading, and absorption of pesticides, PGRs, and fertilizers.",
-      "Excellent Rainfastness – Keeps chemicals active even after rainfall for maximum protection.",
-      "Boosts Efficacy Up to 12X – Ensures uniform coverage and faster action for better results.",
-      "Reduces Herbicide Costs – Cuts Glyphosate and Paraquat usage by up to 50%, reducing input cost per acre.",
-      "Faster Pest & Disease Control – Promotes quick knockdown of insects and faster fungal control when tank-mixed with pesticides.",
+      "12x Efficacy Boost: Ensures ultra-uniform coverage and rapid penetration, delivering up to 12 times the standard effectiveness of your tank-mix.",
+      "Superior Rainfastness: Creates a durable bond between the chemical and the leaf surface, preventing wash-off during unexpected rainfall.",
+      "50% Herbicide Cost Reduction: When used with Glyphosate or Paraquat, AG-F allows you to reduce herbicide dosage by up to 50% without compromising on weed control.",
+      "Rapid Knockdown Action: Promotes immediate absorption for faster control of stubborn pests and fungal diseases.",
+      "Optimized Nutrient Uptake: Maximizes the delivery of micronutrients and water-soluble fertilizers directly into the plant’s vascular system.",
+      "Enhanced Soil Binding & Nutrient Retention: Creates a unique binding effect in the soil that anchors nutrients, preventing leaching and ensuring a steady, slow-release of NPK to the root zone. It also optimizes soil structure to retain moisture more effectively, reducing irrigation frequency and protecting crops during dry spells.",
     ],
     dosage:
-      "1 ml per litre of water to reduce herbicide dosage by 50%. Use with herbicides, insecticides, fungicides, micronutrients & foliar fertilizers.",
+      "1 ml per litre of water to reduce herbicide dosage by 50% General Foliar sprays : 0.25 ml per liter of water For Fertigation: 250ml per acre. Use With: Herbicides, insecticides, fungicides, micronutrients & foliar fertilizers",
     usage: "Ideal for all crops.",
     image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173812/agf-Photoroom_1_cmpcyy.png",
     secondaryImage: "/copperplus.png",
-    backgroundHex: "#F5C400",
+    backgroundHex: "#FFF3C4",
     dotColor: "rgba(255,255,255,0.08)",
     overlayColor: "rgba(0,0,0,0.22)",
   },
   {
     name: "AG-F SUPER PLUS",
     category: "Advanced Silicone-Based Activator",
+    tagline:"Precision Engineering for Maximum Leaf Coverage and Rain Protection",
     description:
       "Silicone-based spreader, sticker, and activator for maximum coverage, rainfastness and spray efficiency.",
     detailedDescription:
-      "AG-F Super Plus is a premium silicone-based spreader, sticker, and activator that ensures exceptional coverage, faster absorption, and unmatched rainfastness. Its advanced formulation provides complete leaf surface coverage, maximizing the performance of every spray.",
+      "AG-F Super Plus is a premium silicone-based spreader, sticker, activator, penetrator and pH regulator that ensures exceptional coverage, faster absorption, and unmatched rainfastness. Its advanced formulation provides complete leaf surface coverage, maximizing the performance of every spray.",
     benefits: [
-      "Superior Spreading Power – Spreads up to 40 times more than conventional activators for uniform leaf coverage.",
-      "Maximizes Agrochemical Efficiency – Enhances the performance of pesticides, PGRs, micronutrients, and foliar fertilizers.",
-      "Balances pH for Better Uptake – Improves nutrient absorption and chemical stability.",
-      "Rain Resistant – Maintains effectiveness even after rainfall.",
-      "Quick Action Formula – Ensures faster insect knockdown and rapid fungus control when tank-mixed with pesticides.",
-      "Cost-Effective – Delivers higher results with smaller doses, saving input costs.",
+      "40x Superior Spreading Power: Engineered to spread up to 40 times further than conventional activators, ensuring a thin, uniform film over the entire leaf surface.",
+      "Stomatal Infiltration (Faster Action): Promotes rapid knockdown of pests and faster fungal control by facilitating immediate chemical entry through the plant's stomata.",
+      "Integrated pH Balancing: Optimizes the pH of the spray tank to improve chemical stability and maximize the bio-availability of nutrients.",
+      "Unmatched Rainfastness: Provides a high-performance sticker effect that anchors chemicals to the plant, maintaining full effectiveness even under heavy tropical rains.",
+      "Synergistic Efficiency: Significantly enhances the performance of high-value Pesticides, Plant Growth Regulators (PGRs), Micronutrients, and Foliar Fertilizers.",
+      "Economic Optimization: Delivers superior coverage at lower doses, drastically reducing the total volume of water and chemicals required per acre.",
+      "pH Regulation: Optimizes and stabilizes the pH levels to prevent chemical degradation and maximize nutrient bio-availability.",
     ],
     dosage: "1 ml per 8 litres of water. Use with herbicides, insecticides, fungicides, micronutrients & foliar sprays.",
     usage:
       "Perfect for all crops where complete coverage and high spray efficiency are crucial.",
     image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173861/AG-F_Superplus-Photoroom_shadow_kdb8m9.png",
     secondaryImage: "/ag-f-super-side.jpg",
-    backgroundHex: "#0057B7",
+    backgroundHex: "#D6E8FF",
     dotColor: "rgba(255,255,255,0.07)",
     overlayColor: "rgba(0,0,0,0.25)",
   },
   {
     name: "CROP GIANT",
     category: "Organic Plant Extract (Carbohydrate Theory)",
+    tagline:"Mastering the Science of Fruit Quality and Carbohydrate Balance",
     description:
       "Crop Giant is an organic plant extract formulated using the carbohydrate theory to enhance fruit quality, prevent cracking, and increase sugar accumulation.",
     detailedDescription:
-      "Crop Giant is an organic plant extract formulated using the carbohydrate theory to enhance fruit quality, prevent cracking, and increase sugar accumulation.",
+      "Crop Giant is a sophisticated organic formulation built upon the Carbohydrate Theory of plant nutrition. By optimizing how plants synthesize and store energy, Crop Giant ensures that nutrients are efficiently converted into high-quality fruit tissue rather than excess vegetative growth. This makes it an indispensable tool for farmers aiming for premium, high quality produce with exceptional flavor and shelf life.",
     benefits: [
-      "Prevents Berry Drop & Cracking – Maintains berry integrity during growth.",
-      "Nutrient Enrichment – Supplies vital Phosphorus & Potash for healthy fruit development.",
-      "Controls Sugar Dilution – Ensures concentrated sweetness and better taste.",
-      "Improves Pulp Quality – Develops firmer, juicier, and more marketable produce.",
-    ],
+  "Structural Integrity & Cracking Prevention – Strengthens cell walls to prevent berry and fruit cracking, especially during periods of unseasonal rain or rapid growth.",
+  "Reduced Premature Drop – Maintains berry and fruit integrity throughout the growth cycle, significantly reducing losses from natural or stress-induced fruit drop.",
+  "BRIX & Sweetness Optimization – Actively controls sugar dilution by enhancing the accumulation of soluble solids, resulting in a higher BRIX factor and concentrated sweetness.",
+  "Essential Nutrient Enrichment – Supplies targeted Phosphorus and Potash, the vital elements required for healthy fruit development and metabolic balance.",
+  "Superior Pulp & Keeping Quality – Develops firmer, juicier pulp, improving shelf life and making the produce more resilient for long-distance transport.",
+  "Induces Early Harvest – Accelerates the natural maturation process by optimizing carbohydrate translocation, allowing farmers to reach the market sooner.",
+],
     dosage:
-      "Spray: 1.5 ml per litre of water when berries reach pea size. Repeat after 7 days for maximum effectiveness.",
+      "Spray: 1.5 ml per litre of water when berries reach pea size. Repeat after 7 days for maximum effectiveness. Third Spray: 15 days before harvest",
     usage:
       "Crop Giant is ideal for a wide range of crops including: Grapes, Strawberry, Citrus, Apple, Mango, Tomato, Capsicum, Watermelon, Cucumbers, Brinjal, Chilli, Pomegranate.",
     image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173895/crop_giant_1_cs6nnn.png",
     secondaryImage: "/crop giant.png",
-    backgroundHex: "#C81E1E",
+    backgroundHex: "#FADDDD",
     dotColor: "rgba(255,255,255,0.07)",
     overlayColor: "rgba(0,0,0,0.25)",
   },
   {
     name: "PALM SULF",
     category: "Organic Liquid Sulphur",
+    tagline:"Organic Liquid Sulphur",
     description: "100% organic spray for integrated pest management and soil health.",
     detailedDescription:
       "Palm Sulf is a 100% organic liquid sulfur formulation, ideal for integrated pest management and soil health improvement.",
     benefits: [
-      "Controls Powdery Mildew & Red Mites – Naturally suppresses fungal and mite infestations.",
-      "No Residue – Completely safe for consumers and export compliance.",
-      "Corrects Sulfur Deficiency – Improves soil fertility and crop vigor.",
-      "Heat Safe – Non-scorching even at high temperatures.",
-      "Improves Soil Temperature – Maintains root-zone warmth in cooler months.",
-    ],
+  "Controls Powdery Mildew & Red Mites – Effectively suppresses fungal infections and mite infestations through natural action.",
+  "No Residue – Leaves no harmful residues, ensuring consumer safety and full export compliance.",
+  "Corrects Sulfur Deficiency – Supplies available sulfur to improve soil fertility, crop metabolism, and overall plant vigor.",
+  "Heat Safe – Non-scorching and safe to use even under high-temperature conditions.",
+  "Improves Soil Temperature – Helps maintain optimal root-zone temperature, supporting healthy growth during cooler months.",
+],
+
     dosage: "Foliar Spray: 3 ml per litre of water. Drip Application: 7.5 litres per hectare.",
     usage:
       "Palm Sulf is ideal for a wide range of crops including: Wheat, Rice, Grapes, Citrus, Mango, Chilli, Onion, Spinach, Potato, Tomato, Capsicum, Carrot.",
     image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173960/palmsulfnew_ntrjwo.png",
     secondaryImage: "/palm-sulf-side.jpg",
-    backgroundHex: "#E65100",
+    backgroundHex: "#FFE3D1",
     dotColor: "rgba(255,255,255,0.06)",
     overlayColor: "rgba(0,0,0,0.25)",
   },
   {
     name: "CROPPER",
     category: "Humic Acid Solution (6%)",
+    tagline:"Humic Acid Solution (6%)",
     description:
       "Humic acid-based soil conditioner that improves soil structure, fertility, and water retention for healthier crops.",
     detailedDescription:
       "Cropper 6% is a humic acid-based soil conditioner that improves soil structure, fertility, and water retention for healthier crops.",
     benefits: [
-      "Boosts Plant Growth – Acts as a natural catalyst for cell division and root elongation.",
-      "Improves Soil Structure – Enhances aeration and microbial activity.",
-      "Retains Nutrients – Reduces leaching and keeps fertilizers near the root zone.",
-      "Improves Water-Holding Capacity – Critical during dry spells.",
-    ],
+  "Boosts Plant Growth – Acts as a natural catalyst for root development, enhances nutrient chelation, and functions as a natural organic manure.",
+  "Improves Soil Structure – Enhances soil aeration, aggregation, and beneficial microbial activity.",
+  "Retains Nutrients – Reduces nutrient leaching and keeps essential fertilizers available within the root zone.",
+  "Improves Water-Holding Capacity – Increases moisture retention in the soil, which is critical during dry spells and water-stress conditions.",
+],
+
     dosage:
-      "Soil Application: 7.5 L/Ha. Foliar Spray: 2 ml per litre. Seed Treatment: 2.5 L per MT of seed. With Fertilizers: 7.5 L/Ha.",
+      "Soil Application: 3 L/acre, Seed Treatment: 2.5 L per MT of seed, With Fertilizers: 3 L/acre",
     usage:
-      "Cropper is ideal for a wide range of crops including: Maize, Wheat, Rice, Sunflower, Potato, Tomato, Garlic, Onion, Spinach, Coconut, Citrus, Mango.",
+      "Cropper is ideal for a wide range of crops including: Grapes, Strawberries, Pomegranate, Tomato, Mango, Paddy, Onion, Chilli, Citrus Fruits, All Vegetable Crops, All Horticultural Crops, Sugarcane, Tea, Coffee, Cashew, Banana.",
     image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174014/croppernew_qydobw.png",
     secondaryImage: "/cropper-side.jpg",
-    backgroundHex: "#4E342E",
+    backgroundHex: "#E8DAD6",
     dotColor: "rgba(255,255,255,0.06)",
     overlayColor: "rgba(0,0,0,0.25)",
   },
   {
     name: "CROPPER PLUS",
     category: "Concentrated Humic Acid Solution",
+    tagline:"Concentrated Humic Acid Solution",
     description:
       "Highly concentrated humic acid solution designed for maximum impact on root growth and soil fertility.",
     detailedDescription:
-      "Cropper Plus 12% is a highly concentrated humic acid solution designed for maximum impact on root growth and soil fertility.",
+      "Cropper Plus 12% is a highly concentrated humic and fulvic acid solution designed for maximum impact on root growth and soil fertility.",
     benefits: [
-      "Double Strength Formula – Works faster than Cropper 6%",
-      "Promotes Root & Shoot Growth – Leads to stronger plants and higher yields.",
-      "Enhances Microbial Activity – Improves soil ecosystem.",
-      "Reduces Nutrient Loss – Keeps nutrients available longer.",
-    ],
+  "Boosts Plant Growth – Acts as a natural catalyst for root development, enhances nutrient chelation, and functions as a natural organic manure.",
+  "Promotes Root & Shoot Growth – Encourages stronger vegetative growth, leading to healthier plants and improved yields.",
+  "Enhances Microbial Activity – Improves the soil ecosystem by stimulating beneficial microbial populations.",
+  "Reduces Nutrient Loss – Minimizes leaching and keeps essential nutrients available to plants for a longer duration.",
+  "Fulvate-Powered Nutrient Transport – Contains active fulvates that act as natural chelating agents, significantly increasing mineral mobility and nutrient absorption within the plant.",
+],
+
     dosage:
       "Soil Application: 2.5–4 L/Ha. Foliar Spray: 1 ml per litre. Seed Treatment: 1.5 L per MT of seed. With Fertilizers: 2.5–4 L/Ha.",
     usage:
-      "Cropper Plus is ideal for a wide range of crops including: Wheat, Rice, Maize, Sunflower, Potato, Leafy Greens, Coconut, Grapes, Citrus, Mango, Tomato, Chilli.",
+      "Cropper Plus is ideal for a wide range of crops including: Grapes, Strawberries, Pomegranate, Tomato, Mango, Paddy, Onion, Chilli, Citrus Fruits, All Vegetable Crops, All Horticultural Crops, Sugarcane, Tea, Coffee, Cashew, Banana.",
     image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174140/cropperplusnew_gxqz3w.png",
     secondaryImage: "/cropper-plus-side.png",
-    backgroundHex: "#D97706",
+    backgroundHex: "#FFE8C7",
     dotColor: "rgba(255,255,255,0.07)",
     overlayColor: "rgba(0,0,0,0.24)",
   },
   {
     name: "SILICOSE",
     category: "Silica-Based Organic Supplement",
+    tagline:"Silica-Based Organic Supplement",
     description:
       "Silica-rich soil and foliar supplement that strengthens plants and protects them against stress.",
     detailedDescription:
       "Silicose is a silica-rich soil and foliar supplement that strengthens plants and protects them against stress.",
     benefits: [
-      "Supplies Soluble Silica – Improves structural strength of plant cells.",
-      "Enhances Disease Resistance – Protects against fungal and bacterial pathogens.",
-      "Blocks Nematode Entry – Acts as a natural physical barrier at root level.",
-      "Improves Water Retention – Increases drought tolerance and yield.",
-      "Increases Lodging Resistance – Stronger stems withstand wind and rain.",
-    ],
+  "Supplies Soluble Silica – Strengthens plant cell walls, improving overall structural integrity and crop robustness.",
+  "Enhances Disease Resistance – Provides natural protection against fungal and bacterial pathogens by reinforcing plant defenses.",
+  "Blocks Nematode Entry – Acts as a physical barrier at the root zone, reducing nematode penetration and root damage.",
+  "Improves Water Retention – Enhances moisture-holding capacity, increasing drought tolerance and sustaining yields under water stress.",
+  "Increases Lodging Resistance – Strengthens stems and stalks, enabling crops to better withstand wind, rain, and heavy growth load.",
+],
     dosage: "Foliar Spray: 3 ml per litre of water. Drip Application: 5–7.5 L/Ha.",
     usage:
-      "Silicose is ideal for a wide range of crops including: Rice, Wheat, Maize, Grapes, Mango, Citrus, Potato, Chilli, Tomato, Onion, Spinach, Strawberry, Sugarcane.",
+      "Silicose is ideal for a wide range of crops including: Grapes, Strawberries, Pomegranate, Tomato, Mango, Paddy, Onion, Chilli, Citrus Fruits, All Vegetable Crops, All Horticultural Crops, Sugarcane, Tea, Coffee, Cashew, Banana.",
     image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174176/silicosenew_t2zou5.png",
     secondaryImage: "/silicose-side.png",
-    backgroundHex: "#2563EB",
+    backgroundHex: "#E0E9FF",
+    dotColor: "rgba(255,255,255,0.05)",
+    overlayColor: "rgba(0,0,0,0.24)",
+  },
+  {
+    name: "CROPPER GRANULES",
+    category: "Silica-Based Organic Supplement",
+    tagline:"Humic-Based Organic Soil Conditioner",
+    description:
+      "Silica-rich soil and foliar supplement that strengthens plants and protects them against stress.",
+    detailedDescription:
+      "Cropper Granules is a high-performance organic soil amendment designed to restore soil health and stimulate vigorous root systems. Formulated with active Humic Acid, it reverses soil degradation and maximizes the efficiency of your nutritional program.",
+    benefits: [
+  "Triggers White Root Growth – Stimulates rapid development of healthy white roots, maximizing nutrient and water absorption.",
+  "Improves Soil Structure – Enhances soil texture, aeration, and moisture retention for better root-zone conditions.",
+  "Boosts Nutrient Efficiency – Acts as a natural chelator, increasing the availability and uptake of essential micronutrients such as Zinc and Iron.",
+  "Enhances Drought Tolerance – Regulates internal plant hormones, enabling crops to survive and perform better under water-stress conditions.",
+  "Supports Seed Germination – Improves root respiration and early vigor during critical germination and seedling establishment stages.",
+],
+    dosage: "FSoil Application by broadcasting : 1-1.5 kg per acre. Method: Apply directly to the soil during land preparation or as a top-dressing in early growth stages.",
+    usage:
+      "Cropper Granules is ideal for a wide range of crops including: Grapes, Strawberries, Pomegranate, Tomato, Mango, Paddy, Onion, Chilli, Citrus Fruits, All Vegetable Crops, All Horticultural Crops, Sugarcane, Tea, Coffee, Cashew, Banana, Wheat.",
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1766901717/Screenshot_2025-12-28_112823-removebg-preview_hgnhjc.png",
+    secondaryImage: "/silicose-side.png",
+    backgroundHex: "#E6F8EC",
     dotColor: "rgba(255,255,255,0.05)",
     overlayColor: "rgba(0,0,0,0.24)",
   },
@@ -263,6 +302,77 @@ const BOLD_PHRASES = [
   "Cropper is ideal for a wide range of crops including:",
   "Cropper Plus is ideal for a wide range of crops including:",
   "Silicose is ideal for a wide range of crops including:",
+  "high-performance, protein hydrolysate-based biostimulant",
+  "essential amino acids",
+  "bioactive peptides",
+  "higher yields, superior produce, enhanced fruit size and a significant reduction in losses from flower and fruit drop",
+  "Accelerated Plant Development",
+  "Photosynthetic Efficiency",
+  "Advanced Protein Nutrition",
+  "Enhanced Flowering, Fruit Set & Fruit Sizes",
+  "specialized, high-performance ionic & non-ionic activator",
+  "reducing the surface tension",
+  "absorbed faster",
+  "12x Efficacy Boost",
+  "Superior Rainfastness",
+  "50% Herbicide Cost Reduction",
+  "Rapid Knockdown Action",
+  "Optimized Nutrient Uptake",
+  "Enhanced Soil Binding & Nutrient Retention",
+  "premium silicone-based spreader, sticker, activator, penetrator and pH regulator",
+  "40x Superior Spreading Power",
+  "Stomatal Infiltration (Faster Action)",
+  "Integrated pH Balancing",
+  "Unmatched Rainfastness",
+  "Synergistic Efficiency",
+  "Economic Optimization",
+  "pH Regulation",
+  "Perfect for all crops where complete coverage and high spray efficiency are crucial",
+  "sophisticated organic formulation",
+  "Carbohydrate Theory",
+  "high-quality fruit tissue",
+  "premium, high quality produce with exceptional flavor and shelf life",
+  "Structural Integrity & Cracking Prevention",
+  "Reduced Premature Drop",
+  "BRIX & Sweetness Optimization",
+  "Essential Nutrient Enrichment",
+  "Superior Pulp & Keeping Quality",
+  "Induces Early Harvest",
+  "100% organic liquid sulfur",
+  "Controls Powdery Mildew & Red Mites",
+  "No Residue",
+  "Corrects Sulfur Deficiency",
+  "Heat Safe",
+  "Improves Soil Temperature",
+  "humic acid",
+  "soil structure, fertility, and water retention for healthier crops",
+  "Boosts Plant Growth",
+  "Improves Soil Structure",
+  "Retains Nutrients",
+  "Improves Water-Holding Capacity",
+  "highly concentrated humic and fulvic acid",
+  "root growth and soil fertility",
+  "Boosts Plant Growth",
+  "Promotes Root & Shoot Growth",
+  "Enhances Microbial Activity",
+  "Reduces Nutrient Loss",
+  "Fulvate-Powered Nutrient Transport",
+  "silica-rich soil and foliar supplement",
+  "strengthens plants and protects them against stress",
+  "Supplies Soluble Silica",
+  "Enhances Disease Resistance",
+  "Blocks Nematode Entry",
+  "Improves Water Retention",
+  "Increases Lodging Resistance",
+  "high-performance organic soil amendment",
+  "soil health",
+  "stimulate vigorous root systems",
+  "Triggers White Root Growth",
+  "Improves Soil Structure",
+  "Boosts Nutrient Efficiency",
+  "Enhances Drought Tolerance",
+  "Supports Seed Germination",
+  "Cropper Granules is ideal for a wide range of crops including:"
 ];
 
 function escapeHtml(str: string) {
@@ -280,7 +390,7 @@ function highlightPhrases(text: string, phrases: string[]) {
 
   phrases.forEach((phrase) => {
     const esc = phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const regex = new RegExp(esc, "g");
+    const regex = new RegExp(esc.replace(/&/g, "(?:&|&amp;)"), "g");
     html = html.replace(regex, `<strong>${escapeHtml(phrase)}</strong>`);
   });
 
@@ -459,18 +569,42 @@ export default function ProductListingAndDetails() {
                 {selectedProduct.name}
               </h1>
 
-              <p className="text-gray-700 mb-6" style={{ textAlign: "justify" }}>
-                {selectedProduct.detailedDescription}
+              <p className="mt-2 text-lg text-gray-700 mb-6 font-medium">
+              {selectedProduct.tagline}
               </p>
 
+              <p
+  className="text-gray-700 mb-6 leading-7"
+  style={{ textAlign: "justify" }}
+  dangerouslySetInnerHTML={{
+    __html: highlightPhrases(
+      selectedProduct.detailedDescription,
+      BOLD_PHRASES
+    ),
+  }}
+/>
+
               <div className="mb-6">
-                <h2 className="text-xl font-bold text-gray-800 mb-3">Key Benefits</h2>
-                <ul className="list-disc list-inside space-y-2 text-sm text-gray-700 pl-4" style={{ textAlign: "justify" }}>
-                  {selectedProduct.benefits.map((b, i) => (
-                    <li key={i} className="font-medium">{b}</li>
-                  ))}
-                </ul>
-              </div>
+  <h2 className="text-xl font-bold text-gray-800 mb-3">
+    Key Benefits
+  </h2>
+
+  <ul
+    className="list-disc list-inside space-y-2 text-sm text-gray-700 pl-4"
+    style={{ textAlign: "justify" }}
+  >
+    {selectedProduct.benefits.map((benefit, index) => (
+      <li
+        key={index}
+        className="font-medium"
+        dangerouslySetInnerHTML={{
+          __html: highlightPhrases(benefit, BOLD_PHRASES),
+        }}
+      />
+    ))}
+  </ul>
+</div>
+
 
               {/* Table below Key Benefits */}
               <div className="mb-6 overflow-hidden rounded-xl border border-[#1f6f3d]/30">
@@ -486,6 +620,7 @@ export default function ProductListingAndDetails() {
                         className="p-3 text-neutral-800"
                         dangerouslySetInnerHTML={{
                           __html: highlightPhrases(selectedProduct.usage, BOLD_PHRASES),
+  
                         }}
                       />
                     </tr>
@@ -520,29 +655,19 @@ export default function ProductListingAndDetails() {
         Palm International
       </h1>
       <p className="mt-4 text-base text-gray-700 leading-7" style={{ textAlign: "justify" }}>
-        Palm International is a leading Indian agri-inputs company since 1998 with expertise
-        in developing, manufacturing, and exporting high-quality biostimulants, silicon-based
-        foliar sprays, humic acid solutions, and crop care products. Our mission is to provide
-        farmers with sustainable, science-backed solutions that improve soil health, boost crop
-        yields, and enhance farm profitability.
+        Palm International is a leading Indian agri-inputs company since 1998 with expertise in developing, manufacturing, and exporting high-quality biostimulants, silicon-based foliar sprays, humic acid solutions, and crop care products. Our mission is to provide farmers with sustainable, science-backed solutions that improve soil health, boost crop yields, and enhance farm profitability.
       </p>
 
       <p className="mt-4 text-base text-gray-700 leading-7" style={{ textAlign: "justify" }}>
-        With a global presence, Palm International has become a trusted partner for farmers and
-        agri-distributors worldwide.
+        With a global presence, Palm International has become a trusted partner for farmers and agri-distributors worldwide.
       </p>
 
       <p className="mt-6 text-base text-gray-700 leading-7" style={{ textAlign: "justify" }}>
-        Our flagship brands – AG-F, AG-F Super Plus, Golden Drop, Crop Giant, Silicose, Palm Sulf,
-        and Cropper Plus – are designed to solve real challenges like nutrient efficiency, drought
-        stress, fruit drop, and fungal attacks, helping farmers achieve better quality produce, higher
-        yields, and longer shelf life.
+        Our flagship brands – <strong> AG-F, AG-F Super Plus, Golden Drop, Crop Giant, Silicose, Palm Sulf, Cropper, Cropper Plus and Cropper Granules </strong>– are designed to solve real challenges like <strong>nutrient efficiency, drought stress, fruit drop, and fungal attacks, helping farmers achieve better quality produce, higher yields, and longer shelf life.</strong>
       </p>
 
       <p className="mt-4 text-base text-gray-700 leading-7" style={{ textAlign: "justify" }}>
-        Palm International is committed to innovation, farmer education, field trials, ensuring
-        our products deliver consistent and proven results. With a strong focus on sustainability and
-        residue free agriculture, we aim to build a healthier future for farming communities globally.
+        Palm International is committed to innovation, farmer education, and field trials, ensuring our products deliver consistent and proven results. With a strong focus on sustainability and residue-free agriculture, we aim to build a healthier future for farming communities globally.
       </p>
     </div>
   </div>
