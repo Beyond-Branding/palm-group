@@ -175,7 +175,7 @@ export default function PlantWithProducts() {
         <div style={{ width: "100%", maxWidth: 820 }}>
           <Lottie animationData={animationData} loop autoplay style={{ width: "100%", height: "auto" }} />
         </div>
-
+                            
         <div aria-hidden className="absolute inset-0 z-30">
           {positions.map((pos, i) => {
             const visible = Boolean(visibleMap[i]);

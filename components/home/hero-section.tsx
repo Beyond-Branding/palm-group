@@ -15,7 +15,7 @@ const slides = [
       "From soil to harvest, our advanced formulations ensure stronger crops, better yields, and consistent performance.",
   },
   {
-    src: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173519/hero_wnzoga.jpg",
+    src: "https://res.cloudinary.com/daoju0r3c/image/upload/v1766743043/farmplam_qws6l6.jpg",
     title: "Science Behind Every Successful Harvest",
     description:
       "Delivering high-efficiency nutrition products that boost crop health, enhance productivity, and maximize potential.",

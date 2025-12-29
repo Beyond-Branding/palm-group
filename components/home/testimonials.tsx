@@ -27,14 +27,15 @@ const testimonials: Testimonial[] = [
     name: "Shri Dattatray Patil",
     location: "Kavthe Mahankal, Sangli Maharashtra",
     productUsed: "Golden Drop + Crop Giant",
-    application: "2nd Spray — 19th Day After Pruning (Grapes)",
+    application: "1st Spray - 12th Day after Pruning (Grapes), 2nd Spray — 19th Day After Pruning",
     shortText:
       "Excellent results observed after using Golden Drop and Crop Giant together.",
     english: `Result:
 “Excellent results observed after using Golden Drop and Crop Giant together. The bunches have become stronger, flowering is uniform, and fruit drop has reduced significantly. The vines show healthier growth and improved fruit setting.”`,
-    regional: `वापर: दुसरी फवारणी — छाटणीनंतर १९ व्या दिवशी (द्राक्षे)
+    regional: `पहिली फवारणी: छाटणीनंतरचा १२ व्या दिवशी (द्राक्षे)
+        दुसरी फवारणी — छाटणीनंतर १९ व्या दिवशी
 परिणाम:
-"गोल्डन ड्रॉप आणि क्रॉप जायंट एकत्र वापरल्यानंतर उत्कृष्ट परिणाम दिसून आले. घड जीरणेची समस्या पूर्णपणे थांबली आहे; घड अधिक मजबूत झाले आहेत, फुले एकसारखी आली आहेत आणि फळ गळणे लक्षणीयरीत्या कमी झाले आहे. वेलींची वाढ चांगली झाली आहे आणि फळधारणा सुधारली आहे."`,
+"गोल्डन ड्रॉप आणि क्रॉप जायंट एकत्र वापरल्यानंतर उत्कृष्ट परिणाम दिसून आले. घड जीरणेची समस्या पूर्णपणे थांबली आहे घड आणि अधिक मजबूत झाले आहेत, फुले एकसारखी आली आहेत आणि फळ गळणे लक्षणीयरीत्या कमी झाले आहे. वेलींची वाढ चांगली झाली आहे आणि फळधारणा सुधारली आहे."`,
     image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764223390/dattrayatesti_vseqkw.jpg"
   },
 
