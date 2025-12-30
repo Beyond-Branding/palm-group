@@ -32,18 +32,18 @@ const POSITIONS_DESKTOP: { left: string; top: string }[] = [
 const POSITIONS_MOBILE: { left: string; top: string }[] = [
   { left: "28%", top: "75%" }, // GOLDEN DROP
   { left: "10%", top: "35%" }, // AG-F
-  { left: "32%", top: "-51%" },  // AG-F SUPER PLUS
+  { left: "34%", top: "-59%" },  // AG-F SUPER PLUS
   { left: "10%", top: "-35%" }, // CROP GIANT
   { left: "72%", top: "75%" }, // PALM SULF
   { left: "90%", top: "35%" }, // CROPPER
-  { left: "69%", top: "-51%" }, // CROPPER PLUS
+  { left: "69%", top: "-57%" }, // CROPPER PLUS
   { left: "90%", top: "-35%" }, // SILICOSE
 ];
 
 const LABEL_OFFSET_DESKTOP: number[] = [
   -30, // GOLDEN DROP
   -25,  // AG-F
-  -10, // AG-F SUPER PLUS
+   20, // AG-F SUPER PLUS
   -20, // CROP GIANT
   -30, // PALM SULF
   -30,  // CROPPER
@@ -51,6 +51,27 @@ const LABEL_OFFSET_DESKTOP: number[] = [
   -25, // SILICOSE
 ];
 
+const LABEL_OFFSET_MOBILE: number[] = [
+  -20, // GOLDEN DROP
+  -18, // AG-F
+  -20, // AG-F SUPER PLUS
+  -18, // CROP GIANT
+  -20, // PALM SULF
+  -20, // CROPPER
+  -25, // CROPPER PLUS
+  -18, // SILICOSE
+];
+
+const LABEL_OFFSET_X_MOBILE: number[] = [
+  1, // GOLDEN DROP → left
+ -5,  // AG-F
+  0,   // AG-F SUPER PLUS
+  1, // CROP GIANT
+  1,  // PALM SULF → right
+  8,   // CROPPER
+  1,  // CROPPER PLUS
+  6,   // SILICOSE
+];
 
 const PRODUCTS = [
   "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173725/golden_drop-Photoroom_shadow_m9aigy.png",
@@ -257,8 +278,8 @@ export default function PlantWithProducts() {
     whiteSpace: "nowrap",
     overflow: "hidden",
     textOverflow: "ellipsis",
-    transform: isMobile
-  ? "translateY(0)"
+   transform: isMobile
+  ? `translate(${LABEL_OFFSET_X_MOBILE[i] ?? 0}px, ${LABEL_OFFSET_MOBILE[i] ?? 0}px)`
   : `translateY(${LABEL_OFFSET_DESKTOP[i] ?? 0}px)`,
   }}
 >                

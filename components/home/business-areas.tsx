@@ -199,7 +199,8 @@ export default function BusinessAreas() {
   }, []);
 
   return (
-    <section className="relative bg-white overflow-visible" style={{ paddingBottom: `${EXTRA_BOTTOM}px` }}>
+    <section className="relative bg-white overflow-hidden md:overflow-visible"
+  style={{ paddingBottom: `${EXTRA_BOTTOM}px` }}>
       <div aria-hidden style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: "120vw", maxWidth: "1600px", height: 220, overflow: "visible", zIndex: 0 }}>
         <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ width: "100%", height: "100%", display: "block" }}>
           <path d="M-80,200 Q200,100 820,200 T1520,200 L1520,0 L-80,0 Z" fill="#059c5b" />
