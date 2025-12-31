@@ -598,12 +598,12 @@ export default function ProductListingAndDetails() {
                 {selectedProduct.name}
               </h1>
 
-              <p className="mt-2 text-lg text-gray-700 mb-6 font-medium">
-              {selectedProduct.tagline}
-              </p>
+              <p className="mt-2 mb-6 text-sm text-gray-700 leading-5">
+  {selectedProduct.tagline}
+</p>
 
               <p
-  className="text-gray-700 mb-6 leading-7"
+  className="mb-6 text-sm text-gray-700 leading-5"
   style={{ textAlign: "justify" }}
   dangerouslySetInnerHTML={{
     __html: highlightPhrases(

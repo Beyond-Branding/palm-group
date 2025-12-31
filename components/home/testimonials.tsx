@@ -185,7 +185,7 @@ export function Testimonials() {
   // NEW: pause timer ref used to pause auto-scrolling after manual nav
   const pauseTimeoutRef = useRef<number | null>(null);
 
-  const SPEED_PX_PER_SEC = 80;
+  const SPEED_PX_PER_SEC = 50;
 
   const openModal = (t: Testimonial) => {
     setModalTestimonial(t);
