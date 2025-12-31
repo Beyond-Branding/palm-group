@@ -145,7 +145,7 @@ const ProductCards: React.FC<{ products: CropProduct[] }> = ({ products }) => {
 />
                     </tr>
                     <tr className="bg-[#e8f5e9]">
-                      <td className="w-28 p-3 font-semibold text-[#1f6f3d]">Usage/Crops</td>
+                      <td className="w-28 p-3 font-semibold text-[#1f6f3d]">Crops</td>
                       <td
   className="p-3 text-base text-neutral-800 leading-7 font-normal"
   dangerouslySetInnerHTML={{

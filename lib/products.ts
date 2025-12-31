@@ -42,7 +42,7 @@ export const cropProtectionProducts: CropProduct[] = [
   {
     name: "AG-F SUPER PLUS",
     targetPests:
-      "<strong>For foliar sprays:</strong> 1 ml per 8 litres of water. Use with herbicides, insecticides, fungicides, micronutrients & foliar sprays. <br/><strong>Use With:</strong> Insecticides, fungicides, pesticides, micronutrients, biostimulants & other foliar sprays",
+      "<strong>For foliar sprays:</strong> 1 ml per 8 litres of water. <br/>Use with herbicides, insecticides, fungicides, micronutrients & foliar sprays.",
     dosePerAcre:
       "Perfect for all crops where complete coverage and high spray efficiency are crucial.",
     image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173861/AG-F_Superplus-Photoroom_shadow_kdb8m9.png",
