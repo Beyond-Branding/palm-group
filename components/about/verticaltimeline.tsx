@@ -89,7 +89,7 @@ const SECTIONS: Section[] = [
         </p>
       </>
     ),
-    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764225752/organicagri_brd0m4.jpg",
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1767173378/grapes_g2kpi9.jpg",
     imageAlt: "Entry into organic agri-solutions",
   },
   {
