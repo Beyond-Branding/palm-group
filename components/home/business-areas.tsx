@@ -16,6 +16,9 @@ export default function BusinessAreas() {
   const OUTSIDE_FRACTION = 0.3;
   const EXTRA_BOTTOM = Math.round(IMAGE_HEIGHT * OUTSIDE_FRACTION + 48);
 
+  const isMobile =
+  typeof window !== "undefined" && window.innerWidth < 640;
+
   const perProductOverrides: Record<string, { scale?: number; offsetPx?: number }> = {
     "CROP GIANT": { scale: 1, offsetPx: -18 },
     "CROPPER PLUS": { scale: 1, offsetPx: -10 },
@@ -41,7 +44,10 @@ export default function BusinessAreas() {
   ];
 
   const CARD_GAP = 16; 
-  const STEP = CARD_WIDTH + CARD_GAP;
+  const STEP = isMobile
+  ? CARD_WIDTH + CARD_GAP // exactly one card
+  : CARD_WIDTH + CARD_GAP;
+  
   const doubledProducts = useMemo(() => [...products, ...products], [products]);
 
   const trackRef = useRef<HTMLDivElement | null>(null);
@@ -78,10 +84,21 @@ export default function BusinessAreas() {
   }, [products, CARD_WIDTH]);
 
   const applyTransform = (x: number) => {
-    const track = trackRef.current;
-    if (!track) return;
+  const track = trackRef.current;
+  const wrapper = wrapperRef.current;
+  if (!track || !wrapper) return;
+
+  if (isMobile) {
+    const centerOffset =
+      (wrapper.offsetWidth - CARD_WIDTH) / 2;
+    track.style.transform = `translate3d(${
+      -(x - centerOffset)
+    }px, 0, 0)`;
+  } else {
     track.style.transform = `translate3d(${-x}px, 0, 0)`;
-  };
+  }
+};
+
 
   useEffect(() => {
     lastRef.current = performance.now();
@@ -246,7 +263,15 @@ export default function BusinessAreas() {
           </button>
 
           <div style={{ overflow: "visible" }}>
-            <div ref={trackRef} className="flex items-stretch" style={{ gap: `${CARD_GAP}px`, padding: "0 1rem", willChange: "transform" }}>
+            <div
+  ref={trackRef}
+  className="flex items-stretch"
+  style={{
+    gap: `${CARD_GAP}px`,
+    padding: isMobile ? "0" : "0 1rem",
+    willChange: "transform",
+  }}
+>
               {doubledProducts.map((product, i) => {
                 const ov = perProductOverrides[product.name] ?? {};
                 const scale = ov.scale ?? 1;
@@ -305,6 +330,12 @@ export default function BusinessAreas() {
         @media (max-width: 640px) {
           .product-slide { margin-right: 12px; }
         }
+        @media (max-width: 640px) {
+  .product-card {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
       `}</style>
     </section>
   );

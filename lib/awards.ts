@@ -3,22 +3,23 @@ import { Award, Shield, FileCheck, Leaf, Globe } from "lucide-react";
 export const awards = [
   {
     title: "ISO 9001:2015",
-    icon: Shield,
+    image: "/awards/ISOcertificate.jpg",
   },
   {
     title: "Importer-Exporter Code (IEC)",
-    icon: Globe,
+    image: "/awards/importexport.jpg",
   },
   {
     title: "Drug License",
-    icon: FileCheck,
+    image: "/awards/FDA.png",
   },
   {
     title: "FSSAI Central License",
-    icon: Leaf,
+    image: "/awards/fssai-license.jpg",
   },
   {
     title: "Bio-Stimulant Manufacturing License",
-    icon: Award,
+    image: "/awards/mahaagri.jpg",
   },
 ];
+

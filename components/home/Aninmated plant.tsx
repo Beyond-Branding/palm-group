@@ -25,29 +25,29 @@ const POSITIONS_DESKTOP: { left: string; top: string }[] = [
   { left: "12%", top: "8%" },  // product 3 CROP GIANT
   { left: "75%", top: "75%" }, // product 4 PALM SULF
   { left: "88%", top: "58%" }, // product 5 CROPPER
-  { left: "75%", top: "-10%" },  // product 6 CROPPER PLUS
+  { left: "75%", top: "-5%" },  // product 6 CROPPER PLUS
   { left: "88%", top: "8%" },  // product 7 SILICOSE
 ];
 
-const POSITIONS_MOBILE: { left: string; top: string }[] = [
-  { left: "28%", top: "75%" }, // GOLDEN DROP
-  { left: "10%", top: "35%" }, // AG-F
-  { left: "34%", top: "-59%" },  // AG-F SUPER PLUS
-  { left: "10%", top: "-35%" }, // CROP GIANT
-  { left: "72%", top: "75%" }, // PALM SULF
-  { left: "90%", top: "35%" }, // CROPPER
-  { left: "69%", top: "-57%" }, // CROPPER PLUS
-  { left: "90%", top: "-35%" }, // SILICOSE
+const POSITIONS_MOBILE = [
+  { left: "28%", top: "420px" }, // GOLDEN DROP
+  { left: "12%", top: "300px" }, // AG-F
+  { left: "28%", top: "75px" }, // AG-F SUPER PLUS
+  { left: "12%", top: "180px" }, // CROP GIANT
+  { left: "72%", top: "420px" }, // PALM SULF
+  { left: "88%", top: "300px" }, // CROPPER
+  { left: "68%", top: "79px" }, // CROPPER PLUS
+  { left: "88%", top: "180px" }, // SILICOSE
 ];
 
 const LABEL_OFFSET_DESKTOP: number[] = [
   -30, // GOLDEN DROP
   -25,  // AG-F
-   20, // AG-F SUPER PLUS
+  -10, // AG-F SUPER PLUS
   -20, // CROP GIANT
   -30, // PALM SULF
   -30,  // CROPPER
-  -25, // CROPPER PLUS
+  -30, // CROPPER PLUS
   -25, // SILICOSE
 ];
 
@@ -203,10 +203,25 @@ export default function PlantWithProducts() {
   const positions = isMobile ? POSITIONS_MOBILE : POSITIONS_DESKTOP;
 
   return (
-    <div className="relative w-full flex justify-center items-center py-8 bg-white">
-      <div className="relative w-full max-w-[1100px] flex justify-center items-center">
-        <div style={{ width: "100%", maxWidth: 820 }}>
-          <Lottie animationData={animationData} loop autoplay style={{ width: "100%", height: "auto" }} />
+    <div className="relative w-full flex justify-center 
+                items-start sm:items-center
+                py-4 sm:py-12 bg-white
+                overflow-hidden sm:overflow-visible">
+      <div className="relative w-full max-w-[1100px] flex justify-center items-center
+                min-h-[620px] sm:min-h-auto">
+        <div className="relative w-full min-h-[300px] sm:min-h-auto">
+          <Lottie
+  animationData={animationData}
+  loop
+  autoplay
+  style={{
+    width: "100%",
+    height: isMobile ? 300 : "auto",
+    marginTop: isMobile ? -20 : 0,
+    marginBottom: isMobile ? -20 : 0,
+  }}
+/>
+<div className="block sm:hidden h-4" />
         </div>
                             
         <div aria-hidden className="absolute inset-0 z-30">
@@ -295,6 +310,11 @@ export default function PlantWithProducts() {
         @media (max-width: 420px) {
           .absolute[aria-hidden] { /* no-op: just conservative selector to keep build happy */ }
         }
+        @supports (padding: env(safe-area-inset-bottom)) {
+    body {
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+  }
       `}</style>
     </div>
   );

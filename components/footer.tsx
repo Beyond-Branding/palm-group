@@ -18,21 +18,23 @@ export function Footer() {
   </p>
 
   {/* Awards / Certifications */}
-  <div className="flex flex-wrap items-center gap-3 pt-2">
-    {awards.map((award) => {
-      const Icon = award.icon;
-      return (
-        <Link
-          key={award.title}
-          href="/awards"
-          aria-label={award.title}
-          className="group flex items-center justify-center h-12 w-12 rounded-full bg-[#119152]/10 hover:bg-[#119152]/20 transition"
-        >
-          <Icon className="h-5 w-5 text-[#119152] group-hover:scale-110 transition-transform" />
-        </Link>
-      );
-    })}
-  </div>
+{/* Awards / Certifications */}
+<div className="flex flex-wrap items-center gap-4 pt-3">
+  {awards.map((award) => (
+    <a
+      key={award.title}
+      href="/awards"
+      aria-label={award.title}
+      className="hover:scale-105 transition-transform"
+    >
+      <img
+        src={award.image}
+        alt={award.title}
+        className="h-9 sm:h-12 md:h-14 w-auto object-contain"
+      />
+    </a>
+  ))}
+</div>
 </div>
 
             <div className="lg:col-start-5 lg:col-span-2 mt-6 lg:mt-0 lg:pl-6">
