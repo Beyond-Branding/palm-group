@@ -85,7 +85,7 @@ const products = [
       "Economic Optimization: Delivers superior coverage at lower doses, drastically reducing the total volume of water and chemicals required per acre.",
       "pH Regulation: Optimizes and stabilizes the pH levels to prevent chemical degradation and maximize nutrient bio-availability.",
     ],
-    dosage: "<strong>For foliar sprays:</strong> 1 ml per 8 litres of water. Use with herbicides, insecticides, fungicides, micronutrients & foliar sprays.",
+    dosage: "<strong>For foliar sprays:</strong> 1 ml per 8 litres of water. <br/>Use with herbicides, insecticides, fungicides, micronutrients & foliar sprays.",
     usage:
       "Perfect for all crops where complete coverage and high spray efficiency are crucial.",
     image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173861/AG-F_Superplus-Photoroom_shadow_kdb8m9.png",
@@ -417,13 +417,14 @@ const BOLD_PHRASES = [
   "Improves Water Retention",
   "Increases Lodging Resistance",
   "high-performance organic soil amendment",
-  "soil health",
   "stimulate vigorous root systems",
   "Triggers White Root Growth",
   "Boosts Nutrient Efficiency",
   "Enhances Drought Tolerance",
   "Supports Seed Germination",
-  "Cropper Granules is ideal for a wide range of crops including:"
+  "Cropper Granules is ideal for a wide range of crops including:",
+  "integrated pest management",
+  "soil health improvement",
 ];
 
 function escapeHtml(str: string) {
@@ -591,11 +592,11 @@ export default function ProductListingAndDetails() {
             </div>
 
             <div className="text-sm md:text-base">
-              <h1 className="text-3xl md:text-4xl font-extrabold text-[#1b5e20] mb-4">
-                {selectedProduct.name}
-              </h1>
+              <h1 className="text-3xl md:text-4xl font-extrabold text-[#1b5e20] mb-1">
+  {selectedProduct.name}
+</h1>
 
-              <p className="mt-4 mb-6 text-base text-gray-700 leading-7 font-normal">
+<p className="mt-0 mb-3 text-base text-gray-700 leading-7 font-semibold">
   {selectedProduct.tagline}
 </p>
 
@@ -616,8 +617,8 @@ export default function ProductListingAndDetails() {
   </h2>
 
   <ul
-  className="list-disc list-inside space-y-3 text-base text-gray-700 leading-7 font-normal pl-4"
-  style={{ textAlign: "justify" }}
+  className="list-disc list-inside space-y-1 text-base text-gray-700 leading-7 font-normal pl-4"
+  style={{ textAlign: 'justify' }}
 >
   {selectedProduct.benefits.map((benefit, index) => (
     <li
@@ -645,7 +646,7 @@ export default function ProductListingAndDetails() {
 />
                     </tr>
                     <tr className="bg-[#e8f5e9]">
-                      <td className="w-28 p-3 font-semibold text-[#1f6f3d]">Usage/Crops</td>
+                      <td className="w-28 p-3 font-semibold text-[#1f6f3d]">Crops</td>
                       <td
   className="p-3 text-base text-neutral-800 leading-7 font-normal"
   dangerouslySetInnerHTML={{
