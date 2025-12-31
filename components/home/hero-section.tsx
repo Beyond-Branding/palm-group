@@ -9,7 +9,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const slides = [
   {
-    src: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173401/farmer_xbm18r.png",
+    src: "https://res.cloudinary.com/daoju0r3c/image/upload/v1767173378/grapes_g2kpi9.jpg",
     title: "Innovating Growth at Every Stage",
     description:
       "From soil to harvest, our advanced formulations ensure stronger crops, better yields, and consistent performance.",

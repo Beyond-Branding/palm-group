@@ -22,9 +22,9 @@ const products = [
       " Advanced Protein Nutrition: Enriches plants with essential amino acid and peptides, providing the building blocks for vigorous growth and superior stress tolerance.",
     ],
     dosage:
-      "0.5–0.75 ml per litre of water. Spray during flowering and early fruiting stages every 12–15 days for best results.",
+      "<strong>Dosage:</strong> 0.5–0.75 ml per litre of water.<br/><strong>Timing:</strong> Spray during flowering and early fruiting stages every 12–15 days for best results.",
     usage:
-      "Golden Drop is ideal for a wide range of crops including: Grapes, Tomato, Mango, Paddy, Onion, Chilli, Citrus Fruits, Vegetables, Strawberries, Capsicum, Pomegranate, Sugarcane, Tea, Coffee, Cashew, Banana.",
+      "Golden Drop is ideal for a wide range of crops including: Grapes, Strawberries, Pomegranate, Tomato, Mango, Paddy, Onion, Chilli, Citrus Fruits, All Vegetable Crops, All Horticultural Crops, Sugarcane, Tea, Coffee, Cashew, Banana.",
     image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173725/golden_drop-Photoroom_shadow_m9aigy.png",
     secondaryImage: "/golden-drop-side.png",
     backgroundHex: "#DFF2EA",
@@ -54,7 +54,7 @@ const products = [
       "Enhanced Soil Binding & Nutrient Retention: Creates a unique binding effect in the soil that anchors nutrients, preventing leaching and ensuring a steady, slow-release of NPK to the root zone. It also optimizes soil structure to retain moisture more effectively, reducing irrigation frequency and protecting crops during dry spells.",
     ],
     dosage:
-      "1 ml per litre of water to reduce herbicide dosage by 50% General Foliar sprays : 0.25 ml per liter of water For Fertigation: 250ml per acre. Use With: Herbicides, insecticides, fungicides, micronutrients & foliar fertilizers",
+      "<strong>To reduce herbicide dosage:</strong> 1 ml per litre of water to reduce herbicide dosage by 50%.<br/><strong>General Foliar sprays:</strong> 0.25 ml per liter of water <strong><br/>For Fertigation:</strong> 250ml per acre. <br/><strong>Use With:</strong> Herbicides, insecticides, fungicides, micronutrients & foliar fertilizers.",
     usage: "Ideal for all crops.",
     image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173812/agf-Photoroom_1_cmpcyy.png",
     secondaryImage: "/copperplus.png",
@@ -85,7 +85,7 @@ const products = [
       "Economic Optimization: Delivers superior coverage at lower doses, drastically reducing the total volume of water and chemicals required per acre.",
       "pH Regulation: Optimizes and stabilizes the pH levels to prevent chemical degradation and maximize nutrient bio-availability.",
     ],
-    dosage: "1 ml per 8 litres of water. Use with herbicides, insecticides, fungicides, micronutrients & foliar sprays.",
+    dosage: "<strong>For foliar sprays:</strong> 1 ml per 8 litres of water. Use with herbicides, insecticides, fungicides, micronutrients & foliar sprays.",
     usage:
       "Perfect for all crops where complete coverage and high spray efficiency are crucial.",
     image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173861/AG-F_Superplus-Photoroom_shadow_kdb8m9.png",
@@ -117,9 +117,9 @@ const products = [
   "Induces Early Harvest – Accelerates the natural maturation process by optimizing carbohydrate translocation, allowing farmers to reach the market sooner.",
 ],
     dosage:
-      "Spray: 1.5 ml per litre of water when berries reach pea size. Repeat after 7 days for maximum effectiveness. Third Spray: 15 days before harvest",
+      "<strong>Spray:</strong> 1.5 ml per litre of water when berries reach pea size. <br/><strong>Repeat:</strong> After 7-10 days for maximum effectiveness. <br/><strong>Third Spray:</strong> 15 days before harvest.",
     usage:
-      "Crop Giant is ideal for a wide range of crops including: Grapes, Strawberry, Citrus, Apple, Mango, Tomato, Capsicum, Watermelon, Cucumbers, Brinjal, Chilli, Pomegranate.",
+      "Crop Giant is ideal for a wide range of crops including: Grapes, Strawberries, Pomegranate, Tomato, Mango, Paddy, Onion, Chilli, Citrus Fruits, All Vegetable Crops, All Horticultural Crops, Sugarcane, Tea, Coffee, Cashew, Banana.",
     image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173895/crop_giant_1_cs6nnn.png",
     secondaryImage: "/crop giant.png",
     backgroundHex: "#FADDDD",
@@ -147,9 +147,9 @@ const products = [
   "Improves Soil Temperature – Helps maintain optimal root-zone temperature, supporting healthy growth during cooler months.",
 ],
 
-    dosage: "Foliar Spray: 3 ml per litre of water. Drip Application: 7.5 litres per hectare.",
+    dosage: "<strong>Foliar Spray:</strong> 2-3 ml per litre of water.<br/><strong>Drip Application:</strong> 3 litres per acre.",
     usage:
-      "Palm Sulf is ideal for a wide range of crops including: Wheat, Rice, Grapes, Citrus, Mango, Chilli, Onion, Spinach, Potato, Tomato, Capsicum, Carrot.",
+      "Palm Sulf is ideal for a wide range of crops including: Grapes, Strawberries, Pomegranate, Tomato, Mango, Paddy, Onion, Chilli, Citrus Fruits, All Vegetable Crops, All Horticultural Crops, Sugarcane, Tea, Coffee, Cashew, Banana.",
     image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173960/palmsulfnew_ntrjwo.png",
     secondaryImage: "/palm-sulf-side.jpg",
     backgroundHex: "#FFE3D1",
@@ -178,7 +178,7 @@ const products = [
 ],
 
     dosage:
-      "Soil Application: 3 L/acre, Seed Treatment: 2.5 L per MT of seed, With Fertilizers: 3 L/acre",
+      "<strong>Soil Application:</strong> 3 L/acre.<br/><strong>Seed Treatment:</strong> 2.5 L per MT of seed. <br/><strong>With Fertilizers:</strong> 3 L/acre.",
     usage:
       "Cropper is ideal for a wide range of crops including: Grapes, Strawberries, Pomegranate, Tomato, Mango, Paddy, Onion, Chilli, Citrus Fruits, All Vegetable Crops, All Horticultural Crops, Sugarcane, Tea, Coffee, Cashew, Banana.",
     image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174014/croppernew_qydobw.png",
@@ -210,7 +210,7 @@ const products = [
 ],
 
     dosage:
-      "Soil Application: 2.5–4 L/Ha. Foliar Spray: 1 ml per litre. Seed Treatment: 1.5 L per MT of seed. With Fertilizers: 2.5–4 L/Ha.",
+      "<strong>Soil Application:</strong> 1-1.25 L/acre. <br/><strong>Foliar Spray:</strong> 1 ml per litre. <br/><strong>Seed Treatment:</strong> 1.5 L per MT of seed. <br/><strong>With Fertilizers:</strong> 1-1.25 L/acre.",
     usage:
       "Cropper Plus is ideal for a wide range of crops including: Grapes, Strawberries, Pomegranate, Tomato, Mango, Paddy, Onion, Chilli, Citrus Fruits, All Vegetable Crops, All Horticultural Crops, Sugarcane, Tea, Coffee, Cashew, Banana.",
     image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174140/cropperplusnew_gxqz3w.png",
@@ -240,7 +240,7 @@ const products = [
   "Improves Water Retention – Enhances moisture-holding capacity, increasing drought tolerance and sustaining yields under water stress.",
   "Increases Lodging Resistance – Strengthens stems and stalks, enabling crops to better withstand wind, rain, and heavy growth load.",
 ],
-    dosage: "Foliar Spray: 3 ml per litre of water. Drip Application: 5–7.5 L/Ha.",
+    dosage: "<strong>Foliar Spray:</strong> 3 ml per litre of water. <br/><strong>Drip Application:</strong> 2–3 L/acre.",
     usage:
       "Silicose is ideal for a wide range of crops including: Grapes, Strawberries, Pomegranate, Tomato, Mango, Paddy, Onion, Chilli, Citrus Fruits, All Vegetable Crops, All Horticultural Crops, Sugarcane, Tea, Coffee, Cashew, Banana.",
     image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174176/silicosenew_t2zou5.png",
@@ -270,7 +270,7 @@ const products = [
   "Enhances Drought Tolerance – Regulates internal plant hormones, enabling crops to survive and perform better under water-stress conditions.",
   "Supports Seed Germination – Improves root respiration and early vigor during critical germination and seedling establishment stages.",
 ],
-    dosage: "FSoil Application by broadcasting : 1-1.5 kg per acre. Method: Apply directly to the soil during land preparation or as a top-dressing in early growth stages.",
+    dosage: "<strong>Soil Application by broadcasting:</strong> 1-1.5 kg per acre. <br/><strong>Method:</strong> Apply directly to the soil during land preparation or as a top-dressing in early growth stages.",
     usage:
       "Cropper Granules is ideal for a wide range of crops including: Grapes, Strawberries, Pomegranate, Tomato, Mango, Paddy, Onion, Chilli, Citrus Fruits, All Vegetable Crops, All Horticultural Crops, Sugarcane, Tea, Coffee, Cashew, Banana, Wheat.",
     image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1766901717/Screenshot_2025-12-28_112823-removebg-preview_hgnhjc.png",
@@ -381,7 +381,6 @@ const BOLD_PHRASES = [
   "Synergistic Efficiency",
   "Economic Optimization",
   "pH Regulation",
-  "Perfect for all crops where complete coverage and high spray efficiency are crucial",
   "sophisticated organic formulation",
   "Carbohydrate Theory",
   "high-quality fruit tissue",
@@ -406,7 +405,6 @@ const BOLD_PHRASES = [
   "Improves Water-Holding Capacity",
   "highly concentrated humic and fulvic acid",
   "root growth and soil fertility",
-  "Boosts Plant Growth",
   "Promotes Root & Shoot Growth",
   "Enhances Microbial Activity",
   "Reduces Nutrient Loss",
@@ -422,7 +420,6 @@ const BOLD_PHRASES = [
   "soil health",
   "stimulate vigorous root systems",
   "Triggers White Root Growth",
-  "Improves Soil Structure",
   "Boosts Nutrient Efficiency",
   "Enhances Drought Tolerance",
   "Supports Seed Germination",
@@ -598,12 +595,12 @@ export default function ProductListingAndDetails() {
                 {selectedProduct.name}
               </h1>
 
-              <p className="mt-2 mb-6 text-sm text-gray-700 leading-5">
+              <p className="mt-4 mb-6 text-base text-gray-700 leading-7 font-normal">
   {selectedProduct.tagline}
 </p>
 
               <p
-  className="mb-6 text-sm text-gray-700 leading-5"
+  className="mb-6 text-base text-gray-700 leading-7 font-normal"
   style={{ textAlign: "justify" }}
   dangerouslySetInnerHTML={{
     __html: highlightPhrases(
@@ -619,19 +616,18 @@ export default function ProductListingAndDetails() {
   </h2>
 
   <ul
-    className="list-disc list-inside space-y-2 text-sm text-gray-700 pl-4"
-    style={{ textAlign: "justify" }}
-  >
-    {selectedProduct.benefits.map((benefit, index) => (
-      <li
-        key={index}
-        className="font-medium"
-        dangerouslySetInnerHTML={{
-          __html: highlightPhrases(benefit, BOLD_PHRASES),
-        }}
-      />
-    ))}
-  </ul>
+  className="list-disc list-inside space-y-3 text-base text-gray-700 leading-7 font-normal pl-4"
+  style={{ textAlign: "justify" }}
+>
+  {selectedProduct.benefits.map((benefit, index) => (
+    <li
+      key={index}
+      dangerouslySetInnerHTML={{
+        __html: highlightPhrases(benefit, BOLD_PHRASES),
+      }}
+    />
+  ))}
+</ul>
 </div>
 
 
@@ -641,17 +637,21 @@ export default function ProductListingAndDetails() {
                   <tbody className="divide-y divide-[#1f6f3d]/20">
                     <tr>
                       <td className="w-28 p-3 font-semibold text-[#1f6f3d]">Dosage</td>
-                      <td className="p-3 text-neutral-800">{selectedProduct.dosage}</td>
+                      <td
+  className="p-3 text-base text-neutral-800 leading-7 font-normal"
+  dangerouslySetInnerHTML={{
+    __html: selectedProduct.dosage,
+  }}
+/>
                     </tr>
                     <tr className="bg-[#e8f5e9]">
                       <td className="w-28 p-3 font-semibold text-[#1f6f3d]">Usage/Crops</td>
                       <td
-                        className="p-3 text-neutral-800"
-                        dangerouslySetInnerHTML={{
-                          __html: highlightPhrases(selectedProduct.usage, BOLD_PHRASES),
-  
-                        }}
-                      />
+  className="p-3 text-base text-neutral-800 leading-7 font-normal"
+  dangerouslySetInnerHTML={{
+    __html: highlightPhrases(selectedProduct.usage, BOLD_PHRASES),
+  }}
+/>
                     </tr>
                   </tbody>
                 </table>
