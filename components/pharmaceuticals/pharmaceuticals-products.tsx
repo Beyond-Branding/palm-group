@@ -183,10 +183,27 @@ export function PharmaceuticalsProducts() {
         <div className="mt-0 mb-8 text-left md:text-center">
           <div className="relative mx-auto max-w-4xl rounded-3xl border bg-card/60 p-8 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-card/50">
             <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-[#0E7C45] to-[#14A165] rounded-t-3xl" />
-            <h1 className="relative -top-3 text-2xl sm:text-3xl md:text-3xl font-extrabold text-[#388e3c] tracking-tight text-center">
+            <h1
+  className="
+    relative -top-3
+    text-3xl sm:text-3xl md:text-3xl
+    font-extrabold text-[#388e3c]
+    tracking-tight
+    text-left sm:text-center
+  "
+>
   Palm Pharmachem
 </h1>
-            <h3 className="text-xl font-bold mb-3">Trusted Partner in Pharmaceutical Supply</h3>
+
+<h3
+  className="
+    text-lg sm:text-xl
+    font-bold mb-3
+    text-left sm:text-center
+  "
+>
+  Trusted Partner in Pharmaceutical Supply
+</h3>
             <p className="text-muted-foreground">
               Palm Pharmachem is a trusted pharmaceutical supplier offering high-quality APIs, excipients, and intermediates. With decades of experience and strong global partnerships, we ensure reliable, compliant, and timely solutions backed by full documentation (COA, MSDS, DMFs). Our commitment to quality helps healthcare companies manufacture life-saving medicines with confidence.
             </p>

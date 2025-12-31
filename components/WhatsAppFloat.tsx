@@ -23,10 +23,13 @@ export default function WhatsAppFloat({
 
   return (
     <div
-      className={`fixed bottom-6 right-6 z-[9999] ${
-        hideOnMobile ? "hidden sm:block" : ""
-      }`}
-    >
+  className={`fixed
+    bottom-6 right-6
+    md:bottom-10 md:right-12
+    z-[9999]
+    ${hideOnMobile ? "hidden sm:block" : ""}
+  `}
+>
       <button
         onClick={handleClick}
         onMouseEnter={() => setIsHovered(true)}
@@ -42,7 +45,7 @@ export default function WhatsAppFloat({
       >
         {/* WhatsApp Icon */}
         <svg
-          className="w-8 h-8"
+          className="w-10 h-10"
           fill="currentColor"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
