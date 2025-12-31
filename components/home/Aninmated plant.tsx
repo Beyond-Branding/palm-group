@@ -30,14 +30,14 @@ const POSITIONS_DESKTOP: { left: string; top: string }[] = [
 ];
 
 const POSITIONS_MOBILE = [
-  { left: "28%", top: "420px" }, // GOLDEN DROP
-  { left: "12%", top: "300px" }, // AG-F
-  { left: "28%", top: "75px" }, // AG-F SUPER PLUS
-  { left: "12%", top: "180px" }, // CROP GIANT
-  { left: "72%", top: "420px" }, // PALM SULF
-  { left: "88%", top: "300px" }, // CROPPER
-  { left: "68%", top: "79px" }, // CROPPER PLUS
-  { left: "88%", top: "180px" }, // SILICOSE
+  { left: "28%", top: "72%" }, // GOLDEN DROP
+  { left: "12%", top: "40%" }, // AG-F
+  { left: "28%", top: "-28%" }, // AG-F SUPER PLUS
+  { left: "12%", top: "2%" }, // CROP GIANT
+  { left: "72%", top: "72%" }, // PALM SULF
+  { left: "88%", top: "40%" }, // CROPPER
+  { left: "66%", top: "-26%" }, // CROPPER PLUS
+  { left: "88%", top: "2%" }, // SILICOSE
 ];
 
 const LABEL_OFFSET_DESKTOP: number[] = [
@@ -123,11 +123,13 @@ function useIsMobile(breakpoint = 768) {
 }
 
 export default function PlantWithProducts() {
-  const STICKER_SIZE_RESPONSIVE = useStickerSize();
+  
   const isMobile = useIsMobile();
   const [visibleMap, setVisibleMap] = useState<Record<number, boolean>>({});
   const timersRef = useRef<number[]>([]);
   const intervalRef = useRef<number | null>(null);
+  const [mounted, setMounted] = useState(false);
+
 
   const durationMs = useMemo(() => {
     try {
@@ -140,6 +142,11 @@ export default function PlantWithProducts() {
       return 4200;
     }
   }, []);
+
+    useEffect(() => {
+    setMounted(true);
+  }, []);
+
 
   useEffect(() => {
     const clearTimers = () => {
@@ -195,33 +202,37 @@ export default function PlantWithProducts() {
   }, []);
 
   const getSizeFor = (i: number) => {
-    const s = PRODUCT_SIZES[i];
-    if (typeof s === "number" && s > 0) return s;
-    return STICKER_SIZE_RESPONSIVE;
-  };
+  const custom = PRODUCT_SIZES[i];
+  if (typeof custom === "number" && custom > 0) return custom;
+
+  // HARD LOCK
+  return isMobile ? 130 : 190;
+};
 
   const positions = isMobile ? POSITIONS_MOBILE : POSITIONS_DESKTOP;
+  
+  if (!mounted) {
+  return null;
+}
 
   return (
     <div className="relative w-full flex justify-center 
-                items-start sm:items-center
-                py-4 sm:py-12 bg-white
-                overflow-hidden sm:overflow-visible">
+  items-start sm:items-center
+  py-2 sm:py-12 bg-white
+  overflow-visible">
       <div className="relative w-full max-w-[1100px] flex justify-center items-center
-                min-h-[620px] sm:min-h-auto">
-        <div className="relative w-full min-h-[300px] sm:min-h-auto">
+  min-h-[340px] sm:min-h-auto">
+        <div className="relative w-full h-[300px] sm:h-auto">
           <Lottie
   animationData={animationData}
   loop
   autoplay
   style={{
     width: "100%",
-    height: isMobile ? 300 : "auto",
-    marginTop: isMobile ? -20 : 0,
-    marginBottom: isMobile ? -20 : 0,
+    height: isMobile ? 300 : undefined,
+    maxHeight: isMobile ? 300 : undefined,
   }}
 />
-<div className="block sm:hidden h-4" />
         </div>
                             
         <div aria-hidden className="absolute inset-0 z-30">
