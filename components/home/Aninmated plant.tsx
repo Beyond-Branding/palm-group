@@ -32,7 +32,7 @@ const POSITIONS_DESKTOP: { left: string; top: string }[] = [
 const POSITIONS_MOBILE = [
   { left: "28%", top: "72%" }, // GOLDEN DROP
   { left: "12%", top: "40%" }, // AG-F
-  { left: "28%", top: "-28%" }, // AG-F SUPER PLUS
+  { left: "32%", top: "-30%" }, // AG-F SUPER PLUS
   { left: "12%", top: "2%" }, // CROP GIANT
   { left: "72%", top: "72%" }, // PALM SULF
   { left: "88%", top: "40%" }, // CROPPER
@@ -54,7 +54,7 @@ const LABEL_OFFSET_DESKTOP: number[] = [
 const LABEL_OFFSET_MOBILE: number[] = [
   -20, // GOLDEN DROP
   -18, // AG-F
-  -20, // AG-F SUPER PLUS
+  -12, // AG-F SUPER PLUS
   -18, // CROP GIANT
   -20, // PALM SULF
   -20, // CROPPER
