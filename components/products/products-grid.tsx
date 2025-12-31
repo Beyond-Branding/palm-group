@@ -137,16 +137,24 @@ const ProductCards: React.FC<{ products: CropProduct[] }> = ({ products }) => {
                   <tbody className="divide-y divide-[#1f6f3d]/20">
                     <tr>
                       <td className="w-28 p-3 font-semibold text-[#1f6f3d]">Dosage</td>
-                      <td className="p-3 text-neutral-800">{selectedProduct.targetPests}</td>
+                      <td
+  className="p-3 text-base text-neutral-800 leading-7 font-normal"
+  dangerouslySetInnerHTML={{
+    __html: selectedProduct.targetPests,
+  }}
+/>
                     </tr>
                     <tr className="bg-[#e8f5e9]">
                       <td className="w-28 p-3 font-semibold text-[#1f6f3d]">Usage/Crops</td>
                       <td
-                        className="p-3 text-neutral-800"
-                        dangerouslySetInnerHTML={{
-                          __html: highlightPhrases(selectedProduct.dosePerAcre, BOLD_PHRASES),
-                        }}
-                      />
+  className="p-3 text-base text-neutral-800 leading-7 font-normal"
+  dangerouslySetInnerHTML={{
+    __html: highlightPhrases(
+      selectedProduct.dosePerAcre,
+      BOLD_PHRASES
+    ),
+  }}
+/>
                     </tr>
                   </tbody>
                 </table>
