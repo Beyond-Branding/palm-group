@@ -7,95 +7,137 @@ import animationData from "../../public/Tomato plant.json";
 const DEFAULT_DESKTOP_SIZE = 190; 
 const DEFAULT_MOBILE_SIZE = 130; 
 
-const PRODUCT_SIZES: (number | null)[] = [
-  null, 
-  null, 
-  null, 
-  null, 
-  null, 
-  null, 
-  null, 
-  null, 
+const PRODUCT_SIZES: number[] = [
+  150, // 0 AG-F SUPER PLUS
+  180, // 1 AG-F
+  130, // 2 CROPPER GRANULES
+  180, // 3 CROP GIANT
+  180, // 4 PALM SULF
+  180, // 5 CROPPER
+  180, // 6 CROPPER PLUS
+  180, // 7 SILICOSE
+  180, // 8 GOLDEN DROP
 ];
 
-const POSITIONS_DESKTOP: { left: string; top: string }[] = [
-  { left: "28%", top: "75%" }, // product 0 GOLDEN DROP
-  { left: "12%", top: "58%" }, // product 1 AG-F
-  { left: "28%", top: "-10%" },  // product 2 AG-F SUPER PLUS
-  { left: "12%", top: "8%" },  // product 3 CROP GIANT
-  { left: "75%", top: "75%" }, // product 4 PALM SULF
-  { left: "88%", top: "58%" }, // product 5 CROPPER
-  { left: "75%", top: "-5%" },  // product 6 CROPPER PLUS
-  { left: "88%", top: "8%" },  // product 7 SILICOSE
+const PRODUCT_SIZES_MOBILE: number[] = [
+  100, // 0 AG-F SUPER PLUS
+  135, // 1 AG-F
+  110, // 2 CROPPER GRANULES
+  135, // 3 CROP GIANT
+  140, // 4 PALM SULF
+  135, // 5 CROPPER
+  135, // 6 CROPPER PLUS
+  135, // 7 SILICOSE
+  130, // 8 GOLDEN DROP
 ];
+
+
+const POSITIONS_DESKTOP = [
+  { left: "28%", top: "75%" }, // 0 AG-F SUPER PLUS
+  { left: "12%", top: "58%" }, // 1 AG-F
+  { left: "28%", top: "-3%" }, // 2 CROPPER GRANULES
+  { left: "12%", top: "8%" }, // 3 CROP GIANT
+  { left: "75%", top: "79%" }, // 4 PALM SULF
+  { left: "88%", top: "58%" }, // 5 CROPPER
+  { left: "75%", top: "-5%" }, // 6 CROPPER PLUS
+  { left: "88%", top: "12%" }, // 7 SILICOSE
+  { left: "50%", top: "-15%" }, // 8 GOLDEN DROP
+];
+
 
 const POSITIONS_MOBILE = [
-  { left: "28%", top: "72%" }, // GOLDEN DROP
-  { left: "12%", top: "40%" }, // AG-F
-  { left: "32%", top: "-30%" }, // AG-F SUPER PLUS
-  { left: "12%", top: "2%" }, // CROP GIANT
-  { left: "72%", top: "72%" }, // PALM SULF
-  { left: "88%", top: "40%" }, // CROPPER
-  { left: "66%", top: "-26%" }, // CROPPER PLUS
-  { left: "88%", top: "2%" }, // SILICOSE
+  { left: "28%", top: "72%" },
+  { left: "12%", top: "40%" },
+  { left: "32%", top: "-30%" },
+  { left: "12%", top: "2%" },
+  { left: "72%", top: "72%" },
+  { left: "88%", top: "40%" },
+  { left: "66%", top: "-26%" },
+  { left: "88%", top: "2%" },
+  { left: "50%", top: "55%" },
 ];
 
+
 const LABEL_OFFSET_DESKTOP: number[] = [
-  -30, // GOLDEN DROP
-  -25,  // AG-F
-  -10, // AG-F SUPER PLUS
-  -20, // CROP GIANT
-  -30, // PALM SULF
-  -30,  // CROPPER
-  -30, // CROPPER PLUS
-  -25, // SILICOSE
+   1, // 0 AG-F SUPER PLUS
+  -18, // 1 AG-F
+  -12, // 2 CROPPER GRANULES
+  -16, // 3 CROP GIANT
+  -29, // 4 PALM SULF
+  -22, // 5 CROPPER
+  -24, // 6 CROPPER PLUS
+  -27, // 7 SILICOSE
+  -20, // 8 GOLDEN DROP
 ];
 
 const LABEL_OFFSET_MOBILE: number[] = [
-  -20, // GOLDEN DROP
-  -18, // AG-F
-  -12, // AG-F SUPER PLUS
-  -18, // CROP GIANT
-  -20, // PALM SULF
-  -20, // CROPPER
-  -25, // CROPPER PLUS
-  -18, // SILICOSE
+  -8,  // 0 AG-F SUPER PLUS
+  -12, // 1 AG-F
+  -10, // 2 CROPPER GRANULES
+  -12, // 3 CROP GIANT
+  -14, // 4 PALM SULF
+  -14, // 5 CROPPER
+  -16, // 6 CROPPER PLUS
+  -12, // 7 SILICOSE
+  -14, // 8 GOLDEN DROP
 ];
 
 const LABEL_OFFSET_X_MOBILE: number[] = [
-  1, // GOLDEN DROP → left
- -5,  // AG-F
-  0,   // AG-F SUPER PLUS
-  1, // CROP GIANT
-  1,  // PALM SULF → right
-  8,   // CROPPER
-  1,  // CROPPER PLUS
-  6,   // SILICOSE
+   0, // 0 AG-F SUPER PLUS
+  -5, // 1 AG-F
+   0, // 2 CROPPER GRANULES
+   1, // 3 CROP GIANT
+   1, // 4 PALM SULF
+   6, // 5 CROPPER
+   1, // 6 CROPPER PLUS
+   5, // 7 SILICOSE
+   0, // 8 GOLDEN DROP
 ];
 
+
 const PRODUCTS = [
-  "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173725/golden_drop-Photoroom_shadow_m9aigy.png",
-  "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173812/agf-Photoroom_1_cmpcyy.png",
+  // 0 → AG-F SUPER PLUS (replaces Golden Drop position)
   "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173861/AG-F_Superplus-Photoroom_shadow_kdb8m9.png",
+
+  // 1 → AG-F
+  "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173812/agf-Photoroom_1_cmpcyy.png",
+
+  // 2 → CROPPER GRANULES (NEW)
+  "https://res.cloudinary.com/daoju0r3c/image/upload/v1767960406/croppergranules-removebg-preview_rzxnek.png",
+
+  // 3 → CROP GIANT
   "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173895/crop_giant_1_cs6nnn.png",
+
+  // 4 → PALM SULF
   "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173960/palmsulfnew_ntrjwo.png",
+
+  // 5 → CROPPER
   "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174014/croppernew_qydobw.png",
+
+  // 6 → CROPPER PLUS
   "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174140/cropperplusnew_gxqz3w.png",
+
+  // 7 → SILICOSE
   "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174176/silicosenew_t2zou5.png",
+
+  // 8 → GOLDEN DROP (moved to right side)
+  "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173725/golden_drop-Photoroom_shadow_m9aigy.png",
 ];
 
 const PRODUCT_NAMES = [
-  "GOLDEN DROP",
-  "AG-F",
   "AG-F SUPER PLUS",
+  "AG-F",
+  "CROPPER GRANULES",
   "CROP GIANT",
   "PALM SULF",
   "CROPPER",
   "CROPPER PLUS",
   "SILICOSE",
+  "GOLDEN DROP",
 ];
 
-const SHOW_GROUP_TIMINGS = [0.05, 0.10, 0.25, 0.35];
+
+const SHOW_GROUP_TIMINGS = [0.05, 0.10, 0.25, 0.35, 0.55];
 const GROUP_STAGGER_MS = 80;
 const GROUP_VISIBLE_MS_EXTRA = 80;
 
@@ -159,11 +201,13 @@ export default function PlantWithProducts() {
       setVisibleMap({}); 
 
       const pairs = [
-        [0, 4], 
-        [1, 5], 
-        [3, 7], 
-        [2, 6], 
-      ];
+  [0, 4], // AG-F SUPER PLUS + PALM SULF
+  [1, 5], // AG-F + CROPPER
+  [3, 7], // CROP GIANT + SILICOSE
+  [2, 6], // CROPPER GRANULES + CROPPER PLUS
+  [8],    // ✅ GOLDEN DROP (alone)
+];
+
 
       for (let groupIdx = 0; groupIdx < pairs.length; groupIdx++) {
         const pair = pairs[groupIdx];
@@ -202,11 +246,11 @@ export default function PlantWithProducts() {
   }, []);
 
   const getSizeFor = (i: number) => {
-  const custom = PRODUCT_SIZES[i];
-  if (typeof custom === "number" && custom > 0) return custom;
+  if (isMobile) {
+    return PRODUCT_SIZES_MOBILE[i] ?? DEFAULT_MOBILE_SIZE;
+  }
 
-  // HARD LOCK
-  return isMobile ? 130 : 190;
+  return PRODUCT_SIZES[i] ?? DEFAULT_DESKTOP_SIZE;
 };
 
   const positions = isMobile ? POSITIONS_MOBILE : POSITIONS_DESKTOP;

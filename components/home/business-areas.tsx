@@ -28,7 +28,7 @@ export default function BusinessAreas() {
     "CROPPER": { scale: 1, offsetPx: 7.5 },
     "SILICOSE": { scale: 1, offsetPx: 0 },
     "AG-F SUPER PLUS": { scale: 0.6, offsetPx: -65 },
-    "CROPPER GRANULES": { scale: 0.6, offsetPx: -45 },
+    "CROPPER GRANULES": { scale: 0.6, offsetPx: -42 },
   };
   
   const products = [
@@ -40,7 +40,7 @@ export default function BusinessAreas() {
     { name: "CROPPER", color: "bg-[#E8DAD6]", icon: "/farm6.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174014/croppernew_qydobw.png", dotColor: "rgba(255,255,255,0.06)", overlayColor: "rgba(0,0,0,0.25)" },
     { name: "CROPPER PLUS", color: "bg-[#FFE8C7]", icon: "/farm7.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174140/cropperplusnew_gxqz3w.png", dotColor: "rgba(255,255,255,0.07)", overlayColor: "rgba(0,0,0,0.24)" },
     { name: "SILICOSE", color: "bg-[#E0E9FF]", icon: "/farm8.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174176/silicosenew_t2zou5.png", dotColor: "rgba(255,255,255,0.05)", overlayColor: "rgba(0,0,0,0.24)" },
-    { name: "CROPPER GRANULES", color: "bg-[#E6F8EC]", icon: "/farm9.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1766901717/Screenshot_2025-12-28_112823-removebg-preview_hgnhjc.png", dotColor: "rgba(255,255,255,0.05)", overlayColor: "rgba(0,0,0,0.24)" },
+    { name: "CROPPER GRANULES", color: "bg-[#E6F8EC]", icon: "/farm9.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1767960406/croppergranules-removebg-preview_rzxnek.png", dotColor: "rgba(255,255,255,0.05)", overlayColor: "rgba(0,0,0,0.24)" },
   ];
 
   const CARD_GAP = 16; 

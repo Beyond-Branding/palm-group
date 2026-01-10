@@ -23,14 +23,13 @@ export function Footer() {
   {awards.map((award) => (
     <a
       key={award.title}
-      href="/awards"
       aria-label={award.title}
       className="hover:scale-105 transition-transform"
     >
       <img
         src={award.image}
         alt={award.title}
-        className="h-9 sm:h-12 md:h-14 w-auto object-contain"
+        className="h-9 sm:h-12 md:h-13 w-auto object-contain"
       />
     </a>
   ))}
