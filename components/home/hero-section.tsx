@@ -9,22 +9,22 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const slides = [
   {
-    src: "https://res.cloudinary.com/daoju0r3c/image/upload/v1767173378/grapes_g2kpi9.jpg",
-    title: "Innovating Growth at Every Stage",
-    description:
-      "From soil to harvest, our advanced formulations ensure stronger crops, better yields, and consistent performance.",
-  },
-  {
-    src: "https://res.cloudinary.com/daoju0r3c/image/upload/v1766743043/farmplam_qws6l6.jpg",
+    src: "https://res.cloudinary.com/daoju0r3c/image/upload/v1767878514/Gemini_Generated_Image_34yq8r34yq8r34yq_wolyv0.png",
     title: "Science Behind Every Successful Harvest",
     description:
       "Delivering high-efficiency nutrition products that boost crop health, enhance productivity, and maximize potential.",
   },
   {
-    src: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173577/farmer_in_green_crop_qlcnpc.jpg",
+    src: "https://res.cloudinary.com/daoju0r3c/image/upload/v1767879402/Gemini_Generated_Image_azmjtkazmjtkazmj_vpfyjt.png",
     title: "Empowering Farmers, Driving Progress",
     description:
       "Partnering with farmers through reliable solutions and continuous support to help them achieve greater success every season.",
+  },
+  {
+    src: "https://res.cloudinary.com/daoju0r3c/image/upload/v1767956832/Gemini_Generated_Image_17d4mw17d4mw17d4_jo3cvb.png",
+    title: "Palm Pharmachem",
+    description:
+      "Palm Pharmachem delivers high-quality APIs and excipients backed by decades of expertise and strong global partnerships.",
   },
 ];
 
@@ -33,7 +33,7 @@ export function HeroSection() {
   const swiperRef = useRef<any | null>(null);
 
   const BG_COLOR = "#00712D";
-  const FADE_POINT = 60;
+  const FADE_POINT = 40;
   const GREEN = "7,113,45";
 
   return (
@@ -74,23 +74,39 @@ export function HeroSection() {
         {/* IMAGE / SWIPER (right column) */}
         <div className="relative w-full lg:w-[60%] h-[300px] sm:h-[420px] lg:h-auto">
           <div className="relative w-full h-full">
-            {/* gradient overlay (kept pointer-events-none so it doesn't block arrows) */}
-            <div
-              aria-hidden
-              className="absolute inset-0 z-10 pointer-events-none hidden lg:block"
-              style={{
-                background: `linear-gradient(90deg,
-                  rgba(${GREEN},1) 0%,
-                  rgba(${GREEN},0.98) 10%,
-                  rgba(${GREEN},0.85) 25%,
-                  rgba(${GREEN},0.55) ${Math.max(20, FADE_POINT - 15)}%,
-                  rgba(${GREEN},0.25) ${Math.max(30, FADE_POINT)}%,
-                  rgba(${GREEN},0.08) ${Math.min(FADE_POINT + 10, 70)}%,
-                  transparent 100%
-                )`,
-                mixBlendMode: "normal",
-              }}
-            />
+<div
+  aria-hidden
+  className="absolute inset-0 z-10 pointer-events-none hidden lg:block"
+>
+  {/* main fade */}
+  <div
+    className="absolute inset-0"
+    style={{
+      background: `linear-gradient(90deg,
+        rgba(${GREEN},1) 0%,
+        rgba(${GREEN},0.9) 18%,
+        rgba(${GREEN},0.6) 32%,
+        rgba(${GREEN},0.3) 45%,
+        rgba(${GREEN},0.12) 55%,
+        transparent 70%
+      )`,
+    }}
+  />
+
+  <div
+    className="absolute inset-0"
+    style={{
+      background: `linear-gradient(90deg,
+        rgba(${GREEN},0.35) 25%,
+        rgba(${GREEN},0.15) 45%,
+        transparent 70%
+      )`,
+      filter: "blur(28px)",
+      transform: "translateX(20px)",
+    }}
+  />
+</div>
+
 
             {/* Swiper instance */}
             <Swiper
@@ -107,11 +123,14 @@ export function HeroSection() {
                 <SwiperSlide key={i}>
                   <div className="w-full h-full">
                     <img
-                      src={s.src}
-                      alt={s.title}
-                      className="w-full h-full object-cover"
-                      style={{ filter: "brightness(1.03)" }}
-                    />
+  src={s.src}
+  alt={s.title}
+  className="w-full h-full object-cover"
+  style={{
+    filter: "brightness(1.03)",
+    objectPosition: "80% center",
+  }}
+/>
                   </div>
                 </SwiperSlide>
               ))}

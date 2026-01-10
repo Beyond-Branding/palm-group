@@ -7,7 +7,7 @@ export const awards = [
   },
   {
     title: "Importer-Exporter Code (IEC)",
-    image: "/awards/importexport.jpg",
+    image: "/awards/importexport.png",
   },
   {
     title: "Drug License",
@@ -15,11 +15,11 @@ export const awards = [
   },
   {
     title: "FSSAI Central License",
-    image: "/awards/fssai-license.jpg",
+    image: "/awards/fssai-license.png",
   },
   {
     title: "Bio-Stimulant Manufacturing License",
-    image: "/awards/mahaagri.jpg",
+    image: "/awards/MaharashtraLogo.png",
   },
 ];
 

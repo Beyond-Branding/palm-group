@@ -1,4 +1,3 @@
-// /components/ProductListingAndDetails.tsx
 "use client";
 
 import { useMemo, useState, useEffect } from "react";
@@ -273,14 +272,14 @@ const products = [
     dosage: "<strong>Soil Application by broadcasting:</strong> 1-1.5 kg per acre. <br/><strong>Method:</strong> Apply directly to the soil during land preparation or as a top-dressing in early growth stages.",
     usage:
       "Cropper Granules is ideal for a wide range of crops including: Grapes, Strawberries, Pomegranate, Tomato, Mango, Paddy, Onion, Chilli, Citrus Fruits, All Vegetable Crops, All Horticultural Crops, Sugarcane, Tea, Coffee, Cashew, Banana, Wheat.",
-    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1766901717/Screenshot_2025-12-28_112823-removebg-preview_hgnhjc.png",
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1767960406/croppergranules-removebg-preview_rzxnek.png",
     secondaryImage: "/silicose-side.png",
     backgroundHex: "#E6F8EC",
     dotColor: "rgba(255,255,255,0.05)",
     overlayColor: "rgba(0,0,0,0.24)",
     imageStyle: {
     maxWidth: "90%",
-    maxHeight: "90%",
+    maxHeight: "85%",
     objectPosition: "right center",
     translateY: "3%",
   },

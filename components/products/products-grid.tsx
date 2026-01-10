@@ -6,7 +6,8 @@ import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Facebook, Instagram, Share2 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
-import cropProtectionProducts, { CropProduct } from "@/lib/products";
+import products from "@/lib/products";
+import type { CropProduct } from "@/lib/products";
 
 const WHATSAPP_NUMBER = "918779083022";
 
@@ -17,7 +18,75 @@ const BOLD_PHRASES = [
   "Cropper is ideal for a wide range of crops including:",
   "Cropper Plus is ideal for a wide range of crops including:",
   "Silicose is ideal for a wide range of crops including:",
-  "Cropper Granules is ideal for a wide range of crops including:"
+  "high-performance, protein hydrolysate-based biostimulant",
+  "essential amino acids",
+  "bioactive peptides",
+  "higher yields, superior produce, enhanced fruit size and a significant reduction in losses from flower and fruit drop",
+  "Accelerated Plant Development",
+  "Photosynthetic Efficiency",
+  "Advanced Protein Nutrition",
+  "Enhanced Flowering, Fruit Set & Fruit Sizes",
+  "specialized, high-performance ionic & non-ionic activator",
+  "reducing the surface tension",
+  "absorbed faster",
+  "12x Efficacy Boost",
+  "Superior Rainfastness",
+  "50% Herbicide Cost Reduction",
+  "Rapid Knockdown Action",
+  "Optimized Nutrient Uptake",
+  "Enhanced Soil Binding & Nutrient Retention",
+  "premium silicone-based spreader, sticker, activator, penetrator and pH regulator",
+  "40x Superior Spreading Power",
+  "Stomatal Infiltration (Faster Action)",
+  "Integrated pH Balancing",
+  "Unmatched Rainfastness",
+  "Synergistic Efficiency",
+  "Economic Optimization",
+  "pH Regulation",
+  "sophisticated organic formulation",
+  "Carbohydrate Theory",
+  "high-quality fruit tissue",
+  "premium, high quality produce with exceptional flavor and shelf life",
+  "Structural Integrity & Cracking Prevention",
+  "Reduced Premature Drop",
+  "BRIX & Sweetness Optimization",
+  "Essential Nutrient Enrichment",
+  "Superior Pulp & Keeping Quality",
+  "Induces Early Harvest",
+  "100% organic liquid sulfur",
+  "Controls Powdery Mildew & Red Mites",
+  "No Residue",
+  "Corrects Sulfur Deficiency",
+  "Heat Safe",
+  "Improves Soil Temperature",
+  "humic acid",
+  "soil structure, fertility, and water retention for healthier crops",
+  "Boosts Plant Growth",
+  "Improves Soil Structure",
+  "Retains Nutrients",
+  "Improves Water-Holding Capacity",
+  "highly concentrated humic and fulvic acid",
+  "root growth and soil fertility",
+  "Promotes Root & Shoot Growth",
+  "Enhances Microbial Activity",
+  "Reduces Nutrient Loss",
+  "Fulvate-Powered Nutrient Transport",
+  "silica-rich soil and foliar supplement",
+  "strengthens plants and protects them against stress",
+  "Supplies Soluble Silica",
+  "Enhances Disease Resistance",
+  "Blocks Nematode Entry",
+  "Improves Water Retention",
+  "Increases Lodging Resistance",
+  "high-performance organic soil amendment",
+  "stimulate vigorous root systems",
+  "Triggers White Root Growth",
+  "Boosts Nutrient Efficiency",
+  "Enhances Drought Tolerance",
+  "Supports Seed Germination",
+  "Cropper Granules is ideal for a wide range of crops including:",
+  "integrated pest management",
+  "soil health improvement",
 ];
 
 function escapeHtml(str: string) {
@@ -31,12 +100,18 @@ function escapeHtml(str: string) {
 
 function highlightPhrases(text: string, phrases: string[]) {
   if (!text) return "";
+
   let html = escapeHtml(text);
+
   phrases.forEach((phrase) => {
-    const esc = phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const regex = new RegExp(esc, "g");
-    html = html.replace(regex, `<strong>${escapeHtml(phrase)}</strong>`);
+    const escapedPhrase = escapeHtml(phrase);
+
+    const escRegex = escapedPhrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+    const regex = new RegExp(escRegex, "g");
+    html = html.replace(regex, `<strong>${escapedPhrase}</strong>`);
   });
+
   return html;
 }
 
@@ -125,12 +200,117 @@ const ProductCards: React.FC<{ products: CropProduct[] }> = ({ products }) => {
                 />
               </div>
               <p className="mt-2 text-xs text-neutral-500">Click the image to smoothly zoom.</p>
-            </div>
+            
+
+            {/* ACTIONS BELOW IMAGE */}
+<div className="mt-6 flex flex-col items-center gap-6">
+
+  {/* Buttons row */}
+  <div className="flex items-center justify-center gap-4">
+    <a
+      href={waLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-2 px-7 py-3 bg-[#1b5e20] hover:bg-[#155a32] text-white font-semibold rounded-full shadow-md transition"
+    >
+      <FaWhatsapp className="h-5 w-5" />
+      <span>Buy Now</span>
+    </a>
+
+    <Link
+      href={`/crop-nutrition?product=${encodeURIComponent(selectedProduct.name)}`}
+      className="inline-flex items-center gap-2 px-7 py-3 rounded-full border border-[#1f6f3d] text-[#1f6f3d] font-semibold hover:bg-[#e8f5e9] transition"
+    >
+      <span>Explore More →</span>
+    </Link>
+  </div>
+
+  {/* Share section */}
+  <div className="flex flex-col items-center gap-3">
+    <div className="text-sm font-semibold text-neutral-800">
+      Share now
+    </div>
+
+    <div className="flex items-center justify-center gap-3">
+      <button
+        onClick={() => shareTo("facebook", selectedProduct.name)}
+        className="rounded-full border border-[#1f6f3d] p-2 text-[#1f6f3d] hover:bg-[#e8f5e9] transition"
+      >
+        <Facebook className="h-4 w-4" />
+      </button>
+
+      <button
+        onClick={() => shareTo("instagram", selectedProduct.name)}
+        className="rounded-full border border-[#1f6f3d] p-2 text-[#1f6f3d] hover:bg-[#e8f5e9] transition"
+      >
+        <Instagram className="h-4 w-4" />
+      </button>
+
+      <button
+        onClick={() => shareTo("whatsapp", selectedProduct.name)}
+        className="rounded-full border border-[#1f6f3d] p-2 text-[#1f6f3d] hover:bg-[#e8f5e9] transition"
+      >
+        <FaWhatsapp className="h-4 w-4" />
+      </button>
+
+      <button
+        onClick={() => {
+          navigator.clipboard?.writeText(window.location.href);
+          alert("Link copied!");
+        }}
+        className="rounded-full border border-[#1f6f3d] p-2 text-[#1f6f3d] hover:bg-[#e8f5e9] transition"
+      >
+        <Share2 className="h-4 w-4" />
+      </button>
+    </div>
+  </div>
+
+</div>
+              </div>
 
             <div className="md:w-1/2">
               <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-green-800">
                 {selectedProduct.name}
               </h1>
+            
+            <p className="mt-0 mb-3 text-base text-gray-700 leading-7 font-semibold">
+  {selectedProduct.tagline}
+</p>
+
+              <p
+  className="mb-6 text-base text-gray-700 leading-7 font-normal"
+  style={{ textAlign: "justify" }}
+  dangerouslySetInnerHTML={{
+  __html: highlightPhrases(
+    selectedProduct.detailedDescription ?? "",
+    BOLD_PHRASES
+  ),
+}}
+/>
+
+              {selectedProduct.benefits && (
+  <div className="mb-6">
+    <h2 className="text-xl font-bold text-gray-800 mb-3">
+      Key Benefits
+    </h2>
+
+    <ul
+      className="list-disc list-inside space-y-1 text-base text-gray-700 leading-7 font-normal pl-4"
+      style={{ textAlign: "justify" }}
+    >
+      {selectedProduct.benefits.map((benefit, index) => (
+        <li
+          key={index}
+          dangerouslySetInnerHTML={{
+            __html: highlightPhrases(benefit, BOLD_PHRASES),
+          }}
+        />
+      ))}
+    </ul>
+  </div>
+)}
+
+
 
               <div className="mt-6 overflow-hidden rounded-xl border border-[#1f6f3d]/30">
                 <table className="w-full text-sm">
@@ -160,69 +340,7 @@ const ProductCards: React.FC<{ products: CropProduct[] }> = ({ products }) => {
                 </table>
               </div>
 
-              <div className="mt-5 flex items-center gap-3">
-                <a
-                  href={waLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-[#1b5e20] hover:bg-[#155a32] text-white font-semibold rounded-full shadow-md transition"
-                >
-                  <FaWhatsapp className="h-5 w-5" />
-                  <span>Buy Now</span>
-                </a>
-
-                <Link
-                  href={`/crop-nutrition?product=${encodeURIComponent(selectedProduct.name)}`}
-                  className="inline-flex items-center gap-2 ml-1 px-6 py-3 rounded-full border border-[#1f6f3d] text-[#1f6f3d] font-semibold hover:bg-[#e8f5e9] transition"
-                >
-                  <span>Explore More →</span>
-                </Link>
-              </div>
-
-              <div className="mt-6">
-                <div className="text-sm font-semibold text-neutral-800 mb-2">Share now</div>
-                <div className="flex items-center gap-3">
-                  <button
-                    className="rounded-full border border-[#1f6f3d] p-2 text-[#1f6f3d] hover:bg-[#e8f5e9] transition"
-                    onClick={() => shareTo("facebook", selectedProduct.name)}
-                    title="Share on Facebook"
-                  >
-                    <Facebook className="h-4 w-4" />
-                  </button>
-
-                  <button
-                    className="rounded-full border border-[#1f6f3d] p-2 text-[#1f6f3d] hover:bg-[#e8f5e9] transition"
-                    onClick={() => shareTo("instagram", selectedProduct.name)}
-                    title="Share on Instagram"
-                  >
-                    <Instagram className="h-4 w-4" />
-                  </button>
-
-                  <button
-                    className="rounded-full border border-[#1f6f3d] p-2 text-[#1f6f3d] hover:bg-[#e8f5e9] transition"
-                    onClick={() => shareTo("whatsapp", selectedProduct.name)}
-                    title="Share on WhatsApp"
-                  >
-                    <FaWhatsapp className="h-4 w-4" />
-                  </button>
-
-                  <button
-                    className="ml-1 rounded-full border border-[#1f6f3d] p-2 text-[#1f6f3d] hover:bg-[#e8f5e9] transition"
-                    onClick={() => {
-                      const url = typeof window !== "undefined" ? window.location.href : "";
-                      if ((navigator as any).share) {
-                        (navigator as any).share({ title: selectedProduct.name, url }).catch(() => {});
-                      } else {
-                        navigator.clipboard?.writeText(url);
-                        alert("Link copied!");
-                      }
-                    }}
-                    title="Share"
-                  >
-                    <Share2 className="h-4 w-4" />
-                  </button>
-                </div>
-              </div>
+              
             </div>
           </div>
         </section>
@@ -248,7 +366,7 @@ const ProductCards: React.FC<{ products: CropProduct[] }> = ({ products }) => {
               className="w-full cursor-pointer transition-all duration-300 rounded-lg border border-neutral-200 bg-transparent shadow-[0_2px_10px_rgba(0,0,0,0.05)] hover:border-neutral-900 hover:shadow-[0_10px_30px_rgba(0,0,0,0.15)] hover:-translate-y-0.5 overflow-hidden"
             >
               <div className="relative">
-                <div style={{ width: "100%", paddingBottom: product.imageSize?.paddingBottom || "115%" }} className="relative">
+                <div style={{ width: "100%", paddingBottom: product.imageStyle?.paddingBottom || "115%" }} className="relative">
                   <div className="absolute inset-0 rounded-lg" style={{ backgroundColor: product.backgroundHex }}>
                     <div
                       aria-hidden
@@ -275,10 +393,10 @@ const ProductCards: React.FC<{ products: CropProduct[] }> = ({ products }) => {
                         alt={product.name}
                         className="object-contain"
                         style={{
-                          maxWidth: product.imageSize?.maxWidth ?? "120%",
-                          maxHeight: product.imageSize?.maxHeight ?? "120%",
+                          maxWidth: product.imageStyle?.maxWidth ?? "120%",
+                          maxHeight: product.imageStyle?.maxHeight ?? "120%",
                           filter: "drop-shadow(0 10px 18px rgba(0,0,0,0.18))",
-                          objectPosition: product.imageSize?.objectPosition ?? "center",
+                          objectPosition: product.imageStyle?.objectPosition ?? "center",
                           width: "auto",
                           height: "auto",
                         }}
@@ -304,7 +422,8 @@ const ProductCards: React.FC<{ products: CropProduct[] }> = ({ products }) => {
 export function ProductsGrid() {
   return (
     <section className="py-16 bg-white min-h-[75vh]">
-      <ProductCards products={cropProtectionProducts} />
+      <ProductCards products={products} />
     </section>
   );
 }
+

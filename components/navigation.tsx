@@ -28,9 +28,9 @@ export function Navigation() {
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
               <img
-                src="/logo.png"
+                src="/newlogo.png"
                 alt="Palm Group Logo"
-                className="w-24 h-auto object-contain"
+                className="w-32 h-auto object-contain"
               />
             </Link>
           </div>
