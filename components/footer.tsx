@@ -17,8 +17,6 @@ export function Footer() {
     to support farmers worldwide.
   </p>
 
-  {/* Awards / Certifications */}
-{/* Awards / Certifications */}
 <div className="flex flex-wrap items-center gap-4 pt-3">
   {awards.map((award) => (
     <a

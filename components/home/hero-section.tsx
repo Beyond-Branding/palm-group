@@ -38,8 +38,7 @@ export function HeroSection() {
 
   return (
     <section className="w-full relative" style={{ backgroundColor: BG_COLOR }}>
-      {/* LEFT / RIGHT ARROWS placed relative to the whole section so they sit at the extreme sides */}
-      <button
+        <button
         type="button"
         onClick={() => swiperRef.current?.slidePrev()}
         aria-label="Previous slide"
@@ -57,9 +56,7 @@ export function HeroSection() {
         <ChevronRight className="h-6 w-6 text-white" />
       </button>
 
-      {/* HERO LAYOUT */}
       <div className="relative w-full min-h-[520px] lg:min-h-[720px] flex flex-col-reverse lg:flex-row">
-        {/* TEXT (left column) */}
         <div className="w-full lg:w-[40%] px-6 md:px-12 lg:px-16 py-12 md:py-20 lg:py-44 z-20 relative flex items-center justify-center">
           <div className="max-w-[520px] text-white text-center lg:text-left">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight mb-5">
@@ -71,14 +68,12 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* IMAGE / SWIPER (right column) */}
         <div className="relative w-full lg:w-[60%] h-[300px] sm:h-[420px] lg:h-auto">
           <div className="relative w-full h-full">
 <div
   aria-hidden
   className="absolute inset-0 z-10 pointer-events-none hidden lg:block"
 >
-  {/* main fade */}
   <div
     className="absolute inset-0"
     style={{

@@ -202,10 +202,8 @@ const ProductCards: React.FC<{ products: CropProduct[] }> = ({ products }) => {
               <p className="mt-2 text-xs text-neutral-500">Click the image to smoothly zoom.</p>
             
 
-            {/* ACTIONS BELOW IMAGE */}
 <div className="mt-6 flex flex-col items-center gap-6">
 
-  {/* Buttons row */}
   <div className="flex items-center justify-center gap-4">
     <a
       href={waLink}
@@ -220,7 +218,6 @@ const ProductCards: React.FC<{ products: CropProduct[] }> = ({ products }) => {
   
   </div>
 
-  {/* Share section */}
   <div className="flex flex-col items-center gap-3">
     <div className="text-sm font-semibold text-neutral-800">
       Share now

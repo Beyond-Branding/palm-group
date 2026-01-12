@@ -673,7 +673,7 @@ export default function ProductListingAndDetails() {
       <div className="relative h-[15rem] md:h-[26rem] bg-white rounded-2xl ring-1 ring-gray-200 shadow-sm overflow-hidden">
 
               <img
-          src="https://res.cloudinary.com/daoju0r3c/image/upload/v1764227166/rice-field-7890204_1280_tldtn9.png"
+          src="https://res.cloudinary.com/daoju0r3c/image/upload/v1768221378/rice-field-7890204_1280_tldtn9_1_d3uqvz.png"
           alt="Rice field"
           className="absolute inset-0 w-full h-full object-cover"
         />
@@ -705,11 +705,6 @@ export default function ProductListingAndDetails() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 md:mt-12 lg:mt-16 pb-12 md:pb-20">
         <div>
-          
-
-        
-
-            
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12">
               {products.map((product) => (

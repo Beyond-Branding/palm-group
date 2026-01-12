@@ -162,11 +162,9 @@ export function PharmaceuticalsProducts() {
       return res;
     }
 
-    // For "All" — list ALL APIs first (sorted), then ALL Intermediates (sorted).
     const apis = items.filter((i) => i.category === "API").sort((a, b) => a.name.localeCompare(b.name));
     const intermediates = items.filter((i) => i.category === "Intermediate").sort((a, b) => a.name.localeCompare(b.name));
 
-    // Return apis first, then intermediates (no interleaving)
     return [...apis, ...intermediates];
   }, [q, letter, category]);
 
