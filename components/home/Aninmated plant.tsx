@@ -120,7 +120,7 @@ const PRODUCTS = [
   // 7 → SILICOSE
   "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174176/silicosenew_t2zou5.png",
 
-  // 8 → GOLDEN DROP (moved to right side)
+  // 8 → GOLDEN DROP 
   "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173725/golden_drop-Photoroom_shadow_m9aigy.png",
 ];
 
@@ -205,7 +205,7 @@ export default function PlantWithProducts() {
   [1, 5], // AG-F + CROPPER
   [3, 7], // CROP GIANT + SILICOSE
   [2, 6], // CROPPER GRANULES + CROPPER PLUS
-  [8],    // ✅ GOLDEN DROP (alone)
+  [8],    // GOLDEN DROP
 ];
 
 

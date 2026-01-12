@@ -182,7 +182,6 @@ export function Testimonials() {
   const offsetRef = useRef<number>(0);
   const manualAnimatingRef = useRef<boolean>(false);
 
-  // NEW: pause timer ref used to pause auto-scrolling after manual nav
   const pauseTimeoutRef = useRef<number | null>(null);
 
   const SPEED_PX_PER_SEC = 50;
@@ -190,7 +189,6 @@ export function Testimonials() {
   const openModal = (t: Testimonial) => {
     setModalTestimonial(t);
     setIsRunning(false);
-    // clear any manual pause timer so modal controls behavior deterministically
     if (pauseTimeoutRef.current) {
       clearTimeout(pauseTimeoutRef.current);
       pauseTimeoutRef.current = null;
@@ -269,7 +267,6 @@ export function Testimonials() {
     applyTransform(offsetRef.current);
   }, []);
 
-  // Helper: clear any existing pause timer
   const clearPauseTimer = () => {
     if (pauseTimeoutRef.current) {
       clearTimeout(pauseTimeoutRef.current);
@@ -281,11 +278,9 @@ export function Testimonials() {
     const track = trackRef.current;
     if (!track) return;
 
-    // stop auto while manual animation runs
     setIsRunning(false);
     manualAnimatingRef.current = true;
 
-    // clear any previously scheduled resume; we'll schedule a fresh 5s resume after this move
     clearPauseTimer();
 
     const loopPoint = loopWidthRef.current || count * (CARD_WIDTH + GAP);
@@ -295,10 +290,8 @@ export function Testimonials() {
     while (target < 0) target += loopPoint;
     while (target >= loopPoint) target -= loopPoint;
 
-    // prepare transition
     track.style.transition = "";
     applyTransform(offsetRef.current);
-    // force reflow so transition applies
     track.offsetHeight;
     track.style.transition = "transform 420ms cubic-bezier(.22,.9,.26,1)";
 
@@ -313,7 +306,6 @@ export function Testimonials() {
       }
     }
 
-    // start visual transform
     applyTransform(visualTarget);
 
     const onTransEnd = () => {
@@ -323,7 +315,6 @@ export function Testimonials() {
       applyTransform(offsetRef.current);
       manualAnimatingRef.current = false;
 
-      // After manual nav, pause auto-scrolling for 5 seconds, then resume
       clearPauseTimer();
       pauseTimeoutRef.current = window.setTimeout(() => {
         setIsRunning(true);
@@ -333,7 +324,6 @@ export function Testimonials() {
 
     track.addEventListener("transitionend", onTransEnd);
 
-    // safety: if transitionend doesn't fire, finish after timeout
     window.setTimeout(() => {
       if (manualAnimatingRef.current) {
         track.removeEventListener("transitionend", onTransEnd);
@@ -351,7 +341,6 @@ export function Testimonials() {
     }, 700);
   };
 
-  // clear timers on unmount
   useEffect(() => {
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
@@ -376,14 +365,11 @@ export function Testimonials() {
         ref={wrapperRef}
         className="w-full relative"
         onMouseEnter={() => {
-          // pause on hover — clear any pending resume so user can read without it resuming unexpectedly
           setIsRunning(false);
           clearPauseTimer();
         }}
         onMouseLeave={() => {
-          // only resume automatic motion if not manually animating; if a pause timer was running, keep it
           if (!manualAnimatingRef.current) {
-            // if there is a pause timer already scheduled (from manual nav), keep it — otherwise resume immediately
             if (!pauseTimeoutRef.current) setIsRunning(true);
           }
         }}
@@ -453,16 +439,13 @@ export function Testimonials() {
         </div>
       </div>
 
-      {/* Modal */}
       {modalTestimonial && (
         <div className="fixed inset-0 z-50 flex items-center justify-center px-4" role="dialog" aria-modal="true" aria-labelledby="modal-title">
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={closeModal} />
           <div className="relative z-10 w-full max-w-5xl bg-white rounded-2xl shadow-2xl overflow-hidden">
             <button onClick={closeModal} className="absolute top-4 right-4 z-20 bg-white/90 hover:bg-white text-gray-700 rounded-full p-2 shadow" aria-label="Close">✕</button>
 
-            {/* grid: becomes stacked on mobile */}
             <div className="grid grid-cols-1 md:grid-cols-6">
-              {/* Image column */}
               <div className="md:col-span-2 flex items-center justify-center p-4 bg-gray-50">
                 <img
                   src={modalTestimonial.image}
@@ -471,7 +454,7 @@ export function Testimonials() {
                   style={{
                     display: "block",
                     maxWidth: "100%",
-                    maxHeight: "58vh", // desktop max height
+                    maxHeight: "58vh", 
                     height: "auto",
                     width: "auto",
                     objectFit: "contain",
@@ -479,7 +462,6 @@ export function Testimonials() {
                 />
               </div>
 
-              {/* Text column */}
               <div className="md:col-span-4 p-4 md:p-6 max-h-[78vh] overflow-y-auto">
                 <h3 id="modal-title" className="text-lg md:text-2xl font-bold text-[#22543d] mb-2">{modalTestimonial.name}</h3>
                 <div className="flex gap-3 mb-4 items-center">
