@@ -9,7 +9,6 @@ export default function BusinessAreas() {
   const CARD_WIDTH = 300;
   const CARD_HEIGHT = 400;
 
-  // base image size
   const IMAGE_WIDTH = 400;
   const IMAGE_HEIGHT = 520;
 
@@ -32,20 +31,84 @@ export default function BusinessAreas() {
   };
   
   const products = [
-    { name: "GOLDEN DROP", color: "bg-[#DFF2EA]", icon: "/farm1.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173725/golden_drop-Photoroom_shadow_m9aigy.png", dotColor: "rgba(255,255,255,0.06)", overlayColor: "rgba(0,0,0,0.25)" },
-    { name: "AG-F", color: "bg-[#FFF3C4]", icon: "/farm2.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173812/agf-Photoroom_1_cmpcyy.png", dotColor: "rgba(255,255,255,0.08)", overlayColor: "rgba(0,0,0,0.22)" },
-    { name: "AG-F SUPER PLUS", color: "bg-[#D6E8FF]", icon: "/farm3.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173861/AG-F_Superplus-Photoroom_shadow_kdb8m9.png", dotColor: "rgba(255,255,255,0.07)", overlayColor: "rgba(0,0,0,0.25)" },
-    { name: "CROP GIANT", color: "bg-[#FADDDD]", icon: "/farm4.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173895/crop_giant_1_cs6nnn.png", dotColor: "rgba(255,255,255,0.07)", overlayColor: "rgba(0,0,0,0.25)" },
-    { name: "PALM SULF", color: "bg-[#FFE3D1]", icon: "/farm1.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173960/palmsulfnew_ntrjwo.png", dotColor: "rgba(255,255,255,0.06)", overlayColor: "rgba(0,0,0,0.25)" },
-    { name: "CROPPER", color: "bg-[#E8DAD6]", icon: "/farm6.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174014/croppernew_qydobw.png", dotColor: "rgba(255,255,255,0.06)", overlayColor: "rgba(0,0,0,0.25)" },
-    { name: "CROPPER PLUS", color: "bg-[#FFE8C7]", icon: "/farm7.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174140/cropperplusnew_gxqz3w.png", dotColor: "rgba(255,255,255,0.07)", overlayColor: "rgba(0,0,0,0.24)" },
-    { name: "SILICOSE", color: "bg-[#E0E9FF]", icon: "/farm8.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174176/silicosenew_t2zou5.png", dotColor: "rgba(255,255,255,0.05)", overlayColor: "rgba(0,0,0,0.24)" },
-    { name: "CROPPER GRANULES", color: "bg-[#E6F8EC]", icon: "/farm9.svg", image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1767960406/croppergranules-removebg-preview_rzxnek.png", dotColor: "rgba(255,255,255,0.05)", overlayColor: "rgba(0,0,0,0.24)" },
-  ];
+  {
+    name: "GOLDEN DROP",
+    tagline: "Premium Organic Biostimulant",
+    color: "bg-[#DFF2EA]",
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173725/golden_drop-Photoroom_shadow_m9aigy.png",
+    dotColor: "rgba(255,255,255,0.06)",
+    overlayColor: "rgba(0,0,0,0.25)",
+  },
+  {
+    name: "AG-F",
+    tagline: "Activator",
+    color: "bg-[#FFF3C4]",
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173812/agf-Photoroom_1_cmpcyy.png",
+    dotColor: "rgba(255,255,255,0.08)",
+    overlayColor: "rgba(0,0,0,0.22)",
+  },
+  {
+    name: "AG-F SUPER PLUS",
+    tagline: "Silicone based Spreader",
+    color: "bg-[#D6E8FF]",
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173861/AG-F_Superplus-Photoroom_shadow_kdb8m9.png",
+    dotColor: "rgba(255,255,255,0.07)",
+    overlayColor: "rgba(0,0,0,0.25)",
+  },
+  {
+    name: "CROP GIANT",
+    tagline: "Seaweed based extract",
+    color: "bg-[#FADDDD]",
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173895/crop_giant_1_cs6nnn.png",
+    dotColor: "rgba(255,255,255,0.07)",
+    overlayColor: "rgba(0,0,0,0.25)",
+  },
+  {
+    name: "PALM SULF",
+    tagline: "Organic Liquid Sulfur",
+    color: "bg-[#FFE3D1]",
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173960/palmsulfnew_ntrjwo.png",
+    dotColor: "rgba(255,255,255,0.06)",
+    overlayColor: "rgba(0,0,0,0.25)",
+  },
+  {
+    name: "CROPPER",
+    tagline: "Humic Acid Solution",
+    color: "bg-[#E8DAD6]",
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174014/croppernew_qydobw.png",
+    dotColor: "rgba(255,255,255,0.06)",
+    overlayColor: "rgba(0,0,0,0.25)",
+  },
+  {
+    name: "CROPPER PLUS",
+    tagline: "Concentrated Humic Acid Liquid with added Auxins",
+    color: "bg-[#FFE8C7]",
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174140/cropperplusnew_gxqz3w.png",
+    dotColor: "rgba(255,255,255,0.07)",
+    overlayColor: "rgba(0,0,0,0.24)",
+  },
+  {
+    name: "SILICOSE",
+    tagline: "Silica-Based Organic Supplement",
+    color: "bg-[#E0E9FF]",
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174176/silicosenew_t2zou5.png",
+    dotColor: "rgba(255,255,255,0.05)",
+    overlayColor: "rgba(0,0,0,0.24)",
+  },
+  {
+    name: "CROPPER GRANULES",
+    tagline: "Humic-Based Organic Soil Conditioner",
+    color: "bg-[#E6F8EC]",
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1767960406/croppergranules-removebg-preview_rzxnek.png",
+    dotColor: "rgba(255,255,255,0.05)",
+    overlayColor: "rgba(0,0,0,0.24)",
+  },
+];
+
 
   const CARD_GAP = 16; 
   const STEP = isMobile
-  ? CARD_WIDTH + CARD_GAP // exactly one card
+  ? CARD_WIDTH + CARD_GAP 
   : CARD_WIDTH + CARD_GAP;
   
   const doubledProducts = useMemo(() => [...products, ...products], [products]);
@@ -291,13 +354,15 @@ export default function BusinessAreas() {
                         <div className="card-overlay pointer-events-none" aria-hidden style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: "60%", zIndex: 18, background: "linear-gradient(to top, var(--overlay-color, rgba(0,0,0,0.28)) 0%, rgba(0,0,0,0.12) 30%, rgba(0,0,0,0.04) 60%, transparent 100%)", filter: "blur(0.3px)" }} />
 
                         <div className="w-full text-left z-30">
-                          <div className="flex items-center gap-3 mb-3">
-                            <div style={{ width: 40, height: 40, filter: "brightness(0)" }} className="relative">
-                              <Image src={product.icon} alt={`${product.name} icon`} fill sizes="40px" />
-                            </div>
-                          </div>
-                          <h3 className="text-2xl font-bold">{product.name}</h3>
-                        </div>
+  <h3 className="text-2xl font-bold leading-tight">
+    {product.name}
+  </h3>
+
+  <p className="mt-2 text-base font-medium text-gray-900 opacity-85">
+  {product.tagline}
+</p>
+</div>
+
 
                         <div className="flex-grow" />
 
