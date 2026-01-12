@@ -20,14 +20,14 @@ const PRODUCT_SIZES: number[] = [
 ];
 
 const PRODUCT_SIZES_MOBILE: number[] = [
-  100, // 0 AG-F SUPER PLUS
-  135, // 1 AG-F
-  110, // 2 CROPPER GRANULES
-  135, // 3 CROP GIANT
-  140, // 4 PALM SULF
-  135, // 5 CROPPER
-  135, // 6 CROPPER PLUS
-  135, // 7 SILICOSE
+  95, // 0 AG-F SUPER PLUS
+  130, // 1 AG-F
+  100, // 2 CROPPER GRANULES
+  130, // 3 CROP GIANT
+  130, // 4 PALM SULF
+  130, // 5 CROPPER
+  130, // 6 CROPPER PLUS
+  130, // 7 SILICOSE
   130, // 8 GOLDEN DROP
 ];
 
@@ -46,15 +46,15 @@ const POSITIONS_DESKTOP = [
 
 
 const POSITIONS_MOBILE = [
-  { left: "28%", top: "72%" },
-  { left: "12%", top: "40%" },
+  { left: "28%", top: "76%" },
+  { left: "12%", top: "44%" },
   { left: "32%", top: "-30%" },
   { left: "12%", top: "2%" },
-  { left: "72%", top: "72%" },
-  { left: "88%", top: "40%" },
-  { left: "66%", top: "-26%" },
-  { left: "88%", top: "2%" },
-  { left: "50%", top: "55%" },
+  { left: "72%", top: "79%" },
+  { left: "88%", top: "44%" },
+  { left: "66%", top: "-32%" },
+  { left: "88%", top: "5%" },
+  { left: "50%", top: "5%" },
 ];
 
 
@@ -71,25 +71,25 @@ const LABEL_OFFSET_DESKTOP: number[] = [
 ];
 
 const LABEL_OFFSET_MOBILE: number[] = [
-  -8,  // 0 AG-F SUPER PLUS
-  -12, // 1 AG-F
+  2,  // 0 AG-F SUPER PLUS
+  -18, // 1 AG-F
   -10, // 2 CROPPER GRANULES
   -12, // 3 CROP GIANT
-  -14, // 4 PALM SULF
-  -14, // 5 CROPPER
+  -23, // 4 PALM SULF
+  -20, // 5 CROPPER
   -16, // 6 CROPPER PLUS
-  -12, // 7 SILICOSE
-  -14, // 8 GOLDEN DROP
+  -22, // 7 SILICOSE
+  -20, // 8 GOLDEN DROP
 ];
 
 const LABEL_OFFSET_X_MOBILE: number[] = [
    0, // 0 AG-F SUPER PLUS
   -5, // 1 AG-F
-   0, // 2 CROPPER GRANULES
+  -5, // 2 CROPPER GRANULES
    1, // 3 CROP GIANT
    1, // 4 PALM SULF
    6, // 5 CROPPER
-   1, // 6 CROPPER PLUS
+   4, // 6 CROPPER PLUS
    5, // 7 SILICOSE
    0, // 8 GOLDEN DROP
 ];
