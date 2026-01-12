@@ -217,12 +217,7 @@ const ProductCards: React.FC<{ products: CropProduct[] }> = ({ products }) => {
       <span>Buy Now</span>
     </a>
 
-    <Link
-      href={`/crop-nutrition?product=${encodeURIComponent(selectedProduct.name)}`}
-      className="inline-flex items-center gap-2 px-7 py-3 rounded-full border border-[#1f6f3d] text-[#1f6f3d] font-semibold hover:bg-[#e8f5e9] transition"
-    >
-      <span>Explore More →</span>
-    </Link>
+  
   </div>
 
   {/* Share section */}
