@@ -22,7 +22,7 @@ const slides = [
   },
   {
     src: "https://res.cloudinary.com/daoju0r3c/image/upload/v1767956832/Gemini_Generated_Image_17d4mw17d4mw17d4_jo3cvb.png",
-    title: "Palm Pharmachem",
+    title: "Excellence in Every Molecule",
     description:
       "Palm Pharmachem delivers high-quality APIs and excipients backed by decades of expertise and strong global partnerships.",
   },
