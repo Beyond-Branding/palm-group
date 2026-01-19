@@ -279,20 +279,37 @@ export default function BusinessAreas() {
   }, []);
 
   return (
-    <section className="relative bg-white overflow-hidden md:overflow-visible"
-  style={{ paddingBottom: `${EXTRA_BOTTOM}px` }}>
-      <div aria-hidden style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: "120vw", maxWidth: "1600px", height: 220, overflow: "visible", zIndex: 0 }}>
-        <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ width: "100%", height: "100%", display: "block" }}>
-          <path d="M-80,200 Q200,100 820,200 T1520,200 L1520,0 L-80,0 Z" fill="#059c5b" />
-          <path d="M-80,200 Q320,140 720,240 T1520,240 L1520,0 L-80,0 Z" fill="#00712D" opacity="0.8" />
-        </svg>
-      </div>
+    <section
+  className="relative overflow-hidden bg-white"
+  style={{ paddingBottom: `${EXTRA_BOTTOM}px` }}
+>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative" style={{ zIndex: 10 }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative mb-10 pt-10 pb-8">
-          <h2 className="text-4xl md:text-5xl font-bold text-white text-left">Our Products</h2>
-        </div>
+  <div className="absolute top-0 left-0 w-full h-[220px]">
+    <svg
+      viewBox="0 0 1440 320"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="none"
+      className="w-full h-full"
+    >
+      <path
+        d="M0,200 Q200,100 820,200 T1440,200 L1440,0 L0,0 Z"
+        fill="#059c5b"
+      />
+      <path
+        d="M0,200 Q320,140 720,240 T1440,240 L1440,0 L0,0 Z"
+        fill="#00712D"
+        opacity="0.8"
+      />
+    </svg>
+  </div>
 
+  <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 pt-6 sm:pt-12 pb-24">
+    <h2 className="text-3xl md:text-5xl font-bold text-white">
+      Our Products
+    </h2>
+  </div>
+
+  <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         <div
           ref={wrapperRef}
           onMouseEnter={() => {

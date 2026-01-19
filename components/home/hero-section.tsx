@@ -9,19 +9,19 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const slides = [
   {
-    src: "https://res.cloudinary.com/daoju0r3c/image/upload/v1767878514/Gemini_Generated_Image_34yq8r34yq8r34yq_wolyv0.png",
+    src: "https://res.cloudinary.com/daoju0r3c/image/upload/v1768826128/Plant1_qroz21.jpg",
     title: "Science Behind Every Successful Harvest",
     description:
       "Delivering high-efficiency nutrition products that boost crop health, enhance productivity, and maximize potential.",
   },
   {
-    src: "https://res.cloudinary.com/daoju0r3c/image/upload/v1767879402/Gemini_Generated_Image_azmjtkazmjtkazmj_vpfyjt.png",
+    src: "https://res.cloudinary.com/daoju0r3c/image/upload/v1768826129/Farm2_li6c2h.jpg",
     title: "Empowering Farmers, Driving Progress",
     description:
       "Partnering with farmers through reliable solutions and continuous support to help them achieve greater success every season.",
   },
   {
-    src: "https://res.cloudinary.com/daoju0r3c/image/upload/v1767956832/Gemini_Generated_Image_17d4mw17d4mw17d4_jo3cvb.png",
+    src: "https://res.cloudinary.com/daoju0r3c/image/upload/v1768826128/Lab3_bojlr5.jpg",
     title: "Excellence in Every Molecule",
     description:
       "Palm Pharmachem delivers high-quality APIs and excipients backed by decades of expertise and strong global partnerships.",
