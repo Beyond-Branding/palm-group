@@ -28,6 +28,7 @@ export default function BusinessAreas() {
     "SILICOSE": { scale: 1, offsetPx: 0 },
     "AG-F SUPER PLUS": { scale: 0.6, offsetPx: -65 },
     "CROPPER GRANULES": { scale: 0.6, offsetPx: -42 },
+    "BIO PALM L.C." : { scale: 0.65, offsetPx: -42 },
   };
   
   const products = [
@@ -103,6 +104,15 @@ export default function BusinessAreas() {
     dotColor: "rgba(255,255,255,0.05)",
     overlayColor: "rgba(0,0,0,0.24)",
   },
+  {
+    name: "BIO PALM L.C.",
+    tagline: "High density metabolic bio-stimulant",
+    color: "bg-[#E2E8FF]",
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1781074521/Bio_palmlc-removebg-preview_sr4cdi.png",
+    dotColor: "rgba(255,255,255,0.05)",
+    overlayColor: "rgba(0,0,0,0.24)",
+  },
+
 ];
 
 
