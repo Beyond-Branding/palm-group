@@ -87,6 +87,16 @@ const BOLD_PHRASES = [
   "Cropper Granules is ideal for a wide range of crops including:",
   "integrated pest management",
   "soil health improvement",
+  "high-density metabolic bio-stimulant",
+  "powers your crops to their maximum potential",
+  "Phosphorus Uptake & Nutrient Unlock",
+  "Powerful Root System",
+  "Stress Resilience",
+  "Bud Differentiation & Cane Maturity",
+  "Breaks April Dormancy",
+  "Improved Photosynthesis",
+  "Grapes",
+  "Other Crops (Via Drip)",
 ];
 
 function escapeHtml(str: string) {
@@ -103,9 +113,11 @@ function highlightPhrases(text: string, phrases: string[]) {
 
   let html = escapeHtml(text);
 
+  // Convert line breaks to HTML breaks
+  html = html.replace(/\n/g, "<br />");
+
   phrases.forEach((phrase) => {
     const escapedPhrase = escapeHtml(phrase);
-
     const escRegex = escapedPhrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
     const regex = new RegExp(escRegex, "g");
@@ -317,17 +329,35 @@ const ProductCards: React.FC<{ products: CropProduct[] }> = ({ products }) => {
 />
                     </tr>
                     <tr className="bg-[#e8f5e9]">
-                      <td className="w-28 p-3 font-semibold text-[#1f6f3d]">Crops</td>
-                      <td
-  className="p-3 text-base text-neutral-800 leading-7 font-normal"
-  dangerouslySetInnerHTML={{
-    __html: highlightPhrases(
-      selectedProduct.dosePerAcre,
-      BOLD_PHRASES
-    ),
-  }}
-/>
-                    </tr>
+  <td className="w-28 p-3 font-semibold text-[#1f6f3d]">
+    Crops
+  </td>
+
+  <td
+    className="p-3 text-base text-neutral-800 leading-7 font-normal"
+    dangerouslySetInnerHTML={{
+      __html: highlightPhrases(
+        selectedProduct.dosePerAcre,
+        BOLD_PHRASES
+      ),
+    }}
+  />
+</tr>
+
+{selectedProduct.applicationSchedule && (
+  <tr>
+    <td className="w-28 p-3 font-semibold text-[#1f6f3d] align-top">
+      Timing & Application Schedule
+    </td>
+
+    <td
+      className="p-3 text-base text-neutral-800 leading-8"
+      dangerouslySetInnerHTML={{
+        __html: selectedProduct.applicationSchedule,
+      }}
+    />
+  </tr>
+)}
                   </tbody>
                 </table>
               </div>

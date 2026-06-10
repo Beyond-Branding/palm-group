@@ -284,6 +284,49 @@ const products = [
     translateY: "3%",
   },
   },
+  {
+    name: "BIO PALM L.C.",
+    category: "Metabolic bio-stimulant",
+    tagline:"High density metabolic bio-stimulant",
+    description:
+      "Bio Palm L.C. is a high-density metabolic bio-stimulant engineered for next-generation crop nutrition. By leveraging specialized science and advanced plant-sourced formulations, it powers your crops to their maximum potential.",
+    detailedDescription:
+      "Bio Palm L.C. is a high-density metabolic bio-stimulant engineered for next-generation crop nutrition. By leveraging specialized science and advanced plant-sourced formulations, it powers your crops to their maximum potential. It helps progressive farmers achieve stronger roots, better nutrition, higher yields, and greater profits.",
+    benefits: [
+  "Phosphorus Uptake & Nutrient Unlock: Mobilizes locked Phosphorus and micronutrients from the soil, enhancing its uptake and utilization by the plant for better fertilizer efficiency.",
+  "Powerful Root System: Promotes rapid white root proliferation for better nutrient and water uptake, enhancing root activity and long-term establishment.",
+  "Stress Resilience: Improves root respiration and plant tolerance to harsh environmental factors such as heat, drought, waterlogging, and sun-scorch protection.",
+  "Bud Differentiation & Cane Maturity: Overcomes the physiological stall after pruning to ensure uniform shoot growth, stronger canes, better wood ripening, and increased fruitfulness for next season's bunch count.",
+  "Breaks April Dormancy: Helps the vine overcome the physiological stall after April pruning, directing organic catalysts to ensure a vigorous, uniform flush and over 90%+ uniformity in bud burst.",
+  "Improved Photosynthesis: Increases chlorophyll intensity within the plant, making the leaves thick, sturdy, and dark green.",
+],
+    dosage: "<strong>Foliar Spray (Grapes):</strong>2 ml per Liter of water.<br/><strong>Drip Application (Other Crops):</strong> 500 ml per acre.",
+    usage:
+"Grapes: Special science for breaking dormancy, strong canes, uniform bud burst, and bigger, firmer, sweeter berries.\n\nOther Crops (Via Drip): Ideal for Rice (Paddy), Vegetables & Floriculture, Fruits & Horticultural Crops (Pomegranate, Tomato, Mango, Citrus, Banana), Onion, Chilli, Capsicum, Sugarcane, Tea, Coffee and Rhizobium Crops (Ginger, Turmeric).",
+    applicationSchedule: `
+<strong>For Grapes (Foliar Spray):</strong><br/>
+
+<strong>First Spray:</strong> Apply at the 5 leaf stage for vegetative vigor.<br/>
+
+<strong>Second Spray:</strong> Apply 10 to 12 days after the first spray (7-leaf stage) for canopy uniformity.<br/><br/>
+
+<strong>For Other Crops (Drip System):</strong><br/>
+
+Delivered directly to the root zone via drip, fertigation, drenching, or flooding.<br/>
+
+Best applied during early vegetative growth and grand growth phases for root establishment.
+`,
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1781074521/Bio_palmlc-removebg-preview_sr4cdi.png",
+    backgroundHex: "#E2E8FF",
+    dotColor: "rgba(255,255,255,0.05)",
+    overlayColor: "rgba(0,0,0,0.24)",
+    imageStyle: {
+    maxWidth: "90%",
+    maxHeight: "90%",
+    objectPosition: "right center",
+    translateY: "3%",
+  },
+  },
 ];
 
 type Product = typeof products[number];
@@ -424,6 +467,16 @@ const BOLD_PHRASES = [
   "Cropper Granules is ideal for a wide range of crops including:",
   "integrated pest management",
   "soil health improvement",
+  "high-density metabolic bio-stimulant",
+  "powers your crops to their maximum potential",
+  "Phosphorus Uptake & Nutrient Unlock",
+  "Powerful Root System",
+  "Stress Resilience",
+  "Bud Differentiation & Cane Maturity",
+  "Breaks April Dormancy",
+  "Improved Photosynthesis",
+  "Grapes",
+  "Other Crops (Via Drip)",
 ];
 
 function escapeHtml(str: string) {
@@ -437,12 +490,20 @@ function escapeHtml(str: string) {
 
 function highlightPhrases(text: string, phrases: string[]) {
   if (!text) return "";
+
   let html = escapeHtml(text);
+
+  // Convert line breaks first
+  html = html.replace(/\n/g, "<br />");
 
   phrases.forEach((phrase) => {
     const esc = phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const regex = new RegExp(esc.replace(/&/g, "(?:&|&amp;)"), "g");
-    html = html.replace(regex, `<strong>${escapeHtml(phrase)}</strong>`);
+
+    html = html.replace(
+      regex,
+      `<strong>${escapeHtml(phrase)}</strong>`
+    );
   });
 
   return html;
@@ -645,14 +706,35 @@ export default function ProductListingAndDetails() {
 />
                     </tr>
                     <tr className="bg-[#e8f5e9]">
-                      <td className="w-28 p-3 font-semibold text-[#1f6f3d]">Crops</td>
-                      <td
-  className="p-3 text-base text-neutral-800 leading-7 font-normal"
-  dangerouslySetInnerHTML={{
-    __html: highlightPhrases(selectedProduct.usage, BOLD_PHRASES),
-  }}
-/>
-                    </tr>
+  <td className="w-28 p-3 font-semibold text-[#1f6f3d]">
+    Crops
+  </td>
+
+  <td
+    className="p-3 text-base text-neutral-800 leading-7 font-normal"
+    dangerouslySetInnerHTML={{
+      __html: highlightPhrases(
+        selectedProduct.usage,
+        BOLD_PHRASES
+      ),
+    }}
+  />
+</tr>
+
+{selectedProduct.applicationSchedule && (
+  <tr>
+    <td className="w-28 p-3 font-semibold text-[#1f6f3d] align-top">
+      Timing & Application Schedule
+    </td>
+
+    <td
+      className="p-3 text-base text-neutral-800 leading-8"
+      dangerouslySetInnerHTML={{
+        __html: selectedProduct.applicationSchedule,
+      }}
+    />
+  </tr>
+)}
                   </tbody>
                 </table>
               </div>

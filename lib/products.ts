@@ -2,16 +2,19 @@ export type CropProduct = {
   name: string;
 
   // GRID + QUICK VIEW
-  targetPests: string;     // dosage HTML
-  dosePerAcre: string;     // crops line
+  targetPests: string;
+  dosePerAcre: string;
   image: string;
 
-  // FULL CONTENT (for future / crop-nutrition page)
+  // FULL CONTENT
   category?: string;
   tagline?: string;
   description?: string;
   detailedDescription?: string;
   benefits?: string[];
+
+  // NEW FIELD
+  applicationSchedule?: string;
 
   // visuals
   backgroundHex: string;
@@ -292,6 +295,49 @@ export const cropProtectionProducts: CropProduct[] = [
     imageStyle: {
     maxWidth: "90%",
     maxHeight: "85%",
+    objectPosition: "right center",
+    translateY: "3%",
+  },
+  },
+  {
+    name: "BIO PALM L.C.",
+    category: "Metabolic bio-stimulant",
+    tagline:"High density metabolic bio-stimulant",
+    description:
+      "Bio Palm L.C. is a high-density metabolic bio-stimulant engineered for next-generation crop nutrition. By leveraging specialized science and advanced plant-sourced formulations, it powers your crops to their maximum potential.",
+    detailedDescription:
+      "Bio Palm L.C. is a high-density metabolic bio-stimulant engineered for next-generation crop nutrition. By leveraging specialized science and advanced plant-sourced formulations, it powers your crops to their maximum potential. It helps progressive farmers achieve stronger roots, better nutrition, higher yields, and greater profits.",
+    benefits: [
+  "Phosphorus Uptake & Nutrient Unlock: Mobilizes locked Phosphorus and micronutrients from the soil, enhancing its uptake and utilization by the plant for better fertilizer efficiency.",
+  "Powerful Root System: Promotes rapid white root proliferation for better nutrient and water uptake, enhancing root activity and long-term establishment.",
+  "Stress Resilience: Improves root respiration and plant tolerance to harsh environmental factors such as heat, drought, waterlogging, and sun-scorch protection.",
+  "Bud Differentiation & Cane Maturity: Overcomes the physiological stall after pruning to ensure uniform shoot growth, stronger canes, better wood ripening, and increased fruitfulness for next season's bunch count.",
+  "Breaks April Dormancy: Helps the vine overcome the physiological stall after April pruning, directing organic catalysts to ensure a vigorous, uniform flush and over 90%+ uniformity in bud burst.",
+  "Improved Photosynthesis: Increases chlorophyll intensity within the plant, making the leaves thick, sturdy, and dark green.",
+],
+    targetPests: "<strong>Foliar Spray (Grapes):</strong>2 ml per Liter of water.<br/><strong>Drip Application (Other Crops):</strong> 500 ml per acre.",
+    dosePerAcre:
+  "Grapes: Special science for breaking dormancy, strong canes, uniform bud burst, and bigger, firmer, sweeter berries.\n\nOther Crops (Via Drip): Ideal for Rice (Paddy), Vegetables & Floriculture, Fruits & Horticultural Crops (Pomegranate, Tomato, Mango, Citrus, Banana), Onion, Chilli, Capsicum, Sugarcane, Tea, Coffee and Rhizobium Crops (Ginger, Turmeric).",
+    applicationSchedule: `
+<strong>For Grapes (Foliar Spray):</strong><br/>
+
+<strong>First Spray:</strong> Apply at the 5 leaf stage for vegetative vigor.<br/>
+
+<strong>Second Spray:</strong> Apply 10 to 12 days after the first spray (7-leaf stage) for canopy uniformity.<br/><br/>
+
+<strong>For Other Crops (Drip System):</strong><br/>
+
+Delivered directly to the root zone via drip, fertigation, drenching, or flooding.<br/>
+
+Best applied during early vegetative growth and grand growth phases for root establishment.
+`,
+    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1781074521/Bio_palmlc-removebg-preview_sr4cdi.png",
+    backgroundHex: "#E2E8FF",
+    dotColor: "rgba(255,255,255,0.05)",
+    overlayColor: "rgba(0,0,0,0.24)",
+    imageStyle: {
+    maxWidth: "90%",
+    maxHeight: "90%",
     objectPosition: "right center",
     translateY: "3%",
   },
