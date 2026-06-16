@@ -55,7 +55,7 @@ export function CoreValues() {
 
             <div className="relative w-full h-56 sm:h-64 md:h-56 lg:h-64">
               <Image
-                src="https://res.cloudinary.com/daoju0r3c/image/upload/v1764226157/Seed_rhb5pj.jpg"
+                src="https://res.cloudinary.com/dmrylz6pc/image/upload/v1781598574/hrrp418lot6mqiiolnvx.jpg"
                 alt="Seedling / sprout symbolizing growth"
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
@@ -92,7 +92,7 @@ export function CoreValues() {
 
             <div className="relative w-full h-56 sm:h-64 md:h-56 lg:h-64">
               <Image
-                src="https://res.cloudinary.com/daoju0r3c/image/upload/v1764226202/pipe_ldy46m.jpg"
+                src="https://res.cloudinary.com/dmrylz6pc/image/upload/v1781598574/dals8jkrezeta2zjysf3.jpg"
                 alt="Rows of healthy green crops"
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"

@@ -97,31 +97,31 @@ const LABEL_OFFSET_X_MOBILE: number[] = [
 
 const PRODUCTS = [
   // 0 → AG-F SUPER PLUS (replaces Golden Drop position)
-  "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173861/AG-F_Superplus-Photoroom_shadow_kdb8m9.png",
+  "https://res.cloudinary.com/dmrylz6pc/image/upload/v1781593434/xznzucvhqpcojzvktsbn.png",
 
   // 1 → AG-F
-  "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173812/agf-Photoroom_1_cmpcyy.png",
+  "https://res.cloudinary.com/dmrylz6pc/image/upload/v1781593432/fcl2l5ctovw7zfybfnyt.png",
 
   // 2 → CROPPER GRANULES (NEW)
-  "https://res.cloudinary.com/daoju0r3c/image/upload/v1767960406/croppergranules-removebg-preview_rzxnek.png",
+  "https://res.cloudinary.com/dmrylz6pc/image/upload/v1781596327/wvph0h99k1cktciw3znl.png",
 
   // 3 → CROP GIANT
-  "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173895/crop_giant_1_cs6nnn.png",
+  "https://res.cloudinary.com/dmrylz6pc/image/upload/v1781593433/dng9cder6yqx3isq8llw.png",
 
   // 4 → PALM SULF
-  "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173960/palmsulfnew_ntrjwo.png",
+  "https://res.cloudinary.com/dmrylz6pc/image/upload/v1781593431/nqpuz8ti2zzdfnqsaq2n.png",
 
   // 5 → CROPPER
-  "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174014/croppernew_qydobw.png",
+  "https://res.cloudinary.com/dmrylz6pc/image/upload/v1781593434/xgyaziaaxhm7c8hlbejb.png",
 
   // 6 → CROPPER PLUS
-  "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174140/cropperplusnew_gxqz3w.png",
+  "https://res.cloudinary.com/dmrylz6pc/image/upload/v1781593435/gy6ezfuvaax9wbvjbicv.png",
 
   // 7 → SILICOSE
-  "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174176/silicosenew_t2zou5.png",
+  "https://res.cloudinary.com/dmrylz6pc/image/upload/v1781593433/tzeh1ogevnxcvnmkbyry.png",
 
   // 8 → GOLDEN DROP 
-  "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173725/golden_drop-Photoroom_shadow_m9aigy.png",
+  "https://res.cloudinary.com/dmrylz6pc/image/upload/v1781593431/x1hixtcghqg0ti3fs3vh.png",
 ];
 
 const PRODUCT_NAMES = [

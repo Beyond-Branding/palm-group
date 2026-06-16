@@ -23,7 +23,7 @@ const SECTIONS: Section[] = [
         </p>
       </>
     ),
-    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764225209/Time_park_vvrkvi.jpg",
+    image: "https://res.cloudinary.com/dmrylz6pc/image/upload/v1781593431/df51fzxdfggfn5bejxg9.jpg",
     imageAlt: "Palm Group today",
   },
   {
@@ -37,7 +37,7 @@ const SECTIONS: Section[] = [
         </p>
       </>
     ),
-    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764223471/shivrajtesti_vlpaat.jpg",
+    image: "https://res.cloudinary.com/dmrylz6pc/image/upload/v1781593432/ettwjwnak16yn6fcevsc.jpg",
     imageAlt: "Global expansion in the 2010s",
   },
   {
@@ -75,7 +75,7 @@ const SECTIONS: Section[] = [
         </p>
       </>
     ),
-    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764225698/innovationagri_xf2p69.jpg",
+    image: "https://res.cloudinary.com/dmrylz6pc/image/upload/v1781598574/ubw2pmhf35qttffgvjfj.jpg",
     imageAlt: "Innovation & farmer-centric solutions in the 2000s",
   },
   {
@@ -89,7 +89,7 @@ const SECTIONS: Section[] = [
         </p>
       </>
     ),
-    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1767173175/grapes_omjdxs.jpg",
+    image: "https://res.cloudinary.com/dmrylz6pc/image/upload/v1781598573/x7jorvpm7tdxfqxqtxg2.jpg",
     imageAlt: "Entry into organic agri-solutions",
   },
   {
@@ -103,7 +103,7 @@ const SECTIONS: Section[] = [
         </p>
       </>
     ),
-    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764225787/expansionpharma_xww8av.jpg",
+    image: "https://res.cloudinary.com/dmrylz6pc/image/upload/v1781598573/komacberegrjaq088y6j.jpg",
     imageAlt: "Expansion into pharmaceuticals",
   },
   {
@@ -117,7 +117,7 @@ const SECTIONS: Section[] = [
         </p>
       </>
     ),
-    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764225829/Found_thwkfk.jpg",
+    image: "https://res.cloudinary.com/dmrylz6pc/image/upload/v1781598573/rxcah22lviupgrxhjdbw.jpg",
     imageAlt: "Foundation of Palm Group",
   },
 ];

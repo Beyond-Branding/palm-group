@@ -24,7 +24,7 @@ const products = [
       "<strong>Dosage:</strong> 0.5–0.75 ml per litre of water.<br/><strong>Timing:</strong> Spray during flowering and early fruiting stages every 12–15 days for best results.",
     usage:
       "Golden Drop is ideal for a wide range of crops including: Grapes, Strawberries, Pomegranate, Tomato, Mango, Paddy, Onion, Chilli, Citrus Fruits, All Vegetable Crops, All Horticultural Crops, Sugarcane, Tea, Coffee, Cashew, Banana.",
-    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173725/golden_drop-Photoroom_shadow_m9aigy.png",
+    image: "https://res.cloudinary.com/dmrylz6pc/image/upload/v1781593431/x1hixtcghqg0ti3fs3vh.png",
     secondaryImage: "/golden-drop-side.png",
     backgroundHex: "#DFF2EA",
     dotColor: "rgba(255,255,255,0.06)",
@@ -55,7 +55,7 @@ const products = [
     dosage:
       "<strong>To reduce herbicide dosage:</strong> 1 ml per litre of water to reduce herbicide dosage by 50%.<br/><strong>General Foliar sprays:</strong> 0.25 ml per liter of water <strong><br/>For Fertigation:</strong> 250ml per acre. <br/><strong>Use With:</strong> Herbicides, insecticides, fungicides, micronutrients & foliar fertilizers.",
     usage: "Ideal for all crops.",
-    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173812/agf-Photoroom_1_cmpcyy.png",
+    image: "https://res.cloudinary.com/dmrylz6pc/image/upload/v1781593432/fcl2l5ctovw7zfybfnyt.png",
     secondaryImage: "/copperplus.png",
     backgroundHex: "#FFF3C4",
     dotColor: "rgba(255,255,255,0.08)",
@@ -87,7 +87,7 @@ const products = [
     dosage: "<strong>For foliar sprays:</strong> 1 ml per 8 litres of water. <br/>Use with herbicides, insecticides, fungicides, micronutrients & foliar sprays.",
     usage:
       "Perfect for all crops where complete coverage and high spray efficiency are crucial.",
-    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173861/AG-F_Superplus-Photoroom_shadow_kdb8m9.png",
+    image: "https://res.cloudinary.com/dmrylz6pc/image/upload/v1781593434/xznzucvhqpcojzvktsbn.png",
     secondaryImage: "/ag-f-super-side.jpg",
     backgroundHex: "#D6E8FF",
     dotColor: "rgba(255,255,255,0.07)",
@@ -119,7 +119,7 @@ const products = [
       "<strong>Spray:</strong> 1.5 ml per litre of water when berries reach pea size. <br/><strong>Repeat:</strong> After 7-10 days for maximum effectiveness. <br/><strong>Third Spray:</strong> 15 days before harvest.",
     usage:
       "Crop Giant is ideal for a wide range of crops including: Grapes, Strawberries, Pomegranate, Tomato, Mango, Paddy, Onion, Chilli, Citrus Fruits, All Vegetable Crops, All Horticultural Crops, Sugarcane, Tea, Coffee, Cashew, Banana.",
-    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173895/crop_giant_1_cs6nnn.png",
+    image: "https://res.cloudinary.com/dmrylz6pc/image/upload/v1781593433/dng9cder6yqx3isq8llw.png",
     secondaryImage: "/crop giant.png",
     backgroundHex: "#FADDDD",
     dotColor: "rgba(255,255,255,0.07)",
@@ -149,7 +149,7 @@ const products = [
     dosage: "<strong>Foliar Spray:</strong> 2-3 ml per litre of water.<br/><strong>Drip Application:</strong> 3 litres per acre.",
     usage:
       "Palm Sulf is ideal for a wide range of crops including: Grapes, Strawberries, Pomegranate, Tomato, Mango, Paddy, Onion, Chilli, Citrus Fruits, All Vegetable Crops, All Horticultural Crops, Sugarcane, Tea, Coffee, Cashew, Banana.",
-    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764173960/palmsulfnew_ntrjwo.png",
+    image: "https://res.cloudinary.com/dmrylz6pc/image/upload/v1781593431/nqpuz8ti2zzdfnqsaq2n.png",
     secondaryImage: "/palm-sulf-side.jpg",
     backgroundHex: "#FFE3D1",
     dotColor: "rgba(255,255,255,0.06)",
@@ -180,7 +180,7 @@ const products = [
       "<strong>Soil Application:</strong> 3 L/acre.<br/><strong>Seed Treatment:</strong> 2.5 L per MT of seed. <br/><strong>With Fertilizers:</strong> 3 L/acre.",
     usage:
       "Cropper is ideal for a wide range of crops including: Grapes, Strawberries, Pomegranate, Tomato, Mango, Paddy, Onion, Chilli, Citrus Fruits, All Vegetable Crops, All Horticultural Crops, Sugarcane, Tea, Coffee, Cashew, Banana.",
-    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174014/croppernew_qydobw.png",
+    image: "https://res.cloudinary.com/dmrylz6pc/image/upload/v1781593434/xgyaziaaxhm7c8hlbejb.png",
     secondaryImage: "/cropper-side.jpg",
     backgroundHex: "#E8DAD6",
     dotColor: "rgba(255,255,255,0.06)",
@@ -212,7 +212,7 @@ const products = [
       "<strong>Soil Application:</strong> 1-1.25 L/acre. <br/><strong>Foliar Spray:</strong> 1 ml per litre. <br/><strong>Seed Treatment:</strong> 1.5 L per MT of seed. <br/><strong>With Fertilizers:</strong> 1-1.25 L/acre.",
     usage:
       "Cropper Plus is ideal for a wide range of crops including: Grapes, Strawberries, Pomegranate, Tomato, Mango, Paddy, Onion, Chilli, Citrus Fruits, All Vegetable Crops, All Horticultural Crops, Sugarcane, Tea, Coffee, Cashew, Banana.",
-    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174140/cropperplusnew_gxqz3w.png",
+    image: "https://res.cloudinary.com/dmrylz6pc/image/upload/v1781593435/gy6ezfuvaax9wbvjbicv.png",
     secondaryImage: "/cropper-plus-side.png",
     backgroundHex: "#FFE8C7",
     dotColor: "rgba(255,255,255,0.07)",
@@ -242,7 +242,7 @@ const products = [
     dosage: "<strong>Foliar Spray:</strong> 3 ml per litre of water. <br/><strong>Drip Application:</strong> 2–3 L/acre.",
     usage:
       "Silicose is ideal for a wide range of crops including: Grapes, Strawberries, Pomegranate, Tomato, Mango, Paddy, Onion, Chilli, Citrus Fruits, All Vegetable Crops, All Horticultural Crops, Sugarcane, Tea, Coffee, Cashew, Banana.",
-    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1764174176/silicosenew_t2zou5.png",
+    image: "https://res.cloudinary.com/dmrylz6pc/image/upload/v1781593433/tzeh1ogevnxcvnmkbyry.png",
     secondaryImage: "/silicose-side.png",
     backgroundHex: "#E0E9FF",
     dotColor: "rgba(255,255,255,0.05)",
@@ -272,7 +272,7 @@ const products = [
     dosage: "<strong>Soil Application by broadcasting:</strong> 1-1.5 kg per acre. <br/><strong>Method:</strong> Apply directly to the soil during land preparation or as a top-dressing in early growth stages.",
     usage:
       "Cropper Granules is ideal for a wide range of crops including: Grapes, Strawberries, Pomegranate, Tomato, Mango, Paddy, Onion, Chilli, Citrus Fruits, All Vegetable Crops, All Horticultural Crops, Sugarcane, Tea, Coffee, Cashew, Banana, Wheat.",
-    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1767960406/croppergranules-removebg-preview_rzxnek.png",
+    image: "https://res.cloudinary.com/dmrylz6pc/image/upload/v1781596327/wvph0h99k1cktciw3znl.png",
     secondaryImage: "/silicose-side.png",
     backgroundHex: "#E6F8EC",
     dotColor: "rgba(255,255,255,0.05)",
@@ -316,7 +316,7 @@ Delivered directly to the root zone via drip, fertigation, drenching, or floodin
 
 Best applied during early vegetative growth and grand growth phases for root establishment.
 `,
-    image: "https://res.cloudinary.com/daoju0r3c/image/upload/v1781074521/Bio_palmlc-removebg-preview_sr4cdi.png",
+    image: "https://res.cloudinary.com/dmrylz6pc/image/upload/v1781593433/pyupoy73jgjmy2wrkfez.png",
     backgroundHex: "#E2E8FF",
     dotColor: "rgba(255,255,255,0.05)",
     overlayColor: "rgba(0,0,0,0.24)",
@@ -755,7 +755,7 @@ export default function ProductListingAndDetails() {
       <div className="relative h-[15rem] md:h-[26rem] bg-white rounded-2xl ring-1 ring-gray-200 shadow-sm overflow-hidden">
 
               <img
-          src="https://res.cloudinary.com/daoju0r3c/image/upload/v1768221378/rice-field-7890204_1280_tldtn9_1_d3uqvz.png"
+          src="https://res.cloudinary.com/dmrylz6pc/image/upload/v1781599264/gqmmjmfbrkyu09y2o5lx.png"
           alt="Rice field"
           className="absolute inset-0 w-full h-full object-cover"
         />
